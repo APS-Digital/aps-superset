@@ -122,4 +122,3 @@ except ImportError:
     logger.info("Using default Docker config...")
 
 
-SECRET_KEY = 'pcbP3dSHKZfYgydl7DLRoeP52YsL8N6QwongLr14orn6GxT7QAMZCG9+'
