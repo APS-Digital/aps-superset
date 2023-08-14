@@ -127,5 +127,5 @@ superset/static/stats/statistics.html
 
 # Env
 
-.env
-.env-non-dev
+./docker/.env
+./docker/.env-non-dev
