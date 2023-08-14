@@ -116,4 +116,5 @@ cache/
 # Env
 
 ./docker/.env
+./docker/.env*
 ./docker/.env-non-dev
