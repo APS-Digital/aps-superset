@@ -138,7 +138,9 @@ export default function PivotTableChart(props: PivotTableProps) {
     rowSubtotalPosition,
     colSubtotalPosition,
     colTotals,
+    colSubTotals,
     rowTotals,
+    rowSubTotals,
     valueFormat,
     currencyFormat,
     emitCrossFilters,
@@ -432,11 +434,13 @@ export default function PivotTableChart(props: PivotTableProps) {
       clickRowHeaderCallback: toggleFilter,
       clickColumnHeaderCallback: toggleFilter,
       colTotals,
+      colSubTotals,
       rowTotals,
+      rowSubTotals,
       highlightHeaderCellsOnHover:
         emitCrossFilters ||
-        isFeatureEnabled(FeatureFlag.DRILL_BY) ||
-        isFeatureEnabled(FeatureFlag.DRILL_TO_DETAIL),
+        isFeatureEnabled(FeatureFlag.DrillBy) ||
+        isFeatureEnabled(FeatureFlag.DrillToDetail),
       highlightedHeaderCells: selectedFilters,
       omittedHighlightHeaderGroups: [METRIC_KEY],
       cellColorFormatters: { [METRIC_KEY]: metricColorFormatters },
@@ -444,10 +448,12 @@ export default function PivotTableChart(props: PivotTableProps) {
     }),
     [
       colTotals,
+      colSubTotals,
       dateFormatters,
       emitCrossFilters,
       metricColorFormatters,
       rowTotals,
+      rowSubTotals,
       selectedFilters,
       toggleFilter,
     ],

@@ -96,7 +96,9 @@ export default function transformProps(chartProps: ChartProps<QueryFormData>) {
     rowSubtotalPosition,
     colSubtotalPosition,
     colTotals,
+    colSubTotals,
     rowTotals,
+    rowSubTotals,
     valueFormat,
     dateFormat,
     metricsLayout,
@@ -110,7 +112,7 @@ export default function transformProps(chartProps: ChartProps<QueryFormData>) {
   const dateFormatters = colnames
     .filter(
       (colname: string, index: number) =>
-        coltypes[index] === GenericDataType.TEMPORAL,
+        coltypes[index] === GenericDataType.Temporal,
     )
     .reduce(
       (
@@ -156,7 +158,9 @@ export default function transformProps(chartProps: ChartProps<QueryFormData>) {
     rowSubtotalPosition,
     colSubtotalPosition,
     colTotals,
+    colSubTotals,
     rowTotals,
+    rowSubTotals,
     valueFormat,
     currencyFormat,
     emitCrossFilters,

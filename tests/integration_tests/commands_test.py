@@ -125,14 +125,9 @@ class TestImportAssetsCommand(SupersetTestCase):
         }
         assert json.loads(dashboard.json_metadata) == {
             "color_scheme": None,
-            "default_filters": "{}",
             "expanded_slices": {str(new_chart_id): True},
-            "filter_scopes": {
-                str(new_chart_id): {
-                    "region": {"scope": ["ROOT_ID"], "immune": [new_chart_id]}
-                },
-            },
             "import_time": 1604342885,
+            "native_filter_configuration": [],
             "refresh_frequency": 0,
             "remote_id": 7,
             "timed_refresh_immune_slices": [new_chart_id],
@@ -140,6 +135,9 @@ class TestImportAssetsCommand(SupersetTestCase):
 
         dataset = chart.table
         assert str(dataset.uuid) == dataset_config["uuid"]
+
+        assert chart.query_context is None
+        assert json.loads(chart.params)["datasource"] == dataset.uid
 
         database = dataset.database
         assert str(database.uuid) == database_config["uuid"]
