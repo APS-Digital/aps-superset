@@ -118,3 +118,4 @@ cache/
 ./docker/.env
 ./docker/.env*
 ./docker/.env-non-dev
+/superset-db-dumps/
