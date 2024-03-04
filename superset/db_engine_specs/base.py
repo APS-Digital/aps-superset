@@ -23,7 +23,16 @@ import logging
 import re
 from datetime import datetime
 from re import Match, Pattern
-from typing import Any, Callable, cast, ContextManager, NamedTuple, TYPE_CHECKING, Union
+from typing import (
+    Any,
+    Callable,
+    cast,
+    ContextManager,
+    NamedTuple,
+    TYPE_CHECKING,
+    TypedDict,
+    Union,
+)
 
 import pandas as pd
 import sqlparse
@@ -41,12 +50,10 @@ from sqlalchemy.engine.interfaces import Compiled, Dialect
 from sqlalchemy.engine.reflection import Inspector
 from sqlalchemy.engine.url import URL
 from sqlalchemy.ext.compiler import compiles
-from sqlalchemy.orm import Session
-from sqlalchemy.sql import quoted_name, text
+from sqlalchemy.sql import literal_column, quoted_name, text
 from sqlalchemy.sql.expression import ColumnClause, Select, TextAsFrom, TextClause
 from sqlalchemy.types import TypeEngine
 from sqlparse.tokens import CTE
-from typing_extensions import TypedDict
 
 from superset import security_manager, sql_parse
 from superset.constants import TimeGrain as TimeGrainConstants
@@ -114,8 +121,8 @@ class TimestampExpression(
     ColumnClause
 ):  # pylint: disable=abstract-method, too-many-ancestors
     def __init__(self, expr: str, col: ColumnClause, **kwargs: Any) -> None:
-        """Sqlalchemy class that can be can be used to render native column elements
-        respecting engine-specific quoting rules as part of a string-based expression.
+        """Sqlalchemy class that can be used to render native column elements respecting
+        engine-specific quoting rules as part of a string-based expression.
 
         :param expr: Sql expression with '{col}' denoting the locations where the col
         object will be rendered.
@@ -315,10 +322,13 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
     # engine-specific type mappings to check prior to the defaults
     column_type_mappings: tuple[ColumnTypeMapping, ...] = ()
 
+    # type-specific functions to mutate values received from the database.
+    # Needed on certain databases that return values in an unexpected format
+    column_type_mutators: dict[TypeEngine, Callable[[Any], Any]] = {}
+
     # Does database support join-free timeslot grouping
     time_groupby_inline = False
     limit_method = LimitMethod.FORCE_LIMIT
-    time_secondary_columns = False
     allows_joins = True
     allows_subqueries = True
     allows_alias_in_select = True
@@ -331,7 +341,7 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
     allows_alias_to_source_column = True
 
     # Whether ORDER BY clause must appear in SELECT
-    # if TRUE, then it doesn't have to.
+    # if True, then it doesn't have to.
     allows_hidden_orderby_agg = True
 
     # Whether ORDER BY clause can use sql calculated expression
@@ -364,7 +374,7 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
 
     force_column_alias_quotes = False
     arraysize = 0
-    max_column_name_length = 0
+    max_column_name_length: int | None = None
     try_remove_schema_from_table_name = True  # pylint: disable=invalid-name
     run_multiple_statements_as_one = False
     custom_errors: dict[
@@ -386,6 +396,19 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
 
     # Can the catalog be changed on a per-query basis?
     supports_dynamic_catalog = False
+
+    @classmethod
+    def get_allows_alias_in_select(
+        cls, database: Database  # pylint: disable=unused-argument
+    ) -> bool:
+        """
+        Method for dynamic `allows_alias_in_select`.
+
+        In Dremio this atribute is version-dependent, so Superset needs to inspect the
+        database configuration in order to determine it. This method allows engine-specs
+        to define dynamic values for the attribute.
+        """
+        return cls.allows_alias_in_select
 
     @classmethod
     def supports_url(cls, url: URL) -> bool:
@@ -454,7 +477,7 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         connect_args: dict[str, Any],
     ) -> str | None:
         """
-        Return the schema configured in a SQLALchemy URI and connection argments, if any.
+        Return the schema configured in a SQLALchemy URI and connection arguments, if any.
         """
         return None
 
@@ -736,7 +759,30 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         try:
             if cls.limit_method == LimitMethod.FETCH_MANY and limit:
                 return cursor.fetchmany(limit)
-            return cursor.fetchall()
+            data = cursor.fetchall()
+            description = cursor.description or []
+            # Create a mapping between column name and a mutator function to normalize
+            # values with. The first two items in the description row are
+            # the column name and type.
+            column_mutators = {
+                row[0]: func
+                for row in description
+                if (
+                    func := cls.column_type_mutators.get(
+                        type(cls.get_sqla_column_type(cls.get_datatype(row[1])))
+                    )
+                )
+            }
+            if column_mutators:
+                indexes = {row[0]: idx for idx, row in enumerate(description)}
+                for row_idx, row in enumerate(data):
+                    new_row = list(row)
+                    for col, func in column_mutators.items():
+                        col_idx = indexes[col]
+                        new_row[col_idx] = func(row[col_idx])
+                    data[row_idx] = tuple(new_row)
+
+            return data
         except Exception as ex:
             raise cls.get_dbapi_mapped_exception(ex) from ex
 
@@ -853,7 +899,7 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
             return database.compile_sqla_query(qry)
 
         if cls.limit_method == LimitMethod.FORCE_LIMIT:
-            parsed_query = sql_parse.ParsedQuery(sql)
+            parsed_query = sql_parse.ParsedQuery(sql, engine=cls.engine)
             sql = parsed_query.set_or_update_query_limit(limit, force=force)
 
         return sql
@@ -934,7 +980,7 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         :param sql: SQL query
         :return: Value of limit clause in query
         """
-        parsed_query = sql_parse.ParsedQuery(sql)
+        parsed_query = sql_parse.ParsedQuery(sql, engine=cls.engine)
         return parsed_query.limit
 
     @classmethod
@@ -946,7 +992,7 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         :param limit: New limit to insert/replace into query
         :return: Query with new limit
         """
-        parsed_query = sql_parse.ParsedQuery(sql)
+        parsed_query = sql_parse.ParsedQuery(sql, engine=cls.engine)
         return parsed_query.set_or_update_query_limit(limit)
 
     @classmethod
@@ -1000,7 +1046,7 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         to_sql_kwargs["name"] = table.table
 
         if table.schema:
-            # Only add schema when it is preset and non empty.
+            # Only add schema when it is preset and non-empty.
             to_sql_kwargs["schema"] = table.schema
 
         with cls.get_engine(database) as engine:
@@ -1024,13 +1070,29 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         return None
 
     @classmethod
-    def handle_cursor(cls, cursor: Any, query: Query, session: Session) -> None:
+    def handle_cursor(cls, cursor: Any, query: Query) -> None:
         """Handle a live cursor between the execute and fetchall calls
 
         The flow works without this method doing anything, but it allows
         for handling the cursor and updating progress information in the
         query object"""
         # TODO: Fix circular import error caused by importing sql_lab.Query
+
+    @classmethod
+    def execute_with_cursor(cls, cursor: Any, sql: str, query: Query) -> None:
+        """
+        Trigger execution of a query and handle the resulting cursor.
+
+        For most implementations this just makes calls to `execute` and
+        `handle_cursor` consecutively, but in some engines (e.g. Trino) we may
+        need to handle client limitations such as lack of async support and
+        perform a more complicated operation to get information from the cursor
+        in a timely manner and facilitate operations such as query stop
+        """
+        logger.debug("Query %d: Running query: %s", query.id, sql)
+        cls.execute(cursor, sql, async_=True)
+        logger.debug("Query %d: Handling cursor", query.id)
+        cls.handle_cursor(cursor, query)
 
     @classmethod
     def extract_error_message(cls, ex: Exception) -> str:
@@ -1049,8 +1111,7 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
 
         context = context or {}
         for regex, (message, error_type, extra) in cls.custom_errors.items():
-            match = regex.search(raw_message)
-            if match:
+            if match := regex.search(raw_message):
                 params = {**context, **match.groupdict()}
                 extra["engine_name"] = cls.engine_name
                 return [
@@ -1120,7 +1181,7 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         connection arguments.
 
         For example, in order to specify a default schema in RDS we need to run a query
-        at the beggining of the session:
+        at the beginning of the session:
 
             sql> set search_path = my_schema;
 
@@ -1258,8 +1319,12 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         return comment
 
     @classmethod
-    def get_columns(
-        cls, inspector: Inspector, table_name: str, schema: str | None
+    def get_columns(  # pylint: disable=unused-argument
+        cls,
+        inspector: Inspector,
+        table_name: str,
+        schema: str | None,
+        options: dict[str, Any] | None = None,
     ) -> list[ResultSetColumnType]:
         """
         Get all columns from a given schema and table
@@ -1267,6 +1332,8 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         :param inspector: SqlAlchemy Inspector instance
         :param table_name: Table name
         :param schema: Schema name. If omitted, uses default schema for database
+        :param options: Extra options to customise the display of columns in
+                        some databases
         :return: All columns in table
         """
         return convert_inspector_columns(
@@ -1318,7 +1385,12 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
 
     @classmethod
     def _get_fields(cls, cols: list[ResultSetColumnType]) -> list[Any]:
-        return [column(c["column_name"]) for c in cols]
+        return [
+            literal_column(query_as)
+            if (query_as := c.get("query_as"))
+            else column(c["column_name"])
+            for c in cols
+        ]
 
     @classmethod
     def select_star(  # pylint: disable=too-many-arguments,too-many-locals
@@ -1358,14 +1430,15 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         if show_cols:
             fields = cls._get_fields(cols)
         quote = engine.dialect.identifier_preparer.quote
+        quote_schema = engine.dialect.identifier_preparer.quote_schema
         if schema:
-            full_table_name = quote(schema) + "." + quote(table_name)
+            full_table_name = quote_schema(schema) + "." + quote(table_name)
         else:
             full_table_name = quote(table_name)
 
         qry = select(fields).select_from(text(full_table_name))
 
-        if limit:
+        if limit and cls.allow_limit_clause:
             qry = qry.limit(limit)
         if latest_partition:
             partition_query = cls.where_latest_partition(
@@ -1414,7 +1487,7 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         :param database: Database instance
         :return: Dictionary with different costs
         """
-        parsed_query = ParsedQuery(statement)
+        parsed_query = ParsedQuery(statement, engine=cls.engine)
         sql = parsed_query.stripped()
         sql_query_mutator = current_app.config["SQL_QUERY_MUTATOR"]
         mutate_after_split = current_app.config["MUTATE_AFTER_SPLIT"]
@@ -1449,7 +1522,7 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
                 "Database does not support cost estimation"
             )
 
-        parsed_query = sql_parse.ParsedQuery(sql)
+        parsed_query = sql_parse.ParsedQuery(sql, engine=cls.engine)
         statements = parsed_query.get_statements()
 
         costs = []
@@ -1510,7 +1583,7 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         :return:
         """
         if not cls.allows_sql_comments:
-            query = sql_parse.strip_comments_from_sql(query)
+            query = sql_parse.strip_comments_from_sql(query, engine=cls.engine)
 
         if cls.arraysize:
             cursor.arraysize = cls.arraysize
@@ -1765,7 +1838,7 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
 
     # pylint: disable=unused-argument
     @classmethod
-    def prepare_cancel_query(cls, query: Query, session: Session) -> None:
+    def prepare_cancel_query(cls, query: Query) -> None:
         """
         Some databases may acquire the query cancelation id after the query
         cancelation request has been received. For those cases, the db engine spec
@@ -1832,7 +1905,7 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         """
         Construct an impersonation key, by default it's the given username.
 
-        :param user: logged in user
+        :param user: logged-in user
 
         :returns: username if given user is not null
         """

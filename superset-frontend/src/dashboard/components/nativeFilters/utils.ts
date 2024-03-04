@@ -28,6 +28,7 @@ import {
   Filter,
   getChartMetadataRegistry,
   QueryFormData,
+  t,
 } from '@superset-ui/core';
 import { DashboardLayout } from 'src/dashboard/types';
 import extractUrlParams from 'src/dashboard/util/extractUrlParams';
@@ -54,7 +55,10 @@ export const getFormData = ({
   time_range,
   granularity_sqla,
   type,
+  dashboardId,
+  id,
 }: Partial<Filter> & {
+  dashboardId: number;
   datasetId?: number;
   dependencies?: object;
   groupby?: string;
@@ -91,6 +95,8 @@ export const getFormData = ({
     inView: true,
     viz_type: filterType,
     type,
+    dashboardId,
+    native_filter_id: id,
   };
 };
 
@@ -124,7 +130,7 @@ export function mergeExtraFormData(
 export function isCrossFilter(vizType: string) {
   // @ts-ignore need export from superset-ui `ItemWithValue`
   return getChartMetadataRegistry().items[vizType]?.value.behaviors?.includes(
-    Behavior.INTERACTIVE_CHART,
+    Behavior.InteractiveChart,
   );
 }
 
@@ -144,10 +150,9 @@ export function getExtraFormData(
 
 export function nativeFilterGate(behaviors: Behavior[]): boolean {
   return (
-    !behaviors.includes(Behavior.NATIVE_FILTER) ||
-    (isFeatureEnabled(FeatureFlag.DASHBOARD_FILTERS_EXPERIMENTAL) &&
-      isFeatureEnabled(FeatureFlag.DASHBOARD_CROSS_FILTERS) &&
-      behaviors.includes(Behavior.INTERACTIVE_CHART))
+    !behaviors.includes(Behavior.NativeFilter) ||
+    (isFeatureEnabled(FeatureFlag.DashboardCrossFilters) &&
+      behaviors.includes(Behavior.InteractiveChart))
   );
 }
 
@@ -228,4 +233,22 @@ export const findTabsWithChartsInScope = (
       );
   }
   return tabsInScope;
+};
+
+export const getFilterValueForDisplay = (
+  value?: string[] | null | string | number | object,
+): string => {
+  if (value === null || value === undefined) {
+    return '';
+  }
+  if (typeof value === 'string' || typeof value === 'number') {
+    return `${value}`;
+  }
+  if (Array.isArray(value)) {
+    return value.join(', ');
+  }
+  if (typeof value === 'object') {
+    return JSON.stringify(value);
+  }
+  return t('Unknown value');
 };

@@ -14,11 +14,11 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+import contextlib
 import logging
 from collections import defaultdict
 from functools import wraps
 from typing import Any, Callable, DefaultDict, Optional, Union
-from urllib import parse
 
 import msgpack
 import pyarrow as pa
@@ -27,10 +27,9 @@ from flask import flash, g, has_request_context, redirect, request
 from flask_appbuilder.security.sqla import models as ab_models
 from flask_appbuilder.security.sqla.models import User
 from flask_babel import _
-from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import NoResultFound
 from werkzeug.wrappers.response import Response
 
-import superset.models.core as models
 from superset import app, dataframe, db, result_set, viz
 from superset.common.db_query_status import QueryStatus
 from superset.daos.datasource import DatasourceDAO
@@ -128,7 +127,6 @@ def get_viz(
 ) -> BaseViz:
     viz_type = form_data.get("viz_type", "table")
     datasource = DatasourceDAO.get_datasource(
-        db.session,
         DatasourceType(datasource_type),
         datasource_id,
     )
@@ -145,7 +143,7 @@ def loads_request_json(request_json_data: str) -> dict[Any, Any]:
         return {}
 
 
-def get_form_data(  # pylint: disable=too-many-locals
+def get_form_data(
     slice_id: Optional[int] = None,
     use_slice_data: bool = False,
     initial_form_data: Optional[dict[str, Any]] = None,
@@ -184,19 +182,6 @@ def get_form_data(  # pylint: disable=too-many-locals
         # chart data API requests are JSON
         json_data = form_data["queries"][0] if "queries" in form_data else {}
         form_data.update(json_data)
-
-    if has_request_context():
-        url_id = request.args.get("r")
-        if url_id:
-            saved_url = db.session.query(models.Url).filter_by(id=url_id).first()
-            if saved_url:
-                url_str = parse.unquote_plus(
-                    saved_url.url.split("?")[1][10:], encoding="utf-8"
-                )
-                url_form_data = loads_request_json(url_str)
-                # allow form_date in request override saved url
-                url_form_data.update(form_data)
-                form_data = url_form_data
 
     form_data = {k: v for k, v in form_data.items() if k not in REJECTED_FORM_DATA_KEYS}
 
@@ -311,8 +296,7 @@ CONTAINER_TYPES = ["COLUMN", "GRID", "TABS", "TAB", "ROW"]
 def get_dashboard_extra_filters(
     slice_id: int, dashboard_id: int
 ) -> list[dict[str, Any]]:
-    session = db.session()
-    dashboard = session.query(Dashboard).filter_by(id=dashboard_id).one_or_none()
+    dashboard = db.session.query(Dashboard).filter_by(id=dashboard_id).one_or_none()
 
     # is chart in this dashboard?
     if (
@@ -323,7 +307,7 @@ def get_dashboard_extra_filters(
     ):
         return []
 
-    try:
+    with contextlib.suppress(json.JSONDecodeError):
         # does this dashboard have default filters?
         json_metadata = json.loads(dashboard.json_metadata)
         default_filters = json.loads(json_metadata.get("default_filters", "null"))
@@ -340,9 +324,6 @@ def get_dashboard_extra_filters(
             and isinstance(default_filters, dict)
         ):
             return build_extra_filters(layout, filter_scopes, default_filters, slice_id)
-    except json.JSONDecodeError:
-        pass
-
     return []
 
 

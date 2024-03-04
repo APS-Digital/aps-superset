@@ -22,16 +22,13 @@ from flask_appbuilder.models.filters import BaseFilter
 from flask_appbuilder.models.sqla import Model
 from flask_appbuilder.models.sqla.interface import SQLAInterface
 from sqlalchemy.exc import SQLAlchemyError, StatementError
-from sqlalchemy.orm import Session
 
 from superset.daos.exceptions import (
-    DAOConfigError,
     DAOCreateFailedError,
     DAODeleteFailedError,
     DAOUpdateFailedError,
 )
 from superset.extensions import db
-from superset.utils.core import get_iterable
 
 T = TypeVar("T", bound=Model)
 
@@ -61,16 +58,14 @@ class BaseDAO(Generic[T]):
     def find_by_id(
         cls,
         model_id: str | int,
-        session: Session = None,
         skip_base_filter: bool = False,
-    ) -> Model | None:
+    ) -> T | None:
         """
         Find a model by id, if defined applies `base_filter`
         """
-        session = session or db.session
-        query = session.query(cls.model_cls)
+        query = db.session.query(cls.model_cls)
         if cls.base_filter and not skip_base_filter:
-            data_model = SQLAInterface(cls.model_cls, session)
+            data_model = SQLAInterface(cls.model_cls, db.session)
             query = cls.base_filter(  # pylint: disable=not-callable
                 cls.id_column_name, data_model
             ).apply(query, None)
@@ -85,7 +80,6 @@ class BaseDAO(Generic[T]):
     def find_by_ids(
         cls,
         model_ids: list[str] | list[int],
-        session: Session = None,
         skip_base_filter: bool = False,
     ) -> list[T]:
         """
@@ -94,10 +88,9 @@ class BaseDAO(Generic[T]):
         id_col = getattr(cls.model_cls, cls.id_column_name, None)
         if id_col is None:
             return []
-        session = session or db.session
-        query = session.query(cls.model_cls).filter(id_col.in_(model_ids))
+        query = db.session.query(cls.model_cls).filter(id_col.in_(model_ids))
         if cls.base_filter and not skip_base_filter:
-            data_model = SQLAInterface(cls.model_cls, session)
+            data_model = SQLAInterface(cls.model_cls, db.session)
             query = cls.base_filter(  # pylint: disable=not-callable
                 cls.id_column_name, data_model
             ).apply(query, None)
@@ -130,62 +123,77 @@ class BaseDAO(Generic[T]):
         return query.filter_by(**filter_by).one_or_none()
 
     @classmethod
-    def create(cls, properties: dict[str, Any], commit: bool = True) -> T:
+    def create(
+        cls,
+        item: T | None = None,
+        attributes: dict[str, Any] | None = None,
+        commit: bool = True,
+    ) -> T:
         """
-        Generic for creating models
-        :raises: DAOCreateFailedError
-        """
-        if cls.model_cls is None:
-            raise DAOConfigError()
-        model = cls.model_cls()  # pylint: disable=not-callable
-        for key, value in properties.items():
-            setattr(model, key, value)
-        try:
-            db.session.add(model)
-            if commit:
-                db.session.commit()
-        except SQLAlchemyError as ex:  # pragma: no cover
-            db.session.rollback()
-            raise DAOCreateFailedError(exception=ex) from ex
-        return model
+        Create an object from the specified item and/or attributes.
 
-    @classmethod
-    def save(cls, instance_model: T, commit: bool = True) -> None:
+        :param item: The object to create
+        :param attributes: The attributes associated with the object to create
+        :param commit: Whether to commit the transaction
+        :raises DAOCreateFailedError: If the creation failed
         """
-        Generic for saving models
-        :raises: DAOCreateFailedError
-        """
-        if cls.model_cls is None:
-            raise DAOConfigError()
+
+        if not item:
+            item = cls.model_cls()  # type: ignore  # pylint: disable=not-callable
+
+        if attributes:
+            for key, value in attributes.items():
+                setattr(item, key, value)
+
         try:
-            db.session.add(instance_model)
+            db.session.add(item)
+
             if commit:
                 db.session.commit()
         except SQLAlchemyError as ex:  # pragma: no cover
             db.session.rollback()
             raise DAOCreateFailedError(exception=ex) from ex
 
+        return item  # type: ignore
+
     @classmethod
-    def update(cls, model: T, properties: dict[str, Any], commit: bool = True) -> T:
+    def update(
+        cls,
+        item: T | None = None,
+        attributes: dict[str, Any] | None = None,
+        commit: bool = True,
+    ) -> T:
         """
-        Generic update a model
-        :raises: DAOCreateFailedError
+        Update an object from the specified item and/or attributes.
+
+        :param item: The object to update
+        :param attributes: The attributes associated with the object to update
+        :param commit: Whether to commit the transaction
+        :raises DAOUpdateFailedError: If the updating failed
         """
-        for key, value in properties.items():
-            setattr(model, key, value)
+
+        if not item:
+            item = cls.model_cls()  # type: ignore  # pylint: disable=not-callable
+
+        if attributes:
+            for key, value in attributes.items():
+                setattr(item, key, value)
+
         try:
-            db.session.merge(model)
+            db.session.merge(item)
+
             if commit:
                 db.session.commit()
         except SQLAlchemyError as ex:  # pragma: no cover
             db.session.rollback()
             raise DAOUpdateFailedError(exception=ex) from ex
-        return model
+
+        return item  # type: ignore
 
     @classmethod
-    def delete(cls, items: T | list[T], commit: bool = True) -> None:
+    def delete(cls, items: list[T], commit: bool = True) -> None:
         """
-        Delete the specified item(s) including their associated relationships.
+        Delete the specified items including their associated relationships.
 
         Note that bulk deletion via `delete` is not invoked in the base class as this
         does not dispatch the ORM `after_delete` event which may be required to augment
@@ -195,14 +203,14 @@ class BaseDAO(Generic[T]):
         Subclasses may invoke bulk deletion but are responsible for instrumenting any
         post-deletion logic.
 
-        :param items: The item(s) to delete
+        :param items: The items to delete
         :param commit: Whether to commit the transaction
         :raises DAODeleteFailedError: If the deletion failed
         :see: https://docs.sqlalchemy.org/en/latest/orm/queryguide/dml.html
         """
 
         try:
-            for item in get_iterable(items):
+            for item in items:
                 db.session.delete(item)
 
             if commit:

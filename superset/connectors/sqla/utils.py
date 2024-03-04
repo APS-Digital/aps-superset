@@ -26,10 +26,10 @@ from flask_babel import lazy_gettext as _
 from sqlalchemy.engine.url import URL as SqlaURL
 from sqlalchemy.exc import NoSuchTableError
 from sqlalchemy.ext.declarative import DeclarativeMeta
-from sqlalchemy.orm import Session
 from sqlalchemy.orm.exc import ObjectDeletedError
 from sqlalchemy.sql.type_api import TypeEngine
 
+from superset import db
 from superset.constants import LRU_CACHE_MAX_SIZE
 from superset.errors import ErrorLevel, SupersetError, SupersetErrorType
 from superset.exceptions import (
@@ -48,6 +48,7 @@ if TYPE_CHECKING:
 def get_physical_table_metadata(
     database: Database,
     table_name: str,
+    normalize_columns: bool,
     schema_name: str | None = None,
 ) -> list[ResultSetColumnType]:
     """Use SQLAlchemy inspector to get table metadata"""
@@ -67,7 +68,10 @@ def get_physical_table_metadata(
     for col in cols:
         try:
             if isinstance(col["type"], TypeEngine):
-                name = db_engine_spec.denormalize_name(db_dialect, col["column_name"])
+                name = col["column_name"]
+                if not normalize_columns:
+                    name = db_engine_spec.denormalize_name(db_dialect, name)
+
                 db_type = db_engine_spec.column_datatype_to_string(
                     col["type"], db_dialect
                 )
@@ -107,7 +111,7 @@ def get_virtual_table_metadata(dataset: SqlaTable) -> list[ResultSetColumnType]:
     sql = dataset.get_template_processor().process_template(
         dataset.sql, **dataset.template_params_dict
     )
-    parsed_query = ParsedQuery(sql)
+    parsed_query = ParsedQuery(sql, engine=db_engine_spec.engine)
     if not db_engine_spec.is_readonly_query(parsed_query):
         raise SupersetSecurityException(
             SupersetError(
@@ -164,14 +168,12 @@ logger = logging.getLogger(__name__)
 
 
 def find_cached_objects_in_session(
-    session: Session,
     cls: type[DeclarativeModel],
     ids: Iterable[int] | None = None,
     uuids: Iterable[UUID] | None = None,
 ) -> Iterator[DeclarativeModel]:
     """Find known ORM instances in cached SQLA session states.
 
-    :param session: a SQLA session
     :param cls: a SQLA DeclarativeModel
     :param ids: ids of the desired model instances (optional)
     :param uuids: uuids of the desired instances, will be ignored if `ids` are provides
@@ -180,7 +182,7 @@ def find_cached_objects_in_session(
         return iter([])
     uuids = uuids or []
     try:
-        items = list(session)
+        items = list(db.session)
     except ObjectDeletedError:
         logger.warning("ObjectDeletedError", exc_info=True)
         return iter(())

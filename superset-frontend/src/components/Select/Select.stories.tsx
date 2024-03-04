@@ -103,6 +103,11 @@ const ARG_TYPES = {
       disable: true,
     },
   },
+  mappedMode: {
+    table: {
+      disable: true,
+    },
+  },
   mode: {
     description: `It defines whether the Select should allow for
       the selection of multiple options or single. Single by default.
@@ -245,14 +250,6 @@ InteractiveSelect.argTypes = {
   },
 };
 
-InteractiveSelect.story = {
-  parameters: {
-    knobs: {
-      disable: true,
-    },
-  },
-};
-
 export const AtEveryCorner = () => (
   <>
     {selectPositions.map(position => (
@@ -280,17 +277,12 @@ export const AtEveryCorner = () => (
   </>
 );
 
-AtEveryCorner.story = {
-  parameters: {
-    actions: {
-      disable: true,
-    },
-    controls: {
-      disable: true,
-    },
-    knobs: {
-      disable: true,
-    },
+AtEveryCorner.parameters = {
+  actions: {
+    disable: true,
+  },
+  controls: {
+    disable: true,
   },
 };
 
@@ -330,16 +322,11 @@ export const PageScroll = () => (
   </div>
 );
 
-PageScroll.story = {
-  parameters: {
-    actions: {
-      disable: true,
-    },
-    controls: {
-      disable: true,
-    },
-    knobs: {
-      disable: true,
-    },
+PageScroll.parameters = {
+  actions: {
+    disable: true,
+  },
+  controls: {
+    disable: true,
   },
 };
