@@ -17,10 +17,17 @@
  * under the License.
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:superset-frontend/packages/superset-ui-chart-controls/src/ace-builds.d.ts
+declare module 'ace-builds/src-min-noconflict/mode-sql';
+========
+>>>>>>> 2d98af4662 (merge from upstream to master)
 export * from './types';
 
 export { default as getComparisonInfo } from './getComparisonInfo';
 export { default as getComparisonFilters } from './getComparisonFilters';
+<<<<<<< HEAD
 export {
   parseDttmToDate,
   getTimeOffset,
@@ -28,3 +35,6 @@ export {
 } from './getTimeOffset';
 export { SEPARATOR, fetchTimeRange } from './fetchTimeRange';
 export { customTimeRangeDecode } from './customTimeRangeDecode';
+=======
+>>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/packages/superset-ui-core/src/time-comparison/index.ts
+>>>>>>> 2d98af4662 (merge from upstream to master)

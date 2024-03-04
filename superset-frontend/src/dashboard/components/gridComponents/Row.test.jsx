@@ -16,6 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
+=======
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { fireEvent, render } from 'spec/helpers/testing-library';
 
 import BackgroundStyleDropdown from 'src/dashboard/components/menu/BackgroundStyleDropdown';
@@ -31,10 +35,15 @@ jest.mock('src/dashboard/components/dnd/DragDroppable', () => ({
   Draggable: ({ children }) => (
     <div data-test="mock-draggable">{children({})}</div>
   ),
+<<<<<<< HEAD
   Droppable: ({ children, depth }) => (
     <div data-test="mock-droppable" depth={depth}>
       {children({})}
     </div>
+=======
+  Droppable: ({ children }) => (
+    <div data-test="mock-droppable">{children({})}</div>
+>>>>>>> 2d98af4662 (merge from upstream to master)
   ),
 }));
 jest.mock(
@@ -126,7 +135,11 @@ test('should render a WithPopoverMenu', () => {
 });
 
 test('should render a HoverMenu in editMode', () => {
+<<<<<<< HEAD
   const { container, getAllByTestId, getByTestId } = setup({
+=======
+  const { container, getAllByTestId } = setup({
+>>>>>>> 2d98af4662 (merge from upstream to master)
     component: rowWithoutChildren,
     editMode: true,
   });
@@ -134,12 +147,15 @@ test('should render a HoverMenu in editMode', () => {
 
   // Droppable area enabled in editMode
   expect(getAllByTestId('mock-droppable').length).toBe(1);
+<<<<<<< HEAD
 
   // pass the same depth of its droppable area
   expect(getByTestId('mock-droppable')).toHaveAttribute(
     'depth',
     `${props.depth}`,
   );
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 });
 
 test('should render a DeleteComponentButton in editMode', () => {

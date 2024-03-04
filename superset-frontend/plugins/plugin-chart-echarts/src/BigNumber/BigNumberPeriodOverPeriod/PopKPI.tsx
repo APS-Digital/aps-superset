@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { useEffect, useMemo, useState } from 'react';
 import {
   css,
@@ -30,6 +31,12 @@ import { DEFAULT_DATE_PATTERN, Tooltip } from '@superset-ui/chart-controls';
 import { isEmpty } from 'lodash';
 import {
   ColorSchemeEnum,
+=======
+import React, { useMemo } from 'react';
+import { css, styled, t, useTheme } from '@superset-ui/core';
+import { Tooltip } from '@superset-ui/chart-controls';
+import {
+>>>>>>> 2d98af4662 (merge from upstream to master)
   PopKPIComparisonSymbolStyleProps,
   PopKPIComparisonValueStyleProps,
   PopKPIProps,
@@ -76,6 +83,7 @@ export default function PopKPI(props: PopKPIProps) {
     headerFontSize,
     subheaderFontSize,
     comparisonColorEnabled,
+<<<<<<< HEAD
     comparisonColorScheme,
     percentDifferenceNumber,
     currentTimeRangeFilter,
@@ -121,6 +129,12 @@ export default function PopKPI(props: PopKPIProps) {
     }
   }, [currentTimeRangeFilter, shift, startDateOffset, dashboardTimeRange]);
 
+=======
+    percentDifferenceNumber,
+    comparatorText,
+  } = props;
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
   const theme = useTheme();
   const flexGap = theme.gridUnit * 5;
   const wrapperDivStyles = css`
@@ -141,6 +155,7 @@ export default function PopKPI(props: PopKPIProps) {
   `;
 
   const getArrowIndicatorColor = () => {
+<<<<<<< HEAD
     if (!comparisonColorEnabled || percentDifferenceNumber === 0) {
       return theme.colors.grayscale.base;
     }
@@ -153,6 +168,10 @@ export default function PopKPI(props: PopKPIProps) {
     }
     // Negative difference
     return comparisonColorScheme === ColorSchemeEnum.Red
+=======
+    if (!comparisonColorEnabled) return theme.colors.grayscale.base;
+    return percentDifferenceNumber > 0
+>>>>>>> 2d98af4662 (merge from upstream to master)
       ? theme.colors.success.base
       : theme.colors.error.base;
   };
@@ -167,6 +186,7 @@ export default function PopKPI(props: PopKPIProps) {
   const { backgroundColor, textColor } = useMemo(() => {
     let bgColor = defaultBackgroundColor;
     let txtColor = defaultTextColor;
+<<<<<<< HEAD
     if (comparisonColorEnabled && percentDifferenceNumber !== 0) {
       const useSuccess =
         (percentDifferenceNumber > 0 &&
@@ -181,25 +201,45 @@ export default function PopKPI(props: PopKPIProps) {
       txtColor = useSuccess
         ? theme.colors.success.base
         : theme.colors.error.base;
+=======
+    if (percentDifferenceNumber > 0) {
+      if (comparisonColorEnabled) {
+        bgColor = theme.colors.success.light2;
+        txtColor = theme.colors.success.base;
+      }
+    } else if (percentDifferenceNumber < 0) {
+      if (comparisonColorEnabled) {
+        bgColor = theme.colors.error.light2;
+        txtColor = theme.colors.error.base;
+      }
+>>>>>>> 2d98af4662 (merge from upstream to master)
     }
 
     return {
       backgroundColor: bgColor,
       textColor: txtColor,
     };
+<<<<<<< HEAD
   }, [
     theme,
     comparisonColorScheme,
     comparisonColorEnabled,
     percentDifferenceNumber,
   ]);
+=======
+  }, [theme, comparisonColorEnabled, percentDifferenceNumber]);
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
   const SYMBOLS_WITH_VALUES = useMemo(
     () => [
       {
         symbol: '#',
         value: prevNumber,
+<<<<<<< HEAD
         tooltipText: t('Data for %s', comparisonRange || 'previous range'),
+=======
+        tooltipText: t('Data for %s', comparatorText),
+>>>>>>> 2d98af4662 (merge from upstream to master)
       },
       {
         symbol: '△',
@@ -213,7 +253,11 @@ export default function PopKPI(props: PopKPIProps) {
       },
     ],
     [
+<<<<<<< HEAD
       comparisonRange,
+=======
+      comparatorText,
+>>>>>>> 2d98af4662 (merge from upstream to master)
       prevNumber,
       valueDifference,
       percentDifferenceFormattedString,

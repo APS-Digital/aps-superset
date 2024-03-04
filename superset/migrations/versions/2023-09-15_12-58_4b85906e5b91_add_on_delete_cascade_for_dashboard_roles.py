@@ -27,7 +27,11 @@ revision = "4b85906e5b91"
 down_revision = "317970b4400c"
 
 
+<<<<<<< HEAD
 from superset.migrations.shared.constraints import ForeignKey, redefine  # noqa: E402
+=======
+from superset.migrations.shared.constraints import ForeignKey, redefine
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 foreign_keys = [
     ForeignKey(

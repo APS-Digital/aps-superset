@@ -57,7 +57,10 @@ export enum EchartsPieLabelType {
   KeyPercent = 'key_percent',
   KeyValuePercent = 'key_value_percent',
   ValuePercent = 'value_percent',
+<<<<<<< HEAD
   Template = 'template',
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 }
 
 export interface EchartsPieChartProps

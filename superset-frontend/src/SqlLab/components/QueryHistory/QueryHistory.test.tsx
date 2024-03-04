@@ -71,8 +71,14 @@ const setup = (overrides = {}) => (
   <QueryHistory {...mockedProps} {...overrides} />
 );
 
+<<<<<<< HEAD
 test('Renders an empty state for query history', () => {
   render(setup(), { useRedux: true, initialState });
+=======
+describe('QueryHistory', () => {
+  it('Renders an empty state for query history', () => {
+    render(setup(), { useRedux: true, initialState });
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
   const emptyStateText = screen.getByText(
     /run a query to display query history/i,

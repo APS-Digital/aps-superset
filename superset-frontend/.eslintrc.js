@@ -184,6 +184,7 @@ module.exports = {
         'react/no-unused-class-component-methods': 0,
         'import/no-relative-packages': 0,
         'prefer-exponentiation-operator': 0,
+<<<<<<< HEAD
         'react/react-in-jsx-scope': 0,
         'no-restricted-syntax': [
           'error',
@@ -194,6 +195,8 @@ module.exports = {
               'Default React import is not required due to automatic JSX runtime in React 16.4',
           },
         ],
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
       },
       settings: {
         'import/resolver': {
@@ -252,6 +255,7 @@ module.exports = {
         'testing-library/no-container': 0,
         'testing-library/prefer-find-by': 0,
         'testing-library/no-manual-cleanup': 0,
+<<<<<<< HEAD
         'no-restricted-syntax': [
           'error',
           {
@@ -261,6 +265,8 @@ module.exports = {
               'Default React import is not required due to automatic JSX runtime in React 16.4',
           },
         ],
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
       },
     },
     {
@@ -388,7 +394,10 @@ module.exports = {
     'default-case-last': 0,
     'no-promise-executor-return': 0,
     'react/no-unused-class-component-methods': 0,
+<<<<<<< HEAD
     'react/react-in-jsx-scope': 0,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   },
   ignorePatterns,
 };

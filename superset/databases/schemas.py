@@ -826,8 +826,11 @@ class ImportV1DatabaseExtraSchema(Schema):
     allows_virtual_table_explore = fields.Boolean(required=False)
     cancel_query_on_windows_unload = fields.Boolean(required=False)
     disable_data_preview = fields.Boolean(required=False)
+<<<<<<< HEAD
     disable_drill_to_detail = fields.Boolean(required=False)
     allow_multi_catalog = fields.Boolean(required=False)
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     version = fields.String(required=False, allow_none=True)
 
 

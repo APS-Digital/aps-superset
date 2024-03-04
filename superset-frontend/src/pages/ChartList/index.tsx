@@ -70,7 +70,10 @@ import FacePile from 'src/components/FacePile';
 import ChartCard from 'src/features/charts/ChartCard';
 import { UserWithPermissionsAndRoles } from 'src/types/bootstrapTypes';
 import { findPermission } from 'src/utils/findPermission';
+<<<<<<< HEAD
 import { DashboardCrossLinks } from 'src/components/ListView/DashboardCrossLinks';
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { ModifiedInfo } from 'src/components/AuditInfo';
 import { QueryObjectColumns } from 'src/views/CRUD/types';
 
@@ -398,6 +401,10 @@ function ChartList(props: ChartListProps) {
         accessor: 'dashboards',
         disableSortBy: true,
         size: 'xxl',
+<<<<<<< HEAD
+=======
+        hidden: true,
+>>>>>>> 2d98af4662 (merge from upstream to master)
       },
       {
         Cell: ({
@@ -618,7 +625,11 @@ function ChartList(props: ChartListProps) {
               key: 'tags',
               id: 'tags',
               input: 'select',
+<<<<<<< HEAD
               operator: FilterOperator.ChartTagById,
+=======
+              operator: FilterOperator.ChartTags,
+>>>>>>> 2d98af4662 (merge from upstream to master)
               unfilteredLabel: t('All'),
               fetchSelects: loadTags,
             },

@@ -14,6 +14,7 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+<<<<<<< HEAD
 
 import uuid
 from unittest.mock import MagicMock, patch
@@ -40,6 +41,12 @@ def mock_header_data() -> HeaderDataType:
 
 
 def test_get_channel_with_multi_recipients(mock_header_data) -> None:
+=======
+import pandas as pd
+
+
+def test_get_channel_with_multi_recipients() -> None:
+>>>>>>> 2d98af4662 (merge from upstream to master)
     """
     Test the _get_channel function to ensure it will return a string
     with recipients separated by commas without interstitial spacing
@@ -50,7 +57,18 @@ def test_get_channel_with_multi_recipients(mock_header_data) -> None:
 
     content = NotificationContent(
         name="test alert",
+<<<<<<< HEAD
         header_data=mock_header_data,
+=======
+        header_data={
+            "notification_format": "PNG",
+            "notification_type": "Alert",
+            "owners": [1],
+            "notification_source": None,
+            "chart_id": None,
+            "dashboard_id": None,
+        },
+>>>>>>> 2d98af4662 (merge from upstream to master)
         embedded_data=pd.DataFrame(
             {
                 "A": [1, 2, 3],
@@ -71,6 +89,7 @@ def test_get_channel_with_multi_recipients(mock_header_data) -> None:
     result = slack_notification._get_channel()
 
     assert result == "some_channel,second_channel,third_channel"
+<<<<<<< HEAD
 
     # Test if the recipient configuration JSON is valid when using a SlackV2 recipient type
 
@@ -376,3 +395,5 @@ def test_send_slack_no_feature_flag(
 ```
 """,
     )
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)

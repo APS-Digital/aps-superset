@@ -61,6 +61,7 @@ tsconfig.tsbuildinfo
 generator-superset/*
 temporary_superset_ui/*
 
+<<<<<<< HEAD
 # skip license checks for auto-generated test snapshots
 .*snap
 
@@ -75,3 +76,10 @@ snowflake.svg
 erd.puml
 erd.svg
 intro_header.txt
+=======
+# docs overrides for third party logos we don't have the rights to
+google-big-query.svg
+google-sheets.svg
+postgresql.svg
+snowflake.svg
+>>>>>>> 2d98af4662 (merge from upstream to master)

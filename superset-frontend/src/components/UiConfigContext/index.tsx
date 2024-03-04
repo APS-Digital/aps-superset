@@ -40,9 +40,15 @@ export const UiConfigContext = createContext<UiConfigType>({
 
 export const useUiConfig = () => useContext(UiConfigContext);
 
+<<<<<<< HEAD
 export const EmbeddedUiConfigProvider: FC<EmbeddedUiConfigProviderProps> = ({
   children,
 }) => {
+=======
+export const EmbeddedUiConfigProvider: React.FC<
+  EmbeddedUiConfigProviderProps
+> = ({ children }) => {
+>>>>>>> 2d98af4662 (merge from upstream to master)
   const config = getUrlParam(URL_PARAMS.uiConfig) || 0;
   const [embeddedConfig] = useState({
     hideTitle: (config & 1) !== 0,

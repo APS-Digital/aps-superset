@@ -14,9 +14,12 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+<<<<<<<< HEAD:superset/db_engine_specs/mariadb.py
 from superset.db_engine_specs.mysql import MySQLEngineSpec
 
 
 class MariaDBEngineSpec(MySQLEngineSpec):
     engine = "mariadb"
     engine_name = "MariaDB"
+========
+>>>>>>>> 2d98af4662 (merge from upstream to master):tests/unit_tests/extensions/__init__.py

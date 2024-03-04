@@ -212,6 +212,10 @@ def import_from_dict(data: dict[str, Any], sync: Optional[list[str]] = None) -> 
         logger.info("Importing %d %s", len(data.get(DATABASES_KEY, [])), DATABASES_KEY)
         for database in data.get(DATABASES_KEY, []):
             Database.import_from_dict(database, sync=sync)
+<<<<<<< HEAD
+=======
+        db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
     else:
         logger.info("Supplied object is not a dictionary.")
 

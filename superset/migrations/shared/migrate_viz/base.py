@@ -21,7 +21,11 @@ from sqlalchemy import and_, Column, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
 
+<<<<<<< HEAD
 from superset import conf
+=======
+from superset import conf, is_feature_enabled
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.constants import TimeGrain
 from superset.migrations.shared.utils import paginated_update, try_load_json
 from superset.utils import json

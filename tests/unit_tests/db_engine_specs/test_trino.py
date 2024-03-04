@@ -15,10 +15,15 @@
 # specific language governing permissions and limitations
 # under the License.
 # pylint: disable=unused-argument, import-outside-toplevel, protected-access
+<<<<<<< HEAD
 from __future__ import annotations
 
 import copy
 from collections import namedtuple
+=======
+import copy
+import json
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from datetime import datetime
 from typing import Any, Optional
 from unittest.mock import MagicMock, Mock, patch
@@ -28,6 +33,7 @@ import pytest
 from flask import g, has_app_context
 from pytest_mock import MockerFixture
 from requests.exceptions import ConnectionError as RequestsConnectionError
+<<<<<<< HEAD
 from sqlalchemy import sql, text, types
 from sqlalchemy.dialects import sqlite
 from sqlalchemy.engine.url import make_url
@@ -35,6 +41,11 @@ from sqlalchemy.exc import NoSuchTableError
 from trino.exceptions import TrinoExternalError, TrinoInternalError, TrinoUserError
 from trino.sqlalchemy import datatype
 from trino.sqlalchemy.dialect import TrinoDialect
+=======
+from sqlalchemy import types
+from trino.exceptions import TrinoExternalError, TrinoInternalError, TrinoUserError
+from trino.sqlalchemy import datatype
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 import superset.config
 from superset.constants import QUERY_CANCEL_KEY, QUERY_EARLY_CANCEL_KEY, USER_AGENT
@@ -44,15 +55,37 @@ from superset.db_engine_specs.exceptions import (
     SupersetDBAPIOperationalError,
     SupersetDBAPIProgrammingError,
 )
+<<<<<<< HEAD
 from superset.sql_parse import Table
 from superset.superset_typing import ResultSetColumnType, SQLAColumnType, SQLType
 from superset.utils import json
+=======
+from superset.superset_typing import ResultSetColumnType, SQLAColumnType
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.core import GenericDataType
 from tests.unit_tests.db_engine_specs.utils import (
     assert_column_spec,
     assert_convert_dttm,
 )
 from tests.unit_tests.fixtures.common import dttm  # noqa: F401
+
+
+def _assert_columns_equal(actual_cols, expected_cols) -> None:
+    """
+    Assert equality of the given cols, bearing in mind sqlalchemy type
+    instances can't be compared for equality, so will have to be converted to
+    strings first.
+    """
+    actual = copy.deepcopy(actual_cols)
+    expected = copy.deepcopy(expected_cols)
+
+    for col in actual:
+        col["type"] = str(col["type"])
+
+    for col in expected:
+        col["type"] = str(col["type"])
+
+    assert actual == expected
 
 
 def _assert_columns_equal(actual_cols, expected_cols) -> None:
@@ -407,7 +440,11 @@ def test_handle_cursor_early_cancel(
         assert cancel_query_mock.call_args is None
 
 
+<<<<<<< HEAD
 def test_execute_with_cursor_in_parallel(app, mocker: MockerFixture):
+=======
+def test_execute_with_cursor_in_parallel(mocker: MockerFixture):
+>>>>>>> 2d98af4662 (merge from upstream to master)
     """Test that `execute_with_cursor` fetches query ID from the cursor"""
     from superset.db_engine_specs.trino import TrinoEngineSpec
 
@@ -422,6 +459,7 @@ def test_execute_with_cursor_in_parallel(app, mocker: MockerFixture):
         mock_cursor.query_id = query_id
 
     mock_cursor.execute.side_effect = _mock_execute
+<<<<<<< HEAD
     with patch.dict(
         "superset.config.DISALLOWED_SQL_FUNCTIONS",
         {},
@@ -463,6 +501,18 @@ def test_execute_with_cursor_app_context(app, mocker: MockerFixture):
                 sql="SELECT 1 FROM foo",
                 query=mock_query,
             )
+=======
+
+    TrinoEngineSpec.execute_with_cursor(
+        cursor=mock_cursor,
+        sql="SELECT 1 FROM foo",
+        query=mock_query,
+    )
+
+    mock_query.set_extra_json_key.assert_called_once_with(
+        key=QUERY_CANCEL_KEY, value=query_id
+    )
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def test_get_columns(mocker: MockerFixture):
@@ -481,7 +531,11 @@ def test_get_columns(mocker: MockerFixture):
     mock_inspector = mocker.MagicMock()
     mock_inspector.get_columns.return_value = sqla_columns
 
+<<<<<<< HEAD
     actual = TrinoEngineSpec.get_columns(mock_inspector, Table("table", "schema"))
+=======
+    actual = TrinoEngineSpec.get_columns(mock_inspector, "table", "schema")
+>>>>>>> 2d98af4662 (merge from upstream to master)
     expected = [
         ResultSetColumnType(
             name="field1", column_name="field1", type=field1_type, is_dttm=False
@@ -497,6 +551,7 @@ def test_get_columns(mocker: MockerFixture):
     _assert_columns_equal(actual, expected)
 
 
+<<<<<<< HEAD
 def test_get_columns_error(mocker: MockerFixture):
     """
     Test that we fallback to a `SHOW COLUMNS FROM ...` query.
@@ -555,6 +610,8 @@ def test_get_columns_error(mocker: MockerFixture):
     mock_inspector.bind.execute.assert_called_with('SHOW COLUMNS FROM schema."table"')
 
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 def test_get_columns_expand_rows(mocker: MockerFixture):
     """Test that ROW columns are correctly expanded with expand_rows"""
     from superset.db_engine_specs.trino import TrinoEngineSpec
@@ -572,9 +629,13 @@ def test_get_columns_expand_rows(mocker: MockerFixture):
     mock_inspector.get_columns.return_value = sqla_columns
 
     actual = TrinoEngineSpec.get_columns(
+<<<<<<< HEAD
         mock_inspector,
         Table("table", "schema"),
         {"expand_rows": True},
+=======
+        mock_inspector, "table", "schema", {"expand_rows": True}
+>>>>>>> 2d98af4662 (merge from upstream to master)
     )
     expected = [
         ResultSetColumnType(
@@ -627,6 +688,11 @@ def test_get_columns_expand_rows(mocker: MockerFixture):
 
 
 def test_get_indexes_no_table():
+<<<<<<< HEAD
+=======
+    from sqlalchemy.exc import NoSuchTableError
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
     from superset.db_engine_specs.trino import TrinoEngineSpec
 
     db_mock = Mock()
@@ -635,9 +701,13 @@ def test_get_indexes_no_table():
         side_effect=NoSuchTableError("The specified table does not exist.")
     )
     result = TrinoEngineSpec.get_indexes(
+<<<<<<< HEAD
         db_mock,
         inspector_mock,
         Table("test_table", "test_schema"),
+=======
+        db_mock, inspector_mock, "test_table", "test_schema"
+>>>>>>> 2d98af4662 (merge from upstream to master)
     )
     assert result == []
 
@@ -651,6 +721,7 @@ def test_get_dbapi_exception_mapping():
     assert mapping.get(TrinoExternalError) == SupersetDBAPIOperationalError
     assert mapping.get(RequestsConnectionError) == SupersetDBAPIConnectionError
     assert mapping.get(Exception) is None
+<<<<<<< HEAD
 
 
 def test_adjust_engine_params_fully_qualified() -> None:
@@ -784,3 +855,5 @@ def test_where_latest_partition(
         )
         == f"""SELECT * FROM table \nWHERE partition_key = {expected_value}"""
     )
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)

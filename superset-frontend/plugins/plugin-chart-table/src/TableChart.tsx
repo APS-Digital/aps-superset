@@ -396,9 +396,17 @@ export default function TableChart<D extends DataRecord = DataRecord>(
 
   const getSharedStyle = (column: DataColumnMeta): CSSProperties => {
     const { isNumeric, config = {} } = column;
+<<<<<<< HEAD
     const textAlign =
       config.horizontalAlign ||
       (isNumeric && !isUsingTimeComparison ? 'right' : 'left');
+=======
+    const textAlign = config.horizontalAlign
+      ? config.horizontalAlign
+      : isNumeric
+        ? 'right'
+        : 'left';
+>>>>>>> 2d98af4662 (merge from upstream to master)
     return {
       textAlign,
     };
@@ -928,13 +936,21 @@ export default function TableChart<D extends DataRecord = DataRecord>(
               ...sharedStyle,
               ...style,
             }}
+<<<<<<< HEAD
             onKeyDown={(e: ReactKeyboardEvent<HTMLElement>) => {
+=======
+            tabIndex={0}
+            onKeyDown={(e: React.KeyboardEvent<HTMLElement>) => {
+>>>>>>> 2d98af4662 (merge from upstream to master)
               // programatically sort column on keypress
               if (Object.values(ACTION_KEYS).includes(e.key)) {
                 col.toggleSortBy();
               }
             }}
+<<<<<<< HEAD
             role="columnheader button"
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
             onClick={onClick}
             data-column-name={col.id}
             {...(allowRearrangeColumns && {

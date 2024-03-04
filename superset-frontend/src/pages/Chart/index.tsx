@@ -151,7 +151,11 @@ export default function ExplorePage() {
           isExploreInitialized.current = true;
         });
     }
+<<<<<<< HEAD
     getLabelsColorMap().source = LabelsColorMapSource.Explore;
+=======
+    getSharedLabelColor().source = SharedLabelColorSource.Explore;
+>>>>>>> 2d98af4662 (merge from upstream to master)
   }, [dispatch, location]);
 
   if (!isLoaded) {

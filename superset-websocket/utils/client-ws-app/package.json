@@ -7,8 +7,13 @@
   },
   "dependencies": {
     "cookie-parser": "~1.4.6",
+<<<<<<< HEAD
     "debug": "~4.3.6",
     "express": "~4.20.0",
+=======
+    "debug": "~4.3.4",
+    "express": "~4.18.3",
+>>>>>>> 2d98af4662 (merge from upstream to master)
     "http-errors": "~2.0.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "~1.10.0",

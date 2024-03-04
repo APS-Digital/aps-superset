@@ -14,6 +14,7 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+<<<<<<< HEAD
 from __future__ import annotations
 
 from typing import Any
@@ -26,6 +27,11 @@ from superset.extensions import db
 from superset.models.dashboard import Dashboard
 from superset.models.slice import Slice
 from superset.sql_lab import Query as SqllabQuery
+=======
+from flask_babel import lazy_gettext as _
+from sqlalchemy.orm import Query
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.tags.models import Tag, TagType
 from superset.views.base import BaseFilter
 
@@ -46,6 +52,7 @@ class UserCreatedTagTypeFilter(BaseFilter):  # pylint: disable=too-few-public-me
         if value is False:
             return query.filter(Tag.type != TagType.custom)
         return query
+<<<<<<< HEAD
 
 
 class BaseTagNameFilter(BaseFilter):  # pylint: disable=too-few-public-methods
@@ -91,3 +98,5 @@ class BaseTagIdFilter(BaseFilter):  # pylint: disable=too-few-public-methods
             .filter(Tag.id == value)
         )
         return query.filter(self.model.id.in_(tags_query))
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)

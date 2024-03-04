@@ -46,7 +46,16 @@ class DeleteChartCommand(BaseCommand):
     def run(self) -> None:
         self.validate()
         assert self._models
+<<<<<<< HEAD
         ChartDAO.delete(self._models)
+=======
+
+        try:
+            ChartDAO.delete(self._models)
+        except DAODeleteFailedError as ex:
+            logger.exception(ex.exception)
+            raise ChartDeleteFailedError() from ex
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     def validate(self) -> None:
         # Validate/populate model exists

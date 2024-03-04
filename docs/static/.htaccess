@@ -22,6 +22,7 @@ RewriteRule ^(.*)$ https://superset.apache.org/$1 [R,L]
 RewriteCond %{HTTP_HOST} ^superset.incubator.apache.org$ [NC]
 RewriteRule ^(.*)$ https://superset.apache.org/$1 [R=301,L]
 
+<<<<<<< HEAD
 Header set Content-Security-Policy "default-src data: blob: 'self' *.apache.org *.githubusercontent.com *.scarf.sh *.googleapis.com *.github.com *.algolia.net *.algolianet.com 'unsafe-inline' 'unsafe-eval'; frame-src *; frame-ancestors 'self' *.google.com https://sidebar.bugherd.com; form-action 'self'; worker-src blob:; img-src 'self' blob: data: https:; font-src 'self'; object-src 'none'"
 
 # REDIRECTS
@@ -68,3 +69,6 @@ RewriteRule ^docs/configuration/setup-ssh-tunneling$ /docs/configuration/network
 
 # pre-commit hooks documentation
 RewriteRule ^docs/contributing/hooks-and-linting/$ /docs/contributing/development/#git-hooks-1
+=======
+Header set Content-Security-Policy "default-src data: blob: 'self' *.apache.org *.bugherd.com *.scarf.sh *.googleapis.com *.googletagmanager.com *.google-analytics.com 'unsafe-inline' 'unsafe-eval'; frame-src *; frame-ancestors 'self' *.preset.io *.google.com https://sidebar.bugherd.com https://unpkg.com; form-action 'self'; worker-src blob:; img-src 'self' blob: data: https:; font-src 'self' https://fonts.gstatic.com; object-src 'none'"
+>>>>>>> 2d98af4662 (merge from upstream to master)

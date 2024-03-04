@@ -16,9 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { createRef, useMemo } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
+=======
+import React, { createRef, useMemo } from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import shortid from 'shortid';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import Tabs from 'src/components/Tabs';
 import { styled, t } from '@superset-ui/core';
 

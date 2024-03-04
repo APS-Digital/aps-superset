@@ -16,7 +16,11 @@
 # under the License.
 # pylint: disable=too-many-lines
 """A set of constants and methods to manage permissions and security"""
+<<<<<<< HEAD
 
+=======
+import json
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import logging
 import re
 import time
@@ -253,6 +257,10 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
         "CSS Templates",
         "ColumnarToDatabaseView",
         "CssTemplate",
+<<<<<<< HEAD
+=======
+        "CsvToDatabaseView",
+>>>>>>> 2d98af4662 (merge from upstream to master)
         "ExcelToDatabaseView",
         "Import dashboards",
         "ImportExportRestApi",
@@ -260,11 +268,15 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
         "Queries",
         "ReportSchedule",
         "TableSchemaView",
+<<<<<<< HEAD
     }
 
     ALPHA_ONLY_PMVS = {
         ("can_csv_upload", "Database"),
         ("can_excel_upload", "Database"),
+=======
+        "Upload a CSV",
+>>>>>>> 2d98af4662 (merge from upstream to master)
     }
 
     ADMIN_ONLY_PERMISSIONS = {
@@ -395,6 +407,7 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
         :param schema: The database schema name
         :return: The database specific schema permission
         """
+<<<<<<< HEAD
         if schema is None:
             return None
 
@@ -402,6 +415,9 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
             return f"[{database}].[{catalog}].[{schema}]"
 
         return f"[{database}].[{schema}]"
+=======
+        return f"[{database}].[{schema}]" if schema else None
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     @staticmethod
     def get_database_perm(database_id: int, database_name: str) -> Optional[str]:
@@ -579,6 +595,23 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
             error_type=SupersetErrorType.CHART_SECURITY_ACCESS_ERROR,
             message="You don't have access to this chart.",
             level=ErrorLevel.WARNING,
+        )
+
+    def get_chart_access_error_object(
+        self,
+        dashboard: "Dashboard",  # pylint: disable=unused-argument
+    ) -> SupersetError:
+        """
+        Return the error object for the denied Superset dashboard.
+
+        :param dashboard: The denied Superset dashboard
+        :returns: The error object
+        """
+
+        return SupersetError(
+            error_type=SupersetErrorType.CHART_SECURITY_ACCESS_ERROR,
+            message="You don't have access to this chart.",
+            level=ErrorLevel.ERROR,
         )
 
     @staticmethod
@@ -932,6 +965,7 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
         user_perms = self.user_view_menu_names("datasource_access")
         catalog_perms = self.user_view_menu_names("catalog_access")
         schema_perms = self.user_view_menu_names("schema_access")
+<<<<<<< HEAD
         user_datasources = {
             DatasourceName(table.table_name, table.schema, table.catalog)
             for table in SqlaTable.query_datasources_by_permissions(
@@ -941,6 +975,14 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
                 schema_perms,
             )
         }
+=======
+        user_datasources = SqlaTable.query_datasources_by_permissions(
+            database, user_perms, schema_perms
+        )
+        if schema:
+            names = {d.table_name for d in user_datasources if d.schema == schema}
+            return [d for d in datasource_names if d.table in names]
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         return [
             datasource
@@ -985,9 +1027,12 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
         self.add_permission_view_menu("can_sqllab", "Superset")
         self.add_permission_view_menu("can_view_query", "Dashboard")
         self.add_permission_view_menu("can_view_chart_as_table", "Dashboard")
+<<<<<<< HEAD
         self.add_permission_view_menu("can_drill", "Dashboard")
         self.add_permission_view_menu("can_tag", "Chart")
         self.add_permission_view_menu("can_tag", "Dashboard")
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     def create_missing_perms(self) -> None:
         """
@@ -1035,6 +1080,10 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
                 == None,  # noqa: E711
             )
         )
+<<<<<<< HEAD
+=======
+        self.get_session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
         if deleted_count := pvms.delete():
             logger.info("Deleted %i faulty permissions", deleted_count)
 
@@ -1135,6 +1184,10 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
                 ):
                     role_from_permissions.append(permission_view)
         role_to.permissions = role_from_permissions
+<<<<<<< HEAD
+=======
+        self.get_session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     def set_role(
         self,
@@ -1155,6 +1208,10 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
             permission_view for permission_view in pvms if pvm_check(permission_view)
         ]
         role.permissions = role_pvms
+<<<<<<< HEAD
+=======
+        self.get_session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     def _is_admin_only(self, pvm: PermissionView) -> bool:
         """
@@ -1661,7 +1718,10 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
             table.select().where(table.c.id == target.id)
         ).one()
         current_db_id = current_dataset.database_id
+<<<<<<< HEAD
         current_catalog = current_dataset.catalog
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         current_schema = current_dataset.schema
         current_table_name = current_dataset.table_name
 
@@ -1704,11 +1764,18 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
                 mapper, connection, old_dataset_vm_name, new_dataset_vm_name, target
             )
 
+<<<<<<< HEAD
         # When catalog/schema change
         if current_catalog != target.catalog or current_schema != target.schema:
             dataset_catalog_name = self.get_catalog_perm(
                 target.database.database_name,
                 target.catalog,
+=======
+        # When schema changes
+        if current_schema != target.schema:
+            new_dataset_schema_name = self.get_schema_perm(
+                target.database.database_name, target.schema
+>>>>>>> 2d98af4662 (merge from upstream to master)
             )
             dataset_schema_name = self.get_schema_perm(
                 target.database.database_name,
@@ -1746,6 +1813,7 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
         :param target: Dataset that was updated
         :return:
         """
+        logger.info("Updating schema perm, new: %s", new_schema_permission_name)
         from superset.connectors.sqla.models import (  # pylint: disable=import-outside-toplevel
             SqlaTable,
         )
@@ -2149,7 +2217,10 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
         table: Optional["Table"] = None,
         viz: Optional["BaseViz"] = None,
         sql: Optional[str] = None,
+<<<<<<< HEAD
         catalog: Optional[str] = None,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         schema: Optional[str] = None,
     ) -> None:
         """
@@ -2162,7 +2233,10 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
         :param table: The Superset table (requires database)
         :param viz: The visualization
         :param sql: The SQL string (requires database)
+<<<<<<< HEAD
         :param catalog: Optional catalog name
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         :param schema: Optional schema name
         :raises SupersetSecurityException: If the user cannot access the resource
         """
@@ -2173,6 +2247,10 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
         from superset.models.dashboard import Dashboard
         from superset.models.slice import Slice
         from superset.models.sql_lab import Query
+<<<<<<< HEAD
+=======
+        from superset.sql_parse import Table
+>>>>>>> 2d98af4662 (merge from upstream to master)
         from superset.utils.core import shortid
 
         if sql and database:
@@ -2180,7 +2258,10 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
                 database=database,
                 sql=sql,
                 schema=schema,
+<<<<<<< HEAD
                 catalog=catalog,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
                 client_id=shortid()[:10],
                 user_id=get_user_id(),
             )
@@ -2206,12 +2287,20 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
                 # inspector to read it.
                 default_schema = database.get_default_schema_for_query(query)
                 tables = {
+<<<<<<< HEAD
                     Table(
                         table_.table,
                         table_.schema or default_schema,
                         table_.catalog or query.catalog or default_catalog,
                     )
                     for table_ in extract_tables_from_jinja_sql(query.sql, database)
+=======
+                    Table(table_.table, table_.schema or default_schema)
+                    for table_ in sql_parse.ParsedQuery(
+                        query.sql,
+                        engine=database.db_engine_spec.engine,
+                    ).tables
+>>>>>>> 2d98af4662 (merge from upstream to master)
                 }
             elif table:
                 # Make sure table has the default catalog, if not specified.
@@ -2229,6 +2318,7 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
                 if catalog_perm and self.can_access("catalog_access", catalog_perm):
                     continue
 
+<<<<<<< HEAD
                 schema_perm = self.get_schema_perm(
                     database,
                     table_.catalog,
@@ -2236,6 +2326,12 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
                 )
                 if schema_perm and self.can_access("schema_access", schema_perm):
                     continue
+=======
+                if not (schema_perm and self.can_access("schema_access", schema_perm)):
+                    datasources = SqlaTable.query_datasources_by_name(
+                        database, table_.table, schema=table_.schema
+                    )
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
                 datasources = SqlaTable.query_datasources_by_name(
                     database,
@@ -2258,6 +2354,7 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
                     self.get_table_access_error_object(denied)
                 )
 
+<<<<<<< HEAD
         # Guest users MUST not modify the payload so it's requesting a
         # different chart or different ad-hoc metrics from what's saved.
         if (
@@ -2272,6 +2369,31 @@ class SupersetSecurityManager(  # pylint: disable=too-many-public-methods
                     level=ErrorLevel.WARNING,
                 )
             )
+=======
+        if self.is_guest_user() and query_context:
+            # Guest users MUST not modify the payload so it's requesting a different
+            # chart or different ad-hoc metrics from what's saved.
+            form_data = query_context.form_data
+            stored_chart = query_context.slice_
+
+            if (
+                form_data is None
+                or stored_chart is None
+                or form_data.get("slice_id") != stored_chart.id
+                or form_data.get("metrics", []) != stored_chart.params_dict["metrics"]
+                or any(
+                    query.metrics != stored_chart.params_dict["metrics"]
+                    for query in query_context.queries
+                )
+            ):
+                raise SupersetSecurityException(
+                    SupersetError(
+                        error_type=SupersetErrorType.DASHBOARD_SECURITY_ACCESS_ERROR,
+                        message=_("Guest user cannot modify chart payload"),
+                        level=ErrorLevel.ERROR,
+                    )
+                )
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         if datasource or query_context or viz:
             form_data = None

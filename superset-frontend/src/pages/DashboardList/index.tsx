@@ -24,7 +24,11 @@ import {
   t,
 } from '@superset-ui/core';
 import { useSelector } from 'react-redux';
+<<<<<<< HEAD
 import { useState, useMemo, useCallback } from 'react';
+=======
+import React, { useState, useMemo, useCallback } from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { Link } from 'react-router-dom';
 import rison from 'rison';
 import {
@@ -544,7 +548,11 @@ function DashboardList(props: DashboardListProps) {
               key: 'tags',
               id: 'tags',
               input: 'select',
+<<<<<<< HEAD
               operator: FilterOperator.DashboardTagById,
+=======
+              operator: FilterOperator.DashboardTags,
+>>>>>>> 2d98af4662 (merge from upstream to master)
               unfilteredLabel: t('All'),
               fetchSelects: loadTags,
             },

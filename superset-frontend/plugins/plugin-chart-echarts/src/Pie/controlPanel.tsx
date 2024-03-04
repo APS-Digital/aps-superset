@@ -120,7 +120,10 @@ const config: ControlPanelConfig = {
                 ['key_percent', t('Category and Percentage')],
                 ['key_value_percent', t('Category, Value and Percentage')],
                 ['value_percent', t('Value and Percentage')],
+<<<<<<< HEAD
                 ['template', t('Template')],
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
               ],
               description: t('What should be shown on the label?'),
             },

@@ -23,7 +23,11 @@
     "lib"
   ],
   "dependencies": {
+<<<<<<< HEAD
     "distributions": "^2.2.0",
+=======
+    "distributions": "^1.0.0",
+>>>>>>> 2d98af4662 (merge from upstream to master)
     "prop-types": "^15.8.1",
     "reactable": "^1.1.0"
   },

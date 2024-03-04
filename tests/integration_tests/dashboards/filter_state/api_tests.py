@@ -22,9 +22,13 @@ from flask_appbuilder.security.sqla.models import User
 from sqlalchemy.orm import Session  # noqa: F401
 
 from superset import db
+<<<<<<< HEAD
 from superset.commands.dashboard.exceptions import (
     DashboardAccessDeniedError,  # noqa: F401
 )
+=======
+from superset.commands.dashboard.exceptions import DashboardAccessDeniedError
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.commands.temporary_cache.entry import Entry
 from superset.extensions import cache_manager
 from superset.models.dashboard import Dashboard
@@ -42,7 +46,11 @@ UPDATED_VALUE = json.dumps({"test": "updated value"})
 
 
 @pytest.fixture
+<<<<<<< HEAD
 def dashboard_id(app_context: AppContext, load_world_bank_dashboard_with_slices) -> int:  # noqa: F811
+=======
+def dashboard_id(app_context: AppContext, load_world_bank_dashboard_with_slices) -> int:
+>>>>>>> 2d98af4662 (merge from upstream to master)
     dashboard = db.session.query(Dashboard).filter_by(slug="world_health").one()
     return dashboard.id
 

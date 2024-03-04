@@ -70,7 +70,11 @@ from superset.models.slice import Slice
 from superset.models.sql_lab import Query
 from superset.models.user_attributes import UserAttribute
 from superset.superset_typing import FlaskResponse
+<<<<<<< HEAD
 from superset.utils import core as utils, json
+=======
+from superset.utils import core as utils
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.cache import etag_cache
 from superset.utils.core import (
     DatasourceType,
@@ -618,12 +622,18 @@ class Superset(BaseSupersetView):
 
         if action == "saveas" and slice_add_perm:
             ChartDAO.create(slc)
+<<<<<<< HEAD
             db.session.commit()  # pylint: disable=consider-using-transaction
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
             msg = _("Chart [{}] has been saved").format(slc.slice_name)
             flash(msg, "success")
         elif action == "overwrite" and slice_overwrite_perm:
             ChartDAO.update(slc)
+<<<<<<< HEAD
             db.session.commit()  # pylint: disable=consider-using-transaction
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
             msg = _("Chart [{}] has been overwritten").format(slc.slice_name)
             flash(msg, "success")
 
@@ -844,8 +854,11 @@ class Superset(BaseSupersetView):
         if url_params := state.get("urlParams"):
             params = parse.urlencode(url_params)
             url = f"{url}&{params}"
+<<<<<<< HEAD
         if original_params := request.query_string.decode():
             url = f"{url}&{original_params}"
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         if hash_ := state.get("anchor", state.get("hash")):
             url = f"{url}#{hash_}"
         return redirect(url)

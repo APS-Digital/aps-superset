@@ -34,8 +34,13 @@ metadata:
   annotations: {{- toYaml .Values.supersetWorker.deploymentAnnotations | nindent 4 }}
   {{- end }}
 spec:
+<<<<<<< HEAD
   {{- if and (not .Values.supersetWorker.autoscaling.enabled) .Values.supersetWorker.replicas.enabled }}
   replicas: {{ .Values.supersetWorker.replicas.replicaCount }}
+=======
+  {{- if not .Values.supersetWorker.autoscaling.enabled }}
+  replicas: {{ .Values.supersetWorker.replicaCount }}
+>>>>>>> 2d98af4662 (merge from upstream to master)
   {{- end }}
   selector:
     matchLabels:

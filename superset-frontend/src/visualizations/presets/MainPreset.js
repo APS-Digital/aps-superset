@@ -69,7 +69,10 @@ import {
   EchartsBubbleChartPlugin,
   EchartsWaterfallChartPlugin,
   BigNumberPeriodOverPeriodChartPlugin,
+<<<<<<< HEAD
   EchartsHeatmapChartPlugin,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 } from '@superset-ui/plugin-chart-echarts';
 import {
   SelectFilterPlugin,
@@ -80,7 +83,10 @@ import {
 } from 'src/filters/components';
 import { PivotTableChartPlugin as PivotTableChartPluginV2 } from '@superset-ui/plugin-chart-pivot-table';
 import { HandlebarsChartPlugin } from '@superset-ui/plugin-chart-handlebars';
+<<<<<<< HEAD
 import { FilterPlugins } from 'src/constants';
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import TimeTableChartPlugin from '../TimeTable';
 
 export default class MainPreset extends Preset {
@@ -162,6 +168,7 @@ export default class MainPreset extends Preset {
         new EchartsWaterfallChartPlugin().configure({
           key: 'waterfall',
         }),
+<<<<<<< HEAD
         new EchartsHeatmapChartPlugin().configure({ key: 'heatmap_v2' }),
         new EchartsHistogramChartPlugin().configure({ key: 'histogram_v2' }),
         new SelectFilterPlugin().configure({ key: FilterPlugins.Select }),
@@ -173,6 +180,13 @@ export default class MainPreset extends Preset {
         new TimeGrainFilterPlugin().configure({
           key: FilterPlugins.TimeGrain,
         }),
+=======
+        new SelectFilterPlugin().configure({ key: 'filter_select' }),
+        new RangeFilterPlugin().configure({ key: 'filter_range' }),
+        new TimeFilterPlugin().configure({ key: 'filter_time' }),
+        new TimeColumnFilterPlugin().configure({ key: 'filter_timecolumn' }),
+        new TimeGrainFilterPlugin().configure({ key: 'filter_timegrain' }),
+>>>>>>> 2d98af4662 (merge from upstream to master)
         new EchartsTreeChartPlugin().configure({ key: 'tree_chart' }),
         new EchartsSunburstChartPlugin().configure({ key: 'sunburst_v2' }),
         new HandlebarsChartPlugin().configure({ key: 'handlebars' }),

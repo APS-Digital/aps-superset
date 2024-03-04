@@ -79,9 +79,13 @@ const DragDroppableStyles = styled.div`
       preview expands outside of the bounds of the drag source card, see:
       https://github.com/react-dnd/react-dnd/issues/832#issuecomment-442071628
     */
+<<<<<<< HEAD
     &.dragdroppable--edit-mode {
       transform: translate3d(0, 0, 0);
     }
+=======
+    transform: translate3d(0, 0, 0);
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     &.dragdroppable--dragging {
       opacity: 0.2;

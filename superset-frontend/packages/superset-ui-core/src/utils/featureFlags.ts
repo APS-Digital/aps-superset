@@ -24,8 +24,11 @@ export enum FeatureFlag {
   // PLEASE KEEP THE LIST SORTED ALPHABETICALLY
   AlertsAttachReports = 'ALERTS_ATTACH_REPORTS',
   AlertReports = 'ALERT_REPORTS',
+<<<<<<< HEAD
   AlertReportTabs = 'ALERT_REPORT_TABS',
   AlertReportSlackV2 = 'ALERT_REPORT_SLACK_V2',
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   AllowFullCsvExport = 'ALLOW_FULL_CSV_EXPORT',
   AvoidColorsCollision = 'AVOID_COLORS_COLLISION',
   ChartPluginsExperimental = 'CHART_PLUGINS_EXPERIMENTAL',
@@ -58,8 +61,11 @@ export enum FeatureFlag {
   TaggingSystem = 'TAGGING_SYSTEM',
   Thumbnails = 'THUMBNAILS',
   UseAnalagousColors = 'USE_ANALAGOUS_COLORS',
+<<<<<<< HEAD
   ForceSqlLabRunAsync = 'SQLLAB_FORCE_RUN_ASYNC',
   SlackEnableAvatars = 'SLACK_ENABLE_AVATARS',
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 }
 
 export type ScheduleQueriesProps = {

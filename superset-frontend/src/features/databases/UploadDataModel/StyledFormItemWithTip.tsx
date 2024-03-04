@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<<< HEAD:superset-frontend/src/features/databases/UploadDataModel/StyledFormItemWithTip.tsx
 
 import { FC, ReactNode } from 'react';
 import InfoTooltip from 'src/components/InfoTooltip';
@@ -51,3 +52,21 @@ const StyledFormItemWithTip: FC<StyledFormItemWithTipProps> = ({
 );
 
 export default StyledFormItemWithTip;
+========
+import React from 'react';
+import { fireEvent, render } from 'spec/helpers/testing-library';
+import KeyboardShortcutButton, { KEY_MAP } from '.';
+
+test('renders shortcut description', () => {
+  const { getByText, getByRole } = render(
+    <KeyboardShortcutButton>Show shortcuts</KeyboardShortcutButton>,
+  );
+  fireEvent.click(getByRole('button'));
+  expect(getByText('Keyboard shortcuts')).toBeInTheDocument();
+  Object.keys(KEY_MAP)
+    .filter(key => Boolean(KEY_MAP[key]))
+    .forEach(key => {
+      expect(getByText(key)).toBeInTheDocument();
+    });
+});
+>>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/src/SqlLab/components/KeyboardShortcutButton/KeyboardShortcutButton.test.tsx

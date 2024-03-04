@@ -16,7 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { SMART_DATE_ID, t } from '@superset-ui/core';
+=======
+import { smartDateFormatter, t } from '@superset-ui/core';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import {
   ControlPanelConfig,
   ControlSubSectionHeader,

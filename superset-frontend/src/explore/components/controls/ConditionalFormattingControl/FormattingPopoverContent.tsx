@@ -18,7 +18,10 @@
  */
 import { useState } from 'react';
 import { styled, SupersetTheme, t, useTheme } from '@superset-ui/core';
+<<<<<<< HEAD
 import { ColorSchemeEnum } from '@superset-ui/plugin-chart-table';
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import {
   Comparator,
   MultipleValueComparators,

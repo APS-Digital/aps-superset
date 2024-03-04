@@ -49,6 +49,7 @@ export function getValue(
   return isLabeledValue(option) ? option.value : option;
 }
 
+<<<<<<< HEAD
 export function isEqual(a: V | LabeledValue, b: V | LabeledValue, key: string) {
   const actualA = isObject(a) && key in a ? a[key] : a;
   const actualB = isObject(b) && key in b ? b[key] : b;
@@ -58,15 +59,30 @@ export function isEqual(a: V | LabeledValue, b: V | LabeledValue, key: string) {
   return actualA == actualB;
 }
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 export function getOption(
   value: V,
   options?: V | LabeledValue | (V | LabeledValue)[],
   checkLabel = false,
 ): V | LabeledValue {
   const optionsArray = ensureIsArray(options);
+<<<<<<< HEAD
   return optionsArray.find(
     x =>
       isEqual(x, value, 'value') || (checkLabel && isEqual(x, value, 'label')),
+=======
+  // When comparing the values we use the equality
+  // operator to automatically convert different types
+  return optionsArray.find(
+    x =>
+      // eslint-disable-next-line eqeqeq
+      x == value ||
+      (isObject(x) &&
+        // eslint-disable-next-line eqeqeq
+        (('value' in x && x.value == value) ||
+          (checkLabel && 'label' in x && x.label === value))),
+>>>>>>> 2d98af4662 (merge from upstream to master)
   );
 }
 

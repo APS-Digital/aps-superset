@@ -20,8 +20,12 @@ from __future__ import annotations
 import enum
 from typing import TYPE_CHECKING
 
+from flask import escape
 from flask_appbuilder import Model
+<<<<<<< HEAD
 from markupsafe import escape
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from sqlalchemy import (
     Column,
     Enum,
@@ -131,9 +135,13 @@ class TaggedObject(Model, AuditMixinNullable):
 
 
 def get_tag(
+<<<<<<< HEAD
     name: str,
     session: orm.Session,  # pylint: disable=disallowed-name
     type_: TagType,
+=======
+    name: str, session: orm.Session, type_: TagType  # pylint: disable=disallowed-name
+>>>>>>> 2d98af4662 (merge from upstream to master)
 ) -> Tag:
     tag_name = name.strip()
     tag = session.query(Tag).filter_by(name=tag_name, type=type_).one_or_none()

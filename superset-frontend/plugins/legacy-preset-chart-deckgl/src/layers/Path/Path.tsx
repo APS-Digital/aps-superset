@@ -17,6 +17,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
+=======
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { PathLayer } from 'deck.gl/typed';
 import { JsonObject, QueryFormData } from '@superset-ui/core';
 import { commonLayerProps } from '../common';

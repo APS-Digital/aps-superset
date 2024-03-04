@@ -37,10 +37,13 @@ import fetchMock from 'fetch-mock';
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
+<<<<<<< HEAD
 fetchMock.get('glob:*/api/v1/database/*/function_names/', {
   function_names: [],
 });
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 jest.mock('src/components/Select/Select', () => () => (
   <div data-test="mock-deprecated-select-select" />
 ));

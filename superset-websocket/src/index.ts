@@ -99,6 +99,7 @@ if (startServer && opts.jwtSecret.length < 32) {
   process.exit(1);
 }
 
+<<<<<<< HEAD
 if (startServer && opts.jwtSecret.startsWith('CHANGE-ME')) {
   console.warn(
     'WARNING: it appears you secret in your config.json is insecure',
@@ -106,6 +107,8 @@ if (startServer && opts.jwtSecret.startsWith('CHANGE-ME')) {
   console.warn('DO NOT USE IN PRODUCTION');
 }
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 export const buildRedisOpts = (baseConfig: RedisConfig) => {
   const redisOpts: RedisOptions = {
     port: baseConfig.port,

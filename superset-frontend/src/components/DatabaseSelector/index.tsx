@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import {
   ReactNode,
   useState,
@@ -26,6 +27,10 @@ import {
 } from 'react';
 import { styled, SupersetClient, SupersetError, t } from '@superset-ui/core';
 import type { LabeledValue as AntdLabeledValue } from 'antd/lib/select';
+=======
+import React, { ReactNode, useState, useMemo, useEffect, useRef } from 'react';
+import { styled, SupersetClient, t } from '@superset-ui/core';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import rison from 'rison';
 import { AsyncSelect, Select } from 'src/components';
 import ErrorMessageWithStackTrace from 'src/components/ErrorMessage/ErrorMessageWithStackTrace';
@@ -95,7 +100,10 @@ export type DatabaseObject = {
   id: number;
   database_name: string;
   backend?: string;
+<<<<<<< HEAD
   allow_multi_catalog?: boolean;
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 };
 
 export interface DatabaseSelectorProps {

@@ -16,8 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { ChangeEvent, useState, useEffect, FC } from 'react';
 
+=======
+import React, { ChangeEvent, useState, useEffect } from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import rison from 'rison';
 import Modal from 'src/components/Modal';
 import AsyncSelect from 'src/components/Select/AsyncSelect';
@@ -60,7 +64,11 @@ interface TagModalProps {
   editTag?: Tag | null;
 }
 
+<<<<<<< HEAD
 const TagModal: FC<TagModalProps> = ({
+=======
+const TagModal: React.FC<TagModalProps> = ({
+>>>>>>> 2d98af4662 (merge from upstream to master)
   show,
   onHide,
   editTag,

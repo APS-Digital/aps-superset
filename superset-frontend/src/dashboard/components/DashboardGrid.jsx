@@ -298,7 +298,11 @@ class DashboardGrid extends PureComponent {
               </Droppable>
             )}
             {gridComponent?.children?.map((id, index) => (
+<<<<<<< HEAD
               <Fragment key={id}>
+=======
+              <React.Fragment key={id}>
+>>>>>>> 2d98af4662 (merge from upstream to master)
                 <DashboardComponent
                   id={id}
                   parentId={gridComponent.id}
@@ -327,7 +331,11 @@ class DashboardGrid extends PureComponent {
                     {renderDraggableContent}
                   </Droppable>
                 )}
+<<<<<<< HEAD
               </Fragment>
+=======
+              </React.Fragment>
+>>>>>>> 2d98af4662 (merge from upstream to master)
             ))}
             {isResizing &&
               Array(GRID_COLUMN_COUNT)

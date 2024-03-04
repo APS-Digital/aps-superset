@@ -18,7 +18,11 @@ from __future__ import annotations
 
 import logging
 import uuid
+<<<<<<< HEAD
 from collections import defaultdict, deque
+=======
+from collections import defaultdict
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from typing import Any, Callable
 
 import sqlalchemy as sqla
@@ -50,7 +54,11 @@ from superset.models.user_attributes import UserAttribute
 from superset.tasks.thumbnails import cache_dashboard_thumbnail
 from superset.tasks.utils import get_current_user
 from superset.thumbnails.digest import get_dashboard_digest
+<<<<<<< HEAD
 from superset.utils import core as utils, json
+=======
+from superset.utils import core as utils
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 metadata = Model.metadata  # pylint: disable=no-member
 config = app.config
@@ -409,7 +417,11 @@ class Dashboard(AuditMixinNullable, ImportExportMixin, Model):
         datasource_id_list.sort()
 
         eager_datasources = []
+<<<<<<< HEAD
         for datasource_id, _ in datasource_id_list:
+=======
+        for datasource_id, _ in datasource_ids:
+>>>>>>> 2d98af4662 (merge from upstream to master)
             eager_datasource = SqlaTable.get_eager_sqlatable_datasource(datasource_id)
             copied_datasource = eager_datasource.copy()
             copied_datasource.alter_params(

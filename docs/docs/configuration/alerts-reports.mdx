@@ -5,7 +5,11 @@ sidebar_position: 2
 version: 2
 ---
 
+<<<<<<< HEAD:docs/docs/configuration/alerts-reports.mdx
 # Alerts and Reports
+=======
+## Alerts and Reports
+>>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/installation/alerts-reports.mdx
 
 Users can configure automated alerts and reports to send dashboards or charts to an email recipient or Slack channel.
 
@@ -20,7 +24,11 @@ Alerts and reports are disabled by default. To turn them on, you need to do some
 
 #### In your `superset_config.py` or `superset_config_docker.py`
 
+<<<<<<< HEAD:docs/docs/configuration/alerts-reports.mdx
 - `"ALERT_REPORTS"` [feature flag](/docs/configuration/configuring-superset#feature-flags) must be turned to True.
+=======
+- `"ALERT_REPORTS"` [feature flag](/docs/installation/configuring-superset#feature-flags) must be turned to True.
+>>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/installation/alerts-reports.mdx
 - `beat_schedule` in CeleryConfig must contain schedule for `reports.scheduler`.
 - At least one of those must be configured, depending on what you want to use:
   - emails: `SMTP_*` settings
@@ -35,7 +43,11 @@ Screenshots will be taken but no messages actually sent as long as `ALERT_REPORT
 - You must install a headless browser, for taking screenshots of the charts and dashboards. Only Firefox and Chrome are currently supported.
   > If you choose Chrome, you must also change the value of `WEBDRIVER_TYPE` to `"chrome"` in your `superset_config.py`.
 
+<<<<<<< HEAD:docs/docs/configuration/alerts-reports.mdx
 Note: All the components required (Firefox headless browser, Redis, Postgres db, celery worker and celery beat) are present in the *dev* docker image if you are following [Installing Superset Locally](/docs/installation/docker-compose/).
+=======
+Note: All the components required (Firefox headless browser, Redis, Postgres db, celery worker and celery beat) are present in the *dev* docker image if you are following [Installing Superset Locally](/docs/installation/installing-superset-using-docker-compose/).
+>>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/installation/alerts-reports.mdx
 All you need to do is add the required config variables described in this guide (See `Detailed Config`).
 
 If you are running a non-dev docker image, e.g., a stable release like `apache/superset:3.1.0`, that image does not include a headless browser.  Only the `superset_worker` container needs this headless browser to browse to the target chart or dashboard.
@@ -66,7 +78,11 @@ Note: when you configure an alert or a report, the Slack channel list takes chan
 - You must have a `celery beat` pod running. If you're using the chart included in the GitHub repository under [helm/superset](https://github.com/apache/superset/tree/master/helm/superset), you need to put `supersetCeleryBeat.enabled = true` in your values override.
 - You can see the dedicated docs about [Kubernetes installation](/docs/installation/kubernetes) for more details.
 
+<<<<<<< HEAD:docs/docs/configuration/alerts-reports.mdx
 ### Docker Compose specific
+=======
+#### Docker Compose specific
+>>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/installation/alerts-reports.mdx
 
 #### You must have in your `docker-compose.yml`
 
@@ -197,6 +213,7 @@ Please refer to `ExecutorType` in the codebase for other executor types.
 
 It's also possible to specify a minimum interval between each report's execution through the config file:
 
+<<<<<<< HEAD:docs/docs/configuration/alerts-reports.mdx
 ``` python
 # Set a minimum interval threshold between executions (for each Alert/Report)
 # Value should be an integer
@@ -217,6 +234,8 @@ ALERT_MINIMUM_INTERVAL = alert_dynamic_minimal_interval
 
 ## Custom Dockerfile
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/installation/alerts-reports.mdx
 If you're running the dev version of a released Superset image, like `apache/superset:3.1.0-dev`, you should be set with the above.
 
 But if you're building your own image, or starting with a non-dev version, a webdriver (and headless browser) is needed to capture screenshots of the charts and dashboards which are then sent to the recipient.
@@ -271,21 +290,37 @@ USER superset
 
 Don't forget to set `WEBDRIVER_TYPE` and `WEBDRIVER_OPTION_ARGS` in your config if you use Chrome.
 
+<<<<<<< HEAD:docs/docs/configuration/alerts-reports.mdx
 ## Troubleshooting
 
 There are many reasons that reports might not be working.  Try these steps to check for specific issues.
 
 ### Confirm feature flag is enabled and you have sufficient permissions
+=======
+### Troubleshooting
+
+There are many reasons that reports might not be working.  Try these steps to check for specific issues.
+
+#### Confirm feature flag is enabled and you have sufficient permissions
+>>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/installation/alerts-reports.mdx
 
 If you don't see "Alerts & Reports" under the *Manage* section of the Settings dropdown in the Superset UI, you need to enable the `ALERT_REPORTS` feature flag (see above). Enable another feature flag and check to see that it took effect, to verify that your config file is getting loaded.
 
 Log in as an admin user to ensure you have adequate permissions.
 
+<<<<<<< HEAD:docs/docs/configuration/alerts-reports.mdx
 ### Check the logs of your Celery worker
 
 This is the best source of information about the problem.  In a docker compose deployment, you can do this with a command like `docker logs superset_worker --since 1h`.
 
 ### Check web browser and webdriver installation
+=======
+#### Check the logs of your Celery worker
+
+This is the best source of information about the problem.  In a docker compose deployment, you can do this with a command like `docker logs superset_worker --since 1h`.
+
+#### Check web browser and webdriver installation
+>>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/installation/alerts-reports.mdx
 
 To take a screenshot, the worker visits the dashboard or chart using a headless browser, then takes a screenshot. If you are able to send a chart as CSV or text but can't send as PNG, your problem may lie with the browser.
 
@@ -293,7 +328,11 @@ Superset docker images that have a tag ending with `-dev` have the Firefox headl
 
 If you are handling the installation of that software on your own, or wish to use Chromium instead, do your own verification to ensure that the headless browser opens successfully in the worker environment.
 
+<<<<<<< HEAD:docs/docs/configuration/alerts-reports.mdx
 ### Send a test email
+=======
+#### Send a test email
+>>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/installation/alerts-reports.mdx
 
 One symptom of an invalid connection to an email server is receiving an error of `[Errno 110] Connection timed out` in your logs when the report tries to send.
 
@@ -324,7 +363,11 @@ Possible fixes:
 - Some cloud hosts disable outgoing unauthenticated SMTP email to prevent spam.  For instance, [Azure blocks port 25 by default on some machines](https://learn.microsoft.com/en-us/azure/virtual-network/troubleshoot-outbound-smtp-connectivity). Enable that port or use another sending method.
 - Use another set of SMTP credentials that you verify works in this setup.
 
+<<<<<<< HEAD:docs/docs/configuration/alerts-reports.mdx
 ### Browse to your report from the worker
+=======
+#### Browse to your report from the worker
+>>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/installation/alerts-reports.mdx
 
 The worker may be unable to reach the report. It will use the value of `WEBDRIVER_BASEURL` to browse to the report.  If that route is invalid, or presents an authentication challenge that the worker can't pass, the report screenshot will fail.
 
@@ -332,7 +375,11 @@ Check this by attempting to `curl` the URL of a report that you see in the error
 
 In a deployment with authentication measures enabled like HTTPS and Single Sign-On, it may make sense to have the worker navigate directly to the Superset application running in the same location, avoiding the need to sign in.  For instance, you could use `WEBDRIVER_BASEURL="http://superset_app:8088"` for a docker compose deployment, and set `"force_https": False,` in your `TALISMAN_CONFIG`.
 
+<<<<<<< HEAD:docs/docs/configuration/alerts-reports.mdx
 ## Scheduling Queries as Reports
+=======
+### Scheduling Queries as Reports
+>>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/installation/alerts-reports.mdx
 
 You can optionally allow your users to schedule queries directly in SQL Lab. This is done by adding
 extra metadata to saved queries, which are then picked up by an external scheduled (like

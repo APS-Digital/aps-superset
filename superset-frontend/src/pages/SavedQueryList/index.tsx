@@ -24,7 +24,11 @@ import {
   SupersetClient,
   t,
 } from '@superset-ui/core';
+<<<<<<< HEAD
 import { useCallback, useMemo, useState, MouseEvent } from 'react';
+=======
+import React, { useCallback, useMemo, useState } from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { Link, useHistory } from 'react-router-dom';
 import rison from 'rison';
 import {
@@ -386,7 +390,11 @@ function SavedQueryList({
           const handlePreview = () => {
             handleSavedQueryPreview(original.id);
           };
+<<<<<<< HEAD
           const handleEdit = ({ metaKey }: MouseEvent) =>
+=======
+          const handleEdit = ({ metaKey }: React.MouseEvent) =>
+>>>>>>> 2d98af4662 (merge from upstream to master)
             openInSqlLab(original.id, Boolean(metaKey));
           const handleCopy = () => copyQueryLink(original.id);
           const handleExport = () => handleBulkSavedQueryExport([original]);
@@ -447,13 +455,20 @@ function SavedQueryList({
   const filters: Filters = useMemo(
     () => [
       {
+<<<<<<< HEAD
         Header: t('Search'),
+=======
+        Header: t('Name'),
+>>>>>>> 2d98af4662 (merge from upstream to master)
         id: 'label',
         key: 'search',
         input: 'search',
         operator: FilterOperator.AllText,
+<<<<<<< HEAD
         toolTipDescription:
           'Searches all text fields: Name, Description, Database & Schema',
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
       },
       {
         Header: t('Database'),
@@ -501,7 +516,11 @@ function SavedQueryList({
               id: 'tags',
               key: 'tags',
               input: 'select',
+<<<<<<< HEAD
               operator: FilterOperator.SavedQueryTagById,
+=======
+              operator: FilterOperator.SavedQueryTags,
+>>>>>>> 2d98af4662 (merge from upstream to master)
               fetchSelects: loadTags,
             },
           ]

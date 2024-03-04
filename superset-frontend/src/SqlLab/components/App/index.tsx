@@ -16,7 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { PureComponent } from 'react';
+=======
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Mousetrap from 'mousetrap';
@@ -111,7 +115,11 @@ interface AppState {
   hash: string;
 }
 
+<<<<<<< HEAD
 class App extends PureComponent<AppProps, AppState> {
+=======
+class App extends React.PureComponent<AppProps, AppState> {
+>>>>>>> 2d98af4662 (merge from upstream to master)
   hasLoggedLocalStorageUsage: boolean;
 
   constructor(props: AppProps) {

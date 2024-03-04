@@ -19,7 +19,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
+=======
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { isEqual } from 'lodash';
 import {
   Datasource,

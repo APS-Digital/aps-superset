@@ -21,9 +21,15 @@ import {
   ChartProps,
   getMetricLabel,
   getValueFormatter,
+<<<<<<< HEAD
   getNumberFormatter,
   SimpleAdhocFilter,
   ensureIsArray,
+=======
+  NumberFormats,
+  getNumberFormatter,
+  formatTimeRange,
+>>>>>>> 2d98af4662 (merge from upstream to master)
 } from '@superset-ui/core';
 import { getComparisonFontSize, getHeaderFontSize } from './utils';
 
@@ -83,6 +89,7 @@ export default function transformProps(chartProps: ChartProps) {
     yAxisFormat,
     currencyFormat,
     subheaderFontSize,
+<<<<<<< HEAD
     comparisonColorScheme,
     comparisonColorEnabled,
     percentDifferenceFormat,
@@ -132,6 +139,22 @@ export default function transformProps(chartProps: ChartProps) {
     data.length === 0 ? 0 : parseMetricValue(value1);
   let prevNumber: number | string =
     data.length === 0 ? 0 : parseMetricValue(value2);
+=======
+    comparisonColorEnabled,
+  } = formData;
+  const { data: dataA = [] } = queriesData[0];
+  const {
+    data: dataB = [],
+    from_dttm: comparisonFromDatetime,
+    to_dttm: comparisonToDatetime,
+  } = queriesData[1];
+  const data = dataA;
+  const metricName = getMetricLabel(metric);
+  let bigNumber: number | string =
+    data.length === 0 ? 0 : parseMetricValue(data[0][metricName]);
+  let prevNumber: number | string =
+    data.length === 0 ? 0 : parseMetricValue(dataB[0][metricName]);
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
   const numberFormatter = getValueFormatter(
     metric,
@@ -148,7 +171,13 @@ export default function transformProps(chartProps: ChartProps) {
     w: 'Week' as string,
   };
 
+<<<<<<< HEAD
   const formatPercentChange = getNumberFormatter(percentDifferenceFormat);
+=======
+  const formatPercentChange = getNumberFormatter(
+    NumberFormats.PERCENT_SIGNED_1_POINT,
+  );
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
   let valueDifference: number | string = bigNumber - prevNumber;
 
@@ -167,6 +196,13 @@ export default function transformProps(chartProps: ChartProps) {
   prevNumber = numberFormatter(prevNumber);
   valueDifference = numberFormatter(valueDifference);
   const percentDifference: string = formatPercentChange(percentDifferenceNum);
+<<<<<<< HEAD
+=======
+  const comparatorText = formatTimeRange('%Y-%m-%d', [
+    comparisonFromDatetime,
+    comparisonToDatetime,
+  ]);
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
   return {
     width,
@@ -183,11 +219,16 @@ export default function transformProps(chartProps: ChartProps) {
     headerText,
     compType,
     comparisonColorEnabled,
+<<<<<<< HEAD
     comparisonColorScheme,
     percentDifferenceNumber: percentDifferenceNum,
     currentTimeRangeFilter,
     startDateOffset,
     shift: timeComparison,
     dashboardTimeRange: formData?.extraFormData?.time_range,
+=======
+    percentDifferenceNumber: percentDifferenceNum,
+    comparatorText,
+>>>>>>> 2d98af4662 (merge from upstream to master)
   };
 }

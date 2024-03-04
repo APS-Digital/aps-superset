@@ -22,6 +22,7 @@ import yaml
 from werkzeug.utils import secure_filename
 
 from superset import db, security_manager
+<<<<<<< HEAD
 from superset.commands.dashboard.copy import CopyDashboardCommand
 from superset.commands.dashboard.delete import DeleteEmbeddedDashboardCommand
 from superset.commands.dashboard.exceptions import (
@@ -30,11 +31,15 @@ from superset.commands.dashboard.exceptions import (
     DashboardInvalidError,
     DashboardNotFoundError,
 )
+=======
+from superset.commands.dashboard.exceptions import DashboardNotFoundError
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.commands.dashboard.export import (
     append_charts,
     ExportDashboardsCommand,
     get_default_position,
 )
+<<<<<<< HEAD
 from superset.commands.dashboard.fave import AddFavoriteDashboardCommand
 from superset.commands.dashboard.importers import v0, v1
 from superset.commands.dashboard.unfave import DelFavoriteDashboardCommand
@@ -42,6 +47,12 @@ from superset.commands.exceptions import CommandInvalidError
 from superset.commands.importers.exceptions import IncorrectVersionError
 from superset.connectors.sqla.models import SqlaTable
 from superset.daos.dashboard import DashboardDAO
+=======
+from superset.commands.dashboard.importers import v0, v1
+from superset.commands.exceptions import CommandInvalidError
+from superset.commands.importers.exceptions import IncorrectVersionError
+from superset.connectors.sqla.models import SqlaTable
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.models.core import Database
 from superset.models.dashboard import Dashboard
 from superset.models.embedded_dashboard import EmbeddedDashboard

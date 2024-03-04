@@ -33,6 +33,10 @@ from superset.commands.report.exceptions import (
     ReportScheduleUpdateFailedError,
 )
 from superset.daos.database import DatabaseDAO
+<<<<<<< HEAD
+=======
+from superset.daos.exceptions import DAOUpdateFailedError
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.daos.report import ReportScheduleDAO
 from superset.exceptions import SupersetSecurityException
 from superset.reports.models import ReportSchedule, ReportScheduleType, ReportState
@@ -51,7 +55,18 @@ class UpdateReportScheduleCommand(UpdateMixin, BaseReportScheduleCommand):
     @transaction(on_error=partial(on_error, reraise=ReportScheduleUpdateFailedError))
     def run(self) -> Model:
         self.validate()
+<<<<<<< HEAD
         return ReportScheduleDAO.update(self._model, self._properties)
+=======
+        assert self._model
+
+        try:
+            report_schedule = ReportScheduleDAO.update(self._model, self._properties)
+        except DAOUpdateFailedError as ex:
+            logger.exception(ex.exception)
+            raise ReportScheduleUpdateFailedError() from ex
+        return report_schedule
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     def validate(self) -> None:
         """

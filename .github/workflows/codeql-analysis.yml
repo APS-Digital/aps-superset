@@ -14,6 +14,11 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
   cancel-in-progress: true
 
+# cancel previous workflow jobs for PRs
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   analyze:
     name: Analyze
@@ -32,12 +37,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+<<<<<<< HEAD
 
       - name: Check for file changes
         id: check
         uses: ./.github/actions/change-detector/
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
@@ -52,7 +60,10 @@ jobs:
           # queries: security-extended,security-and-quality
 
       - name: Perform CodeQL Analysis
+<<<<<<< HEAD
         if: steps.check.outputs.python || steps.check.outputs.frontend
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{matrix.language}}"

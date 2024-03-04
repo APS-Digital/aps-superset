@@ -24,17 +24,29 @@ import type {
   Position,
   TextMode as OrigTextMode,
 } from 'brace';
+<<<<<<< HEAD
 import type AceEditor from 'react-ace';
 import type { IAceEditorProps } from 'react-ace';
 
+=======
+import AceEditor, { IAceEditorProps } from 'react-ace';
+import { config } from 'ace-builds';
+import { acequire } from 'ace-builds/src-noconflict/ace';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import AsyncEsmComponent, {
   PlaceholderProps,
 } from 'src/components/AsyncEsmComponent';
 import useEffectEvent from 'src/hooks/useEffectEvent';
+<<<<<<< HEAD
 import { useTheme, css } from '@superset-ui/core';
 import { Global } from '@emotion/react';
 
 export { getTooltipHTML } from './Tooltip';
+=======
+import cssWorkerUrl from 'ace-builds/src-noconflict/worker-css';
+
+config.setModuleUrl('ace/mode/css_worker', cssWorkerUrl);
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 export interface AceCompleterKeywordData {
   name: string;

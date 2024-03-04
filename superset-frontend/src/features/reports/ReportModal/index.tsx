@@ -27,6 +27,10 @@ import {
 
 import { t, SupersetTheme, getClientErrorObject } from '@superset-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
+<<<<<<< HEAD
+=======
+import { getClientErrorObject } from 'src/utils/getClientErrorObject';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import {
   addReport,
   editReport,
@@ -284,7 +288,11 @@ function ReportModal({
           name="custom_width"
           value={currentReport?.custom_width || ''}
           placeholder={t('Input custom width in pixels')}
+<<<<<<< HEAD
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
+=======
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+>>>>>>> 2d98af4662 (merge from upstream to master)
             setCurrentReport({
               custom_width: parseInt(event.target.value, 10) || null,
             });

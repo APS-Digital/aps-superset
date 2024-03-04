@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<<< HEAD:superset-frontend/packages/superset-ui-core/test/time-comparison/index.test.ts
 
 import {
   ComparisonTimeRangeType,
@@ -29,4 +30,16 @@ describe('index', () => {
       x => expect(x).toBeDefined(),
     );
   });
+========
+import getOwnerName from './getOwnerName';
+
+test('render owner name correctly', () => {
+  expect(getOwnerName({ id: 1, first_name: 'Foo', last_name: 'Bar' })).toEqual(
+    'Foo Bar',
+  );
+});
+
+test('return empty string for undefined owner', () => {
+  expect(getOwnerName(undefined)).toEqual('');
+>>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/src/utils/getOwnerName.test.ts
 });

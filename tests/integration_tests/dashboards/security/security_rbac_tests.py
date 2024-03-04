@@ -23,7 +23,10 @@ import pytest
 
 from superset.commands.dashboard.exceptions import DashboardForbiddenError
 from superset.daos.dashboard import DashboardDAO
+<<<<<<< HEAD
 from superset.utils import json
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.core import backend, override_user
 from tests.integration_tests.conftest import with_feature_flags
 from tests.integration_tests.constants import (
@@ -414,6 +417,7 @@ class TestDashboardRoleBasedSecurity(BaseTestDashboardSecurity):
         Dashboard API: Test get draft dashboard without roles by uuid
         """
         admin = self.get_user("admin")
+<<<<<<< HEAD
 
         database = create_database_to_db(name="test_db_rbac")
         table = create_datasource_table_to_db(
@@ -428,6 +432,22 @@ class TestDashboardRoleBasedSecurity(BaseTestDashboardSecurity):
         assert dashboard_to_access.roles == []
 
         self.login(GAMMA_USERNAME)
+=======
+
+        database = create_database_to_db(name="test_db_rbac")
+        table = create_datasource_table_to_db(
+            name="test_datasource_rbac", db_id=database.id, owners=[admin]
+        )
+        dashboard_to_access = create_dashboard_to_db(
+            dashboard_title="test_dashboard_rbac",
+            owners=[admin],
+            slices=[create_slice_to_db(datasource_id=table.id)],
+        )
+        assert not dashboard_to_access.published
+        assert dashboard_to_access.roles == []
+
+        self.login(username="gamma")
+>>>>>>> 2d98af4662 (merge from upstream to master)
         uri = f"api/v1/dashboard/{dashboard_to_access.uuid}"
         rv = self.client.get(uri)
         assert rv.status_code == 403

@@ -23,9 +23,15 @@ import userEvent from '@testing-library/user-event';
 import fetchMock from 'fetch-mock';
 import { HeaderDropdownProps } from 'src/dashboard/components/Header/types';
 import injectCustomCss from 'src/dashboard/util/injectCustomCss';
+<<<<<<< HEAD
 import { HeaderActionsDropdown } from '.';
 
 const createProps = (): HeaderDropdownProps => ({
+=======
+import HeaderActionsDropdown from '.';
+
+const createProps = () => ({
+>>>>>>> 2d98af4662 (merge from upstream to master)
   addSuccessToast: jest.fn(),
   addDangerToast: jest.fn(),
   customCss: '.ant-menu {margin-left: 100px;}',

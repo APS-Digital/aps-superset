@@ -4,7 +4,11 @@ const customConfig = require('../../../webpack.config.js');
 module.exports = {
   addons: [
     getAbsolutePath('@storybook/addon-controls'),
+<<<<<<< HEAD
     '@mihkeleidast/storybook-addon-source',
+=======
+    getAbsolutePath('storybook-addon-jsx'),
+>>>>>>> 2d98af4662 (merge from upstream to master)
     getAbsolutePath('@storybook/addon-actions'),
     getAbsolutePath('@storybook/addon-links'),
   ],

@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<<< HEAD:superset-frontend/plugins/plugin-chart-table/test/testHelpers.tsx
 import {
   EmotionCacheProvider,
   createEmotionCache,
@@ -33,5 +34,20 @@ export function ProviderWrapper(props: any) {
     <EmotionCacheProvider value={emotionCache}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </EmotionCacheProvider>
+========
+import React from 'react';
+import { BubbleChartTransformedProps } from './types';
+import Echart from '../components/Echart';
+
+export default function EchartsBubble(props: BubbleChartTransformedProps) {
+  const { height, width, echartOptions, refs } = props;
+  return (
+    <Echart
+      height={height}
+      width={width}
+      echartOptions={echartOptions}
+      refs={refs}
+    />
+>>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/plugins/plugin-chart-echarts/src/Bubble/EchartsBubble.tsx
   );
 }

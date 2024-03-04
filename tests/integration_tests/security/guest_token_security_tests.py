@@ -15,7 +15,11 @@
 # specific language governing permissions and limitations
 # under the License.
 """Unit tests for Superset"""
+<<<<<<< HEAD
 
+=======
+import json
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from unittest.mock import Mock, patch
 
 import pytest
@@ -26,13 +30,19 @@ from superset.connectors.sqla.models import SqlaTable
 from superset.daos.dashboard import EmbeddedDashboardDAO
 from superset.exceptions import SupersetSecurityException
 from superset.models.dashboard import Dashboard
+<<<<<<< HEAD
 from superset.security.guest_token import GuestTokenResourceType  # noqa: F401
 from superset.sql_parse import Table  # noqa: F401
 from superset.utils import json
+=======
+from superset.security.guest_token import GuestTokenResourceType
+from superset.sql_parse import Table
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.core import get_example_default_schema
 from superset.utils.database import get_example_database
 from tests.integration_tests.base_tests import SupersetTestCase
 from tests.integration_tests.fixtures.birth_names_dashboard import (
+<<<<<<< HEAD
     load_birth_names_dashboard_with_slices_class_scope,  # noqa: F401
     load_birth_names_data,  # noqa: F401
 )
@@ -40,6 +50,15 @@ from tests.integration_tests.fixtures.world_bank_dashboard import (
     load_world_bank_dashboard_with_slices,  # noqa: F401
     load_world_bank_dashboard_with_slices_class_scope,  # noqa: F401
     load_world_bank_data,  # noqa: F401
+=======
+    load_birth_names_dashboard_with_slices_class_scope,
+    load_birth_names_data,
+>>>>>>> 2d98af4662 (merge from upstream to master)
+)
+from tests.integration_tests.fixtures.world_bank_dashboard import (
+    load_world_bank_dashboard_with_slices,
+    load_world_bank_dashboard_with_slices_class_scope,
+    load_world_bank_data,
 )
 
 
@@ -261,6 +280,7 @@ class TestGuestUserDatasourceAccess(SupersetTestCase):
         self.authorized_guest = security_manager.get_guest_user_from_token(
             {
                 "user": {},
+<<<<<<< HEAD
                 "resources": [
                     {
                         "type": GuestTokenResourceType.DASHBOARD,
@@ -270,12 +290,16 @@ class TestGuestUserDatasourceAccess(SupersetTestCase):
                 "iat": 10,
                 "exp": 20,
                 "rls_rules": [],
+=======
+                "resources": [{"type": "dashboard", "id": str(self.embedded.uuid)}],
+>>>>>>> 2d98af4662 (merge from upstream to master)
             }
         )
         self.unauthorized_guest = security_manager.get_guest_user_from_token(
             {
                 "user": {},
                 "resources": [
+<<<<<<< HEAD
                     {
                         "type": GuestTokenResourceType.DASHBOARD,
                         "id": "06383667-3e02-4e5e-843f-44e9c5896b6c",
@@ -284,6 +308,10 @@ class TestGuestUserDatasourceAccess(SupersetTestCase):
                 "iat": 10,
                 "exp": 20,
                 "rls_rules": [],
+=======
+                    {"type": "dashboard", "id": "06383667-3e02-4e5e-843f-44e9c5896b6c"}
+                ],
+>>>>>>> 2d98af4662 (merge from upstream to master)
             }
         )
         self.chart = self.get_slice("Girls")

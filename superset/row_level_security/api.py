@@ -134,9 +134,12 @@ class RLSRestApi(BaseSupersetModelRestApi):
     edit_model_schema = RLSPutSchema()
 
     allowed_rel_fields = {"tables", "roles", "created_by", "changed_by"}
+<<<<<<< HEAD
     related_field_filters = {
         "changed_by": RelatedFieldFilter("first_name", FilterRelatedOwners),
     }
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     base_related_field_filters = {
         "tables": [["id", DatasourceFilter, lambda: []]],
         "roles": [["id", BaseFilterRelatedRoles, lambda: []]],

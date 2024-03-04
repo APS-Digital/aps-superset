@@ -16,7 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { memo, useCallback, useMemo, useRef } from 'react';
+=======
+import React, { memo, useCallback, useMemo, useRef } from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { GeoJsonLayer } from 'deck.gl/typed';
 import geojsonExtent from '@mapbox/geojson-extent';
 import {

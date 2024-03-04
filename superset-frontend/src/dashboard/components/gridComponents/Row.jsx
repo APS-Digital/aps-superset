@@ -107,6 +107,12 @@ const GridRow = styled.div`
         &:first-child {
           inset-inline-start: 0;
         }
+<<<<<<< HEAD
+=======
+        &:last-child {
+          inset-inline-end: 0;
+        }
+>>>>>>> 2d98af4662 (merge from upstream to master)
       }
     }
 
@@ -141,7 +147,10 @@ class Row extends PureComponent {
       'background',
     );
     this.handleChangeFocus = this.handleChangeFocus.bind(this);
+<<<<<<< HEAD
     this.handleMenuHover = this.handleMenuHover.bind(this);
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     this.setVerticalEmptyContainerHeight = debounce(
       this.setVerticalEmptyContainerHeight.bind(this),
       FAST_DEBOUNCE,
@@ -256,7 +265,11 @@ class Row extends PureComponent {
       onChangeTab,
       isComponentVisible,
     } = this.props;
+<<<<<<< HEAD
     const { containerHeight, hoverMenuHovered } = this.state;
+=======
+    const { containerHeight } = this.state;
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     const rowItems = rowComponent.children || [];
 
@@ -320,6 +333,7 @@ class Row extends PureComponent {
                   {...(rowItems.length === 0
                     ? {
                         component: rowComponent,
+<<<<<<< HEAD
                         parentComponent: rowComponent,
                         dropToChild: true,
                       }
@@ -328,6 +342,16 @@ class Row extends PureComponent {
                         parentComponent: rowComponent,
                       })}
                   depth={depth}
+=======
+                        parentComponent,
+                        dropToChild: true,
+                      }
+                    : {
+                        component: rowItems,
+                        parentComponent: rowComponent,
+                      })}
+                  depth={depth + 1}
+>>>>>>> 2d98af4662 (merge from upstream to master)
                   index={0}
                   orientation="row"
                   onDrop={handleComponentDrop}
@@ -352,7 +376,11 @@ class Row extends PureComponent {
               )}
               {rowItems.length > 0 &&
                 rowItems.map((componentId, itemIndex) => (
+<<<<<<< HEAD
                   <Fragment key={componentId}>
+=======
+                  <React.Fragment key={componentId}>
+>>>>>>> 2d98af4662 (merge from upstream to master)
                     <DashboardComponent
                       key={componentId}
                       id={componentId}
@@ -372,7 +400,11 @@ class Row extends PureComponent {
                       <Droppable
                         component={rowItems}
                         parentComponent={rowComponent}
+<<<<<<< HEAD
                         depth={depth}
+=======
+                        depth={depth + 1}
+>>>>>>> 2d98af4662 (merge from upstream to master)
                         index={itemIndex + 1}
                         orientation="row"
                         onDrop={handleComponentDrop}
@@ -395,7 +427,11 @@ class Row extends PureComponent {
                         }
                       </Droppable>
                     )}
+<<<<<<< HEAD
                   </Fragment>
+=======
+                  </React.Fragment>
+>>>>>>> 2d98af4662 (merge from upstream to master)
                 ))}
             </GridRow>
           </WithPopoverMenu>

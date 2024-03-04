@@ -25,7 +25,11 @@ from typing import Any, cast
 from zipfile import is_zipfile, ZipFile
 
 from deprecation import deprecated
+<<<<<<< HEAD
 from flask import make_response, render_template, request, Response, send_file
+=======
+from flask import request, Response, send_file
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from flask_appbuilder.api import expose, protect, rison, safe
 from flask_appbuilder.models.sqla.interface import SQLAInterface
 from marshmallow import ValidationError
@@ -49,17 +53,23 @@ from superset.commands.database.export import ExportDatabasesCommand
 from superset.commands.database.importers.dispatcher import ImportDatabasesCommand
 from superset.commands.database.ssh_tunnel.delete import DeleteSSHTunnelCommand
 from superset.commands.database.ssh_tunnel.exceptions import (
+<<<<<<< HEAD
     SSHTunnelDatabasePortError,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     SSHTunnelDeleteFailedError,
     SSHTunnelingNotEnabledError,
 )
 from superset.commands.database.tables import TablesDatabaseCommand
 from superset.commands.database.test_connection import TestConnectionDatabaseCommand
 from superset.commands.database.update import UpdateDatabaseCommand
+<<<<<<< HEAD
 from superset.commands.database.uploaders.base import UploadCommand
 from superset.commands.database.uploaders.columnar_reader import ColumnarReader
 from superset.commands.database.uploaders.csv_reader import CSVReader
 from superset.commands.database.uploaders.excel_reader import ExcelReader
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.commands.database.validate import ValidateDatabaseParametersCommand
 from superset.commands.database.validate_sql import ValidateSQLCommand
 from superset.commands.importers.exceptions import (
@@ -68,8 +78,13 @@ from superset.commands.importers.exceptions import (
 )
 from superset.commands.importers.v1.utils import get_contents_from_bundle
 from superset.constants import MODEL_API_RW_METHOD_PERMISSION_MAP, RouteMethod
+<<<<<<< HEAD
 from superset.daos.database import DatabaseDAO, DatabaseUserOAuth2TokensDAO
 from superset.databases.decorators import check_table_access
+=======
+from superset.daos.database import DatabaseDAO
+from superset.databases.decorators import check_datasource_access
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.databases.filters import DatabaseFilter, DatabaseUploadEnabledFilter
 from superset.databases.schemas import (
     CatalogsResponseSchema,

@@ -38,7 +38,11 @@ import {
 import rison from 'rison';
 import { useSingleViewResource } from 'src/views/CRUD/hooks';
 
+<<<<<<< HEAD
 import { InputNumber } from 'src/components/Input';
+=======
+import { Input } from 'src/components/Input';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { Switch } from 'src/components/Switch';
 import Modal from 'src/components/Modal';
 import Collapse from 'src/components/Collapse';
@@ -64,9 +68,12 @@ import {
   AlertsReportsConfig,
   ValidationObject,
   Sections,
+<<<<<<< HEAD
   TabNode,
   SelectValue,
   ContentType,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 } from 'src/features/alerts/types';
 import { useSelector } from 'react-redux';
 import { UserWithPermissionsAndRoles } from 'src/types/bootstrapTypes';
@@ -84,6 +91,14 @@ const TEXT_BASED_VISUALIZATION_TYPES = [
   'paired_ttest',
 ];
 
+<<<<<<< HEAD
+=======
+type SelectValue = {
+  value: string;
+  label: string;
+};
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
 export interface AlertReportModalProps {
   addSuccessToast: (msg: string) => void;
   addDangerToast: (msg: string) => void;
@@ -170,10 +185,13 @@ const CONTENT_TYPE_OPTIONS = [
   },
 ];
 const FORMAT_OPTIONS = {
+<<<<<<< HEAD
   pdf: {
     label: t('Send as PDF'),
     value: 'PDF',
   },
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   png: {
     label: t('Send as PNG'),
     value: 'PNG',
@@ -221,10 +239,13 @@ const StyledModal = styled(Modal)`
       flex: 1 1 auto;
     }
   }
+<<<<<<< HEAD
 `;
 
 const StyledTreeSelect = styled(TreeSelect)`
   width: 100%;
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 `;
 
 const StyledSwitchContainer = styled.div`
@@ -381,8 +402,11 @@ export const TRANSLATIONS = {
   CRONTAB_ERROR_TEXT: t('crontab'),
   WORKING_TIMEOUT_ERROR_TEXT: t('working timeout'),
   RECIPIENTS_ERROR_TEXT: t('recipients'),
+<<<<<<< HEAD
   EMAIL_SUBJECT_ERROR_TEXT: t('email subject'),
   EMAIL_VALIDATION_ERROR_TEXT: t('invalid email'),
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   ERROR_TOOLTIP_MESSAGE: t(
     'Not all required fields are complete. Please provide the following:',
   ),
@@ -450,8 +474,11 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
   const [sourceOptions, setSourceOptions] = useState<MetaObject[]>([]);
   const [dashboardOptions, setDashboardOptions] = useState<MetaObject[]>([]);
   const [chartOptions, setChartOptions] = useState<MetaObject[]>([]);
+<<<<<<< HEAD
   const [tabOptions, setTabOptions] = useState<TabNode[]>([]);
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   // Validation
   const [validationStatus, setValidationStatus] = useState<ValidationObject>({
     [Sections.General]: {
@@ -501,8 +528,13 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
   const reportOrAlert = isReport ? 'report' : 'alert';
   const isEditMode = alert !== null;
   const formatOptionEnabled =
+<<<<<<< HEAD
     isFeatureEnabled(FeatureFlag.AlertsAttachReports) || isReport;
   const tabsEnabled = isFeatureEnabled(FeatureFlag.AlertReportTabs);
+=======
+    contentType === 'chart' &&
+    (isFeatureEnabled(FeatureFlag.AlertsAttachReports) || isReport);
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
   const [notificationAddState, setNotificationAddState] =
     useState<NotificationAddStatus>('active');
@@ -510,6 +542,7 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
   const [notificationSettings, setNotificationSettings] = useState<
     NotificationSetting[]
   >([]);
+<<<<<<< HEAD
   const [emailSubject, setEmailSubject] = useState<string>('');
   const [emailError, setEmailError] = useState(false);
 
@@ -532,6 +565,16 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
       },
     ]);
 
+=======
+  const onNotificationAdd = () => {
+    const settings: NotificationSetting[] = notificationSettings.slice();
+    settings.push({
+      recipients: '',
+      options: allowedNotificationMethods,
+    });
+
+    setNotificationSettings(settings);
+>>>>>>> 2d98af4662 (merge from upstream to master)
     setNotificationAddState(
       notificationSettings.length === allowedNotificationMethodsCount
         ? 'hidden'
@@ -1098,6 +1141,7 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
     return hasInfo;
   };
 
+<<<<<<< HEAD
   const checkEmailFormat = () => {
     if (!notificationSettings.length) {
       return true;
@@ -1128,6 +1172,13 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
     if (!currentAlert?.name?.length) {
       errors.push(TRANSLATIONS.NAME_ERROR_TEXT);
     }
+=======
+  const validateGeneralSection = () => {
+    const errors = [];
+    if (!currentAlert?.name?.length) {
+      errors.push(TRANSLATIONS.NAME_ERROR_TEXT);
+    }
+>>>>>>> 2d98af4662 (merge from upstream to master)
     if (!currentAlert?.owners?.length) {
       errors.push(TRANSLATIONS.OWNERS_ERROR_TEXT);
     }
@@ -1137,8 +1188,13 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
     const errors = [];
     if (
       !(
+<<<<<<< HEAD
         (contentType === ContentType.Dashboard && !!currentAlert?.dashboard) ||
         (contentType === ContentType.Chart && !!currentAlert?.chart)
+=======
+        (contentType === 'dashboard' && !!currentAlert?.dashboard) ||
+        (contentType === 'chart' && !!currentAlert?.chart)
+>>>>>>> 2d98af4662 (merge from upstream to master)
       )
     ) {
       errors.push(TRANSLATIONS.CONTENT_ERROR_TEXT);
@@ -1178,6 +1234,7 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
   };
 
   const validateNotificationSection = () => {
+<<<<<<< HEAD
     const errors = [];
     const hasErrors = !checkNotificationSettings();
 
@@ -1196,6 +1253,10 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
     }
 
     // Update validation status with combined errors
+=======
+    const hasErrors = !checkNotificationSettings();
+    const errors = hasErrors ? [TRANSLATIONS.RECIPIENTS_ERROR_TEXT] : [];
+>>>>>>> 2d98af4662 (merge from upstream to master)
     updateValidationStatus(Sections.Notification, errors);
   };
 
@@ -1252,10 +1313,15 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
       setNotificationSettings([
         {
           recipients: '',
+<<<<<<< HEAD
           cc: '',
           bcc: '',
           options: allowedNotificationMethods,
           method: NotificationMethodOption.Email,
+=======
+          options: allowedNotificationMethods,
+          method: 'Email',
+>>>>>>> 2d98af4662 (merge from upstream to master)
         },
       ]);
       setNotificationAddState('active');
@@ -1343,7 +1409,10 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
   const currentAlertSafe = currentAlert || {};
   useEffect(() => {
     validateAll();
+<<<<<<< HEAD
     updateEmailSubject();
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   }, [
     currentAlertSafe.name,
     currentAlertSafe.owners,
@@ -1362,6 +1431,7 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
   useEffect(() => {
     enforceValidation();
   }, [validationStatus]);
+<<<<<<< HEAD
 
   const allowedNotificationMethodsCount = useMemo(
     () =>
@@ -1376,6 +1446,8 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
       }, []).length,
     [allowedNotificationMethods],
   );
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
   // Show/hide
   if (isHidden && show) {
@@ -1403,10 +1475,13 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
     return titleText;
   };
 
+<<<<<<< HEAD
   const handleErrorUpdate = (hasError: boolean) => {
     setEmailError(hasError);
   };
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   return (
     <StyledModal
       className="no-content-padding"
@@ -1593,8 +1668,12 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
               </StyledInputContainer>
               <StyledInputContainer css={noMarginBottom}>
                 <div className="control-label">
+<<<<<<< HEAD
                   {t('Value')}{' '}
                   {!conditionNotNull && <span className="required">*</span>}
+=======
+                  {t('Value')} <span className="required">*</span>
+>>>>>>> 2d98af4662 (merge from upstream to master)
                 </div>
                 <div className="input-container">
                   <input
@@ -1603,7 +1682,11 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
                     disabled={conditionNotNull}
                     value={
                       currentAlert?.validator_config_json?.threshold !==
+<<<<<<< HEAD
                         undefined && !conditionNotNull
+=======
+                      undefined
+>>>>>>> 2d98af4662 (merge from upstream to master)
                         ? currentAlert.validator_config_json.threshold
                         : ''
                     }
@@ -1646,7 +1729,11 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
             />
           </StyledInputContainer>
           <StyledInputContainer>
+<<<<<<< HEAD
             {contentType === ContentType.Chart ? (
+=======
+            {contentType === 'chart' ? (
+>>>>>>> 2d98af4662 (merge from upstream to master)
               <>
                 <div className="control-label">
                   {t('Select chart')}
@@ -1694,9 +1781,13 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
             )}
           </StyledInputContainer>
           <StyledInputContainer
+<<<<<<< HEAD
             css={
               ['PDF', 'TEXT', 'CSV'].includes(reportFormat) && noMarginBottom
             }
+=======
+            css={['TEXT', 'CSV'].includes(reportFormat) && noMarginBottom}
+>>>>>>> 2d98af4662 (merge from upstream to master)
           >
             {formatOptionEnabled && (
               <>
@@ -1709,6 +1800,7 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
                   onChange={onFormatChange}
                   value={reportFormat}
                   options={
+<<<<<<< HEAD
                     contentType === ContentType.Dashboard
                       ? ['pdf', 'png'].map(key => FORMAT_OPTIONS[key])
                       : /* If chart is of text based viz type: show text
@@ -1716,12 +1808,20 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
                         TEXT_BASED_VISUALIZATION_TYPES.includes(chartVizType)
                         ? Object.values(FORMAT_OPTIONS)
                         : ['pdf', 'png', 'csv'].map(key => FORMAT_OPTIONS[key])
+=======
+                    /* If chart is of text based viz type: show text
+                  format option */
+                    TEXT_BASED_VISUALIZATION_TYPES.includes(chartVizType)
+                      ? Object.values(FORMAT_OPTIONS)
+                      : ['png', 'csv'].map(key => FORMAT_OPTIONS[key])
+>>>>>>> 2d98af4662 (merge from upstream to master)
                   }
                   placeholder={t('Select format')}
                 />
               </>
             )}
           </StyledInputContainer>
+<<<<<<< HEAD
           {tabsEnabled && contentType === ContentType.Dashboard && (
             <StyledInputContainer>
               <>
@@ -1752,11 +1852,29 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
                   max={2400}
                   placeholder={t('Input custom width in pixels')}
                   onChange={onCustomWidthChange}
+=======
+          {isScreenshot && (
+            <StyledInputContainer
+              css={!isReport && contentType === 'chart' && noMarginBottom}
+            >
+              <div className="control-label">{t('Screenshot width')}</div>
+              <div className="input-container">
+                <Input
+                  type="number"
+                  name="custom_width"
+                  value={currentAlert?.custom_width || ''}
+                  placeholder={t('Input custom width in pixels')}
+                  onChange={onInputChange}
+>>>>>>> 2d98af4662 (merge from upstream to master)
                 />
               </div>
             </StyledInputContainer>
           )}
+<<<<<<< HEAD
           {(isReport || contentType === ContentType.Dashboard) && (
+=======
+          {(isReport || contentType === 'dashboard') && (
+>>>>>>> 2d98af4662 (merge from upstream to master)
             <div className="inline-container">
               <StyledCheckbox
                 data-test="bypass-cache"
@@ -1785,7 +1903,11 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
           key="schedule"
         >
           <AlertReportCronScheduler
+<<<<<<< HEAD
             value={currentAlert?.crontab || ''}
+=======
+            value={currentAlert?.crontab || ALERT_REPORTS_DEFAULT_CRON_VALUE}
+>>>>>>> 2d98af4662 (merge from upstream to master)
             onChange={newVal => updateAlertState('crontab', newVal)}
           />
           <StyledInputContainer>
@@ -1808,7 +1930,15 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
                 ariaLabel={t('Log retention')}
                 placeholder={t('Log retention')}
                 onChange={onLogRetentionChange}
+<<<<<<< HEAD
                 value={currentAlert?.log_retention}
+=======
+                value={
+                  typeof currentAlert?.log_retention === 'number'
+                    ? currentAlert?.log_retention
+                    : ALERT_REPORTS_DEFAULT_RETENTION
+                }
+>>>>>>> 2d98af4662 (merge from upstream to master)
                 options={RETENTION_OPTIONS}
                 sortComparator={propertyComparator('value')}
               />
@@ -1870,16 +2000,23 @@ const AlertReportModal: FunctionComponent<AlertReportModalProps> = ({
                 key={`NotificationMethod-${i}`}
                 onUpdate={updateNotificationSetting}
                 onRemove={removeNotificationSetting}
+<<<<<<< HEAD
                 onInputChange={onInputChange}
                 email_subject={currentAlert?.email_subject || ''}
                 defaultSubject={emailSubject || ''}
                 setErrorSubject={handleErrorUpdate}
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
               />
             </StyledNotificationMethodWrapper>
           ))}
           {
             // Prohibit 'add notification method' button if only one present
+<<<<<<< HEAD
             allowedNotificationMethodsCount > notificationSettings.length && (
+=======
+            allowedNotificationMethods.length > notificationSettings.length && (
+>>>>>>> 2d98af4662 (merge from upstream to master)
               <NotificationMethodAdd
                 data-test="notification-add"
                 status={notificationAddState}

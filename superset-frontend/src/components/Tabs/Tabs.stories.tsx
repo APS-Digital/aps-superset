@@ -53,7 +53,12 @@ InteractiveTabs.argTypes = {
     defaultValue: 'line',
     control: {
       type: 'inline-radio',
+<<<<<<< HEAD
     },
     options: ['line', 'card', 'editable-card'],
+=======
+      options: ['line', 'card', 'editable-card'],
+    },
+>>>>>>> 2d98af4662 (merge from upstream to master)
   },
 };

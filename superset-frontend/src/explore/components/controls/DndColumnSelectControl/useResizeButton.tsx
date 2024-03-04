@@ -17,6 +17,7 @@
  * under the License.
  */
 
+<<<<<<< HEAD
 import {
   useCallback,
   useEffect,
@@ -24,6 +25,9 @@ import {
   MouseEvent as ReactMouseEvent,
 } from 'react';
 
+=======
+import React, { useCallback, useEffect, useState } from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { throttle } from 'lodash';
 import {
   POPOVER_INITIAL_HEIGHT,

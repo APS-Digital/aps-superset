@@ -27,10 +27,16 @@ import {
   isAdhocColumn,
   NumberFormatter,
   rgbToHex,
+<<<<<<< HEAD
   tooltipHtml,
 } from '@superset-ui/core';
 import type { ComposeOption } from 'echarts/core';
 import type { BarSeriesOption } from 'echarts/charts';
+=======
+  SupersetTheme,
+} from '@superset-ui/core';
+import { EChartsOption, BarSeriesOption } from 'echarts';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import {
   EchartsWaterfallChartProps,
   ISeriesData,
@@ -44,14 +50,23 @@ import { getColtypesMapping } from '../utils/series';
 import { Refs } from '../types';
 import { NULL_STRING } from '../constants';
 
+<<<<<<< HEAD
 type EChartsOption = ComposeOption<BarSeriesOption>;
 
 function formatTooltip({
+=======
+function formatTooltip({
+  theme,
+>>>>>>> 2d98af4662 (merge from upstream to master)
   params,
   breakdownName,
   defaultFormatter,
   xAxisFormatter,
 }: {
+<<<<<<< HEAD
+=======
+  theme: SupersetTheme;
+>>>>>>> 2d98af4662 (merge from upstream to master)
   params: ICallbackDataParams[];
   breakdownName?: string;
   defaultFormatter: NumberFormatter | CurrencyFormatter;
@@ -71,6 +86,7 @@ function formatTooltip({
     return NULL_STRING;
   }
 
+<<<<<<< HEAD
   const title =
     !isTotal || breakdownName
       ? xAxisFormatter(series.name, series.dataIndex)
@@ -84,6 +100,42 @@ function formatTooltip({
   }
   rows.push([TOTAL_MARK, defaultFormatter(series.data.totalSum)]);
   return tooltipHtml(rows, title);
+=======
+  const createRow = (name: string, value: string) => `
+    <div>
+      <span style="
+        font-size:${theme.typography.sizes.m}px;
+        color:${theme.colors.grayscale.base};
+        font-weight:${theme.typography.weights.normal};
+        margin-left:${theme.gridUnit * 0.5}px;"
+      >
+        ${name}:
+      </span>
+      <span style="
+        float:right;
+        margin-left:${theme.gridUnit * 5}px;
+        font-size:${theme.typography.sizes.m}px;
+        color:${theme.colors.grayscale.base};
+        font-weight:${theme.typography.weights.bold}"
+      >
+        ${value}
+      </span>
+    </div>
+  `;
+
+  let result = '';
+  if (!isTotal || breakdownName) {
+    result = xAxisFormatter(series.name, series.dataIndex);
+  }
+  if (!isTotal) {
+    result += createRow(
+      series.seriesName!,
+      defaultFormatter(series.data.originalValue),
+    );
+  }
+  result += createRow(TOTAL_MARK, defaultFormatter(series.data.totalSum));
+  return result;
+>>>>>>> 2d98af4662 (merge from upstream to master)
 }
 
 function transformer({
@@ -443,6 +495,10 @@ export default function transformProps(
       show: !inContextMenu,
       formatter: (params: any) =>
         formatTooltip({
+<<<<<<< HEAD
+=======
+          theme,
+>>>>>>> 2d98af4662 (merge from upstream to master)
           params,
           breakdownName,
           defaultFormatter,

@@ -73,6 +73,90 @@ const selectPositions = [
   },
 ];
 
+<<<<<<< HEAD
+=======
+const ARG_TYPES = {
+  options: {
+    defaultValue: options,
+    description: `It defines the options of the Select.
+      The options can be static, an array of options.
+      The options can also be async, a promise that returns an array of options.
+    `,
+  },
+  ariaLabel: {
+    description: `It adds the aria-label tag for accessibility standards.
+      Must be plain English and localized.
+    `,
+  },
+  labelInValue: {
+    defaultValue: true,
+    table: {
+      disable: true,
+    },
+  },
+  name: {
+    table: {
+      disable: true,
+    },
+  },
+  notFoundContent: {
+    table: {
+      disable: true,
+    },
+  },
+  mappedMode: {
+    table: {
+      disable: true,
+    },
+  },
+  mode: {
+    description: `It defines whether the Select should allow for
+      the selection of multiple options or single. Single by default.
+    `,
+    defaultValue: 'single',
+    control: {
+      type: 'inline-radio',
+      options: ['single', 'multiple'],
+    },
+  },
+  allowNewOptions: {
+    description: `It enables the user to create new options.
+      Can be used with standard or async select types.
+      Can be used with any mode, single or multiple. False by default.
+    `,
+  },
+  invertSelection: {
+    description: `It shows a stop-outlined icon at the far right of a selected
+      option instead of the default checkmark.
+      Useful to better indicate to the user that by clicking on a selected
+      option it will be de-selected. False by default.
+    `,
+  },
+  optionFilterProps: {
+    description: `It allows to define which properties of the option object
+      should be looked for when searching.
+      By default label and value.
+    `,
+  },
+  oneLine: {
+    defaultValue: false,
+    description: `Sets maxTagCount to 1. The overflow tag is always displayed in
+       the same line, line wrapping is disabled.
+       When the dropdown is open, sets maxTagCount to 0,
+       displays only the overflow tag.
+       Requires '"mode=multiple"'.
+     `,
+  },
+  maxTagCount: {
+    defaultValue: 4,
+    description: `Sets maxTagCount attribute. The overflow tag is displayed in
+       place of the remaining items.
+       Requires '"mode=multiple"'.
+     `,
+  },
+};
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
 const mountHeader = (type: String) => {
   let header;
   if (type === 'text') {
@@ -240,7 +324,10 @@ export const InteractiveSelect: StoryObj = {
       Works in async mode only (See the options property).
       Undefined by default.
     `,
+<<<<<<< HEAD
     },
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   },
 };
 

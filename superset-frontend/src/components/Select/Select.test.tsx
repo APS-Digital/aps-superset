@@ -16,6 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
+=======
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import {
   createEvent,
   fireEvent,
@@ -1052,7 +1056,10 @@ test('pasting an existing option does not duplicate it in multiple mode', async 
       options={options}
       mode="multiple"
       allowSelectAll={false}
+<<<<<<< HEAD
       allowNewOptions
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     />,
   );
   await open();
@@ -1067,6 +1074,7 @@ test('pasting an existing option does not duplicate it in multiple mode', async 
   expect(await findAllSelectOptions()).toHaveLength(4);
 });
 
+<<<<<<< HEAD
 test('pasting an non-existent option should not add it if allowNewOptions is false', async () => {
   render(<Select {...defaultProps} options={[]} allowNewOptions={false} />);
   await open();
@@ -1092,6 +1100,8 @@ test('does not fire onChange if the same value is selected in single mode', asyn
   expect(onChange).toHaveBeenCalledTimes(1);
 });
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 /*
  TODO: Add tests that require scroll interaction. Needs further investigation.
  - Fetches more data when scrolling and more data is available

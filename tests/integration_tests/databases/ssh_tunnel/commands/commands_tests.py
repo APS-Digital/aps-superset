@@ -19,8 +19,15 @@ from unittest import mock
 import pytest
 
 from superset import security_manager
+<<<<<<< HEAD
 from superset.commands.database.ssh_tunnel.delete import DeleteSSHTunnelCommand
 from superset.commands.database.ssh_tunnel.exceptions import (
+=======
+from superset.commands.database.ssh_tunnel.create import CreateSSHTunnelCommand
+from superset.commands.database.ssh_tunnel.delete import DeleteSSHTunnelCommand
+from superset.commands.database.ssh_tunnel.exceptions import (
+    SSHTunnelInvalidError,
+>>>>>>> 2d98af4662 (merge from upstream to master)
     SSHTunnelNotFoundError,
 )
 from superset.commands.database.ssh_tunnel.update import UpdateSSHTunnelCommand

@@ -115,11 +115,19 @@ export default function makeApi<
         jsonPayload: undefined as JsonObject | undefined,
       };
       if (requestType === 'search') {
+<<<<<<< HEAD
         requestConfig.searchParams = payload as unknown as URLSearchParams;
       } else if (requestType === 'rison') {
         requestConfig.endpoint = `${endpoint}?q=${rison.encode(payload)}`;
       } else if (requestType === 'form') {
         requestConfig.postPayload = payload as unknown as FormData;
+=======
+        requestConfig.searchParams = payload as URLSearchParams;
+      } else if (requestType === 'rison') {
+        requestConfig.endpoint = `${endpoint}?q=${rison.encode(payload)}`;
+      } else if (requestType === 'form') {
+        requestConfig.postPayload = payload as FormData;
+>>>>>>> 2d98af4662 (merge from upstream to master)
       } else {
         requestConfig.jsonPayload = payload as JsonObject;
       }

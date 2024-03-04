@@ -214,6 +214,7 @@ describe('reducers', () => {
     expect(newState.form_data.metrics).toStrictEqual(updatedMetrics);
     expect(newState.form_data.column_config).toStrictEqual(
       expectedColumnConfig,
+<<<<<<< HEAD
     );
   });
 
@@ -233,6 +234,8 @@ describe('reducers', () => {
     expect(updatedState.hiddenFormData.y_axis_format).toBeFalsy();
     expect(updatedState.form_data.y_axis_format).toEqual(
       defaultState.form_data.y_axis_format,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     );
   });
 });

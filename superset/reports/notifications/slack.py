@@ -20,7 +20,14 @@ from io import IOBase
 from typing import Union
 
 import backoff
+<<<<<<< HEAD
 from flask import g
+=======
+import pandas as pd
+from flask import g
+from flask_babel import gettext as __
+from slack_sdk import WebClient
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from slack_sdk.errors import (
     BotUserAccessError,
     SlackApiError,
@@ -41,8 +48,11 @@ from superset.reports.notifications.exceptions import (
     NotificationUnprocessableException,
     SlackV1NotificationError,
 )
+<<<<<<< HEAD
 from superset.reports.notifications.slack_mixin import SlackMixin
 from superset.utils import json
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.core import get_email_address_list
 from superset.utils.decorators import statsd_gauge
 from superset.utils.slack import (
@@ -69,6 +79,11 @@ class SlackNotification(SlackMixin, BaseNotification):  # pylint: disable=too-fe
         :returns: The comma separated list of channel(s)
         """
         recipient_str = json.loads(self._recipient.recipient_config_json)["target"]
+<<<<<<< HEAD
+=======
+
+        return ",".join(get_email_address_list(recipient_str))
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         return ",".join(get_email_address_list(recipient_str))
 
@@ -88,6 +103,7 @@ class SlackNotification(SlackMixin, BaseNotification):  # pylint: disable=too-fe
     def send(self) -> None:
         file_type, files = self._get_inline_files()
         title = self._content.name
+<<<<<<< HEAD
         body = self._get_body(content=self._content)
         global_logs_context = getattr(g, "logs_context", {}) or {}
 
@@ -96,6 +112,12 @@ class SlackNotification(SlackMixin, BaseNotification):  # pylint: disable=too-fe
             # if we can fetch channels, then raise an error and use the v2 api
             raise SlackV1NotificationError
 
+=======
+        channel = self._get_channel()
+        body = self._get_body()
+        file_type = "csv" if self._content.csv else "png"
+        global_logs_context = getattr(g, "logs_context", {}) or {}
+>>>>>>> 2d98af4662 (merge from upstream to master)
         try:
             client = get_slack_client()
             channel = self._get_channel()

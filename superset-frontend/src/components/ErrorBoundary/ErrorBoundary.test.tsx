@@ -26,7 +26,11 @@ const mockedProps: Partial<ErrorBoundaryProps> = {
   showMessage: false,
 };
 
+<<<<<<< HEAD
 const Child = (): ReactElement => {
+=======
+const Child = (): React.ReactElement => {
+>>>>>>> 2d98af4662 (merge from upstream to master)
   throw new Error('Thrown error');
 };
 

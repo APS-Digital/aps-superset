@@ -20,7 +20,10 @@ import { DatabaseObject } from 'src/components/DatabaseSelector';
 
 export enum DatasetActionType {
   SelectDatabase,
+<<<<<<< HEAD
   SelectCatalog,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   SelectSchema,
   SelectTable,
   ChangeDataset,
@@ -52,7 +55,10 @@ export type DSReducerActionType =
   | {
       type:
         | DatasetActionType.ChangeDataset
+<<<<<<< HEAD
         | DatasetActionType.SelectCatalog
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         | DatasetActionType.SelectSchema
         | DatasetActionType.SelectTable;
       payload: DatasetReducerPayloadType;

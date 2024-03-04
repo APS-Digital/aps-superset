@@ -105,6 +105,7 @@ const failedQueryWithErrorsState = {
     },
   },
 };
+<<<<<<< HEAD
 const failedQueryWithTimeoutState = {
   ...initialState,
   sqlLab: {
@@ -115,6 +116,8 @@ const failedQueryWithTimeoutState = {
     },
   },
 };
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 const newProps = {
   displayLimit: 1001,

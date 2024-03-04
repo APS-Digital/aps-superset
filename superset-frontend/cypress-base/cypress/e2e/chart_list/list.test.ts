@@ -108,10 +108,16 @@ describe('Charts list', () => {
       cy.getBySel('sort-header').eq(1).contains('Name');
       cy.getBySel('sort-header').eq(2).contains('Type');
       cy.getBySel('sort-header').eq(3).contains('Dataset');
+<<<<<<< HEAD
       cy.getBySel('sort-header').eq(4).contains('On dashboards');
       cy.getBySel('sort-header').eq(5).contains('Owners');
       cy.getBySel('sort-header').eq(6).contains('Last modified');
       cy.getBySel('sort-header').eq(7).contains('Actions');
+=======
+      cy.getBySel('sort-header').eq(4).contains('Owners');
+      cy.getBySel('sort-header').eq(5).contains('Last modified');
+      cy.getBySel('sort-header').eq(6).contains('Actions');
+>>>>>>> 2d98af4662 (merge from upstream to master)
     });
 
     it('should sort correctly in list mode', () => {

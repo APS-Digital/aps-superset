@@ -16,7 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { SyntheticEvent } from 'react';
+=======
+import React, { SyntheticEvent } from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { logging, t } from '@superset-ui/core';
 import { Menu } from 'src/components/Menu';
 import { LOG_ACTIONS_DASHBOARD_DOWNLOAD_AS_IMAGE } from 'src/logger/LogUtils';

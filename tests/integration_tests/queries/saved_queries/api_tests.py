@@ -16,7 +16,11 @@
 # under the License.
 # isort:skip_file
 """Unit tests for Superset"""
+<<<<<<< HEAD
 
+=======
+import json
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from datetime import datetime
 from io import BytesIO
 from typing import Optional
@@ -631,7 +635,11 @@ class TestSavedQueryApi(SupersetTestCase):
         saved_query = (
             db.session.query(SavedQuery).filter(SavedQuery.label == "label1").all()[0]
         )
+<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
+=======
+        self.login(username="admin")
+>>>>>>> 2d98af4662 (merge from upstream to master)
         with freeze_time(datetime.now()):
             uri = f"api/v1/saved_query/{saved_query.id}"
             rv = self.get_assert_metric(uri, "get")

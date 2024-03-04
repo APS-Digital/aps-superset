@@ -81,8 +81,21 @@ const SSHTunnelSwitch = ({
   return isSSHTunnelEnabled ? (
     <div css={(theme: SupersetTheme) => infoTooltip(theme)}>
       <AntdSwitch
+<<<<<<< HEAD
         checked={isChecked}
         onChange={handleOnChange}
+=======
+        disabled={isEditMode && !isEmpty(dbFetched?.ssh_tunnel)}
+        checked={useSSHTunneling}
+        onChange={changed => {
+          setUseSSHTunneling(changed);
+          if (!changed) {
+            setDB({
+              type: ActionType.RemoveSSHTunnelConfig,
+            });
+          }
+        }}
+>>>>>>> 2d98af4662 (merge from upstream to master)
         data-test="ssh-tunnel-switch"
       />
       <span css={toggleStyle}>{t('SSH Tunnel')}</span>

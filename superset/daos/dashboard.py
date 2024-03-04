@@ -37,7 +37,10 @@ from superset.models.core import FavStar, FavStarClassName
 from superset.models.dashboard import Dashboard, id_or_slug_filter
 from superset.models.embedded_dashboard import EmbeddedDashboard
 from superset.models.slice import Slice
+<<<<<<< HEAD
 from superset.utils import json
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.core import get_user_id
 from superset.utils.dashboard_filter_scopes_converter import copy_filter_scopes
 
@@ -368,6 +371,10 @@ class EmbeddedDashboardDAO(BaseDAO[EmbeddedDashboard]):
         cls,
         item: EmbeddedDashboardDAO | None = None,
         attributes: dict[str, Any] | None = None,
+<<<<<<< HEAD
+=======
+        commit: bool = True,
+>>>>>>> 2d98af4662 (merge from upstream to master)
     ) -> Any:
         """
         Use EmbeddedDashboardDAO.upsert() instead.

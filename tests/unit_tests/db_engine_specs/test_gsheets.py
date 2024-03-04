@@ -22,18 +22,25 @@ from urllib.parse import parse_qs, urlparse
 
 import pandas as pd
 import pytest
+<<<<<<< HEAD
 from pytest_mock import MockerFixture
 from sqlalchemy.engine.url import make_url
+=======
+from pytest_mock import MockFixture
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 from superset.errors import ErrorLevel, SupersetError, SupersetErrorType
 from superset.exceptions import SupersetException
 from superset.sql_parse import Table
+<<<<<<< HEAD
 from superset.superset_typing import OAuth2ClientConfig
 from superset.utils import json
 from superset.utils.oauth2 import decode_oauth2_state
 
 if TYPE_CHECKING:
     from superset.db_engine_specs.base import OAuth2State
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 class ProgrammingError(Exception):
@@ -383,7 +390,11 @@ def test_unmask_encrypted_extra_when_new_is_none() -> None:
     assert GSheetsEngineSpec.unmask_encrypted_extra(old, new) is None
 
 
+<<<<<<< HEAD
 def test_upload_new(mocker: MockerFixture) -> None:
+=======
+def test_upload_new(mocker: MockFixture) -> None:
+>>>>>>> 2d98af4662 (merge from upstream to master)
     """
     Test file upload when the table does not exist.
     """
@@ -412,7 +423,11 @@ def test_upload_new(mocker: MockerFixture) -> None:
     )
 
 
+<<<<<<< HEAD
 def test_upload_existing(mocker: MockerFixture) -> None:
+=======
+def test_upload_existing(mocker: MockFixture) -> None:
+>>>>>>> 2d98af4662 (merge from upstream to master)
     """
     Test file upload when the table does exist.
     """
@@ -469,6 +484,7 @@ def test_upload_existing(mocker: MockerFixture) -> None:
             mocker.call().json(),
         ]
     )
+<<<<<<< HEAD
 
 
 def test_get_url_for_impersonation_username(mocker: MockerFixture) -> None:
@@ -666,3 +682,5 @@ def test_get_oauth2_fresh_token(
         },
         timeout=30.0,
     )
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)

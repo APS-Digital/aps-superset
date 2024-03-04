@@ -16,6 +16,10 @@
 # under the License.
 import os
 import sys
+<<<<<<< HEAD
+=======
+from unittest.mock import patch
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 import pytest
 
@@ -31,7 +35,11 @@ scripts_dir = os.path.abspath(
 )
 sys.path.append(scripts_dir)
 
+<<<<<<< HEAD
 import build_docker as docker_utils  # Replace with the actual function name  # noqa: E402
+=======
+import build_docker as docker_utils  # Replace with the actual function name
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 @pytest.fixture(autouse=True)
@@ -265,7 +273,11 @@ def test_get_docker_tags(
             SHA,
             "push",
             "master",
+<<<<<<< HEAD
             ["--platform linux/arm64,linux/amd64"],
+=======
+            [f"--platform linux/arm64,linux/amd64"],
+>>>>>>> 2d98af4662 (merge from upstream to master)
         ),
     ],
 )

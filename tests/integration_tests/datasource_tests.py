@@ -106,9 +106,16 @@ class TestDatasource(SupersetTestCase):
         )
 
     def test_always_filter_main_dttm(self):
+<<<<<<< HEAD
         database = get_example_database()
 
         sql = f"SELECT DATE() as default_dttm, DATE() as additional_dttm, 1 as metric;"  # noqa: F541
+=======
+        self.login(username="admin")
+        database = get_example_database()
+
+        sql = f"SELECT DATE() as default_dttm, DATE() as additional_dttm, 1 as metric;"
+>>>>>>> 2d98af4662 (merge from upstream to master)
         if database.backend == "sqlite":
             pass
         elif database.backend in ["postgresql", "mysql"]:
@@ -127,6 +134,8 @@ class TestDatasource(SupersetTestCase):
             "row_limit": 1000,
             "row_offset": 0,
         }
+<<<<<<< HEAD
+=======
         table = SqlaTable(
             table_name="dummy_sql_table",
             database=database,
@@ -140,6 +149,38 @@ class TestDatasource(SupersetTestCase):
             ],
             sql=sql,
         )
+
+        db.session.add(table)
+        db.session.commit()
+
+        table.always_filter_main_dttm = False
+        result = str(table.get_sqla_query(**query_obj).sqla_query.whereclause)
+        assert "default_dttm" not in result and "additional_dttm" in result
+
+        table.always_filter_main_dttm = True
+        result = str(table.get_sqla_query(**query_obj).sqla_query.whereclause)
+        assert "default_dttm" in result and "additional_dttm" in result
+
+        db.session.delete(table)
+        db.session.commit()
+
+    def test_external_metadata_for_virtual_table(self):
+        self.login(username="admin")
+>>>>>>> 2d98af4662 (merge from upstream to master)
+        table = SqlaTable(
+            table_name="dummy_sql_table",
+            database=database,
+            schema=get_example_default_schema(),
+            main_dttm_col="default_dttm",
+            columns=[
+                TableColumn(column_name="default_dttm", type="DATETIME", is_dttm=True),
+                TableColumn(
+                    column_name="additional_dttm", type="DATETIME", is_dttm=True
+                ),
+            ],
+            sql=sql,
+        )
+<<<<<<< HEAD
 
         with create_and_cleanup_table(table):
             table.always_filter_main_dttm = False
@@ -157,6 +198,17 @@ class TestDatasource(SupersetTestCase):
             url = f"/datasource/external_metadata/table/{table.id}/"
             resp = self.get_json_resp(url)
             assert {o.get("column_name") for o in resp} == {"intcol", "strcol"}
+=======
+        db.session.add(table)
+        db.session.commit()
+
+        table = self.get_table(name="dummy_sql_table")
+        url = f"/datasource/external_metadata/table/{table.id}/"
+        resp = self.get_json_resp(url)
+        assert {o.get("column_name") for o in resp} == {"intcol", "strcol"}
+        db.session.delete(table)
+        db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     @pytest.mark.usefixtures("load_birth_names_dashboard_with_slices")
     def test_external_metadata_by_name_for_physical_table(self):
@@ -180,6 +232,7 @@ class TestDatasource(SupersetTestCase):
         )
 
     def test_external_metadata_by_name_for_virtual_table(self):
+<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
         with create_and_cleanup_table() as tbl:
             params = prison.dumps(
@@ -217,6 +270,34 @@ class TestDatasource(SupersetTestCase):
             resp = self.get_json_resp(url)
             assert {o.get("column_name") for o in resp} == {"intcol", "mutated_strcol"}
             app.config["SQL_QUERY_MUTATOR"] = None
+=======
+        self.login(username="admin")
+        table = SqlaTable(
+            table_name="dummy_sql_table",
+            database=get_example_database(),
+            schema=get_example_default_schema(),
+            sql="select 123 as intcol, 'abc' as strcol",
+        )
+        db.session.add(table)
+        db.session.commit()
+
+        tbl = self.get_table(name="dummy_sql_table")
+        params = prison.dumps(
+            {
+                "datasource_type": "table",
+                "database_name": tbl.database.database_name,
+                "schema_name": tbl.schema,
+                "table_name": tbl.table_name,
+                "normalize_columns": tbl.normalize_columns,
+                "always_filter_main_dttm": tbl.always_filter_main_dttm,
+            }
+        )
+        url = f"/datasource/external_metadata_by_name/?q={params}"
+        resp = self.get_json_resp(url)
+        assert {o.get("column_name") for o in resp} == {"intcol", "strcol"}
+        db.session.delete(tbl)
+        db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     def test_external_metadata_by_name_from_sqla_inspector(self):
         self.login(ADMIN_USERNAME)
@@ -284,7 +365,11 @@ class TestDatasource(SupersetTestCase):
         self.assertIn("error", resp)
 
     def test_external_metadata_for_virtual_table_template_params(self):
+<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
+=======
+        self.login(username="admin")
+>>>>>>> 2d98af4662 (merge from upstream to master)
         table = SqlaTable(
             table_name="dummy_sql_table_with_template_params",
             database=get_example_database(),
@@ -292,10 +377,22 @@ class TestDatasource(SupersetTestCase):
             sql="select {{ foo }} as intcol",
             template_params=json.dumps({"foo": "123"}),
         )
+<<<<<<< HEAD
         with create_and_cleanup_table(table) as tbl:
             url = f"/datasource/external_metadata/table/{tbl.id}/"
             resp = self.get_json_resp(url)
             assert {o.get("column_name") for o in resp} == {"intcol"}
+=======
+        db.session.add(table)
+        db.session.commit()
+
+        table = self.get_table(name="dummy_sql_table_with_template_params")
+        url = f"/datasource/external_metadata/table/{table.id}/"
+        resp = self.get_json_resp(url)
+        assert {o.get("column_name") for o in resp} == {"intcol"}
+        db.session.delete(table)
+        db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     def test_external_metadata_for_malicious_virtual_table(self):
         self.login(ADMIN_USERNAME)

@@ -26,6 +26,10 @@ from superset.commands.database.ssh_tunnel.exceptions import (
     SSHTunnelNotFoundError,
 )
 from superset.daos.database import SSHTunnelDAO
+<<<<<<< HEAD
+=======
+from superset.daos.exceptions import DAODeleteFailedError
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.databases.ssh_tunnel.models import SSHTunnel
 from superset.utils.decorators import on_error, transaction
 
@@ -43,7 +47,15 @@ class DeleteSSHTunnelCommand(BaseCommand):
             raise SSHTunnelingNotEnabledError()
         self.validate()
         assert self._model
+<<<<<<< HEAD
         SSHTunnelDAO.delete([self._model])
+=======
+
+        try:
+            SSHTunnelDAO.delete([self._model])
+        except DAODeleteFailedError as ex:
+            raise SSHTunnelDeleteFailedError() from ex
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     def validate(self) -> None:
         # Validate/populate model exists

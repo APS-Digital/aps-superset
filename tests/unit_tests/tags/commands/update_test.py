@@ -15,7 +15,11 @@
 # specific language governing permissions and limitations
 # under the License.
 import pytest
+<<<<<<< HEAD
 from pytest_mock import MockerFixture
+=======
+from pytest_mock import MockFixture
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from sqlalchemy.orm.session import Session
 
 from superset import db
@@ -28,7 +32,11 @@ def session_with_data(session: Session):
     from superset.models.core import Database
     from superset.models.dashboard import Dashboard
     from superset.models.slice import Slice
+<<<<<<< HEAD
     from superset.models.sql_lab import SavedQuery
+=======
+    from superset.models.sql_lab import Query, SavedQuery
+>>>>>>> 2d98af4662 (merge from upstream to master)
     from superset.tags.models import Tag
 
     engine = session.get_bind()
@@ -48,7 +56,11 @@ def session_with_data(session: Session):
         TableColumn(column_name="a", type="INTEGER"),
     ]
 
+<<<<<<< HEAD
     SqlaTable(  # noqa: F841
+=======
+    sqla_table = SqlaTable(
+>>>>>>> 2d98af4662 (merge from upstream to master)
         table_name="my_sqla_table",
         columns=columns,
         metrics=[],
@@ -63,7 +75,11 @@ def session_with_data(session: Session):
         published=True,
     )
 
+<<<<<<< HEAD
     SavedQuery(  # noqa: F841
+=======
+    saved_query = SavedQuery(
+>>>>>>> 2d98af4662 (merge from upstream to master)
         label="test_query", database=database, sql="select * from foo"
     )
 
@@ -76,7 +92,11 @@ def session_with_data(session: Session):
     yield session
 
 
+<<<<<<< HEAD
 def test_update_command_success(session_with_data: Session, mocker: MockerFixture):
+=======
+def test_update_command_success(session_with_data: Session, mocker: MockFixture):
+>>>>>>> 2d98af4662 (merge from upstream to master)
     from superset.commands.tag.update import UpdateTagCommand
     from superset.daos.tag import TagDAO
     from superset.models.dashboard import Dashboard
@@ -95,7 +115,11 @@ def test_update_command_success(session_with_data: Session, mocker: MockerFixtur
     ]
 
     tag_to_update = TagDAO.find_by_name("test_name")
+<<<<<<< HEAD
     UpdateTagCommand(  # noqa: F841
+=======
+    changed_model = UpdateTagCommand(
+>>>>>>> 2d98af4662 (merge from upstream to master)
         tag_to_update.id,
         {
             "name": "new_name",
@@ -111,7 +135,11 @@ def test_update_command_success(session_with_data: Session, mocker: MockerFixtur
 
 
 def test_update_command_success_duplicates(
+<<<<<<< HEAD
     session_with_data: Session, mocker: MockerFixture
+=======
+    session_with_data: Session, mocker: MockFixture
+>>>>>>> 2d98af4662 (merge from upstream to master)
 ):
     from superset.commands.tag.create import CreateCustomTagWithRelationshipsCommand
     from superset.commands.tag.update import UpdateTagCommand
@@ -161,7 +189,11 @@ def test_update_command_success_duplicates(
 
 
 def test_update_command_failed_validation(
+<<<<<<< HEAD
     session_with_data: Session, mocker: MockerFixture
+=======
+    session_with_data: Session, mocker: MockFixture
+>>>>>>> 2d98af4662 (merge from upstream to master)
 ):
     from superset.commands.tag.create import CreateCustomTagWithRelationshipsCommand
     from superset.commands.tag.exceptions import TagInvalidError

@@ -51,7 +51,10 @@ export enum GlobalMenuDataOptions {
   GoogleSheets = 'gsheets',
   DbConnection = 'dbconnection',
   DatasetCreation = 'datasetCreation',
+<<<<<<< HEAD
   CSVUpload = 'csvUpload',
   ExcelUpload = 'excelUpload',
   ColumnarUpload = 'columnarUpload',
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 }

@@ -24,7 +24,10 @@ import {
   getNumberFormatter,
   getValueFormatter,
   NumberFormats,
+<<<<<<< HEAD
   tooltipHtml,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   ValueFormatter,
 } from '@superset-ui/core';
 import type { CallbackDataParams } from 'echarts/types/src/util/types';
@@ -59,10 +62,18 @@ export function parseParams({
   sanitizeName = false,
 }: {
   params: Pick<CallbackDataParams, 'name' | 'value' | 'percent' | 'data'>;
+<<<<<<< HEAD
   numberFormatter: ValueFormatter;
   percentCalculationType?: PercentCalcType;
   sanitizeName?: boolean;
 }) {
+=======
+  labelType: EchartsFunnelLabelTypeType;
+  numberFormatter: ValueFormatter;
+  percentCalculationType?: PercentCalcType;
+  sanitizeName?: boolean;
+}): string {
+>>>>>>> 2d98af4662 (merge from upstream to master)
   const { name: rawName = '', value, percent: totalPercent, data } = params;
   const name = sanitizeName ? sanitizeHtml(rawName) : rawName;
   const formattedValue = numberFormatter(value as number);
@@ -78,6 +89,29 @@ export function parseParams({
     percent = prevStepPercent ?? 0;
   } else {
     percent = firstStepPercent ?? 0;
+<<<<<<< HEAD
+=======
+  }
+  const formattedPercent = percentFormatter(percent);
+
+  switch (labelType) {
+    case EchartsFunnelLabelTypeType.Key:
+      return name;
+    case EchartsFunnelLabelTypeType.Value:
+      return formattedValue;
+    case EchartsFunnelLabelTypeType.Percent:
+      return formattedPercent;
+    case EchartsFunnelLabelTypeType.KeyValue:
+      return `${name}: ${formattedValue}`;
+    case EchartsFunnelLabelTypeType.KeyValuePercent:
+      return `${name}: ${formattedValue} (${formattedPercent})`;
+    case EchartsFunnelLabelTypeType.KeyPercent:
+      return `${name}: ${formattedPercent}`;
+    case EchartsFunnelLabelTypeType.ValuePercent:
+      return `${formattedValue} (${formattedPercent})`;
+    default:
+      return name;
+>>>>>>> 2d98af4662 (merge from upstream to master)
   }
   const formattedPercent = percentFormatter(percent);
   return [name, formattedValue, formattedPercent];
@@ -198,6 +232,7 @@ export default function transformProps(
     {},
   );
 
+<<<<<<< HEAD
   const formatter = (params: CallbackDataParams) => {
     const [name, formattedValue, formattedPercent] = parseParams({
       params,
@@ -223,6 +258,15 @@ export default function transformProps(
         return name;
     }
   };
+=======
+  const formatter = (params: CallbackDataParams) =>
+    formatFunnelLabel({
+      params,
+      numberFormatter,
+      labelType,
+      percentCalculationType,
+    });
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
   const defaultLabel = {
     formatter,
@@ -270,6 +314,7 @@ export default function transformProps(
         const [name, formattedValue, formattedPercent] = parseParams({
           params,
           numberFormatter,
+<<<<<<< HEAD
           percentCalculationType,
         });
         const row = [];
@@ -286,6 +331,11 @@ export default function transformProps(
         }
         return tooltipHtml([row], title);
       },
+=======
+          labelType: tooltipLabelType,
+          percentCalculationType,
+        }),
+>>>>>>> 2d98af4662 (merge from upstream to master)
     },
     legend: {
       ...getLegendProps(legendType, legendOrientation, showLegend, theme),

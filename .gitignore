@@ -131,3 +131,4 @@ superset/static/stats/statistics.html
 ./docker/.env*
 ./docker/.env-non-dev
 /superset-db-dumps/
+./StartUpCommand.md

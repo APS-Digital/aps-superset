@@ -16,7 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import Markdown from 'markdown-to-jsx';
+=======
+import { Story } from '@storybook/addon-docs';
+import Markdown from 'markdown-to-jsx';
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 export default {
   title: 'Design System/Components/Table"',
@@ -46,6 +52,11 @@ This component provides a general use Table.
 `}
     </Markdown>
 
+<<<<<<< HEAD
+=======
+    <Story id="design-system-components-table-examples--basic" />
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
     <Markdown>
       {`
 ### Data and Columns
@@ -170,6 +181,10 @@ Cell Renderers are React components provided to the optional \`render\` attribut
 
 `}
     </Markdown>
+<<<<<<< HEAD
+=======
+    <Story id="design-system-components-table-examples--cell-renderers" />
+>>>>>>> 2d98af4662 (merge from upstream to master)
     <Markdown>
       {`
 
@@ -194,6 +209,11 @@ The table can be set to a loading state simply by setting the loading prop to tr
 
   `}
     </Markdown>
+<<<<<<< HEAD
+=======
+
+    <Story id="design-system-components-table-examples--loading" />
+>>>>>>> 2d98af4662 (merge from upstream to master)
     <Markdown>
       {`
 ---
@@ -205,6 +225,10 @@ The default page size and page size options for the menu are configurable via th
 NOTE: Pagination controls will only display when the data for the table has more records than the default page size.
 `}
     </Markdown>
+<<<<<<< HEAD
+=======
+    <Story id="design-system-components-table-examples--pagination" />
+>>>>>>> 2d98af4662 (merge from upstream to master)
     <Markdown>
       {`
 
@@ -223,6 +247,10 @@ function enabling data fetching to occur when the user changes the page.
 
 `}
     </Markdown>
+<<<<<<< HEAD
+=======
+    <Story id="design-system-components-table-examples--server-pagination" />
+>>>>>>> 2d98af4662 (merge from upstream to master)
     <Markdown>
       {`
 
@@ -294,6 +322,10 @@ Support for row event handlers may be added in future versions of the Table.
 
 `}
     </Markdown>
+<<<<<<< HEAD
+=======
+    <Story id="design-system-components-table-examples--virtualized-performance" />
+>>>>>>> 2d98af4662 (merge from upstream to master)
     <Markdown>
       {`
 
@@ -349,6 +381,10 @@ column to increase or decrease the columns' width
 
 `}
     </Markdown>
+<<<<<<< HEAD
+=======
+    <Story id="design-system-components-table-examples--resizable-columns" />
+>>>>>>> 2d98af4662 (merge from upstream to master)
     <Markdown>
       {`
 
@@ -369,5 +405,9 @@ const handleDrop = (ev:Event) => {
 \`\`\`
 `}
     </Markdown>
+<<<<<<< HEAD
+=======
+    <Story id="design-system-components-table-examples--reorderable-columns" />
+>>>>>>> 2d98af4662 (merge from upstream to master)
   </>
 );

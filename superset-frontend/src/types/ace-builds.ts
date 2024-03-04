@@ -16,5 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 declare module 'ace-builds/src-min-noconflict/worker-css';
 declare module 'ace-builds/src-min-noconflict/ace';
+=======
+<<<<<<<< HEAD:superset-frontend/src/dashboard/components/menu/DownloadMenuItems/types.ts
+
+export enum DownloadScreenshotFormat {
+  PDF = 'pdf',
+  PNG = 'png',
+}
+========
+declare module 'ace-builds/src-noconflict/worker-css';
+>>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/src/types/ace-builds.ts
+>>>>>>> 2d98af4662 (merge from upstream to master)

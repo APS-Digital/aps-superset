@@ -267,7 +267,11 @@ class TestSqlLab(SupersetTestCase):
                 self.assertEqual(200, resp.status_code)
 
     def test_sqllab_no_access(self):
+<<<<<<< HEAD
         self.login(GAMMA_USERNAME)
+=======
+        self.login("gamma")
+>>>>>>> 2d98af4662 (merge from upstream to master)
         for endpoint in ("/sqllab/", "/sqllab/history/"):
             resp = self.client.get(endpoint)
             # Redirects to the main page
@@ -574,9 +578,15 @@ class TestSqlLab(SupersetTestCase):
         assert data["status"] == "success"
 
         data = self.run_sql(
+<<<<<<< HEAD
             "SELECT * FROM birth_names WHERE state = '{{ state }}' -- blabblah {{ extra1 }}\nLIMIT 10",
             "3",
             template_params=json.dumps({"state": "CA", "extra1": "comment"}),
+=======
+            "SELECT * FROM birth_names WHERE state = '{{ state }}' -- blabblah {{ extra1 }} {{fake.fn()}}\nLIMIT 10",
+            "3",
+            template_params=json.dumps({"state": "CA"}),
+>>>>>>> 2d98af4662 (merge from upstream to master)
         )
         assert data["status"] == "success"
 
@@ -643,14 +653,22 @@ class TestSqlLab(SupersetTestCase):
         mock_get_query,
         mock_db,
     ):
+<<<<<<< HEAD
         sql = dedent(
             """
+=======
+        sql = """
+>>>>>>> 2d98af4662 (merge from upstream to master)
             -- comment
             SET @value = 42;
             SELECT /*+ hint */ @value AS foo;
         """
+<<<<<<< HEAD
         )
         mock_db = mock.MagicMock()  # noqa: F841
+=======
+        mock_db = mock.MagicMock()
+>>>>>>> 2d98af4662 (merge from upstream to master)
         mock_query = mock.MagicMock()
         mock_query.database.allow_run_async = False
         mock_cursor = mock.MagicMock()
@@ -700,7 +718,10 @@ class TestSqlLab(SupersetTestCase):
             SET @value = 42;
             SELECT /*+ hint */ @value AS foo;
         """
+<<<<<<< HEAD
         )
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         mock_query = mock.MagicMock()
         mock_query.database.allow_run_async = True
         mock_cursor = mock.MagicMock()
@@ -753,8 +774,12 @@ class TestSqlLab(SupersetTestCase):
             SET @value = 42;
             SELECT /*+ hint */ @value AS foo;
         """
+<<<<<<< HEAD
         )
         mock_db = mock.MagicMock()  # noqa: F841
+=======
+        mock_db = mock.MagicMock()
+>>>>>>> 2d98af4662 (merge from upstream to master)
         mock_query = mock.MagicMock()
         mock_query.database.allow_run_async = False
         mock_cursor = mock.MagicMock()

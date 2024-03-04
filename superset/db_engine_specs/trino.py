@@ -21,6 +21,7 @@ import contextlib
 import logging
 import threading
 import time
+<<<<<<< HEAD
 from tempfile import NamedTemporaryFile
 from typing import Any, TYPE_CHECKING
 
@@ -29,6 +30,12 @@ import pandas as pd
 import pyarrow as pa
 from flask import ctx, current_app, Flask, g
 from sqlalchemy import text
+=======
+from typing import Any, TYPE_CHECKING
+
+import simplejson as json
+from flask import current_app
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from sqlalchemy.engine.reflection import Inspector
 from sqlalchemy.engine.url import URL
 from sqlalchemy.exc import NoSuchTableError
@@ -36,20 +43,32 @@ from sqlalchemy.exc import NoSuchTableError
 from superset import db
 from superset.constants import QUERY_CANCEL_KEY, QUERY_EARLY_CANCEL_KEY, USER_AGENT
 from superset.databases.utils import make_url_safe
+<<<<<<< HEAD
 from superset.db_engine_specs.base import BaseEngineSpec, convert_inspector_columns
+=======
+from superset.db_engine_specs.base import BaseEngineSpec
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.db_engine_specs.exceptions import (
     SupersetDBAPIConnectionError,
     SupersetDBAPIDatabaseError,
     SupersetDBAPIOperationalError,
     SupersetDBAPIProgrammingError,
 )
+<<<<<<< HEAD
 from superset.db_engine_specs.hive import upload_to_s3
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.db_engine_specs.presto import PrestoBaseEngineSpec
 from superset.exceptions import SupersetException
 from superset.models.sql_lab import Query
+<<<<<<< HEAD
 from superset.sql_parse import Table
 from superset.superset_typing import ResultSetColumnType
 from superset.utils import core as utils, json
+=======
+from superset.superset_typing import ResultSetColumnType
+from superset.utils import core as utils
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 if TYPE_CHECKING:
     from superset.models.core import Database
@@ -75,8 +94,14 @@ class TrinoEngineSpec(PrestoBaseEngineSpec):
 
         if indexes := database.get_indexes(table):
             col_names, latest_parts = cls.latest_partition(
+<<<<<<< HEAD
                 database,
                 table,
+=======
+                table_name,
+                schema_name,
+                database,
+>>>>>>> 2d98af4662 (merge from upstream to master)
                 show_first=True,
                 indexes=indexes,
             )
@@ -206,12 +231,16 @@ class TrinoEngineSpec(PrestoBaseEngineSpec):
         super().handle_cursor(cursor=cursor, query=query)
 
     @classmethod
+<<<<<<< HEAD
     def execute_with_cursor(
         cls,
         cursor: Cursor,
         sql: str,
         query: Query,
     ) -> None:
+=======
+    def execute_with_cursor(cls, cursor: Cursor, sql: str, query: Query) -> None:
+>>>>>>> 2d98af4662 (merge from upstream to master)
         """
         Trigger execution of a query and handle the resulting cursor.
 
@@ -226,6 +255,7 @@ class TrinoEngineSpec(PrestoBaseEngineSpec):
         execute_result: dict[str, Any] = {}
         execute_event = threading.Event()
 
+<<<<<<< HEAD
         def _execute(
             results: dict[str, Any],
             event: threading.Event,
@@ -244,6 +274,13 @@ class TrinoEngineSpec(PrestoBaseEngineSpec):
                     for key, value in g_copy.__dict__.items():
                         setattr(g, key, value)
                     cls.execute(cursor, sql, query.database)
+=======
+        def _execute(results: dict[str, Any], event: threading.Event) -> None:
+            logger.debug("Query %d: Running query: %s", query_id, sql)
+
+            try:
+                cls.execute(cursor, sql)
+>>>>>>> 2d98af4662 (merge from upstream to master)
             except Exception as ex:  # pylint: disable=broad-except
                 results["error"] = ex
             finally:
@@ -251,12 +288,16 @@ class TrinoEngineSpec(PrestoBaseEngineSpec):
 
         execute_thread = threading.Thread(
             target=_execute,
+<<<<<<< HEAD
             args=(
                 execute_result,
                 execute_event,
                 current_app._get_current_object(),  # pylint: disable=protected-access
                 g._get_current_object(),  # pylint: disable=protected-access
             ),
+=======
+            args=(execute_result, execute_event),
+>>>>>>> 2d98af4662 (merge from upstream to master)
         )
         execute_thread.start()
 
@@ -440,7 +481,12 @@ class TrinoEngineSpec(PrestoBaseEngineSpec):
     def get_columns(
         cls,
         inspector: Inspector,
+<<<<<<< HEAD
         table: Table,
+=======
+        table_name: str,
+        schema: str | None,
+>>>>>>> 2d98af4662 (merge from upstream to master)
         options: dict[str, Any] | None = None,
     ) -> list[ResultSetColumnType]:
         """
@@ -448,6 +494,7 @@ class TrinoEngineSpec(PrestoBaseEngineSpec):
         "schema_options", expand the schema definition out to show all
         subfields of nested ROWs as their appropriate dotted paths.
         """
+<<<<<<< HEAD
         # The Trino dialect raises `NoSuchTableError` on the inspection methods when the
         # table is empty. We can work around this by running a `SHOW COLUMNS FROM` query
         # when that happens, using the method from the Presto base engine spec.
@@ -459,6 +506,9 @@ class TrinoEngineSpec(PrestoBaseEngineSpec):
             # `SHOW COLUMNS FROM ...`
             base_cols = super().get_columns(inspector, table, options)
 
+=======
+        base_cols = super().get_columns(inspector, table_name, schema, options)
+>>>>>>> 2d98af4662 (merge from upstream to master)
         if not (options or {}).get("expand_rows"):
             return base_cols
 
@@ -469,7 +519,12 @@ class TrinoEngineSpec(PrestoBaseEngineSpec):
         cls,
         database: Database,
         inspector: Inspector,
+<<<<<<< HEAD
         table: Table,
+=======
+        table_name: str,
+        schema: str | None,
+>>>>>>> 2d98af4662 (merge from upstream to master)
     ) -> list[dict[str, Any]]:
         """
         Get the indexes associated with the specified schema/table.
@@ -478,6 +533,7 @@ class TrinoEngineSpec(PrestoBaseEngineSpec):
 
         :param database: The database to inspect
         :param inspector: The SQLAlchemy inspector
+<<<<<<< HEAD
         :param table: The table instance to inspect
         :returns: The indexes
         """
@@ -562,3 +618,13 @@ class TrinoEngineSpec(PrestoBaseEngineSpec):
                         ),
                     ),
                 )
+=======
+        :param table_name: The table to inspect
+        :param schema: The schema to inspect
+        :returns: The indexes
+        """
+        try:
+            return super().get_indexes(database, inspector, table_name, schema)
+        except NoSuchTableError:
+            return []
+>>>>>>> 2d98af4662 (merge from upstream to master)

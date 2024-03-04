@@ -140,3 +140,7 @@ def load_misc_dashboard() -> None:
     dash.position_json = json.dumps(pos, indent=4)
     dash.slug = DASH_SLUG
     dash.slices = slices
+<<<<<<< HEAD
+=======
+    db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)

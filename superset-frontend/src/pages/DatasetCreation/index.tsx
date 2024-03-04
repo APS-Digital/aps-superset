@@ -52,6 +52,7 @@ export function datasetReducer(
         schema: null,
         table_name: null,
       };
+<<<<<<< HEAD
     case DatasetActionType.SelectCatalog:
       return {
         ...trimmedState,
@@ -59,6 +60,8 @@ export function datasetReducer(
         schema: null,
         table_name: null,
       };
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     case DatasetActionType.SelectSchema:
       return {
         ...trimmedState,

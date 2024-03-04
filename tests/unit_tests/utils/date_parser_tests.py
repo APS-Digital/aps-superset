@@ -160,6 +160,7 @@ def test_get_since_until() -> None:
     expected = datetime(2015, 1, 1, 0, 0, 0), datetime(2016, 1, 1, 0, 0, 0)
     assert result == expected
 
+<<<<<<< HEAD
     result = get_since_until("Current day")
     expected = datetime(2016, 11, 7, 0, 0, 0), datetime(2016, 11, 8, 0, 0, 0)
     assert result == expected
@@ -180,6 +181,8 @@ def test_get_since_until() -> None:
     expected = expected = datetime(2016, 1, 1, 0, 0, 0), datetime(2017, 1, 1, 0, 0, 0)
     assert result == expected
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     # Tests for our new instant_time_comparison logic and Feature Flag off
     result = get_since_until(
         time_range="2000-01-01T00:00:00 : 2018-01-01T00:00:00",
@@ -209,6 +212,7 @@ def test_get_since_until() -> None:
     expected = datetime(2000, 1, 1), datetime(2018, 1, 1)
     assert result == expected
 
+<<<<<<< HEAD
     result = get_since_until(
         time_range="2000-01-01T00:00:00 : 2018-01-01T00:00:00",
         time_shift="1 year ago",
@@ -230,6 +234,8 @@ def test_get_since_until() -> None:
     expected = datetime(1999, 12, 25), datetime(2017, 12, 25)
     assert result == expected
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     with pytest.raises(ValueError):
         get_since_until(time_range="tomorrow : yesterday")
 

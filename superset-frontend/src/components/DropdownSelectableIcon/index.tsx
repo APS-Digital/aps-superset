@@ -99,7 +99,11 @@ export default (props: DropDownSelectableProps) => {
   const theme = useTheme();
   const { icon, info, menuItems, selectedKeys, onSelect } = props;
   const menuItem = useMemo(
+<<<<<<< HEAD
     () => (label: string | ReactNode, key: string, divider?: boolean) => (
+=======
+    () => (label: string | React.ReactNode, key: string, divider?: boolean) => (
+>>>>>>> 2d98af4662 (merge from upstream to master)
       <StyleMenuItem key={key} divider={divider}>
         <StyleSubmenuItem>
           <span>{label}</span>

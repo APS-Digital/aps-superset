@@ -37,7 +37,10 @@ from superset.reports.models import ReportSchedule, ReportScheduleType
 from superset.models.slice import Slice
 from superset.tags.models import Tag, TaggedObject, TagType, ObjectType
 from superset.utils.core import backend, override_user
+<<<<<<< HEAD
 from superset.utils import json
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 from tests.integration_tests.base_api_tests import ApiOwnersTestCaseMixin
 from tests.integration_tests.base_tests import SupersetTestCase
@@ -288,8 +291,15 @@ class TestDashboardApi(ApiOwnersTestCaseMixin, InsertChartMixin, SupersetTestCas
     @patch("superset.dashboards.schemas.security_manager.has_guest_access")
     @patch("superset.dashboards.schemas.security_manager.is_guest_user")
     def test_get_dashboard_datasets_as_guest(self, is_guest_user, has_guest_access):
+<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
         uri = "api/v1/dashboard/world_health/datasets"
+=======
+        self.login(username="admin")
+        uri = "api/v1/dashboard/world_health/datasets"
+        is_guest_user = True
+        has_guest_access = True
+>>>>>>> 2d98af4662 (merge from upstream to master)
         response = self.get_assert_metric(uri, "get_datasets")
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.data.decode("utf-8"))
@@ -549,7 +559,11 @@ class TestDashboardApi(ApiOwnersTestCaseMixin, InsertChartMixin, SupersetTestCas
         )
         is_guest_user.return_value = True
         has_guest_access.return_value = True
+<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
+=======
+        self.login(username="admin")
+>>>>>>> 2d98af4662 (merge from upstream to master)
         uri = f"api/v1/dashboard/{dashboard.id}"
         rv = self.get_assert_metric(uri, "get")
         self.assertEqual(rv.status_code, 200)
@@ -2035,13 +2049,21 @@ class TestDashboardApi(ApiOwnersTestCaseMixin, InsertChartMixin, SupersetTestCas
         """
         Dashboard API: Test dashboard export
         """
+<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
+=======
+        self.login(username="admin")
+>>>>>>> 2d98af4662 (merge from upstream to master)
         dashboards_ids = get_dashboards_ids(["world_health", "births"])
         uri = f"api/v1/dashboard/export/?q={prison.dumps(dashboards_ids)}"
 
         rv = self.get_assert_metric(uri, "export")
 
+<<<<<<< HEAD
         headers = "attachment; filename=dashboard_export_20220101T000000.zip"  # noqa: F541
+=======
+        headers = f"attachment; filename=dashboard_export_20220101T000000.zip"
+>>>>>>> 2d98af4662 (merge from upstream to master)
         assert rv.status_code == 200
         assert rv.headers["Content-Disposition"] == headers
 

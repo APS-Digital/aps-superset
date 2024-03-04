@@ -16,7 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { ReactNode } from 'react';
+=======
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { css, SupersetTheme } from '@superset-ui/core';
 import { Collapse as AntdCollapse } from 'antd';
 import { CollapsePanelProps } from 'antd/lib/collapse';
@@ -63,7 +67,11 @@ const antdPanelStyles = (theme: SupersetTheme) => css`
 `;
 
 export interface PanelProps extends CollapsePanelProps {
+<<<<<<< HEAD
   children?: ReactNode;
+=======
+  children?: React.ReactNode;
+>>>>>>> 2d98af4662 (merge from upstream to master)
 }
 const StyledPanel = (props: PanelProps) => (
   <AntdCollapse.Panel

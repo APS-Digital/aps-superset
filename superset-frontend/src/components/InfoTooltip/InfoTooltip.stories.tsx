@@ -64,7 +64,12 @@ InteractiveInfoTooltip.argTypes = {
     defaultValue: 'hover',
     control: {
       type: 'select',
+<<<<<<< HEAD
     },
     options: ['hover', 'click'],
+=======
+      options: ['hover', 'click'],
+    },
+>>>>>>> 2d98af4662 (merge from upstream to master)
   },
 };

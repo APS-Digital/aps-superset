@@ -28,7 +28,11 @@ from superset.commands.annotation_layer.exceptions import (
 )
 from superset.commands.base import BaseCommand
 from superset.daos.annotation_layer import AnnotationLayerDAO
+<<<<<<< HEAD
 from superset.utils.decorators import on_error, transaction
+=======
+from superset.daos.exceptions import DAOCreateFailedError
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 logger = logging.getLogger(__name__)
 
@@ -40,7 +44,15 @@ class CreateAnnotationLayerCommand(BaseCommand):
     @transaction(on_error=partial(on_error, reraise=AnnotationLayerCreateFailedError))
     def run(self) -> Model:
         self.validate()
+<<<<<<< HEAD
         return AnnotationLayerDAO.create(attributes=self._properties)
+=======
+        try:
+            return AnnotationLayerDAO.create(attributes=self._properties)
+        except DAOCreateFailedError as ex:
+            logger.exception(ex.exception)
+            raise AnnotationLayerCreateFailedError() from ex
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     def validate(self) -> None:
         exceptions: list[ValidationError] = []

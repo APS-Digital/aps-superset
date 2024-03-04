@@ -51,7 +51,11 @@ from sqlalchemy.sql.expression import Label, Select, TextAsFrom
 from sqlalchemy.sql.selectable import Alias, TableClause
 from sqlalchemy_utils import UUIDType
 
+<<<<<<< HEAD
 from superset import app, db, is_feature_enabled
+=======
+from superset import app, db, is_feature_enabled, security_manager
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.advanced_data_type.types import AdvancedDataTypeResponse
 from superset.common.db_query_status import QueryStatus
 from superset.common.utils.time_range_utils import get_since_until_from_time_range
@@ -68,7 +72,10 @@ from superset.exceptions import (
 )
 from superset.extensions import feature_flag_manager
 from superset.jinja_context import BaseTemplateProcessor
+<<<<<<< HEAD
 from superset.sql.parse import SQLScript, SQLStatement
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.sql_parse import (
     has_table_query,
     insert_rls_in_predicate,
@@ -770,10 +777,13 @@ class ExploreMixin:  # pylint: disable=too-many-public-methods
 
     @property
     def database(self) -> "Database":
+<<<<<<< HEAD
         raise NotImplementedError()
 
     @property
     def catalog(self) -> str:
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         raise NotImplementedError()
 
     @property
@@ -996,12 +1006,16 @@ class ExploreMixin:  # pylint: disable=too-many-public-methods
             return df
 
         try:
+<<<<<<< HEAD
             df = self.database.get_df(
                 sql,
                 self.catalog,
                 self.schema,
                 mutator=assign_column_label,
             )
+=======
+            df = self.database.get_df(sql, self.schema, mutator=assign_column_label)
+>>>>>>> 2d98af4662 (merge from upstream to master)
         except Exception as ex:  # pylint: disable=broad-except
             df = pd.DataFrame()
             status = QueryStatus.FAILED
@@ -1067,7 +1081,11 @@ class ExploreMixin:  # pylint: disable=too-many-public-methods
         CTE, the CTE is returned as the second value in the return tuple.
         """
 
+<<<<<<< HEAD
         from_sql = self.get_rendered_sql(template_processor) + "\n"
+=======
+        from_sql = self.get_rendered_sql(template_processor)
+>>>>>>> 2d98af4662 (merge from upstream to master)
         parsed_query = ParsedQuery(from_sql, engine=self.db_engine_spec.engine)
         if not (
             parsed_query.is_unknown()
@@ -1350,8 +1368,13 @@ class ExploreMixin:  # pylint: disable=too-many-public-methods
         if self.fetch_values_predicate:
             qry = qry.where(self.get_fetch_values_predicate(template_processor=tp))
 
+<<<<<<< HEAD
         with self.database.get_sqla_engine() as engine:
             sql = str(qry.compile(engine, compile_kwargs={"literal_binds": True}))
+=======
+        with self.database.get_sqla_engine_with_context() as engine:
+            sql = qry.compile(engine, compile_kwargs={"literal_binds": True})
+>>>>>>> 2d98af4662 (merge from upstream to master)
             sql = self._apply_cte(sql, cte)
             sql = self.database.mutate_sql_based_on_config(sql)
 
@@ -1963,7 +1986,11 @@ class ExploreMixin:  # pylint: disable=too-many-public-methods
                 and db_engine_spec.allows_hidden_cc_in_orderby
                 and col.name in [select_col.name for select_col in select_exprs]
             ):
+<<<<<<< HEAD
                 with self.database.get_sqla_engine() as engine:
+=======
+                with self.database.get_sqla_engine_with_context() as engine:
+>>>>>>> 2d98af4662 (merge from upstream to master)
                     quote = engine.dialect.identifier_preparer.quote
                     col = literal_column(quote(col.name))
             direction = sa.asc if ascending else sa.desc

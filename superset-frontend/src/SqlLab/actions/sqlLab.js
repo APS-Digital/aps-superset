@@ -102,8 +102,11 @@ export const CREATE_DATASOURCE_SUCCESS = 'CREATE_DATASOURCE_SUCCESS';
 export const CREATE_DATASOURCE_FAILED = 'CREATE_DATASOURCE_FAILED';
 
 export const SET_EDITOR_TAB_LAST_UPDATE = 'SET_EDITOR_TAB_LAST_UPDATE';
+<<<<<<< HEAD
 export const SET_LAST_UPDATED_ACTIVE_TAB = 'SET_LAST_UPDATED_ACTIVE_TAB';
 export const CLEAR_DESTROYED_QUERY_EDITOR = 'CLEAR_DESTROYED_QUERY_EDITOR';
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 export const addInfoToast = addInfoToastAction;
 export const addSuccessToast = addSuccessToastAction;
@@ -501,7 +504,10 @@ export function syncQueryEditor(queryEditor) {
           ...queryEditor,
           id: json.id.toString(),
           inLocalStorage: false,
+<<<<<<< HEAD
           loaded: true,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         };
         dispatch({
           type: MIGRATE_QUERY_EDITOR,
@@ -536,6 +542,7 @@ export function syncQueryEditor(queryEditor) {
 }
 
 export function addQueryEditor(queryEditor) {
+<<<<<<< HEAD
   const newQueryEditor = {
     ...queryEditor,
     id: nanoid(11),
@@ -545,6 +552,37 @@ export function addQueryEditor(queryEditor) {
   return {
     type: ADD_QUERY_EDITOR,
     queryEditor: newQueryEditor,
+=======
+  return function (dispatch) {
+    const sync = isFeatureEnabled(FeatureFlag.SqllabBackendPersistence)
+      ? SupersetClient.post({
+          endpoint: '/tabstateview/',
+          postPayload: { queryEditor },
+        }).then(({ json }) => ({ ...json, loaded: true }))
+      : Promise.resolve({ id: shortid.generate() });
+
+    return sync
+      .then(({ id, loaded }) => {
+        const newQueryEditor = {
+          ...queryEditor,
+          id: id.toString(),
+          loaded,
+        };
+        return dispatch({
+          type: ADD_QUERY_EDITOR,
+          queryEditor: newQueryEditor,
+        });
+      })
+      .catch(() =>
+        dispatch(
+          addDangerToast(
+            t(
+              'Unable to add a new tab to the backend. Please contact your administrator.',
+            ),
+          ),
+        ),
+      );
+>>>>>>> 2d98af4662 (merge from upstream to master)
   };
 }
 
@@ -617,12 +655,22 @@ export function cloneQueryToNewTab(query, autorun) {
   };
 }
 
+<<<<<<< HEAD
 export function setLastUpdatedActiveTab(queryEditorId) {
   return {
     type: SET_LAST_UPDATED_ACTIVE_TAB,
     queryEditorId,
   };
 }
+=======
+export function setActiveQueryEditor(queryEditor) {
+  return function (dispatch) {
+    const sync = isFeatureEnabled(FeatureFlag.SqllabBackendPersistence)
+      ? SupersetClient.post({
+          endpoint: encodeURI(`/tabstateview/${queryEditor.id}/activate`),
+        })
+      : Promise.resolve();
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 export function setActiveQueryEditor(queryEditor) {
   return {
@@ -685,6 +733,7 @@ export function setTables(tableSchemas) {
 
 export function fetchQueryEditor(queryEditor, displayLimit) {
   return function (dispatch) {
+<<<<<<< HEAD
     SupersetClient.get({
       endpoint: encodeURI(`/tabstateview/${queryEditor.id}`),
     })
@@ -719,6 +768,50 @@ export function fetchQueryEditor(queryEditor, displayLimit) {
         }
         return dispatch({ type: REMOVE_QUERY_EDITOR, queryEditor });
       });
+=======
+    if (
+      isFeatureEnabled(FeatureFlag.SqllabBackendPersistence) &&
+      queryEditor &&
+      !queryEditor.loaded
+    ) {
+      SupersetClient.get({
+        endpoint: encodeURI(`/tabstateview/${queryEditor.id}`),
+      })
+        .then(({ json }) => {
+          const loadedQueryEditor = {
+            id: json.id.toString(),
+            loaded: true,
+            name: json.label,
+            sql: json.sql,
+            selectedText: null,
+            latestQueryId: json.latest_query?.id,
+            autorun: json.autorun,
+            dbId: json.database_id,
+            templateParams: json.template_params,
+            schema: json.schema,
+            queryLimit: json.query_limit,
+            remoteId: json.saved_query?.id,
+            hideLeftBar: json.hide_left_bar,
+          };
+          dispatch(loadQueryEditor(loadedQueryEditor));
+          dispatch(setTables(json.table_schemas || []));
+          dispatch(setActiveQueryEditor(loadedQueryEditor));
+          if (json.latest_query && json.latest_query.resultsKey) {
+            dispatch(fetchQueryResults(json.latest_query, displayLimit));
+          }
+        })
+        .catch(response => {
+          if (response.status !== 404) {
+            return dispatch(
+              addDangerToast(t('An error occurred while fetching tab state')),
+            );
+          }
+          return dispatch({ type: REMOVE_QUERY_EDITOR, queryEditor });
+        });
+    } else {
+      dispatch(setActiveQueryEditor(queryEditor));
+    }
+>>>>>>> 2d98af4662 (merge from upstream to master)
   };
 }
 
@@ -735,9 +828,19 @@ export function toggleLeftBar(queryEditor) {
   };
 }
 
+<<<<<<< HEAD
 export function clearDestoryedQueryEditor(queryEditorId) {
   return { type: CLEAR_DESTROYED_QUERY_EDITOR, queryEditorId };
 }
+=======
+export function removeQueryEditor(queryEditor) {
+  return function (dispatch) {
+    const sync = isFeatureEnabled(FeatureFlag.SqllabBackendPersistence)
+      ? SupersetClient.delete({
+          endpoint: encodeURI(`/tabstateview/${queryEditor.id}`),
+        })
+      : Promise.resolve();
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 export function removeQueryEditor(queryEditor) {
   return { type: REMOVE_QUERY_EDITOR, queryEditor };
@@ -780,6 +883,7 @@ export function removeQuery(query) {
 
 export function queryEditorSetDb(queryEditor, dbId) {
   return { type: QUERY_EDITOR_SETDB, queryEditor, dbId };
+<<<<<<< HEAD
 }
 
 export function queryEditorSetCatalog(queryEditor, catalog) {
@@ -788,6 +892,8 @@ export function queryEditorSetCatalog(queryEditor, catalog) {
     queryEditor: queryEditor || {},
     catalog,
   };
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 }
 
 export function queryEditorSetSchema(queryEditor, schema) {
@@ -914,7 +1020,10 @@ export function formatQuery(queryEditor) {
     const { sql } = getUpToDateQuery(getState(), queryEditor);
     return SupersetClient.post({
       endpoint: `/api/v1/sqllab/format_sql/`,
+<<<<<<< HEAD
       // TODO (betodealmeida): pass engine as a parameter for better formatting
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
       body: JSON.stringify({ sql }),
       headers: { 'Content-Type': 'application/json' },
     }).then(({ json }) => {

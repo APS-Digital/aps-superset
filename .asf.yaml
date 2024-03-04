@@ -63,12 +63,18 @@ github:
         # combination here.
         contexts:
           - lint-check
+<<<<<<< HEAD
           - cypress-matrix (0, chrome)
           - cypress-matrix (1, chrome)
           - cypress-matrix (2, chrome)
           - cypress-matrix (3, chrome)
           - cypress-matrix (4, chrome)
           - cypress-matrix (5, chrome)
+=======
+          - cypress-matrix (1, chrome)
+          - cypress-matrix (2, chrome)
+          - cypress-matrix (3, chrome)
+>>>>>>> 2d98af4662 (merge from upstream to master)
           - frontend-build
           - pre-commit (current)
           - pre-commit (next)

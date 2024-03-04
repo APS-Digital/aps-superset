@@ -16,8 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { useCallback, useEffect, useMemo, useState, FC } from 'react';
 
+=======
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { isEqual, isEmpty } from 'lodash';
 import { QueryFormData, styled, t } from '@superset-ui/core';
 import { sanitizeFormData } from 'src/explore/exploreUtils/formData';
@@ -68,6 +72,15 @@ export type RowType = {
   control: string;
 };
 
+<<<<<<< HEAD
+=======
+interface AlteredSliceTagState {
+  rows: RowType[];
+  hasDiffs: boolean;
+  controlsMap: ControlMap;
+}
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
 const StyledLabel = styled.span`
   ${({ theme }) => `
     font-size: ${theme.typography.sizes.s}px;
@@ -80,9 +93,13 @@ const StyledLabel = styled.span`
   `}
 `;
 
+<<<<<<< HEAD
 export const alterForComparison = (
   value?: string | null | [],
 ): string | null => {
+=======
+function alterForComparison(value?: string | null | []): string | null {
+>>>>>>> 2d98af4662 (merge from upstream to master)
   // Treat `null`, `undefined`, and empty strings as equivalent
   if (value === undefined || value === null || value === '') {
     return null;
@@ -95,6 +112,7 @@ export const alterForComparison = (
     return null;
   }
   return value;
+<<<<<<< HEAD
 };
 
 export const formatValueHandler = (
@@ -171,6 +189,50 @@ const AlteredSliceTag: FC<AlteredSliceTagProps> = props => {
     const ofd = sanitizeFormData(props.origFormData);
     const cfd = sanitizeFormData(props.currentFormData);
 
+=======
+}
+
+class AlteredSliceTag extends React.Component<
+  AlteredSliceTagProps,
+  AlteredSliceTagState
+> {
+  constructor(props: AlteredSliceTagProps) {
+    super(props);
+    const diffs = this.getDiffs(props);
+    const controlsMap: ControlMap = getControlsForVizType(
+      props.origFormData.viz_type,
+    ) as ControlMap;
+    const rows = this.getRowsFromDiffs(diffs, controlsMap);
+
+    this.state = { rows, hasDiffs: !isEmpty(diffs), controlsMap };
+  }
+
+  UNSAFE_componentWillReceiveProps(newProps: AlteredSliceTagProps): void {
+    if (isEqual(this.props, newProps)) {
+      return;
+    }
+    const diffs = this.getDiffs(newProps);
+    this.setState(prevState => ({
+      rows: this.getRowsFromDiffs(diffs, prevState.controlsMap),
+      hasDiffs: !isEmpty(diffs),
+    }));
+  }
+
+  getRowsFromDiffs(
+    diffs: { [key: string]: DiffType },
+    controlsMap: ControlMap,
+  ): RowType[] {
+    return Object.entries(diffs).map(([key, diff]) => ({
+      control: controlsMap[key]?.label || key,
+      before: this.formatValue(diff.before, key, controlsMap),
+      after: this.formatValue(diff.after, key, controlsMap),
+    }));
+  }
+
+  getDiffs(props: AlteredSliceTagProps): { [key: string]: DiffType } {
+    const ofd = sanitizeFormData(props.origFormData);
+    const cfd = sanitizeFormData(props.currentFormData);
+>>>>>>> 2d98af4662 (merge from upstream to master)
     const fdKeys = Object.keys(cfd);
     const diffs: { [key: string]: DiffType } = {};
     fdKeys.forEach(fdKey => {
@@ -180,11 +242,16 @@ const AlteredSliceTag: FC<AlteredSliceTagProps> = props => {
       if (['filters', 'having', 'where'].includes(fdKey)) {
         return;
       }
+<<<<<<< HEAD
       if (!isEqualish(ofd[fdKey], cfd[fdKey])) {
+=======
+      if (!this.isEqualish(ofd[fdKey], cfd[fdKey])) {
+>>>>>>> 2d98af4662 (merge from upstream to master)
         diffs[fdKey] = { before: ofd[fdKey], after: cfd[fdKey] };
       }
     });
     return diffs;
+<<<<<<< HEAD
   }, [props.currentFormData, props.origFormData]);
 
   useEffect(() => {
@@ -197,6 +264,69 @@ const AlteredSliceTag: FC<AlteredSliceTagProps> = props => {
   }, [getDiffs, props.origFormData?.viz_type]);
 
   const modalBody = useMemo(() => {
+=======
+  }
+
+  isEqualish(val1: string, val2: string): boolean {
+    return isEqual(alterForComparison(val1), alterForComparison(val2));
+  }
+
+  formatValue(
+    value: DiffItemType,
+    key: string,
+    controlsMap: ControlMap,
+  ): string | number {
+    if (value === undefined) {
+      return 'N/A';
+    }
+    if (value === null) {
+      return 'null';
+    }
+    if (
+      controlsMap[key]?.type === 'AdhocFilterControl' &&
+      Array.isArray(value)
+    ) {
+      if (!value.length) {
+        return '[]';
+      }
+      return value
+        .map(v => {
+          const filterVal =
+            v.comparator && v.comparator.constructor === Array
+              ? `[${v.comparator.join(', ')}]`
+              : v.comparator;
+          return `${v.subject} ${v.operator} ${filterVal}`;
+        })
+        .join(', ');
+    }
+    if (controlsMap[key]?.type === 'BoundsControl') {
+      return `Min: ${value[0]}, Max: ${value[1]}`;
+    }
+    if (
+      controlsMap[key]?.type === 'CollectionControl' &&
+      Array.isArray(value)
+    ) {
+      return value.map(v => safeStringify(v)).join(', ');
+    }
+    if (controlsMap[key]?.type === 'MetricsControl' && Array.isArray(value)) {
+      const formattedValue = value.map(v => v?.label ?? v);
+      return formattedValue.length ? formattedValue.join(', ') : '[]';
+    }
+    if (typeof value === 'boolean') {
+      return value ? 'true' : 'false';
+    }
+    if (Array.isArray(value)) {
+      const formattedValue = value.map(v => v?.label ?? v);
+      return formattedValue.length ? formattedValue.join(', ') : '[]';
+    }
+    if (typeof value === 'string' || typeof value === 'number') {
+      return value;
+    }
+    return safeStringify(value);
+  }
+
+  renderModalBody(): React.ReactNode {
+>>>>>>> 2d98af4662 (merge from upstream to master)
     const columns = [
       {
         accessor: 'control',
@@ -217,12 +347,17 @@ const AlteredSliceTag: FC<AlteredSliceTagProps> = props => {
     return (
       <TableView
         columns={columns}
+<<<<<<< HEAD
         data={rows}
+=======
+        data={this.state.rows}
+>>>>>>> 2d98af4662 (merge from upstream to master)
         pageSize={50}
         className="table-condensed"
         columnsForWrapText={columnsForWrapText}
       />
     );
+<<<<<<< HEAD
   }, [rows]);
 
   const triggerNode = useMemo(
@@ -247,5 +382,35 @@ const AlteredSliceTag: FC<AlteredSliceTagProps> = props => {
     />
   );
 };
+=======
+  }
+
+  renderTriggerNode(): React.ReactNode {
+    return (
+      <Tooltip id="difference-tooltip" title={t('Click to see difference')}>
+        <StyledLabel className="label">{t('Altered')}</StyledLabel>
+      </Tooltip>
+    );
+  }
+
+  render() {
+    // Return nothing if there are no differences
+    if (!this.state.hasDiffs) {
+      return null;
+    }
+    // Render the label-warning 'Altered' tag which the user may
+    // click to open a modal containing a table summarizing the
+    // differences in the slice
+    return (
+      <ModalTrigger
+        triggerNode={this.renderTriggerNode()}
+        modalTitle={t('Chart changes')}
+        modalBody={this.renderModalBody()}
+        responsive
+      />
+    );
+  }
+}
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 export default AlteredSliceTag;

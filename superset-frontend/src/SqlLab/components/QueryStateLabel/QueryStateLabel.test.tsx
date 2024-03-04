@@ -16,7 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { isValidElement } from 'react';
+=======
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import type { QueryState } from '@superset-ui/core';
 import { render } from 'spec/helpers/testing-library';
 import QueryStateLabel from '.';
@@ -29,7 +33,11 @@ const mockedProps = {
   },
 };
 test('is valid', () => {
+<<<<<<< HEAD
   expect(isValidElement(<QueryStateLabel {...mockedProps} />)).toBe(true);
+=======
+  expect(React.isValidElement(<QueryStateLabel {...mockedProps} />)).toBe(true);
+>>>>>>> 2d98af4662 (merge from upstream to master)
 });
 test('has an Overlay and a Popover', () => {
   const { getByTestId } = render(<QueryStateLabel {...mockedProps} />);

@@ -102,7 +102,11 @@ const StyledCollapsePanel = styled(Collapse.Panel)`
 `;
 
 const TableElement = ({ table, ...props }: TableElementProps) => {
+<<<<<<< HEAD
   const { dbId, catalog, schema, name, expanded } = table;
+=======
+  const { dbId, schema, name, expanded } = table;
+>>>>>>> 2d98af4662 (merge from upstream to master)
   const theme = useTheme();
   const dispatch = useDispatch();
   const {
@@ -276,11 +280,14 @@ const TableElement = ({ table, ...props }: TableElementProps) => {
           }
         `}
       >
+<<<<<<< HEAD
         <IconTooltip
           className="fa fa-refresh pull-left m-l-2 pointer"
           onClick={refreshTableMetadata}
           tooltip={t('Refresh table schema')}
         />
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         {keyLink}
         <IconTooltip
           className={

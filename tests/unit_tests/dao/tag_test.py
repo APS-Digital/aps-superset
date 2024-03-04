@@ -64,6 +64,12 @@ def test_remove_user_favorite_tag(mocker):
     # Check that users_favorited no longer contains the user
     assert mock_user not in mock_tag.users_favorited
 
+<<<<<<< HEAD
+=======
+    # Check that the db.session.was committed
+    mock_session.commit.assert_called_once()
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 def test_remove_user_favorite_tag_no_user(mocker):
     from superset.daos.tag import TagDAO
@@ -143,6 +149,10 @@ def test_create_tag_relationship(mocker):
     from superset.daos.tag import TagDAO
     from superset.tags.models import (  # Assuming these are defined in the same module
         ObjectType,
+<<<<<<< HEAD
+=======
+        TaggedObject,
+>>>>>>> 2d98af4662 (merge from upstream to master)
     )
 
     mock_session = mocker.patch("superset.daos.tag.db.session")

@@ -16,15 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { styledMount as mount } from 'spec/helpers/theming';
 import { Provider } from 'react-redux';
+=======
+import React from 'react';
+import { render } from 'spec/helpers/testing-library';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import fetchMock from 'fetch-mock';
 
-import {
-  supersetTheme,
-  SupersetClient,
-  ThemeProvider,
-} from '@superset-ui/core';
+import { SupersetClient } from '@superset-ui/core';
 
 import Modal from 'src/components/Modal';
 import PropertiesModal from 'src/dashboard/components/PropertiesModal';
@@ -82,6 +83,22 @@ describe.skip('PropertiesModal', () => {
     jest.resetAllMocks();
   });
 
+<<<<<<< HEAD
+=======
+  const requiredProps = {
+    dashboardId: 1,
+    show: true,
+    addSuccessToast: () => {},
+  };
+
+  function setup(overrideProps) {
+    return render(<PropertiesModal {...requiredProps} {...overrideProps} />, {
+      useRedux: true,
+      store: mockStore,
+    });
+  }
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
   describe('onColorSchemeChange', () => {
     it('sets up a default state', () => {
       const wrapper = setup({ colorScheme: 'SUPERSET_DEFAULT' });

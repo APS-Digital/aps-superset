@@ -16,18 +16,29 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { useState, useEffect, useRef } from 'react';
 import type { IAceEditor } from 'react-ace/lib/types';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { css, styled, usePrevious, useTheme } from '@superset-ui/core';
 import { Global } from '@emotion/react';
+=======
+import React, { useState, useEffect, useRef } from 'react';
+import type { IAceEditor } from 'react-ace/lib/types';
+import { useDispatch } from 'react-redux';
+import { css, styled, usePrevious } from '@superset-ui/core';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 import { SQL_EDITOR_LEFTBAR_WIDTH } from 'src/SqlLab/constants';
 import { queryEditorSetSelectedText } from 'src/SqlLab/actions/sqlLab';
 import { FullSQLEditor as AceEditor } from 'src/components/AsyncAceEditor';
 import type { KeyboardShortcut } from 'src/SqlLab/components/KeyboardShortcutButton';
 import useQueryEditor from 'src/SqlLab/hooks/useQueryEditor';
+<<<<<<< HEAD
 import { SqlLabRootState, type CursorPosition } from 'src/SqlLab/types';
+=======
+import type { CursorPosition } from 'src/SqlLab/types';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { useAnnotations } from './useAnnotations';
 import { useKeywords } from './useKeywords';
 
@@ -56,6 +67,19 @@ const StyledAceEditor = styled(AceEditor)`
       font-feature-settings:
         'liga' off,
         'calt' off;
+<<<<<<< HEAD
+=======
+
+      &.ace_autocomplete {
+        // Use !important because Ace Editor applies extra CSS at the last second
+        // when opening the autocomplete.
+        width: ${theme.gridUnit * 130}px !important;
+      }
+
+      .ace_scroller {
+        background-color: ${theme.colors.grayscale.light4};
+      }
+>>>>>>> 2d98af4662 (merge from upstream to master)
     }
   `}
 `;
@@ -77,6 +101,7 @@ const AceEditorWrapper = ({
     'catalog',
     'schema',
     'templateParams',
+    'cursorPosition',
   ]);
   // Prevent a maximum update depth exceeded error
   // by skipping access the unsaved query editor state
@@ -91,6 +116,10 @@ const AceEditorWrapper = ({
   );
 
   const currentSql = queryEditor.sql ?? '';
+<<<<<<< HEAD
+=======
+  const cursorPosition = queryEditor.cursorPosition ?? { row: 0, column: 0 };
+>>>>>>> 2d98af4662 (merge from upstream to master)
   const [sql, setSql] = useState(currentSql);
 
   // The editor changeSelection is called multiple times in a row,
@@ -151,7 +180,10 @@ const AceEditorWrapper = ({
 
       currentSelectionCache.current = selectedText;
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     editor.selection.on('changeCursor', () => {
       const cursor = editor.getCursorPosition();
       onCursorPositionChange(cursor);

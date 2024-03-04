@@ -17,8 +17,12 @@
  * under the License.
  */
 
+<<<<<<< HEAD
 import { forwardRef, MouseEvent, ReactNode, RefObject } from 'react';
 
+=======
+import React, { forwardRef, ReactNode, RefObject } from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { css, styled, useTheme, t } from '@superset-ui/core';
 import Icons from 'src/components/Icons';
 

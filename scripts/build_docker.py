@@ -25,7 +25,11 @@ import click
 
 REPO = "apache/superset"
 CACHE_REPO = f"{REPO}-cache"
+<<<<<<< HEAD
 BASE_PY_IMAGE = "3.10-slim-bookworm"
+=======
+BASE_PY_IMAGE = "3.9-slim-bookworm"
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def run_cmd(command: str, raise_on_failure: bool = True) -> str:
@@ -82,7 +86,11 @@ def is_latest_release(release: str) -> bool:
     return "SKIP_TAG::false" in output
 
 
+<<<<<<< HEAD
 def make_docker_tag(l: list[str]) -> str:  # noqa: E741
+=======
+def make_docker_tag(l: list[str]) -> str:
+>>>>>>> 2d98af4662 (merge from upstream to master)
     return f"{REPO}:" + "-".join([o for o in l if o])
 
 
@@ -140,7 +148,11 @@ def get_docker_command(
     build_context_ref: str,
     force_latest: bool = False,
 ) -> str:
+<<<<<<< HEAD
     tag = ""  # noqa: F841
+=======
+    tag = ""
+>>>>>>> 2d98af4662 (merge from upstream to master)
     build_target = ""
     py_ver = BASE_PY_IMAGE
     docker_context = "."
@@ -149,9 +161,15 @@ def get_docker_command(
         build_target = "dev"
     elif build_preset == "lean":
         build_target = "lean"
+<<<<<<< HEAD
     elif build_preset == "py311":
         build_target = "lean"
         py_ver = "3.11-slim-bookworm"
+=======
+    elif build_preset == "py310":
+        build_target = "lean"
+        py_ver = "3.10-slim-bookworm"
+>>>>>>> 2d98af4662 (merge from upstream to master)
     elif build_preset == "websocket":
         build_target = ""
         docker_context = "superset-websocket"
@@ -217,7 +235,11 @@ def get_docker_command(
 @click.command()
 @click.argument(
     "build_preset",
+<<<<<<< HEAD
     type=click.Choice(["lean", "dev", "dockerize", "websocket", "py311", "ci"]),
+=======
+    type=click.Choice(["lean", "dev", "dockerize", "websocket", "py310", "ci"]),
+>>>>>>> 2d98af4662 (merge from upstream to master)
 )
 @click.argument("build_context", type=click.Choice(["push", "pull_request", "release"]))
 @click.option(
@@ -284,7 +306,11 @@ def main(
         script = script + docker_build_command
         if verbose:
             run_cmd("cat Dockerfile")
+<<<<<<< HEAD
         stdout = run_cmd(script)  # noqa: F841
+=======
+        stdout = run_cmd(script)
+>>>>>>> 2d98af4662 (merge from upstream to master)
     else:
         print("Dry Run - Docker Build Command:")
         print(docker_build_command)

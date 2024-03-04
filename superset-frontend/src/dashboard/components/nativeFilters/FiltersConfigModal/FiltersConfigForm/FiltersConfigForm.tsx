@@ -379,7 +379,11 @@ const FiltersConfigForm = (
   const nativeFilterVizTypes = Object.entries(nativeFilterItems)
     // @ts-ignore
     .filter(([, { value }]) => value.behaviors?.includes(Behavior.NativeFilter))
+<<<<<<< HEAD
     .map(([key]) => key as keyof typeof FILTER_SUPPORTED_TYPES);
+=======
+    .map(([key]) => key);
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
   const loadedDatasets = useSelector<RootState, DatasourcesState>(
     ({ datasources }) => datasources,

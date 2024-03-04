@@ -17,6 +17,7 @@
 import logging
 from datetime import datetime, timedelta
 
+<<<<<<< HEAD
 from sqlalchemy.exc import SQLAlchemyError
 
 from superset import db
@@ -25,6 +26,14 @@ from superset.commands.report.exceptions import ReportSchedulePruneLogError
 from superset.daos.report import ReportScheduleDAO
 from superset.reports.models import ReportSchedule
 from superset.utils.decorators import transaction
+=======
+from superset import db
+from superset.commands.base import BaseCommand
+from superset.commands.report.exceptions import ReportSchedulePruneLogError
+from superset.daos.exceptions import DAODeleteFailedError
+from superset.daos.report import ReportScheduleDAO
+from superset.reports.models import ReportSchedule
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 logger = logging.getLogger(__name__)
 
@@ -34,7 +43,13 @@ class AsyncPruneReportScheduleLogCommand(BaseCommand):
     Prunes logs from all report schedules
     """
 
+<<<<<<< HEAD
     @transaction()
+=======
+    def __init__(self, worker_context: bool = True):
+        self._worker_context = worker_context
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
     def run(self) -> None:
         self.validate()
         prune_errors = []
@@ -46,15 +61,23 @@ class AsyncPruneReportScheduleLogCommand(BaseCommand):
                 )
                 try:
                     row_count = ReportScheduleDAO.bulk_delete_logs(
+<<<<<<< HEAD
                         report_schedule,
                         from_date,
+=======
+                        report_schedule, from_date, commit=False
+>>>>>>> 2d98af4662 (merge from upstream to master)
                     )
                     logger.info(
                         "Deleted %s logs for report schedule id: %s",
                         str(row_count),
                         str(report_schedule.id),
                     )
+<<<<<<< HEAD
                 except SQLAlchemyError as ex:
+=======
+                except DAODeleteFailedError as ex:
+>>>>>>> 2d98af4662 (merge from upstream to master)
                     prune_errors.append(str(ex))
         if prune_errors:
             raise ReportSchedulePruneLogError(";".join(prune_errors))

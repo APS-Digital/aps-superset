@@ -59,7 +59,11 @@ from sqlalchemy.pool import NullPool
 from sqlalchemy.schema import UniqueConstraint
 from sqlalchemy.sql import ColumnElement, expression, Select
 
+<<<<<<< HEAD
 from superset import app, db_engine_specs, is_feature_enabled
+=======
+from superset import app, db_engine_specs
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.commands.database.exceptions import DatabaseInvalidError
 from superset.constants import LRU_CACHE_MAX_SIZE, PASSWORD_MASK
 from superset.databases.utils import make_url_safe
@@ -231,6 +235,7 @@ class Database(Model, AuditMixinNullable, ImportExportMixin):  # pylint: disable
         return self.get_extra().get("disable_data_preview", False) is True
 
     @property
+<<<<<<< HEAD
     def disable_drill_to_detail(self) -> bool:
         # this will prevent any 'trash value' strings from going through
         return self.get_extra().get("disable_drill_to_detail", False) is True
@@ -240,6 +245,8 @@ class Database(Model, AuditMixinNullable, ImportExportMixin):  # pylint: disable
         return self.get_extra().get("allow_multi_catalog", False)
 
     @property
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     def schema_options(self) -> dict[str, Any]:
         """Additional schema display config for engines with complex schemas"""
         return self.get_extra().get("schema_options", {})
@@ -602,9 +609,33 @@ class Database(Model, AuditMixinNullable, ImportExportMixin):  # pylint: disable
         """
         return self.db_engine_spec.get_default_schema_for_query(self, query)
 
+<<<<<<< HEAD
     @staticmethod
     def post_process_df(df: pd.DataFrame) -> pd.DataFrame:
         def column_needs_conversion(df_series: pd.Series) -> bool:
+=======
+    @property
+    def quote_identifier(self) -> Callable[[str], str]:
+        """Add quotes to potential identifier expressions if needed"""
+        return self.get_dialect().identifier_preparer.quote
+
+    def get_reserved_words(self) -> set[str]:
+        return self.get_dialect().preparer.reserved_words
+
+    def get_df(  # pylint: disable=too-many-locals
+        self,
+        sql: str,
+        schema: str | None = None,
+        mutator: Callable[[pd.DataFrame], None] | None = None,
+    ) -> pd.DataFrame:
+        sqls = self.db_engine_spec.parse_sql(sql)
+        with self.get_sqla_engine_with_context(schema) as engine:
+            engine_url = engine.url
+        mutate_after_split = config["MUTATE_AFTER_SPLIT"]
+        sql_query_mutator = config["SQL_QUERY_MUTATOR"]
+
+        def needs_conversion(df_series: pd.Series) -> bool:
+>>>>>>> 2d98af4662 (merge from upstream to master)
             return (
                 not df_series.empty
                 and isinstance(df_series, pd.Series)
@@ -761,9 +792,15 @@ class Database(Model, AuditMixinNullable, ImportExportMixin):  # pylint: disable
         :return: The table/schema pairs
         """
         try:
+<<<<<<< HEAD
             with self.get_inspector(catalog=catalog, schema=schema) as inspector:
                 return {
                     DatasourceName(table, schema, catalog)
+=======
+            with self.get_inspector_with_context() as inspector:
+                return {
+                    (table, schema)
+>>>>>>> 2d98af4662 (merge from upstream to master)
                     for table in self.db_engine_spec.get_table_names(
                         database=self,
                         inspector=inspector,
@@ -940,6 +977,7 @@ class Database(Model, AuditMixinNullable, ImportExportMixin):  # pylint: disable
         ) as inspector:
             return self.db_engine_spec.get_table_comment(inspector, table)
 
+<<<<<<< HEAD
     def get_columns(self, table: Table) -> list[ResultSetColumnType]:
         with self.get_inspector(
             catalog=table.catalog,
@@ -947,6 +985,14 @@ class Database(Model, AuditMixinNullable, ImportExportMixin):  # pylint: disable
         ) as inspector:
             return self.db_engine_spec.get_columns(
                 inspector, table, self.schema_options
+=======
+    def get_columns(
+        self, table_name: str, schema: str | None = None
+    ) -> list[ResultSetColumnType]:
+        with self.get_inspector_with_context() as inspector:
+            return self.db_engine_spec.get_columns(
+                inspector, table_name, schema, self.schema_options
+>>>>>>> 2d98af4662 (merge from upstream to master)
             )
 
     def get_metrics(
@@ -1119,6 +1165,7 @@ sqla.event.listen(Database, "after_update", security_manager.database_after_upda
 sqla.event.listen(Database, "after_delete", security_manager.database_after_delete)
 
 
+<<<<<<< HEAD
 class DatabaseUserOAuth2Tokens(Model, AuditMixinNullable):
     """
     Store OAuth2 tokens, for authenticating to DBs using user personal tokens.
@@ -1148,6 +1195,8 @@ class DatabaseUserOAuth2Tokens(Model, AuditMixinNullable):
     refresh_token = Column(encrypted_field_factory.create(Text), nullable=True)
 
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 class Log(Model):  # pylint: disable=too-few-public-methods
     """ORM object used to log Superset actions to the database"""
 

@@ -541,3 +541,7 @@ def load_deck_dash() -> None:  # pylint: disable=too-many-statements
     dash.dashboard_title = title
     dash.slug = slug
     dash.slices = slices
+<<<<<<< HEAD
+=======
+    db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)

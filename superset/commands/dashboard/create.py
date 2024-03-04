@@ -29,7 +29,11 @@ from superset.commands.dashboard.exceptions import (
 )
 from superset.commands.utils import populate_roles
 from superset.daos.dashboard import DashboardDAO
+<<<<<<< HEAD
 from superset.utils.decorators import on_error, transaction
+=======
+from superset.daos.exceptions import DAOCreateFailedError
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 logger = logging.getLogger(__name__)
 
@@ -41,7 +45,16 @@ class CreateDashboardCommand(CreateMixin, BaseCommand):
     @transaction(on_error=partial(on_error, reraise=DashboardCreateFailedError))
     def run(self) -> Model:
         self.validate()
+<<<<<<< HEAD
         return DashboardDAO.create(attributes=self._properties)
+=======
+        try:
+            dashboard = DashboardDAO.create(attributes=self._properties, commit=True)
+        except DAOCreateFailedError as ex:
+            logger.exception(ex.exception)
+            raise DashboardCreateFailedError() from ex
+        return dashboard
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     def validate(self) -> None:
         exceptions: list[ValidationError] = []

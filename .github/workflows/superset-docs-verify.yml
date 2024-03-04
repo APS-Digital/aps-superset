@@ -12,6 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+<<<<<<< HEAD
   linkinator:
     # See docs here: https://github.com/marketplace/actions/linkinator
     name: Link Checking
@@ -43,6 +44,11 @@ jobs:
   build-deploy:
     name: Build & Deploy
     runs-on: ubuntu-22.04
+=======
+  build-deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-20.04
+>>>>>>> 2d98af4662 (merge from upstream to master)
     defaults:
       run:
         working-directory: docs
@@ -52,10 +58,17 @@ jobs:
         with:
           persist-credentials: false
           submodules: recursive
+<<<<<<< HEAD
       - name: Set up Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+=======
+      - name: Set up Node.js 16
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+>>>>>>> 2d98af4662 (merge from upstream to master)
       - name: yarn install
         run: |
           yarn install --check-cache

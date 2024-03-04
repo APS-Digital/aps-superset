@@ -293,6 +293,13 @@ class TestDatabaseApi(SupersetTestCase):
 
     @mock.patch(
         "superset.commands.database.test_connection.TestConnectionDatabaseCommand.run",
+<<<<<<< HEAD
+=======
+    )
+    @mock.patch("superset.commands.database.create.is_feature_enabled")
+    @mock.patch(
+        "superset.models.core.Database.get_all_schema_names",
+>>>>>>> 2d98af4662 (merge from upstream to master)
     )
     @mock.patch("superset.commands.database.create.is_feature_enabled")
     @mock.patch("superset.models.core.Database.get_all_catalog_names")
@@ -343,6 +350,7 @@ class TestDatabaseApi(SupersetTestCase):
         "superset.commands.database.test_connection.TestConnectionDatabaseCommand.run",
     )
     @mock.patch("superset.commands.database.create.is_feature_enabled")
+<<<<<<< HEAD
     @mock.patch("superset.models.core.Database.get_all_catalog_names")
     @mock.patch("superset.models.core.Database.get_all_schema_names")
     def test_create_database_with_missing_port_raises_error(
@@ -391,6 +399,9 @@ class TestDatabaseApi(SupersetTestCase):
             "A database port is required when connecting via SSH Tunnel.",
         )
 
+=======
+    @mock.patch("superset.commands.database.update.is_feature_enabled")
+>>>>>>> 2d98af4662 (merge from upstream to master)
     @mock.patch(
         "superset.commands.database.test_connection.TestConnectionDatabaseCommand.run",
     )
@@ -457,6 +468,7 @@ class TestDatabaseApi(SupersetTestCase):
     )
     @mock.patch("superset.commands.database.create.is_feature_enabled")
     @mock.patch("superset.commands.database.update.is_feature_enabled")
+<<<<<<< HEAD
     @mock.patch("superset.models.core.Database.get_all_catalog_names")
     @mock.patch("superset.models.core.Database.get_all_schema_names")
     def test_update_database_with_missing_port_raises_error(
@@ -516,6 +528,8 @@ class TestDatabaseApi(SupersetTestCase):
         db.session.delete(model)
         db.session.commit()
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     @mock.patch(
         "superset.commands.database.test_connection.TestConnectionDatabaseCommand.run",
     )
@@ -683,8 +697,14 @@ class TestDatabaseApi(SupersetTestCase):
     @mock.patch(
         "superset.commands.database.test_connection.TestConnectionDatabaseCommand.run",
     )
+<<<<<<< HEAD
     @mock.patch("superset.models.core.Database.get_all_catalog_names")
     @mock.patch("superset.models.core.Database.get_all_schema_names")
+=======
+    @mock.patch(
+        "superset.models.core.Database.get_all_schema_names",
+    )
+>>>>>>> 2d98af4662 (merge from upstream to master)
     @mock.patch("superset.commands.database.create.is_feature_enabled")
     def test_cascade_delete_ssh_tunnel(
         self,
@@ -735,6 +755,7 @@ class TestDatabaseApi(SupersetTestCase):
 
     @mock.patch(
         "superset.commands.database.test_connection.TestConnectionDatabaseCommand.run",
+<<<<<<< HEAD
     )
     @mock.patch("superset.commands.database.create.is_feature_enabled")
     @mock.patch("superset.models.core.Database.get_all_catalog_names")
@@ -742,6 +763,19 @@ class TestDatabaseApi(SupersetTestCase):
     @mock.patch("superset.extensions.db.session.rollback")
     def test_do_not_create_database_if_ssh_tunnel_creation_fails(
         self,
+=======
+    )
+    @mock.patch("superset.commands.database.create.is_feature_enabled")
+    @mock.patch(
+        "superset.models.core.Database.get_all_schema_names",
+    )
+    @mock.patch("superset.extensions.db.session.rollback")
+    def test_do_not_create_database_if_ssh_tunnel_creation_fails(
+        self,
+        mock_rollback,
+        mock_test_connection_database_command_run,
+        mock_create_is_feature_enabled,
+>>>>>>> 2d98af4662 (merge from upstream to master)
         mock_get_all_schema_names,
         mock_get_all_catalog_names,
         mock_create_is_feature_enabled,
@@ -784,6 +818,13 @@ class TestDatabaseApi(SupersetTestCase):
 
     @mock.patch(
         "superset.commands.database.test_connection.TestConnectionDatabaseCommand.run",
+<<<<<<< HEAD
+=======
+    )
+    @mock.patch("superset.commands.database.create.is_feature_enabled")
+    @mock.patch(
+        "superset.models.core.Database.get_all_schema_names",
+>>>>>>> 2d98af4662 (merge from upstream to master)
     )
     @mock.patch("superset.commands.database.create.is_feature_enabled")
     @mock.patch("superset.models.core.Database.get_all_catalog_names")
@@ -837,8 +878,17 @@ class TestDatabaseApi(SupersetTestCase):
         db.session.delete(model)
         db.session.commit()
 
+<<<<<<< HEAD
     @mock.patch("superset.models.core.Database.get_all_catalog_names")
     @mock.patch("superset.models.core.Database.get_all_schema_names")
+=======
+    @mock.patch(
+        "superset.commands.database.test_connection.TestConnectionDatabaseCommand.run",
+    )
+    @mock.patch(
+        "superset.models.core.Database.get_all_schema_names",
+    )
+>>>>>>> 2d98af4662 (merge from upstream to master)
     def test_if_ssh_tunneling_flag_is_not_active_it_raises_new_exception(
         self,
         mock_get_all_schema_names,
@@ -1563,6 +1613,37 @@ class TestDatabaseApi(SupersetTestCase):
         rv = self.client.get(uri)
         self.assertEqual(rv.status_code, 404)
 
+<<<<<<< HEAD
+=======
+    def test_get_select_star_datasource_access(self):
+        """
+        Database API: Test get select star with datasource access
+        """
+        table = SqlaTable(
+            schema="main", table_name="ab_permission", database=get_main_database()
+        )
+        db.session.add(table)
+        db.session.commit()
+
+        tmp_table_perm = security_manager.find_permission_view_menu(
+            "datasource_access", table.get_perm()
+        )
+        gamma_role = security_manager.find_role("Gamma")
+        security_manager.add_permission_role(gamma_role, tmp_table_perm)
+
+        self.login(username="gamma")
+        main_db = get_main_database()
+        uri = f"api/v1/database/{main_db.id}/select_star/ab_permission/"
+        rv = self.client.get(uri)
+        self.assertEqual(rv.status_code, 200)
+
+        # rollback changes
+        security_manager.del_permission_role(gamma_role, tmp_table_perm)
+        db.session.delete(table)
+        db.session.delete(main_db)
+        db.session.commit()
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
     def test_get_select_star_not_found_database(self):
         """
         Database API: Test get select star not found database
@@ -3362,7 +3443,10 @@ class TestDatabaseApi(SupersetTestCase):
                     "sqlalchemy_uri_placeholder": "gsheets://",
                     "engine_information": {
                         "supports_file_upload": True,
+<<<<<<< HEAD
                         "supports_dynamic_catalog": False,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
                         "disable_ssh_tunneling": True,
                         "supports_oauth2": True,
                     },
@@ -3971,8 +4055,13 @@ class TestDatabaseApi(SupersetTestCase):
             },
         )
 
+<<<<<<< HEAD
     @mock.patch("superset.commands.database.validate_sql.get_validator_by_name")
     @mock.patch.dict(
+=======
+    @patch("superset.commands.database.validate_sql.get_validator_by_name")
+    @patch.dict(
+>>>>>>> 2d98af4662 (merge from upstream to master)
         "superset.config.SQL_VALIDATORS_BY_ENGINE",
         PRESTO_SQL_VALIDATORS_BY_ENGINE,
         clear=True,

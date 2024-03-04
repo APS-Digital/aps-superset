@@ -298,6 +298,7 @@ class SupersetMarshmallowValidationError(SupersetErrorException):
             extra={"messages": exc.messages, "payload": payload},
         )
         super().__init__(error)
+<<<<<<< HEAD
 
 
 class SupersetParseError(SupersetErrorException):
@@ -432,3 +433,5 @@ class TableNotFoundException(SupersetErrorException):
                 level=ErrorLevel.ERROR,
             )
         )
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)

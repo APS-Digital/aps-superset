@@ -21,7 +21,11 @@ import pytest
 from superset.models.slice import Slice
 from superset.models.sql_lab import SavedQuery  # noqa: F401
 from superset.daos.tag import TagDAO
+<<<<<<< HEAD
 from superset.tags.exceptions import InvalidTagNameError  # noqa: F401
+=======
+from superset.tags.exceptions import InvalidTagNameError
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.tags.models import ObjectType, Tag, TaggedObject
 from tests.integration_tests.tags.api_tests import TAGS_FIXTURE_COUNT
 

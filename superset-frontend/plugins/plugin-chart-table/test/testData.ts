@@ -176,6 +176,7 @@ const advanced: TableChartProps = {
   ],
 };
 
+<<<<<<< HEAD
 const comparison: TableChartProps = {
   ...basic,
   rawFormData: {
@@ -301,6 +302,8 @@ const comparisonWithConfig: TableChartProps = {
   emitCrossFilters: false,
 };
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 const raw = {
   ...advanced,
   rawFormData: {

@@ -17,6 +17,11 @@
 
 from __future__ import annotations
 
+<<<<<<< HEAD
+=======
+import contextlib
+import json
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import logging
 import re
 from re import Pattern
@@ -30,17 +35,27 @@ from flask_babel import gettext as __
 from marshmallow import fields, Schema
 from marshmallow.exceptions import ValidationError
 from requests import Session
+<<<<<<< HEAD
 from shillelagh.adapters.api.gsheets.lib import SCOPES
 from shillelagh.exceptions import UnauthenticatedError
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from sqlalchemy.engine import create_engine
 from sqlalchemy.engine.url import URL
 
 from superset import db, security_manager
+<<<<<<< HEAD
+=======
+from superset.constants import PASSWORD_MASK
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.databases.schemas import encrypted_field_properties, EncryptedString
 from superset.db_engine_specs.shillelagh import ShillelaghEngineSpec
 from superset.errors import ErrorLevel, SupersetError, SupersetErrorType
 from superset.exceptions import SupersetException
+<<<<<<< HEAD
 from superset.utils import json
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 if TYPE_CHECKING:
     from superset.models.core import Database
@@ -107,6 +122,7 @@ class GSheetsEngineSpec(ShillelaghEngineSpec):
     }
 
     supports_file_upload = True
+<<<<<<< HEAD
 
     # OAuth 2.0
     supports_oauth2 = True
@@ -116,6 +132,8 @@ class GSheetsEngineSpec(ShillelaghEngineSpec):
     )
     oauth2_token_request_uri = "https://oauth2.googleapis.com/token"
     oauth2_exception = UnauthenticatedError
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     @classmethod
     def get_url_for_impersonation(
@@ -123,7 +141,10 @@ class GSheetsEngineSpec(ShillelaghEngineSpec):
         url: URL,
         impersonate_user: bool,
         username: str | None,
+<<<<<<< HEAD
         access_token: str | None,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     ) -> URL:
         if not impersonate_user:
             return url
@@ -142,7 +163,12 @@ class GSheetsEngineSpec(ShillelaghEngineSpec):
     def get_extra_table_metadata(
         cls,
         database: Database,
+<<<<<<< HEAD
         table: Table,
+=======
+        table_name: str,
+        schema_name: str | None,
+>>>>>>> 2d98af4662 (merge from upstream to master)
     ) -> dict[str, Any]:
         with database.get_raw_connection(
             catalog=table.catalog,
@@ -163,7 +189,12 @@ class GSheetsEngineSpec(ShillelaghEngineSpec):
     def build_sqlalchemy_uri(
         cls,
         _: GSheetsParametersType,
+<<<<<<< HEAD
         encrypted_extra: None | (dict[str, Any]) = None,
+=======
+        encrypted_extra: None  # pylint: disable=unused-argument
+        | (dict[str, Any]) = None,
+>>>>>>> 2d98af4662 (merge from upstream to master)
     ) -> str:
         return "gsheets://"
 
@@ -180,6 +211,50 @@ class GSheetsEngineSpec(ShillelaghEngineSpec):
         raise ValidationError("Invalid service credentials")
 
     @classmethod
+<<<<<<< HEAD
+=======
+    def mask_encrypted_extra(cls, encrypted_extra: str | None) -> str | None:
+        if encrypted_extra is None:
+            return encrypted_extra
+
+        try:
+            config = json.loads(encrypted_extra)
+        except (TypeError, json.JSONDecodeError):
+            return encrypted_extra
+
+        with contextlib.suppress(KeyError):
+            config["service_account_info"]["private_key"] = PASSWORD_MASK
+        return json.dumps(config)
+
+    @classmethod
+    def unmask_encrypted_extra(cls, old: str | None, new: str | None) -> str | None:
+        """
+        Reuse ``private_key`` if available and unchanged.
+        """
+        if old is None or new is None:
+            return new
+
+        try:
+            old_config = json.loads(old)
+            new_config = json.loads(new)
+        except (TypeError, json.JSONDecodeError):
+            return new
+
+        if "service_account_info" not in new_config:
+            return new
+
+        if "private_key" not in new_config["service_account_info"]:
+            return new
+
+        if new_config["service_account_info"]["private_key"] == PASSWORD_MASK:
+            new_config["service_account_info"]["private_key"] = old_config[
+                "service_account_info"
+            ]["private_key"]
+
+        return json.dumps(new_config)
+
+    @classmethod
+>>>>>>> 2d98af4662 (merge from upstream to master)
     def parameters_json_schema(cls) -> Any:
         """
         Return configuration parameters as OpenAPI.
@@ -359,11 +434,15 @@ class GSheetsEngineSpec(ShillelaghEngineSpec):
                 pass
 
         # get the Google session from the Shillelagh adapter
+<<<<<<< HEAD
         with cls.get_engine(
             database,
             catalog=table.catalog,
             schema=table.schema,
         ) as engine:
+=======
+        with cls.get_engine(database) as engine:
+>>>>>>> 2d98af4662 (merge from upstream to master)
             with engine.connect() as conn:
                 # any GSheets URL will work to get a working session
                 adapter = get_adapter_for_table_name(
@@ -416,4 +495,8 @@ class GSheetsEngineSpec(ShillelaghEngineSpec):
         catalog[table.table] = spreadsheet_url
         database.extra = json.dumps(extra)
         db.session.add(database)
+<<<<<<< HEAD
         db.session.commit()  # pylint: disable=consider-using-transaction
+=======
+        db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)

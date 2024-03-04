@@ -30,7 +30,11 @@
   },
   "dependencies": {
     "@types/d3-cloud": "^1.2.9",
+<<<<<<< HEAD
     "@types/d3-scale": "^4.0.8",
+=======
+    "@types/d3-scale": "^2.0.2",
+>>>>>>> 2d98af4662 (merge from upstream to master)
     "d3-cloud": "^1.2.7",
     "d3-scale": "^3.0.1",
     "encodable": "^0.7.8"

@@ -16,13 +16,21 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { isValidElement } from 'react';
+=======
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { render, screen } from 'spec/helpers/testing-library';
 import userEvent from '@testing-library/user-event';
 import fetchMock from 'fetch-mock';
 
 import RefreshIntervalModal from 'src/dashboard/components/RefreshIntervalModal';
+<<<<<<< HEAD
 import { HeaderActionsDropdown } from 'src/dashboard/components/Header/HeaderActionsDropdown';
+=======
+import HeaderActionsDropdown from 'src/dashboard/components/Header/HeaderActionsDropdown';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 const createProps = () => ({
   addSuccessToast: jest.fn(),
@@ -110,7 +118,11 @@ const defaultRefreshIntervalModalProps = {
 
 test('is valid', () => {
   expect(
+<<<<<<< HEAD
     isValidElement(
+=======
+    React.isValidElement(
+>>>>>>> 2d98af4662 (merge from upstream to master)
       <RefreshIntervalModal {...defaultRefreshIntervalModalProps} />,
     ),
   ).toBe(true);
@@ -171,6 +183,7 @@ test('should change selected value', async () => {
   expect(selectedValue.title).not.toMatch(/don't refresh/i);
 });
 
+<<<<<<< HEAD
 test('should change selected value to custom value', async () => {
   render(setup(editModeOnProps));
   await openRefreshIntervalModal();
@@ -188,6 +201,8 @@ test('should change selected value to custom value', async () => {
   expect(selectedValue.title).not.toMatch(/don't refresh/i);
 });
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 test('should save a newly-selected value', async () => {
   render(setup(editModeOnProps));
   await openRefreshIntervalModal();

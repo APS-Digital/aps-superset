@@ -17,6 +17,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
+=======
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { QueryColumn, t, validateNonEmpty } from '@superset-ui/core';
 import {
   ExtraControlProps,
@@ -191,9 +195,14 @@ export const dndSortByControl: SharedControlConfig<
   label: t('Sort query by'),
   default: null,
   description: t(
+<<<<<<< HEAD
     'Orders the query result that generates the source data for this chart. ' +
       'If a series or row limit is reached, this determines what data are truncated. ' +
       'If undefined, defaults to the first metric (where appropriate).',
+=======
+    'This metric is used to define row selection criteria (how the rows are sorted) if a series or row limit is present. ' +
+      'If not defined, it reverts to the first metric (where appropriate).',
+>>>>>>> 2d98af4662 (merge from upstream to master)
   ),
   mapStateToProps: ({ datasource }) => ({
     columns: datasource?.columns || [],

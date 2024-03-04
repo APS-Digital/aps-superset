@@ -26,10 +26,16 @@ import {
   getValueFormatter,
   tooltipHtml,
 } from '@superset-ui/core';
+<<<<<<< HEAD
 import type { EChartsCoreOption } from 'echarts/core';
 import type { GaugeSeriesOption } from 'echarts/charts';
 import type { GaugeDataItemOption } from 'echarts/types/src/chart/gauge/GaugeSeries';
 import type { CallbackDataParams } from 'echarts/types/src/util/types';
+=======
+import { EChartsCoreOption, GaugeSeriesOption } from 'echarts';
+import { GaugeDataItemOption } from 'echarts/types/src/chart/gauge/GaugeSeries';
+import { CallbackDataParams } from 'echarts/types/src/util/types';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { range } from 'lodash';
 import { parseNumbersList } from '../utils/controls';
 import {

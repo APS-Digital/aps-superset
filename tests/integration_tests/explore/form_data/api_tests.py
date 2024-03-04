@@ -40,22 +40,35 @@ UPDATED_FORM_DATA = json.dumps({"test": "updated value"})
 
 
 @pytest.fixture
+<<<<<<< HEAD
 def chart_id(load_world_bank_dashboard_with_slices) -> int:  # noqa: F811
     with app.app_context() as ctx:  # noqa: F841
+=======
+def chart_id(load_world_bank_dashboard_with_slices) -> int:
+    with app.app_context() as ctx:
+>>>>>>> 2d98af4662 (merge from upstream to master)
         chart = db.session.query(Slice).filter_by(slice_name="World's Population").one()
         return chart.id
 
 
 @pytest.fixture
 def admin_id() -> int:
+<<<<<<< HEAD
     with app.app_context() as ctx:  # noqa: F841
+=======
+    with app.app_context() as ctx:
+>>>>>>> 2d98af4662 (merge from upstream to master)
         admin = db.session.query(User).filter_by(username="admin").one()
         return admin.id
 
 
 @pytest.fixture
 def datasource() -> int:
+<<<<<<< HEAD
     with app.app_context() as ctx:  # noqa: F841
+=======
+    with app.app_context() as ctx:
+>>>>>>> 2d98af4662 (merge from upstream to master)
         dataset = (
             db.session.query(SqlaTable)
             .filter_by(table_name="wb_health_population")

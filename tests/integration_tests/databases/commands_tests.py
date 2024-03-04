@@ -22,7 +22,11 @@ import yaml
 from func_timeout import FunctionTimedOut
 from sqlalchemy.exc import DBAPIError
 
+<<<<<<< HEAD
 from superset import db, event_logger, security_manager  # noqa: F401
+=======
+from superset import db, event_logger, security_manager
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.commands.database.create import CreateDatabaseCommand
 from superset.commands.database.exceptions import (
     DatabaseInvalidError,
@@ -40,7 +44,11 @@ from superset.commands.database.validate import ValidateDatabaseParametersComman
 from superset.commands.exceptions import CommandInvalidError
 from superset.commands.importers.exceptions import IncorrectVersionError
 from superset.connectors.sqla.models import SqlaTable
+<<<<<<< HEAD
 from superset.databases.schemas import DatabaseTestConnectionSchema  # noqa: F401
+=======
+from superset.databases.schemas import DatabaseTestConnectionSchema
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.databases.ssh_tunnel.models import SSHTunnel
 from superset.errors import ErrorLevel, SupersetError, SupersetErrorType
 from superset.exceptions import (
@@ -863,8 +871,12 @@ class TestImportDatabasesCommand(SupersetTestCase):
         }
 
     @patch("superset.commands.database.importers.v1.import_dataset")
+<<<<<<< HEAD
     @patch("superset.commands.database.importers.v1.utils.add_permissions")
     def test_import_v1_rollback(self, mock_add_permissions, mock_import_dataset):
+=======
+    def test_import_v1_rollback(self, mock_import_dataset):
+>>>>>>> 2d98af4662 (merge from upstream to master)
         """Test than on an exception everything is rolled back"""
         num_databases = db.session.query(Database).count()
 

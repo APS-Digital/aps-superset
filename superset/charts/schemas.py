@@ -27,6 +27,10 @@ from marshmallow.validate import Length, Range
 from superset import app
 from superset.common.chart_data import ChartDataResultFormat, ChartDataResultType
 from superset.db_engine_specs.base import builtin_time_grains
+<<<<<<< HEAD
+=======
+from superset.tags.models import TagType
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils import pandas_postprocessing, schema as utils
 from superset.utils.core import (
     AnnotationType,
@@ -143,6 +147,15 @@ openapi_spec_methods_override = {
 }
 
 
+<<<<<<< HEAD
+=======
+class TagSchema(Schema):
+    id = fields.Int()
+    name = fields.String()
+    type = fields.Enum(TagType, by_value=True)
+
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
 class ChartEntityResponseSchema(Schema):
     """
     Schema for a chart object

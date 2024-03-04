@@ -28,7 +28,11 @@ jobs:
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Install Helm
+<<<<<<< HEAD
         uses: azure/setup-helm@v4
+=======
+        uses: azure/setup-helm@v3
+>>>>>>> 2d98af4662 (merge from upstream to master)
         with:
           version: v3.5.4
 

@@ -21,6 +21,7 @@ from unittest.mock import MagicMock, patch
 
 import pandas as pd
 import pytest
+from sqlalchemy import CheckConstraint, Column, Integer, MetaData, Table
 
 from superset.exceptions import SupersetException
 from superset.utils.core import (
@@ -29,7 +30,10 @@ from superset.utils.core import (
     DateColumn,
     generic_find_constraint_name,
     generic_find_fk_constraint_name,
+<<<<<<< HEAD
     get_datasource_full_name,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     is_test,
     normalize_dttm_col,
     parse_boolean_string,
@@ -314,6 +318,10 @@ def test_generic_constraint_name_not_found():
     table_name = "my_table"
     columns = {"column1", "column2"}
     referenced_table_name = "other_table"
+<<<<<<< HEAD
+=======
+    constraint_name = "my_constraint"
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     # Create a mock table object with the same structure but no matching constraint
     table_mock = MagicMock()
@@ -370,6 +378,7 @@ def test_generic_find_fk_constraint_none_exist():
     )
 
     assert result is None
+<<<<<<< HEAD
 
 
 def test_get_datasource_full_name():
@@ -396,3 +405,5 @@ def test_get_datasource_full_name():
         get_datasource_full_name("db", "table", "catalog", None)
         == "[db].[catalog].[table]"
     )
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)

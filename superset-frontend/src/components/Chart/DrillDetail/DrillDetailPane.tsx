@@ -169,13 +169,14 @@ export default function DrillDetailPane({
 
   const data: DataType[] = useMemo(
     () =>
-      resultsPage?.data.map((row, index) =>
-        resultsPage?.colNames.reduce(
-          (acc, curr) => ({ ...acc, [curr]: row[curr] }),
-          {
-            key: index,
-          },
-        ),
+      resultsPage?.data.map(
+        (row, index) =>
+          resultsPage?.colNames.reduce(
+            (acc, curr) => ({ ...acc, [curr]: row[curr] }),
+            {
+              key: index,
+            },
+          ),
       ) || [],
     [resultsPage?.colNames, resultsPage?.data],
   );
@@ -264,8 +265,11 @@ export default function DrillDetailPane({
   const bootstrapping =
     (!responseError && !resultsPages.size) ||
     metadataBarStatus === ResourceStatus.Loading;
+<<<<<<< HEAD
 
   const allowHTML = formData.allow_render_html ?? true;
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
   let tableContent = null;
   if (responseError) {

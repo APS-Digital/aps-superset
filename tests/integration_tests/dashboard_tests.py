@@ -80,9 +80,15 @@ class TestDashboard(SupersetTestCase):
         hidden_dash.slices = [slice]
         hidden_dash.published = False
 
+<<<<<<< HEAD
         db.session.add(published_dash)
         db.session.add(hidden_dash)
         yield db.session.commit()
+=======
+            db.session.add(published_dash)
+            db.session.add(hidden_dash)
+            yield db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         self.revoke_public_access_to_table(table)
         db.session.delete(published_dash)

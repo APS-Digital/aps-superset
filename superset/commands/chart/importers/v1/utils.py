@@ -24,7 +24,10 @@ from superset.commands.exceptions import ImportFailedError
 from superset.migrations.shared.migrate_viz import processors
 from superset.migrations.shared.migrate_viz.base import MigrateViz
 from superset.models.slice import Slice
+<<<<<<< HEAD
 from superset.utils import json
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.core import AnnotationType, get_user
 
 
@@ -77,7 +80,11 @@ def import_chart(
     if chart.id is None:
         db.session.flush()
 
+<<<<<<< HEAD
     if (user := get_user()) and user not in chart.owners:
+=======
+    if user := get_user():
+>>>>>>> 2d98af4662 (merge from upstream to master)
         chart.owners.append(user)
 
     return chart
@@ -117,7 +124,11 @@ def migrate_chart(config: dict[str, Any]) -> dict[str, Any]:
     # also update `query_context`
     try:
         query_context = json.loads(output.get("query_context") or "{}")
+<<<<<<< HEAD
     except (json.JSONDecodeError, TypeError):
+=======
+    except (json.decoder.JSONDecodeError, TypeError):
+>>>>>>> 2d98af4662 (merge from upstream to master)
         query_context = {}
     if "form_data" in query_context:
         query_context["form_data"] = output["params"]

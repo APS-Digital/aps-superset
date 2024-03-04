@@ -54,6 +54,11 @@ from superset.utils.core import (
     as_list,
     get_email_address_list,
     get_stacktrace,
+<<<<<<< HEAD
+=======
+    json_int_dttm_ser,
+    json_iso_dttm_ser,
+>>>>>>> 2d98af4662 (merge from upstream to master)
     merge_extra_filters,
     merge_extra_form_data,
     merge_request_params,
@@ -894,7 +899,11 @@ class TestUtils(SupersetTestCase):
     @pytest.mark.usefixtures("load_birth_names_dashboard_with_slices")
     def test_log_this(self) -> None:
         # TODO: Add additional scenarios.
+<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
+=======
+        self.login(username="admin")
+>>>>>>> 2d98af4662 (merge from upstream to master)
         slc = self.get_slice("Top 10 Girl Name Share")
         dashboard_id = 1
 

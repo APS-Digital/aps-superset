@@ -33,8 +33,11 @@ from typing import (
     TypedDict,
     Union,
 )
+<<<<<<< HEAD
 from urllib.parse import urlencode, urljoin
 from uuid import uuid4
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 import pandas as pd
 import requests
@@ -348,7 +351,10 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
     # Does database support join-free timeslot grouping
     time_groupby_inline = False
     limit_method = LimitMethod.FORCE_LIMIT
+<<<<<<< HEAD
     supports_multivalues_insert = False
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     allows_joins = True
     allows_subqueries = True
     allows_alias_in_select = True
@@ -594,6 +600,19 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
     def get_allows_alias_in_select(
         cls,
         database: Database,  # pylint: disable=unused-argument
+    ) -> bool:
+        """
+        Method for dynamic `allows_alias_in_select`.
+
+        In Dremio this atribute is version-dependent, so Superset needs to inspect the
+        database configuration in order to determine it. This method allows engine-specs
+        to define dynamic values for the attribute.
+        """
+        return cls.allows_alias_in_select
+
+    @classmethod
+    def get_allows_alias_in_select(
+        cls, database: Database  # pylint: disable=unused-argument
     ) -> bool:
         """
         Method for dynamic `allows_alias_in_select`.
@@ -1316,12 +1335,16 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         # TODO: Fix circular import error caused by importing sql_lab.Query
 
     @classmethod
+<<<<<<< HEAD
     def execute_with_cursor(
         cls,
         cursor: Any,
         sql: str,
         query: Query,
     ) -> None:
+=======
+    def execute_with_cursor(cls, cursor: Any, sql: str, query: Query) -> None:
+>>>>>>> 2d98af4662 (merge from upstream to master)
         """
         Trigger execution of a query and handle the resulting cursor.
 
@@ -1332,7 +1355,11 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         in a timely manner and facilitate operations such as query stop
         """
         logger.debug("Query %d: Running query: %s", query.id, sql)
+<<<<<<< HEAD
         cls.execute(cursor, sql, query.database, async_=True)
+=======
+        cls.execute(cursor, sql, async_=True)
+>>>>>>> 2d98af4662 (merge from upstream to master)
         logger.debug("Query %d: Handling cursor", query.id)
         cls.handle_cursor(cursor, query)
 
@@ -1563,7 +1590,12 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
     def get_columns(  # pylint: disable=unused-argument
         cls,
         inspector: Inspector,
+<<<<<<< HEAD
         table: Table,
+=======
+        table_name: str,
+        schema: str | None,
+>>>>>>> 2d98af4662 (merge from upstream to master)
         options: dict[str, Any] | None = None,
     ) -> list[ResultSetColumnType]:
         """
@@ -1572,7 +1604,12 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         The inspector will be bound to a catalog, if one was specified.
 
         :param inspector: SqlAlchemy Inspector instance
+<<<<<<< HEAD
         :param table: Table instance
+=======
+        :param table_name: Table name
+        :param schema: Schema name. If omitted, uses default schema for database
+>>>>>>> 2d98af4662 (merge from upstream to master)
         :param options: Extra options to customise the display of columns in
                         some databases
         :return: All columns in table
@@ -1627,11 +1664,17 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
     @classmethod
     def _get_fields(cls, cols: list[ResultSetColumnType]) -> list[Any]:
         return [
+<<<<<<< HEAD
             (
                 literal_column(query_as)
                 if (query_as := c.get("query_as"))
                 else column(c["column_name"])
             )
+=======
+            literal_column(query_as)
+            if (query_as := c.get("query_as"))
+            else column(c["column_name"])
+>>>>>>> 2d98af4662 (merge from upstream to master)
             for c in cols
         ]
 
@@ -1670,6 +1713,15 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
 
         if show_cols:
             fields = cls._get_fields(cols)
+<<<<<<< HEAD
+=======
+        quote = engine.dialect.identifier_preparer.quote
+        quote_schema = engine.dialect.identifier_preparer.quote_schema
+        if schema:
+            full_table_name = quote_schema(schema) + "." + quote(table_name)
+        else:
+            full_table_name = quote(table_name)
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         full_table_name = cls.quote_table(table, engine.dialect)
         qry = select(fields).select_from(text(full_table_name))
@@ -1830,11 +1882,14 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         """
         if not cls.allows_sql_comments:
             query = sql_parse.strip_comments_from_sql(query, engine=cls.engine)
+<<<<<<< HEAD
         disallowed_functions = current_app.config["DISALLOWED_SQL_FUNCTIONS"].get(
             cls.engine, set()
         )
         if sql_parse.check_sql_functions_exist(query, disallowed_functions, cls.engine):
             raise DisallowedSQLFunction(disallowed_functions)
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         if cls.arraysize:
             cursor.arraysize = cls.arraysize

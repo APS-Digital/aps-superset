@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import userEvent from '@testing-library/user-event';
 import fetchMock from 'fetch-mock';
 import {
@@ -28,6 +29,15 @@ import {
 import { buildErrorTooltipMessage } from './buildErrorTooltipMessage';
 import AlertReportModal, { AlertReportModalProps } from './AlertReportModal';
 import { AlertObject, NotificationMethodOption } from './types';
+=======
+import React from 'react';
+import userEvent from '@testing-library/user-event';
+import fetchMock from 'fetch-mock';
+import { render, screen, waitFor, within } from 'spec/helpers/testing-library';
+import { buildErrorTooltipMessage } from './buildErrorTooltipMessage';
+import AlertReportModal, { AlertReportModalProps } from './AlertReportModal';
+import { AlertObject } from './types';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 jest.mock('@superset-ui/core', () => ({
   ...jest.requireActual('@superset-ui/core'),
@@ -36,7 +46,11 @@ jest.mock('@superset-ui/core', () => ({
 
 jest.mock('src/features/databases/state.ts', () => ({
   useCommonConf: () => ({
+<<<<<<< HEAD
     ALERT_REPORTS_NOTIFICATION_METHODS: ['Email', 'Slack', 'SlackV2'],
+=======
+    ALERT_REPORTS_NOTIFICATION_METHODS: ['Email', 'Slack'],
+>>>>>>> 2d98af4662 (merge from upstream to master)
   }),
 }));
 
@@ -112,18 +126,24 @@ const ownersEndpoint = 'glob:*/api/v1/alert/related/owners?*';
 const databaseEndpoint = 'glob:*/api/v1/alert/related/database?*';
 const dashboardEndpoint = 'glob:*/api/v1/alert/related/dashboard?*';
 const chartEndpoint = 'glob:*/api/v1/alert/related/chart?*';
+<<<<<<< HEAD
 const tabsEndpoint = 'glob:*/api/v1/dashboard/1/tabs';
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 fetchMock.get(ownersEndpoint, { result: [] });
 fetchMock.get(databaseEndpoint, { result: [] });
 fetchMock.get(dashboardEndpoint, { result: [] });
 fetchMock.get(chartEndpoint, { result: [{ text: 'table chart', value: 1 }] });
+<<<<<<< HEAD
 fetchMock.get(tabsEndpoint, {
   result: {
     all_tabs: {},
     tab_tree: [],
   },
 });
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 // Create a valid alert with all required fields entered for validation check
 
@@ -148,7 +168,11 @@ const validAlert: AlertObject = {
   ],
   recipients: [
     {
+<<<<<<< HEAD
       type: NotificationMethodOption.Email,
+=======
+      type: 'Email',
+>>>>>>> 2d98af4662 (merge from upstream to master)
       recipient_config_json: { target: 'test@user.com' },
     },
   ],
@@ -383,15 +407,22 @@ test('disables condition threshold if not null condition is selected', async () 
   userEvent.click(screen.getByTestId('alert-condition-panel'));
   await screen.findByText(/smaller than/i);
   const condition = screen.getByRole('combobox', { name: /condition/i });
+<<<<<<< HEAD
   const spinButton = screen.getByRole('spinbutton');
   expect(spinButton).toHaveValue(10);
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   await comboboxSelect(
     condition,
     'not null',
     () => screen.getAllByText(/not null/i)[0],
   );
+<<<<<<< HEAD
   expect(spinButton).toHaveValue(null);
   expect(spinButton).toBeDisabled();
+=======
+  expect(screen.getByRole('spinbutton')).toBeDisabled();
+>>>>>>> 2d98af4662 (merge from upstream to master)
 });
 
 // Content Section
@@ -426,6 +457,7 @@ test('renders screenshot options when dashboard is selected', async () => {
   ).toBeInTheDocument();
 });
 
+<<<<<<< HEAD
 test('renders tab selection when Dashboard is selected', async () => {
   render(<AlertReportModal {...generateMockedProps(false, true, true)} />, {
     useRedux: true,
@@ -441,6 +473,8 @@ test('renders tab selection when Dashboard is selected', async () => {
   expect(screen.getByText(/select tab/i)).toBeInTheDocument();
 });
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 test('changes to content options when chart is selected', async () => {
   render(<AlertReportModal {...generateMockedProps(false, true, true)} />, {
     useRedux: true,
@@ -525,7 +559,10 @@ test('renders default Schedule fields', async () => {
     useRedux: true,
   });
   userEvent.click(screen.getByTestId('schedule-panel'));
+<<<<<<< HEAD
   await waitForElementToBeRemoved(() => screen.queryByLabelText('Loading'));
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   const scheduleType = screen.getByRole('combobox', {
     name: /schedule type/i,
   });
@@ -572,8 +609,13 @@ test('defaults to day when CRON is not selected', async () => {
     useRedux: true,
   });
   userEvent.click(screen.getByTestId('schedule-panel'));
+<<<<<<< HEAD
   const day = screen.getByText('day');
   expect(day).toBeInTheDocument();
+=======
+  const days = screen.getAllByTitle(/day/i, { exact: true });
+  expect(days.length).toBe(2);
+>>>>>>> 2d98af4662 (merge from upstream to master)
 });
 
 // Notification Method Section

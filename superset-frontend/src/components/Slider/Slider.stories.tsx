@@ -97,6 +97,7 @@ InteractiveSlider.argTypes = {
     control: { type: 'select' },
   },
 };
+<<<<<<< HEAD
 
 InteractiveRangeSlider.args = {
   ...InteractiveSlider.args,
@@ -105,3 +106,5 @@ InteractiveRangeSlider.args = {
 };
 
 InteractiveRangeSlider.argTypes = InteractiveSlider.argTypes;
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)

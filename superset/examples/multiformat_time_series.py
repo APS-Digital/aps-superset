@@ -102,6 +102,10 @@ def load_multiformat_time_series(  # pylint: disable=too-many-locals
         col.python_date_format = dttm_and_expr[0]
         col.database_expression = dttm_and_expr[1]
         col.is_dttm = True
+<<<<<<< HEAD
+=======
+    db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
     obj.fetch_metadata()
     tbl = obj
 

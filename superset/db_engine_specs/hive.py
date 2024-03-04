@@ -408,7 +408,11 @@ class HiveEngineSpec(PrestoEngineSpec):
                         logger.info("Query %s: [%s] %s", str(query_id), str(job_id), l)
                     last_log_line = len(log_lines)
                 if needs_commit:
+<<<<<<< HEAD
                     db.session.commit()  # pylint: disable=consider-using-transaction
+=======
+                    db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
             if sleep_interval := current_app.config.get("HIVE_POLL_INTERVAL"):
                 logger.warning(
                     "HIVE_POLL_INTERVAL is deprecated and will be removed in 3.0. Please use DB_POLL_INTERVAL_SECONDS instead"
@@ -424,10 +428,18 @@ class HiveEngineSpec(PrestoEngineSpec):
     def get_columns(
         cls,
         inspector: Inspector,
+<<<<<<< HEAD
         table: Table,
         options: dict[str, Any] | None = None,
     ) -> list[ResultSetColumnType]:
         return BaseEngineSpec.get_columns(inspector, table, options)
+=======
+        table_name: str,
+        schema: str | None,
+        options: dict[str, Any] | None = None,
+    ) -> list[ResultSetColumnType]:
+        return BaseEngineSpec.get_columns(inspector, table_name, schema, options)
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     @classmethod
     def where_latest_partition(

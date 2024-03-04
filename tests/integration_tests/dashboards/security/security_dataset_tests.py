@@ -22,8 +22,11 @@ from flask import escape  # noqa: F401
 
 from superset import app
 from superset.daos.dashboard import DashboardDAO
+<<<<<<< HEAD
 from superset.utils import json
 from tests.integration_tests.constants import ADMIN_USERNAME, GAMMA_USERNAME
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from tests.integration_tests.dashboards.base_case import DashboardTestCase
 from tests.integration_tests.dashboards.consts import *  # noqa: F403
 from tests.integration_tests.dashboards.dashboard_test_utils import *  # noqa: F403
@@ -62,9 +65,15 @@ class TestDashboardDatasetSecurity(DashboardTestCase):
             hidden_dash.slices = [slice]
             hidden_dash.published = False
 
+<<<<<<< HEAD
             db.session.add(published_dash)  # noqa: F405
             db.session.add(hidden_dash)  # noqa: F405
             yield db.session.commit()  # noqa: F405
+=======
+            db.session.add(published_dash)
+            db.session.add(hidden_dash)
+            yield db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
             self.revoke_public_access_to_table(table)
             db.session.delete(published_dash)  # noqa: F405

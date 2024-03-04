@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { GenericDataType, QueryColumn, QueryResponse } from '@superset-ui/core';
 import { ColumnMeta, Dataset, isDataset, isQueryResponse } from '../types';
 
@@ -44,6 +45,10 @@ export function columnsByType(
   }
   return [];
 }
+=======
+import { QueryResponse } from '@superset-ui/core';
+import { Dataset, isDataset, isQueryResponse } from '../types';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 /**
  * Convert Datasource columns to column choices
@@ -52,6 +57,7 @@ export default function columnChoices(
   datasource?: Dataset | QueryResponse | null,
   type?: GenericDataType,
 ): [string, string][] {
+<<<<<<< HEAD
   return columnsByType(datasource, type).map(
     (col: ColumnMeta | QueryColumn): [string, string] => [
       col.column_name,
@@ -60,4 +66,19 @@ export default function columnChoices(
         : col.column_name,
     ],
   );
+=======
+  if (isDataset(datasource) || isQueryResponse(datasource)) {
+    return datasource.columns
+      .map((col): [string, string] => [
+        col.column_name,
+        'verbose_name' in col
+          ? col.verbose_name || col.column_name
+          : col.column_name,
+      ])
+      .sort((opt1, opt2) =>
+        opt1[1].toLowerCase() > opt2[1].toLowerCase() ? 1 : -1,
+      );
+  }
+  return [];
+>>>>>>> 2d98af4662 (merge from upstream to master)
 }

@@ -585,7 +585,10 @@ export function getPadding(
     ? TIMESERIES_CONSTANTS.yAxisLabelTopOffset
     : 0;
   const xAxisOffset = addXAxisTitleOffset ? Number(xAxisTitleMargin) || 0 : 0;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   return getChartPadding(
     showLegend,
     legendOrientation,

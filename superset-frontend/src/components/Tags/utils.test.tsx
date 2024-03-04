@@ -16,22 +16,60 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:superset-frontend/plugins/plugin-chart-echarts/src/Sankey/types.ts
+import {
+  QueryFormColumn,
+  QueryFormData,
+  QueryFormMetric,
+} from '@superset-ui/core';
+import { BaseChartProps, BaseTransformedProps } from '../types';
+
+export type SankeyFormData = QueryFormData & {
+  colorScheme: string;
+  metric: QueryFormMetric;
+  source: QueryFormColumn;
+  target: QueryFormColumn;
+};
+
+export interface SankeyChartProps extends BaseChartProps<SankeyFormData> {
+  formData: SankeyFormData;
+}
+
+export type SankeyTransformedProps = BaseTransformedProps<SankeyFormData> & {};
+========
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { tagToSelectOption } from 'src/components/Tags/utils';
 
 describe('tagToSelectOption', () => {
   test('converts a Tag object with table_name to a SelectTagsValue', () => {
     const tag = {
+<<<<<<< HEAD
       id: 1,
+=======
+      id: '1',
+>>>>>>> 2d98af4662 (merge from upstream to master)
       name: 'TagName',
       table_name: 'Table1',
     };
 
     const expectedSelectTagsValue = {
+<<<<<<< HEAD
       value: 1,
       label: 'TagName',
       key: 1,
+=======
+      value: 'TagName',
+      label: 'TagName',
+      key: '1',
+>>>>>>> 2d98af4662 (merge from upstream to master)
     };
 
     expect(tagToSelectOption(tag)).toEqual(expectedSelectTagsValue);
   });
 });
+<<<<<<< HEAD
+=======
+>>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/src/components/Tags/utils.test.tsx
+>>>>>>> 2d98af4662 (merge from upstream to master)

@@ -232,6 +232,7 @@ const config = {
     menu: addPreamble('src/views/menu.tsx'),
     spa: addPreamble('/src/views/index.tsx'),
     embedded: addPreamble('/src/embedded/index.tsx'),
+<<<<<<< HEAD
   },
   cache: {
     type: 'filesystem', // Enable filesystem caching
@@ -239,6 +240,8 @@ const config = {
     buildDependencies: {
       config: [__filename],
     },
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   },
   output,
   stats: 'minimal',

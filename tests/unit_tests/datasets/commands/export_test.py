@@ -19,7 +19,10 @@
 from sqlalchemy.orm.session import Session
 
 from superset import db
+<<<<<<< HEAD
 from superset.utils import json
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def test_export(session: Session) -> None:
@@ -91,7 +94,13 @@ def test_export(session: Session) -> None:
     export = [
         (file[0], file[1]())
         for file in list(
+<<<<<<< HEAD
             ExportDatasetsCommand._export(sqla_table)  # pylint: disable=protected-access
+=======
+            ExportDatasetsCommand._export(
+                sqla_table
+            )  # pylint: disable=protected-access
+>>>>>>> 2d98af4662 (merge from upstream to master)
         )
     ]
 

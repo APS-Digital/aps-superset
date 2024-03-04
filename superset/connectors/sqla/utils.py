@@ -47,8 +47,14 @@ if TYPE_CHECKING:
 
 def get_physical_table_metadata(
     database: Database,
+<<<<<<< HEAD
     table: Table,
     normalize_columns: bool,
+=======
+    table_name: str,
+    normalize_columns: bool,
+    schema_name: str | None = None,
+>>>>>>> 2d98af4662 (merge from upstream to master)
 ) -> list[ResultSetColumnType]:
     """Use SQLAlchemy inspector to get table metadata"""
     db_engine_spec = database.db_engine_spec

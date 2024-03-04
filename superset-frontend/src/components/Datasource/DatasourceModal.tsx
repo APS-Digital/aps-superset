@@ -33,9 +33,14 @@ import {
 
 import Modal from 'src/components/Modal';
 import AsyncEsmComponent from 'src/components/AsyncEsmComponent';
+<<<<<<< HEAD
+=======
+import { SupersetError } from 'src/components/ErrorMessage/types';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import ErrorMessageWithStackTrace from 'src/components/ErrorMessage/ErrorMessageWithStackTrace';
 import withToasts from 'src/components/MessageToasts/withToasts';
 import { useSelector } from 'react-redux';
+import { getClientErrorObject } from 'src/utils/getClientErrorObject';
 
 const DatasourceEditor = AsyncEsmComponent(() => import('./DatasourceEditor'));
 

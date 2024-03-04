@@ -170,7 +170,26 @@ function PropertiesModal({
       ).map(o => o.value);
     }
     if (isFeatureEnabled(FeatureFlag.TaggingSystem)) {
+<<<<<<< HEAD
       payload.tags = tags.map(tag => tag.id);
+=======
+      // update tags
+      try {
+        fetchTags(
+          {
+            objectType: OBJECT_TYPES.CHART,
+            objectId: slice.slice_id,
+            includeTypes: false,
+          },
+          (currentTags: TagType[]) => updateTags(currentTags, tags),
+          error => {
+            showError(error);
+          },
+        );
+      } catch (error) {
+        showError(error);
+      }
+>>>>>>> 2d98af4662 (merge from upstream to master)
     }
 
     try {

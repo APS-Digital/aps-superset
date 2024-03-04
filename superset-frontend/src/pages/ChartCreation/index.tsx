@@ -60,9 +60,13 @@ const ESTIMATED_NAV_HEIGHT = 56;
 const ELEMENTS_EXCEPT_VIZ_GALLERY = ESTIMATED_NAV_HEIGHT + 250;
 
 const bootstrapData = getBootstrapData();
+<<<<<<< HEAD
 const denyList: string[] = (
   bootstrapData.common.conf.VIZ_TYPE_DENYLIST || []
 ).concat(Object.values(FilterPlugins));
+=======
+const denyList: string[] = bootstrapData.common.conf.VIZ_TYPE_DENYLIST || [];
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 const StyledContainer = styled.div`
   ${({ theme }) => `

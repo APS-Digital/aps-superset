@@ -17,6 +17,7 @@
  * under the License.
  */
 
+<<<<<<< HEAD
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import {
@@ -25,6 +26,13 @@ import {
   ThemeProvider,
   supersetTheme,
 } from '@superset-ui/core';
+=======
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import { ThemeProvider, supersetTheme } from '@superset-ui/core';
+import { ErrorLevel, ErrorTypeEnum } from 'src/components/ErrorMessage/types';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import MarshmallowErrorMessage from './MarshmallowErrorMessage';
 
 describe('MarshmallowErrorMessage', () => {

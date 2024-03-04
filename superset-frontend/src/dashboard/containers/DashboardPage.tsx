@@ -19,7 +19,17 @@
 import { createContext, lazy, FC, useEffect, useMemo, useRef } from 'react';
 import { Global } from '@emotion/react';
 import { useHistory } from 'react-router-dom';
+<<<<<<< HEAD
 import { t, useTheme } from '@superset-ui/core';
+=======
+import {
+  CategoricalColorNamespace,
+  getSharedLabelColor,
+  SharedLabelColorSource,
+  t,
+  useTheme,
+} from '@superset-ui/core';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { useDispatch, useSelector } from 'react-redux';
 import { useToasts } from 'src/components/MessageToasts/withToasts';
 import Loading from 'src/components/Loading';
@@ -42,7 +52,11 @@ import {
 } from 'src/dashboard/components/nativeFilters/FilterBar/keyValue';
 import DashboardContainer from 'src/dashboard/containers/Dashboard';
 
+<<<<<<< HEAD
 import { nanoid } from 'nanoid';
+=======
+import shortid from 'shortid';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { RootState } from '../types';
 import {
   chartContextMenuStyles,
@@ -57,7 +71,11 @@ import SyncDashboardState, {
 
 export const DashboardPageIdContext = createContext('');
 
+<<<<<<< HEAD
 const DashboardBuilder = lazy(
+=======
+const DashboardBuilder = React.lazy(
+>>>>>>> 2d98af4662 (merge from upstream to master)
   () =>
     import(
       /* webpackChunkName: "DashboardContainer" */
@@ -76,7 +94,11 @@ export const DashboardPage: FC<PageProps> = ({ idOrSlug }: PageProps) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const history = useHistory();
+<<<<<<< HEAD
   const dashboardPageId = useMemo(() => nanoid(), []);
+=======
+  const dashboardPageId = useMemo(() => shortid.generate(), []);
+>>>>>>> 2d98af4662 (merge from upstream to master)
   const hasDashboardInfoInitiated = useSelector<RootState, Boolean>(
     ({ dashboardInfo }) =>
       dashboardInfo && Object.keys(dashboardInfo).length > 0,
@@ -95,7 +117,11 @@ export const DashboardPage: FC<PageProps> = ({ idOrSlug }: PageProps) => {
 
   const error = dashboardApiError || chartsApiError;
   const readyToRender = Boolean(dashboard && charts);
+<<<<<<< HEAD
   const { dashboard_title, css, id = 0 } = dashboard || {};
+=======
+  const { dashboard_title, css, metadata, id = 0 } = dashboard || {};
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
   useEffect(() => {
     // mark tab id as redundant when user closes browser tab - a new id will be
@@ -182,6 +208,22 @@ export const DashboardPage: FC<PageProps> = ({ idOrSlug }: PageProps) => {
   }, [css]);
 
   useEffect(() => {
+<<<<<<< HEAD
+=======
+    const sharedLabelColor = getSharedLabelColor();
+    sharedLabelColor.source = SharedLabelColorSource.Dashboard;
+    return () => {
+      // clean up label color
+      const categoricalNamespace = CategoricalColorNamespace.getNamespace(
+        metadata?.color_namespace,
+      );
+      categoricalNamespace.resetColors();
+      sharedLabelColor.clear();
+    };
+  }, [metadata?.color_namespace]);
+
+  useEffect(() => {
+>>>>>>> 2d98af4662 (merge from upstream to master)
     if (datasetsApiError) {
       addDangerToast(
         t('Error loading chart datasources. Filters may not work correctly.'),

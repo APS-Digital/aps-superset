@@ -21,6 +21,9 @@ Revises: 4c5da39be729
 Create Date: 2023-06-08 11:34:36.241939
 
 """
+from alembic import op
+
+from superset import db
 
 from alembic import op
 

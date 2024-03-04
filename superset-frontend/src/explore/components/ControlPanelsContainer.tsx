@@ -72,7 +72,10 @@ import { ExploreAlert } from './ExploreAlert';
 import { RunQueryButton } from './RunQueryButton';
 import { Operators } from '../constants';
 import { Clauses } from './controls/FilterControl/types';
+<<<<<<< HEAD
 import StashFormDataContainer from './StashFormDataContainer';
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 const { confirm } = Modal;
 
@@ -319,7 +322,11 @@ export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
                 clause: Clauses.Where,
                 subject: x_axis,
                 operator: Operators.TemporalRange,
+<<<<<<< HEAD
                 comparator: defaultTimeFilter,
+=======
+                comparator: defaultTimeFilter || NO_TIME_RANGE,
+>>>>>>> 2d98af4662 (merge from upstream to master)
                 expressionType: 'SIMPLE',
               },
             ]);

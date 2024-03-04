@@ -258,7 +258,10 @@ class DatasetRestApi(BaseSupersetModelRestApi):
         "id",
         "database",
         "owners",
+<<<<<<< HEAD
         "catalog",
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         "schema",
         "sql",
         "table_name",
@@ -266,7 +269,11 @@ class DatasetRestApi(BaseSupersetModelRestApi):
         "changed_by",
     ]
     allowed_rel_fields = {"database", "owners", "created_by", "changed_by"}
+<<<<<<< HEAD
     allowed_distinct_fields = {"catalog", "schema"}
+=======
+    allowed_distinct_fields = {"schema"}
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     apispec_parameter_schemas = {
         "get_export_ids_schema": get_export_ids_schema,

@@ -17,7 +17,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { ChartMetadata, ChartPlugin, t } from '@superset-ui/core';
+=======
+import { Behavior, ChartMetadata, ChartPlugin, t } from '@superset-ui/core';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import buildQuery from './buildQuery';
 import controlPanel from './controlPanel';
 import transformProps from './transformProps';
@@ -27,7 +31,10 @@ import example2 from './images/example2.png';
 import example3 from './images/example3.png';
 import { EchartsWaterfallChartProps, EchartsWaterfallFormData } from './types';
 
+<<<<<<< HEAD
 // TODO: Implement cross filtering
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 export default class EchartsWaterfallChartPlugin extends ChartPlugin<
   EchartsWaterfallFormData,
   EchartsWaterfallChartProps
@@ -48,6 +55,10 @@ export default class EchartsWaterfallChartPlugin extends ChartPlugin<
       controlPanel,
       loadChart: () => import('./EchartsWaterfall'),
       metadata: new ChartMetadata({
+<<<<<<< HEAD
+=======
+        behaviors: [Behavior.InteractiveChart],
+>>>>>>> 2d98af4662 (merge from upstream to master)
         credits: ['https://echarts.apache.org'],
         category: t('Evolution'),
         description: t(
@@ -61,7 +72,11 @@ export default class EchartsWaterfallChartPlugin extends ChartPlugin<
           { url: example3 },
         ],
         name: t('Waterfall Chart'),
+<<<<<<< HEAD
         tags: [t('Categorical'), t('Comparison'), t('ECharts'), t('Featured')],
+=======
+        tags: [t('Categorical'), t('Comparison'), t('ECharts'), t('Popular')],
+>>>>>>> 2d98af4662 (merge from upstream to master)
         thumbnail,
       }),
       transformProps,

@@ -24,6 +24,10 @@ from sqlalchemy.exc import NoResultFound
 from superset.commands.tag.exceptions import TagNotFoundError
 from superset.commands.tag.utils import to_object_type
 from superset.daos.base import BaseDAO
+<<<<<<< HEAD
+=======
+from superset.daos.exceptions import DAODeleteFailedError
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.exceptions import MissingUserContextException
 from superset.extensions import db
 from superset.models.dashboard import Dashboard
@@ -383,4 +387,8 @@ class TagDAO(BaseDAO[Tag]):
                     object_id,
                     tag.name,
                 )
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
         db.session.add_all(tagged_objects)

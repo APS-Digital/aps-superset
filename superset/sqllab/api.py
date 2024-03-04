@@ -18,6 +18,11 @@ import logging
 from typing import Any, cast, Optional
 from urllib import parse
 
+<<<<<<< HEAD
+=======
+import simplejson as json
+import sqlparse
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from flask import request, Response
 from flask_appbuilder import permission_name
 from flask_appbuilder.api import expose, protect, rison, safe
@@ -133,7 +138,11 @@ class SqlLabRestApi(BaseSupersetApi):
         return json_success(
             json.dumps(
                 {"result": result},
+<<<<<<< HEAD
                 default=json.json_iso_dttm_ser,
+=======
+                default=utils.json_iso_dttm_ser,
+>>>>>>> 2d98af4662 (merge from upstream to master)
                 ignore_nan=True,
             ),
             200,
@@ -229,7 +238,11 @@ class SqlLabRestApi(BaseSupersetApi):
         """
         try:
             model = self.format_model_schema.load(request.json)
+<<<<<<< HEAD
             result = SQLScript(model["sql"], model.get("engine")).format()
+=======
+            result = sqlparse.format(model["sql"], reindent=True, keyword_case="upper")
+>>>>>>> 2d98af4662 (merge from upstream to master)
             return self.response(200, result=result)
         except ValidationError as error:
             return self.response_400(message=error.messages)
@@ -340,6 +353,7 @@ class SqlLabRestApi(BaseSupersetApi):
         key = params.get("key")
         rows = params.get("rows")
         result = SqlExecutionResultsCommand(key=key, rows=rows).run()
+<<<<<<< HEAD
 
         # Using pessimistic json serialization since some database drivers can return
         # unserializeable types at times
@@ -347,6 +361,16 @@ class SqlLabRestApi(BaseSupersetApi):
             result,
             default=json.pessimistic_json_iso_dttm_ser,
             ignore_nan=True,
+=======
+        # return the result without special encoding
+        return json_success(
+            json.dumps(
+                result,
+                default=utils.json_iso_dttm_ser,
+                ignore_nan=True,
+            ),
+            200,
+>>>>>>> 2d98af4662 (merge from upstream to master)
         )
         return json_success(payload, 200)
 

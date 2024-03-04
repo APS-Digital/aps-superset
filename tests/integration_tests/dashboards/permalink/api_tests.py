@@ -23,9 +23,13 @@ from flask_appbuilder.security.sqla.models import User  # noqa: F401
 from sqlalchemy.orm import Session  # noqa: F401
 
 from superset import db
+<<<<<<< HEAD
 from superset.commands.dashboard.exceptions import (
     DashboardAccessDeniedError,  # noqa: F401
 )
+=======
+from superset.commands.dashboard.exceptions import DashboardAccessDeniedError
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.key_value.models import KeyValueEntry
 from superset.key_value.types import KeyValueResource
 from superset.key_value.utils import decode_permalink_id
@@ -43,7 +47,11 @@ STATE = {
 
 
 @pytest.fixture
+<<<<<<< HEAD
 def dashboard_id(load_world_bank_dashboard_with_slices) -> int:  # noqa: F811
+=======
+def dashboard_id(load_world_bank_dashboard_with_slices) -> int:
+>>>>>>> 2d98af4662 (merge from upstream to master)
     dashboard = db.session.query(Dashboard).filter_by(slug="world_health").one()
     return dashboard.id
 

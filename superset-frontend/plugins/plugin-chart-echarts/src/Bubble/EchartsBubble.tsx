@@ -16,6 +16,29 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:superset-frontend/plugins/plugin-chart-table/test/testHelpers.tsx
+import {
+  EmotionCacheProvider,
+  createEmotionCache,
+  supersetTheme,
+  ThemeProvider,
+} from '@superset-ui/core';
+
+const emotionCache = createEmotionCache({
+  key: 'test',
+});
+
+export function ProviderWrapper(props: any) {
+  const { children, theme = supersetTheme } = props;
+  return (
+    <EmotionCacheProvider value={emotionCache}>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </EmotionCacheProvider>
+========
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { BubbleChartTransformedProps } from './types';
 import Echart from '../components/Echart';
 
@@ -28,5 +51,9 @@ export default function EchartsBubble(props: BubbleChartTransformedProps) {
       echartOptions={echartOptions}
       refs={refs}
     />
+<<<<<<< HEAD
+=======
+>>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/plugins/plugin-chart-echarts/src/Bubble/EchartsBubble.tsx
+>>>>>>> 2d98af4662 (merge from upstream to master)
   );
 }

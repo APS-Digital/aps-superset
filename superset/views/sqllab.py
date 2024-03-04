@@ -16,6 +16,10 @@
 # under the License.
 import contextlib
 
+<<<<<<< HEAD
+=======
+import simplejson as json
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from flask import request
 from flask_appbuilder import permission_name
 from flask_appbuilder.api import expose
@@ -24,7 +28,10 @@ from flask_appbuilder.security.decorators import has_access
 from superset import event_logger
 from superset.constants import MODEL_API_RW_METHOD_PERMISSION_MAP
 from superset.superset_typing import FlaskResponse
+<<<<<<< HEAD
 from superset.utils import json
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 from .base import BaseSupersetView
 

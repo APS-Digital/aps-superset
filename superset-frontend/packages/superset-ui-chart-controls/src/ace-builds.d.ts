@@ -1,4 +1,4 @@
-/**
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -17,4 +17,11 @@
  * under the License.
  */
 
+<<<<<<<< HEAD:superset-frontend/packages/superset-ui-chart-controls/src/ace-builds.d.ts
 declare module 'ace-builds/src-min-noconflict/mode-sql';
+========
+export * from './types';
+
+export { default as getComparisonInfo } from './getComparisonInfo';
+export { default as getComparisonFilters } from './getComparisonFilters';
+>>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/packages/superset-ui-core/src/time-comparison/index.ts

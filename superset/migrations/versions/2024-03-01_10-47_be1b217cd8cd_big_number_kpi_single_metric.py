@@ -27,6 +27,7 @@ revision = "be1b217cd8cd"
 down_revision = "17fcea065655"
 
 
+<<<<<<< HEAD
 from alembic import op  # noqa: E402
 from sqlalchemy import Column, Integer, String, Text  # noqa: E402
 from sqlalchemy.ext.declarative import declarative_base  # noqa: E402
@@ -34,6 +35,16 @@ from sqlalchemy.ext.declarative import declarative_base  # noqa: E402
 from superset import db  # noqa: E402
 from superset.migrations.shared.utils import paginated_update  # noqa: E402
 from superset.utils import json  # noqa: E402
+=======
+import json
+
+from alembic import op
+from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy.ext.declarative import declarative_base
+
+from superset import db
+from superset.migrations.shared.utils import paginated_update
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 Base = declarative_base()
 

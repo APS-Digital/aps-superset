@@ -16,7 +16,11 @@
 # under the License.
 from typing import Callable
 
+<<<<<<< HEAD
 from flask import abort, current_app, request
+=======
+from flask import abort, request
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from flask_appbuilder import expose
 from flask_login import AnonymousUserMixin, login_user
 from flask_wtf.csrf import same_origin
@@ -77,9 +81,12 @@ class EmbeddedView(BaseSupersetView):
         )
 
         bootstrap_data = {
+<<<<<<< HEAD
             "config": {
                 "GUEST_TOKEN_HEADER_NAME": current_app.config["GUEST_TOKEN_HEADER_NAME"]
             },
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
             "common": common_bootstrap_payload(),
             "embedded": {
                 "dashboard_id": embedded.dashboard_id,

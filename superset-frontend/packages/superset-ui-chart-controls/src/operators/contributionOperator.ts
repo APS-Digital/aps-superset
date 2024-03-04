@@ -22,13 +22,20 @@ import { PostProcessingFactory } from './types';
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export const contributionOperator: PostProcessingFactory<
   PostProcessingContribution
+<<<<<<< HEAD
 > = (formData, queryObject, time_shifts) => {
+=======
+> = (formData, queryObject) => {
+>>>>>>> 2d98af4662 (merge from upstream to master)
   if (formData.contributionMode) {
     return {
       operation: 'contribution',
       options: {
         orientation: formData.contributionMode,
+<<<<<<< HEAD
         time_shifts,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
       },
     };
   }

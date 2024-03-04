@@ -22,13 +22,20 @@ from flask_appbuilder.models.sqla import Model
 
 from superset.commands.base import BaseCommand
 from superset.commands.database.ssh_tunnel.exceptions import (
+<<<<<<< HEAD
     SSHTunnelDatabasePortError,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     SSHTunnelInvalidError,
     SSHTunnelNotFoundError,
     SSHTunnelRequiredFieldValidationError,
     SSHTunnelUpdateFailedError,
 )
 from superset.daos.database import SSHTunnelDAO
+<<<<<<< HEAD
+=======
+from superset.daos.exceptions import DAOUpdateFailedError
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.databases.ssh_tunnel.models import SSHTunnel
 from superset.databases.utils import make_url_safe
 from superset.utils.decorators import on_error, transaction

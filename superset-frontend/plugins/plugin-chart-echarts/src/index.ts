@@ -41,7 +41,10 @@ export {
 } from './BigNumber';
 export { default as EchartsSunburstChartPlugin } from './Sunburst';
 export { default as EchartsBubbleChartPlugin } from './Bubble';
+<<<<<<< HEAD
 export { default as EchartsSankeyChartPlugin } from './Sankey';
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 export { default as EchartsWaterfallChartPlugin } from './Waterfall';
 
 export { default as BoxPlotTransformProps } from './BoxPlot/transformProps';
@@ -58,8 +61,11 @@ export { default as HeatmapTransformProps } from './Heatmap/transformProps';
 export { default as SunburstTransformProps } from './Sunburst/transformProps';
 export { default as BubbleTransformProps } from './Bubble/transformProps';
 export { default as WaterfallTransformProps } from './Waterfall/transformProps';
+<<<<<<< HEAD
 export { default as HistogramTransformProps } from './Histogram/transformProps';
 export { default as SankeyTransformProps } from './Sankey/transformProps';
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 export { DEFAULT_FORM_DATA as TimeseriesDefaultFormData } from './Timeseries/constants';
 

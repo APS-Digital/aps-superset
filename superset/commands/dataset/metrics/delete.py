@@ -27,6 +27,10 @@ from superset.commands.dataset.metrics.exceptions import (
 )
 from superset.connectors.sqla.models import SqlMetric
 from superset.daos.dataset import DatasetDAO, DatasetMetricDAO
+<<<<<<< HEAD
+=======
+from superset.daos.exceptions import DAODeleteFailedError
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.exceptions import SupersetSecurityException
 from superset.utils.decorators import on_error, transaction
 
@@ -43,7 +47,16 @@ class DeleteDatasetMetricCommand(BaseCommand):
     def run(self) -> None:
         self.validate()
         assert self._model
+<<<<<<< HEAD
         DatasetMetricDAO.delete([self._model])
+=======
+
+        try:
+            DatasetMetricDAO.delete([self._model])
+        except DAODeleteFailedError as ex:
+            logger.exception(ex.exception)
+            raise DatasetMetricDeleteFailedError() from ex
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     def validate(self) -> None:
         # Validate/populate model exists

@@ -17,6 +17,7 @@
  * under the License.
  */
 
+<<<<<<<< HEAD:superset-frontend/src/explore/controlUtils/getColumnKeywords.test.tsx
 import { getColumnKeywords } from './getColumnKeywords';
 
 test('returns HTML for a column tooltip', () => {
@@ -36,3 +37,27 @@ test('returns HTML for a column tooltip', () => {
     meta: 'column',
   });
 });
+========
+import React, { createContext, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
+
+export type LocationState = {
+  requestedQuery?: Record<string, any>;
+};
+
+export const locationContext = createContext<LocationState>({});
+const { Provider } = locationContext;
+
+const EMPTY_STATE: LocationState = {};
+
+export const LocationProvider: React.FC = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const location = useLocation<LocationState>();
+  return <Provider value={location.state || EMPTY_STATE}>{children}</Provider>;
+};
+
+export const useLocationState = () => useContext(locationContext);
+>>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/src/pages/SqlLab/LocationContext.tsx

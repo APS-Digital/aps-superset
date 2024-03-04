@@ -164,8 +164,13 @@ export async function embedDashboard({
         // return our port from the promise
         resolve(new Switchboard({ port: ourPort, name: 'superset-embedded-sdk', debug }));
       });
+<<<<<<< HEAD
       iframe.src = `${supersetDomain}/embedded/${id}${urlParamsString}`;
       iframe.title = iframeTitle;
+=======
+
+      iframe.src = `${supersetDomain}/embedded/${id}${urlParamsString}`;
+>>>>>>> 2d98af4662 (merge from upstream to master)
       //@ts-ignore
       mountPoint.replaceChildren(iframe);
       log('placed the iframe')

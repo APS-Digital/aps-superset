@@ -26,8 +26,13 @@ Create Date: 2023-08-22 11:09:48.577457
 revision = "ec54aca4c8a2"
 down_revision = "9f4a086c2676"
 
+<<<<<<< HEAD
 import sqlalchemy as sa  # noqa: E402
 from alembic import op  # noqa: E402
+=======
+import sqlalchemy as sa
+from alembic import op
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def upgrade():

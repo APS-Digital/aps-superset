@@ -39,7 +39,15 @@ class CreateRLSRuleCommand(BaseCommand):
     @transaction()
     def run(self) -> Any:
         self.validate()
+<<<<<<< HEAD
         return RLSDAO.create(attributes=self._properties)
+=======
+        try:
+            return RLSDAO.create(attributes=self._properties)
+        except DAOCreateFailedError as ex:
+            logger.exception(ex.exception)
+            raise ex
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     def validate(self) -> None:
         roles = populate_roles(self._roles)

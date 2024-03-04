@@ -82,8 +82,11 @@ const controlMap = {
   ConditionalFormattingControl,
   XAxisSortControl,
   ContourControl,
+<<<<<<< HEAD
   ComparisonRangeLabel,
   TimeOffsetControl,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   ...sharedControlComponents,
 };
 export default controlMap;

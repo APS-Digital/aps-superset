@@ -33,7 +33,11 @@ from superset.commands.chart.exceptions import (
     DashboardsNotFoundValidationError,
     DatasourceTypeUpdateRequiredValidationError,
 )
+<<<<<<< HEAD
 from superset.commands.utils import get_datasource_by_id, update_tags, validate_tags
+=======
+from superset.commands.utils import get_datasource_by_id
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.daos.chart import ChartDAO
 from superset.daos.dashboard import DashboardDAO
 from superset.exceptions import SupersetSecurityException

@@ -16,8 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import fetchMock from 'fetch-mock';
 import { render, screen, waitFor, within } from 'spec/helpers/testing-library';
+=======
+import React from 'react';
+import fetchMock from 'fetch-mock';
+import { render, screen, waitFor } from 'spec/helpers/testing-library';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import userEvent from '@testing-library/user-event';
 import SqlEditorLeftBar, {
   SqlEditorLeftBarProps,
@@ -43,6 +49,7 @@ const mockedProps = {
 
 beforeEach(() => {
   fetchMock.get('glob:*/api/v1/database/?*', { result: [] });
+<<<<<<< HEAD
   fetchMock.get('glob:*/api/v1/database/*/catalogs/?*', {
     count: 0,
     result: [],
@@ -55,6 +62,9 @@ beforeEach(() => {
     result: ['main', 'db1_schema', 'db1_schema2'],
   });
   fetchMock.get('glob:*/api/v1/database/2/schemas/?*', {
+=======
+  fetchMock.get('glob:*/api/v1/database/*/schemas/?*', {
+>>>>>>> 2d98af4662 (merge from upstream to master)
     count: 2,
     result: ['main', 'new_schema'],
   });
@@ -71,13 +81,21 @@ beforeEach(() => {
       },
     ],
   });
+<<<<<<< HEAD
   fetchMock.get('glob:*/api/v1/database/*/table_metadata/*', {
+=======
+  fetchMock.get('glob:*/api/v1/database/*/table/*/*', {
+>>>>>>> 2d98af4662 (merge from upstream to master)
     status: 200,
     body: {
       columns: table.columns,
     },
   });
+<<<<<<< HEAD
   fetchMock.get('glob:*/api/v1/database/*/table_metadata/extra/*', {
+=======
+  fetchMock.get('glob:*/api/v1/database/*/table_extra/*/*', {
+>>>>>>> 2d98af4662 (merge from upstream to master)
     status: 200,
     body: {},
   });
@@ -113,7 +131,11 @@ test('renders a TableElement', async () => {
 });
 
 test('table should be visible when expanded is true', async () => {
+<<<<<<< HEAD
   const { container, getByText, getByRole, getAllByLabelText } =
+=======
+  const { container, getByText, getByRole, queryAllByText } =
+>>>>>>> 2d98af4662 (merge from upstream to master)
     await renderAndWait(mockedProps, undefined, {
       ...initialState,
       sqlLab: { ...initialState.sqlLab, tables: [table] },
@@ -125,14 +147,20 @@ test('table should be visible when expanded is true', async () => {
   const schemaSelect = getByRole('combobox', {
     name: 'Select schema or type to search schemas',
   });
+<<<<<<< HEAD
   const tableSelect = getAllByLabelText(
     /Select table or type to search tables/i,
   )[0];
   const tableOption = within(tableSelect).getByText(/ab_user/i);
+=======
+  const dropdown = getByText(/Table/i);
+  const abUser = queryAllByText(/ab_user/i);
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
   expect(getByText(/Database/i)).toBeInTheDocument();
   expect(dbSelect).toBeInTheDocument();
   expect(schemaSelect).toBeInTheDocument();
+<<<<<<< HEAD
   expect(tableSelect).toBeInTheDocument();
   expect(tableOption).toBeInTheDocument();
   expect(
@@ -177,6 +205,10 @@ test('catalog selector should be visible when enabled in the database', async ()
   expect(schemaSelect).toBeInTheDocument();
   expect(dropdown).toBeInTheDocument();
   expect(abUser).toBeInTheDocument();
+=======
+  expect(dropdown).toBeInTheDocument();
+  expect(abUser).toHaveLength(2);
+>>>>>>> 2d98af4662 (merge from upstream to master)
   expect(
     container.querySelector('.ant-collapse-content-active'),
   ).toBeInTheDocument();
@@ -205,7 +237,11 @@ test('should toggle the table when the header is clicked', async () => {
   );
 });
 
+<<<<<<< HEAD
 test('When changing database the schema and table list must be updated', async () => {
+=======
+test('When changing database the table list must be updated', async () => {
+>>>>>>> 2d98af4662 (merge from upstream to master)
   const { rerender } = await renderAndWait(mockedProps, undefined, {
     ...initialState,
     sqlLab: {
@@ -252,6 +288,7 @@ test('When changing database the schema and table list must be updated', async (
   expect(updatedDbSelector[0]).toBeInTheDocument();
   const updatedTableSelector = await screen.findAllByText(/new_table/i);
   expect(updatedTableSelector[0]).toBeInTheDocument();
+<<<<<<< HEAD
 
   const select = screen.getByRole('combobox', {
     name: 'Select schema or type to search schemas',
@@ -278,6 +315,8 @@ test('When changing database the schema and table list must be updated', async (
   expect(
     await screen.findByText('No compatible schema found'),
   ).toBeInTheDocument();
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 });
 
 test('ignore schema api when current schema is deprecated', async () => {

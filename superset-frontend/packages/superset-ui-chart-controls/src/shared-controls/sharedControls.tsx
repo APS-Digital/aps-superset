@@ -201,7 +201,27 @@ const time_grain_sqla: SharedControlConfig<'SelectControl'> = {
   mapStateToProps: ({ datasource }) => ({
     choices: (datasource as Dataset)?.time_grain_sqla || [],
   }),
+<<<<<<< HEAD
   visibility: displayTimeRelatedControls,
+=======
+  visibility: ({ controls }) => {
+    if (!controls?.x_axis) {
+      return true;
+    }
+
+    const xAxis = controls?.x_axis;
+    const xAxisValue = xAxis?.value;
+    if (isAdhocColumn(xAxisValue)) {
+      return true;
+    }
+    if (isPhysicalColumn(xAxisValue)) {
+      return !!(xAxis?.options ?? []).find(
+        (col: ColumnMeta) => col?.column_name === xAxisValue,
+      )?.is_dttm;
+    }
+    return false;
+  },
+>>>>>>> 2d98af4662 (merge from upstream to master)
 };
 
 const time_range: SharedControlConfig<'DateFilterControl'> = {

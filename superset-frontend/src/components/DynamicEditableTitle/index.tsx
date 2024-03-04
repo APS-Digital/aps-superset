@@ -111,6 +111,7 @@ export const DynamicEditableTitle = memo(
       }
     }, [isEditing]);
 
+<<<<<<< HEAD
     // a trick to make the input grow when user types text
     // we make additional span component, place it somewhere out of view and copy input
     // then we can measure the width of that span to resize the input element
@@ -119,6 +120,16 @@ export const DynamicEditableTitle = memo(
         sizerRef.current.textContent = currentTitle || placeholder;
       }
     }, [currentTitle, placeholder, sizerRef]);
+=======
+  // a trick to make the input grow when user types text
+  // we make additional span component, place it somewhere out of view and copy input
+  // then we can measure the width of that span to resize the input element
+  useLayoutEffect(() => {
+    if (sizerRef?.current) {
+      sizerRef.current.textContent = currentTitle || placeholder;
+    }
+  }, [currentTitle, placeholder, sizerRef]);
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     useEffect(() => {
       if (

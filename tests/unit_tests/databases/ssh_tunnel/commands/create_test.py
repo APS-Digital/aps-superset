@@ -18,10 +18,14 @@
 
 import pytest
 
+<<<<<<< HEAD
 from superset.commands.database.ssh_tunnel.exceptions import (
     SSHTunnelDatabasePortError,
     SSHTunnelInvalidError,
 )
+=======
+from superset.commands.database.ssh_tunnel.exceptions import SSHTunnelInvalidError
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def test_create_ssh_tunnel_command() -> None:
@@ -29,6 +33,7 @@ def test_create_ssh_tunnel_command() -> None:
     from superset.databases.ssh_tunnel.models import SSHTunnel
     from superset.models.core import Database
 
+<<<<<<< HEAD
     database = Database(
         id=1,
         database_name="my_database",
@@ -37,6 +42,12 @@ def test_create_ssh_tunnel_command() -> None:
 
     properties = {
         "database": database,
+=======
+    database = Database(id=1, database_name="my_database", sqlalchemy_uri="sqlite://")
+
+    properties = {
+        "database_id": database.id,
+>>>>>>> 2d98af4662 (merge from upstream to master)
         "server_address": "123.132.123.1",
         "server_port": "3005",
         "username": "foo",
@@ -51,6 +62,7 @@ def test_create_ssh_tunnel_command() -> None:
 
 def test_create_ssh_tunnel_command_invalid_params() -> None:
     from superset.commands.database.ssh_tunnel.create import CreateSSHTunnelCommand
+<<<<<<< HEAD
     from superset.models.core import Database
 
     database = Database(
@@ -58,6 +70,12 @@ def test_create_ssh_tunnel_command_invalid_params() -> None:
         database_name="my_database",
         sqlalchemy_uri="postgresql://u:p@localhost:5432/db",
     )
+=======
+    from superset.databases.ssh_tunnel.models import SSHTunnel
+    from superset.models.core import Database
+
+    database = Database(id=1, database_name="my_database", sqlalchemy_uri="sqlite://")
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     # If we are trying to create a tunnel with a private_key_password
     # then a private_key is mandatory

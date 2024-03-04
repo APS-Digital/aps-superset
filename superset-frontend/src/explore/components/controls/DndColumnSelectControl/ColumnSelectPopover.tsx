@@ -105,7 +105,10 @@ const ColumnSelectPopover = ({
   onClose,
   setDatasetModal,
   setLabel,
+<<<<<<< HEAD
   disabledTabs = new Set<'saved' | 'simple' | 'sqlExpression'>(),
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 }: ColumnSelectPopoverProps) => {
   const datasourceType = useSelector<ExplorePageState, string | undefined>(
     state => state.explore.datasource.type,

@@ -17,6 +17,10 @@
  * under the License.
  */
 import { HeatmapLayer, Position, Color } from 'deck.gl/typed';
+<<<<<<< HEAD
+=======
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { t, getSequentialSchemeRegistry, JsonObject } from '@superset-ui/core';
 import { commonLayerProps } from '../common';
 import sandboxedEval from '../../utils/sandbox';
@@ -65,7 +69,11 @@ export const getLayer: getLayerType<unknown> = (
     ?.reverse() as Color[];
 
   return new HeatmapLayer({
+<<<<<<< HEAD
     id: `heatmap-layer-${fd.slice_id}` as const,
+=======
+    id: `heatmp-layer-${fd.slice_id}` as const,
+>>>>>>> 2d98af4662 (merge from upstream to master)
     data,
     intensity,
     radiusPixels,

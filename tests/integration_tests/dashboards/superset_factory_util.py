@@ -313,9 +313,15 @@ def delete_all_inserted_dbs():
         for database in databases_to_delete:
             try:
                 delete_database(database, False)
+<<<<<<< HEAD
             except Exception:
                 logger.error(f"failed to delete {database.id}", exc_info=True)
                 raise
+=======
+            except Exception as ex:
+                logger.error(f"failed to delete {database.id}", exc_info=True)
+                raise ex
+>>>>>>> 2d98af4662 (merge from upstream to master)
         if len(inserted_databases_ids) > 0:
             db.session.commit()
             inserted_databases_ids.clear()

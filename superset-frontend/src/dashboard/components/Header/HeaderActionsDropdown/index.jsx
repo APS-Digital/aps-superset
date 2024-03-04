@@ -19,8 +19,12 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
+<<<<<<< HEAD
 import { connect } from 'react-redux';
 import { t } from '@superset-ui/core';
+=======
+import { SupersetClient, t } from '@superset-ui/core';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { Menu } from 'src/components/Menu';
 import { URL_PARAMS } from 'src/constants';
 import ShareMenuItems from 'src/dashboard/components/menu/ShareMenuItems';
@@ -35,7 +39,10 @@ import FilterScopeModal from 'src/dashboard/components/filterscope/FilterScopeMo
 import getDashboardUrl from 'src/dashboard/util/getDashboardUrl';
 import { getActiveFilters } from 'src/dashboard/util/activeDashboardFilters';
 import { getUrlParam } from 'src/utils/urlUtils';
+<<<<<<< HEAD
 import { MenuKeys } from 'src/dashboard/types';
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 const propTypes = {
   addSuccessToast: PropTypes.func.isRequired,
@@ -79,11 +86,29 @@ const defaultProps = {
   refreshWarning: null,
 };
 
+<<<<<<< HEAD
 const mapStateToProps = state => ({
   directPathToChild: state.dashboardState.directPathToChild,
 });
 
 export class HeaderActionsDropdown extends PureComponent {
+=======
+const MENU_KEYS = {
+  SAVE_MODAL: 'save-modal',
+  SHARE_DASHBOARD: 'share-dashboard',
+  REFRESH_DASHBOARD: 'refresh-dashboard',
+  AUTOREFRESH_MODAL: 'autorefresh-modal',
+  SET_FILTER_MAPPING: 'set-filter-mapping',
+  EDIT_PROPERTIES: 'edit-properties',
+  EDIT_CSS: 'edit-css',
+  DOWNLOAD_DASHBOARD: 'download-dashboard',
+  TOGGLE_FULLSCREEN: 'toggle-fullscreen',
+  MANAGE_EMBEDDED: 'manage-embedded',
+  MANAGE_EMAIL_REPORT: 'manage-email-report',
+};
+
+class HeaderActionsDropdown extends React.PureComponent {
+>>>>>>> 2d98af4662 (merge from upstream to master)
   static discardChanges() {
     window.location.reload();
   }
@@ -134,7 +159,11 @@ export class HeaderActionsDropdown extends PureComponent {
       case MenuKeys.EditProperties:
         this.props.showPropertiesModal();
         break;
+<<<<<<< HEAD
       case MenuKeys.ToggleFullscreen: {
+=======
+      case MENU_KEYS.TOGGLE_FULLSCREEN: {
+>>>>>>> 2d98af4662 (merge from upstream to master)
         const url = getDashboardUrl({
           pathname: window.location.pathname,
           filters: getActiveFilters(),
@@ -267,7 +296,11 @@ export class HeaderActionsDropdown extends PureComponent {
           </Menu.Item>
         )}
         <Menu.SubMenu
+<<<<<<< HEAD
           key={MenuKeys.Download}
+=======
+          key={MENU_KEYS.DOWNLOAD_DASHBOARD}
+>>>>>>> 2d98af4662 (merge from upstream to master)
           disabled={isLoading}
           title={t('Download')}
           logEvent={this.props.logEvent}
@@ -276,7 +309,11 @@ export class HeaderActionsDropdown extends PureComponent {
             pdfMenuItemTitle={t('Export to PDF')}
             imageMenuItemTitle={t('Download as Image')}
             dashboardTitle={dashboardTitle}
+<<<<<<< HEAD
             dashboardId={dashboardId}
+=======
+            addDangerToast={addDangerToast}
+>>>>>>> 2d98af4662 (merge from upstream to master)
           />
         </Menu.SubMenu>
         {userCanShare && (
@@ -336,7 +373,11 @@ export class HeaderActionsDropdown extends PureComponent {
           )
         ) : null}
         {editMode && !isEmpty(dashboardInfo?.metadata?.filter_scopes) && (
+<<<<<<< HEAD
           <Menu.Item key={MenuKeys.SetFilterMapping}>
+=======
+          <Menu.Item key={MENU_KEYS.SET_FILTER_MAPPING}>
+>>>>>>> 2d98af4662 (merge from upstream to master)
             <FilterScopeModal
               className="m-r-5"
               triggerNode={t('Set filter mapping')}

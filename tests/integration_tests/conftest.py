@@ -292,6 +292,7 @@ def virtual_dataset():
     dataset = SqlaTable(
         table_name="virtual_dataset",
         sql=(
+<<<<<<< HEAD
             dedent("""\
             SELECT 0 as col1, 'a' as col2, 1.0 as col3, NULL as col4, '2000-01-01 00:00:00' as col5, 1 as col6
             UNION ALL
@@ -313,6 +314,27 @@ def virtual_dataset():
             UNION ALL
             SELECT 9 as col1, 'j' as col2, 1.9, NULL, '2000-01-10 00:00:00', 10
         """)
+=======
+            "SELECT 0 as col1, 'a' as col2, 1.0 as col3, NULL as col4, '2000-01-01 00:00:00' as col5, 1 as col6 "
+            "UNION ALL "
+            "SELECT 1, 'b', 1.1, NULL, '2000-01-02 00:00:00', NULL "
+            "UNION ALL "
+            "SELECT 2 as col1, 'c' as col2, 1.2, NULL, '2000-01-03 00:00:00', 3 "
+            "UNION ALL "
+            "SELECT 3 as col1, 'd' as col2, 1.3, NULL, '2000-01-04 00:00:00', 4 "
+            "UNION ALL "
+            "SELECT 4 as col1, 'e' as col2, 1.4, NULL, '2000-01-05 00:00:00', 5 "
+            "UNION ALL "
+            "SELECT 5 as col1, 'f' as col2, 1.5, NULL, '2000-01-06 00:00:00', 6 "
+            "UNION ALL "
+            "SELECT 6 as col1, 'g' as col2, 1.6, NULL, '2000-01-07 00:00:00', 7 "
+            "UNION ALL "
+            "SELECT 7 as col1, 'h' as col2, 1.7, NULL, '2000-01-08 00:00:00', 8 "
+            "UNION ALL "
+            "SELECT 8 as col1, 'i' as col2, 1.8, NULL, '2000-01-09 00:00:00', 9 "
+            "UNION ALL "
+            "SELECT 9 as col1, 'j' as col2, 1.9, NULL, '2000-01-10 00:00:00', 10"
+>>>>>>> 2d98af4662 (merge from upstream to master)
         ),
         database=get_example_database(),
     )
@@ -327,6 +349,7 @@ def virtual_dataset():
     SqlMetric(metric_name="count", expression="count(*)", table=dataset)
     db.session.add(dataset)
     db.session.commit()
+<<<<<<< HEAD
 
     yield dataset
 
@@ -367,6 +390,8 @@ def virtual_dataset_with_comments():
     SqlMetric(metric_name="count", expression="count(*)", table=dataset)
     db.session.add(dataset)
     db.session.commit()
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     yield dataset
 

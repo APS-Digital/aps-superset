@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+<<<<<<< HEAD
 
 # -----------------------------------------------------------------------
 # We don't support docker compose for production environments.
@@ -21,6 +22,9 @@
 # create you own docker environment file (docker/.env) with your own
 # unique random secure passwords and SECRET_KEY.
 # -----------------------------------------------------------------------
+=======
+x-superset-image: &superset-image apachesuperset.docker.scarf.sh/apache/superset:${TAG:-latest}
+>>>>>>> 2d98af4662 (merge from upstream to master)
 x-superset-depends-on: &superset-depends-on
   - db
   - redis

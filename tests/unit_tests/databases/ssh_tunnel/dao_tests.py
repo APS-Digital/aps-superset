@@ -31,6 +31,10 @@ def test_create_ssh_tunnel():
             "username": "foo",
             "password": "bar",
         },
+<<<<<<< HEAD
+=======
+        commit=False,
+>>>>>>> 2d98af4662 (merge from upstream to master)
     )
 
     assert result is not None

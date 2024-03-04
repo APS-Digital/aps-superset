@@ -17,6 +17,13 @@
  * under the License.
  */
 
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:superset-frontend/packages/superset-ui-chart-controls/src/components/Dropdown.tsx
+export { Dropdown } from 'antd';
+export type { DropDownProps } from 'antd/lib/dropdown';
+========
+>>>>>>> 2d98af4662 (merge from upstream to master)
 /**
  * Supported comparison time ranges
  */
@@ -28,6 +35,7 @@ export enum ComparisonTimeRangeType {
   Week = 'w',
   Year = 'y',
 }
+<<<<<<< HEAD
 
 export type DateTimeGrainType =
   | 'second'
@@ -70,3 +78,6 @@ export type CustomRangeDecodeType = {
   customRange: CustomRangeType;
   matchedFlag: boolean;
 };
+=======
+>>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/packages/superset-ui-core/src/time-comparison/types.ts
+>>>>>>> 2d98af4662 (merge from upstream to master)

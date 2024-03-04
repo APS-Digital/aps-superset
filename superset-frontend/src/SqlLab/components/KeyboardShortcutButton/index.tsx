@@ -16,7 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { FC } from 'react';
+=======
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { styled, t, css } from '@superset-ui/core';
 import ModalTrigger from 'src/components/ModalTrigger';
 import { detectOS } from 'src/utils/common';
@@ -38,8 +42,11 @@ export enum KeyboardShortcut {
   CtrlF = 'ctrl+f',
   CtrlH = 'ctrl+h',
   CtrlShiftF = 'ctrl+shift+f',
+<<<<<<< HEAD
   CtrlLeft = 'ctrl+[',
   CtrlRight = 'ctrl+]',
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 }
 
 export const KEY_MAP = {
@@ -53,8 +60,11 @@ export const KEY_MAP = {
   [KeyboardShortcut.CtrlT]: userOS !== 'Windows' ? t('New tab') : undefined,
   [KeyboardShortcut.CtrlP]: t('Previous Line'),
   [KeyboardShortcut.CtrlShiftF]: t('Format SQL'),
+<<<<<<< HEAD
   [KeyboardShortcut.CtrlLeft]: t('Switch to the previous tab'),
   [KeyboardShortcut.CtrlRight]: t('Switch to the next tab'),
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   // default ace editor shortcuts
   [KeyboardShortcut.CmdF]: userOS === 'MacOS' ? t('Find') : undefined,
   [KeyboardShortcut.CtrlF]: userOS !== 'MacOS' ? t('Find') : undefined,
@@ -92,7 +102,11 @@ const ShortcutCode = styled.code`
   padding: ${({ theme }) => `${theme.gridUnit}px ${theme.gridUnit * 2}px`};
 `;
 
+<<<<<<< HEAD
 const KeyboardShortcutButton: FC<{}> = ({ children }) => (
+=======
+const KeyboardShortcutButton: React.FC<{}> = ({ children }) => (
+>>>>>>> 2d98af4662 (merge from upstream to master)
   <ModalTrigger
     modalTitle={t('Keyboard shortcuts')}
     modalBody={

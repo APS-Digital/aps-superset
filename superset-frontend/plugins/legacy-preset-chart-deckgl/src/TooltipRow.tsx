@@ -16,6 +16,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:superset-frontend/src/components/Tags/Tag.stories.tsx
+import TagType from 'src/types/TagType';
+import { Tag } from '.';
+
+export default {
+  title: 'Tags',
+  component: Tag,
+};
+export const InteractiveTag = (args: TagType) => <Tag {...args} />;
+
+InteractiveTag.args = {
+  editable: false,
+  name: 'Tag',
+};
+========
+import React from 'react';
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
 type TooltipRowProps = {
   label: string;
   value: string;
@@ -29,3 +49,7 @@ const TooltipRow = ({ label, value }: TooltipRowProps) => (
 );
 
 export default TooltipRow;
+<<<<<<< HEAD
+=======
+>>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/plugins/legacy-preset-chart-deckgl/src/TooltipRow.tsx
+>>>>>>> 2d98af4662 (merge from upstream to master)

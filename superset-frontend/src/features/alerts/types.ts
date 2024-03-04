@@ -186,8 +186,11 @@ export enum Sections {
   Schedule = 'scheduleSection',
   Notification = 'notificationSection',
 }
+<<<<<<< HEAD
 
 export enum ContentType {
   Dashboard = 'dashboard',
   Chart = 'chart',
 }
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)

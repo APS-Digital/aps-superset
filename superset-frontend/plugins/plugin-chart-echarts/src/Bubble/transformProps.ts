@@ -16,8 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import type { EChartsCoreOption } from 'echarts/core';
 import type { ScatterSeriesOption } from 'echarts/charts';
+=======
+import { EChartsCoreOption, ScatterSeriesOption } from 'echarts';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { extent } from 'd3-array';
 import {
   CategoricalColorNamespace,
@@ -25,7 +29,10 @@ import {
   AxisType,
   getMetricLabel,
   NumberFormatter,
+<<<<<<< HEAD
   tooltipHtml,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 } from '@superset-ui/core';
 import { EchartsBubbleChartProps, EchartsBubbleFormData } from './types';
 import { DEFAULT_FORM_DATA, MINIMUM_BUBBLE_SIZE } from './constants';
@@ -42,12 +49,20 @@ function normalizeSymbolSize(
   nodes: ScatterSeriesOption[],
   maxBubbleValue: number,
 ) {
+<<<<<<< HEAD
   const [bubbleMinValue, bubbleMaxValue] = extent(nodes, x => x.data?.[0]?.[2]);
+=======
+  const [bubbleMinValue, bubbleMaxValue] = extent(nodes, x => x.data![0][2]);
+>>>>>>> 2d98af4662 (merge from upstream to master)
   const nodeSpread = bubbleMaxValue - bubbleMinValue;
   nodes.forEach(node => {
     // eslint-disable-next-line no-param-reassign
     node.symbolSize =
+<<<<<<< HEAD
       (((node.data?.[0]?.[2] - bubbleMinValue) / nodeSpread) *
+=======
+      (((node.data![0][2] - bubbleMinValue) / nodeSpread) *
+>>>>>>> 2d98af4662 (merge from upstream to master)
         (maxBubbleValue * 2) || 0) + MINIMUM_BUBBLE_SIZE;
   });
 }
@@ -62,6 +77,7 @@ export function formatTooltip(
   tooltipSizeFormatter: NumberFormatter,
 ) {
   const title = params.data[4]
+<<<<<<< HEAD
     ? `${params.data[4]} (${params.data[3]})`
     : params.data[3];
 
@@ -73,6 +89,15 @@ export function formatTooltip(
     ],
     title,
   );
+=======
+    ? `${params.data[3]} </br> ${params.data[4]}`
+    : params.data[3];
+
+  return `<p>${title}</p>
+        ${xAxisLabel}: ${xAxisFormatter(params.data[0])} <br/>
+        ${yAxisLabel}: ${yAxisFormatter(params.data[1])} <br/>
+        ${sizeLabel}: ${tooltipSizeFormatter(params.data[2])}`;
+>>>>>>> 2d98af4662 (merge from upstream to master)
 }
 
 export default function transformProps(chartProps: EchartsBubbleChartProps) {

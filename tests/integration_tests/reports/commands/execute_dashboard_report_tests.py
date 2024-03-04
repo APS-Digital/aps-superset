@@ -36,8 +36,13 @@ from tests.integration_tests.reports.utils import create_dashboard_report
 @patch(
     "superset.commands.report.execute.DashboardScreenshot",
 )
+<<<<<<< HEAD
 @patch.dict(
     "superset.extensions.feature_flag_manager._feature_flags", ALERT_REPORT_TABS=True
+=======
+@patch(
+    "superset.commands.dashboard.permalink.create.CreateDashboardPermalinkCommand.run"
+>>>>>>> 2d98af4662 (merge from upstream to master)
 )
 @pytest.mark.usefixtures("login_as_admin")
 def test_report_for_dashboard_with_tabs(
@@ -76,8 +81,13 @@ def test_report_for_dashboard_with_tabs(
 @patch(
     "superset.commands.report.execute.DashboardScreenshot",
 )
+<<<<<<< HEAD
 @patch.dict(
     "superset.extensions.feature_flag_manager._feature_flags", ALERT_REPORT_TABS=True
+=======
+@patch(
+    "superset.commands.dashboard.permalink.create.CreateDashboardPermalinkCommand.run"
+>>>>>>> 2d98af4662 (merge from upstream to master)
 )
 @pytest.mark.usefixtures("login_as_admin")
 def test_report_with_header_data(

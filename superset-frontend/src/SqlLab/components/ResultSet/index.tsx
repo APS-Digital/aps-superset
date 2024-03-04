@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import {
   useCallback,
   useEffect,
@@ -25,6 +26,9 @@ import {
   MouseEvent,
 } from 'react';
 
+=======
+import React, { useCallback, useEffect, useState } from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { pick } from 'lodash';
@@ -42,7 +46,10 @@ import {
   css,
   getNumberFormatter,
   getExtensionsRegistry,
+<<<<<<< HEAD
   ErrorTypeEnum,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 } from '@superset-ui/core';
 import ErrorMessageWithStackTrace from 'src/components/ErrorMessage/ErrorMessageWithStackTrace';
 import {
@@ -72,6 +79,7 @@ import {
   reRunQuery,
 } from 'src/SqlLab/actions/sqlLab';
 import { URL_PARAMS } from 'src/constants';
+<<<<<<< HEAD
 import useLogAction from 'src/logger/useLogAction';
 import {
   LOG_ACTIONS_SQLLAB_COPY_RESULT_TO_CLIPBOARD,
@@ -80,6 +88,9 @@ import {
 } from 'src/logger/LogUtils';
 import Icons from 'src/components/Icons';
 import { findPermission } from 'src/utils/findPermission';
+=======
+import Icons from 'src/components/Icons';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import ExploreCtasResultsButton from '../ExploreCtasResultsButton';
 import ExploreResultsButton from '../ExploreResultsButton';
 import HighlightedSql from '../HighlightedSql';
@@ -179,7 +190,10 @@ const ResultSet = ({
         'dbId',
         'tab',
         'sql',
+<<<<<<< HEAD
         'sqlEditorId',
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         'templateParams',
         'schema',
         'rows',
@@ -226,8 +240,13 @@ const ResultSet = ({
     reRunQueryIfSessionTimeoutErrorOnMount();
   }, [reRunQueryIfSessionTimeoutErrorOnMount]);
 
+<<<<<<< HEAD
   const fetchResults = (q: typeof query, timeout?: number) => {
     dispatch(fetchQueryResults(q, displayLimit, timeout));
+=======
+  const fetchResults = (q: typeof query) => {
+    dispatch(fetchQueryResults(q, displayLimit));
+>>>>>>> 2d98af4662 (merge from upstream to master)
   };
 
   const prevQuery = usePrevious(query);
@@ -264,11 +283,19 @@ const ResultSet = ({
     setSearchText(event.target.value);
   };
 
+<<<<<<< HEAD
   const createExploreResultsOnClick = async (clickEvent: MouseEvent) => {
     const { results } = query;
 
     const openInNewWindow = clickEvent.metaKey;
     logAction(LOG_ACTIONS_SQLLAB_CREATE_CHART, {});
+=======
+  const createExploreResultsOnClick = async (clickEvent: React.MouseEvent) => {
+    const { results } = query;
+
+    const openInNewWindow = clickEvent.metaKey;
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
     if (results?.query_id) {
       const key = await postFormData(results.query_id, 'query', {
         ...EXPLORE_CHART_DEFAULT,
@@ -743,4 +770,8 @@ const ResultSet = ({
   );
 };
 
+<<<<<<< HEAD
 export default memo(ResultSet);
+=======
+export default React.memo(ResultSet);
+>>>>>>> 2d98af4662 (merge from upstream to master)

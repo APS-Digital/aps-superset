@@ -115,8 +115,13 @@ describe('QueryLimitSelect', () => {
     const expectedLabels = [10, 100, 1000, 10000, 50000].map(i =>
       convertToNumWithSpaces(i),
     );
+<<<<<<< HEAD
     const actualLabels = getAllByRole('menuitem').map(elem =>
       elem.textContent?.trim(),
+=======
+    const actualLabels = getAllByRole('menuitem').map(
+      elem => elem.textContent?.trim(),
+>>>>>>> 2d98af4662 (merge from upstream to master)
     );
 
     expect(actualLabels).toEqual(expectedLabels);
@@ -135,8 +140,13 @@ describe('QueryLimitSelect', () => {
     await waitFor(() => expect(getByRole('menu')).toBeInTheDocument());
 
     const expectedLabels = [5].map(i => convertToNumWithSpaces(i));
+<<<<<<< HEAD
     const actualLabels = getAllByRole('menuitem').map(elem =>
       elem.textContent?.trim(),
+=======
+    const actualLabels = getAllByRole('menuitem').map(
+      elem => elem.textContent?.trim(),
+>>>>>>> 2d98af4662 (merge from upstream to master)
     );
 
     expect(actualLabels).toEqual(expectedLabels);
@@ -157,8 +167,13 @@ describe('QueryLimitSelect', () => {
     const expectedLabels = [10, 100, 1000, 10000].map(i =>
       convertToNumWithSpaces(i),
     );
+<<<<<<< HEAD
     const actualLabels = getAllByRole('menuitem').map(elem =>
       elem.textContent?.trim(),
+=======
+    const actualLabels = getAllByRole('menuitem').map(
+      elem => elem.textContent?.trim(),
+>>>>>>> 2d98af4662 (merge from upstream to master)
     );
 
     expect(actualLabels).toEqual(expectedLabels);

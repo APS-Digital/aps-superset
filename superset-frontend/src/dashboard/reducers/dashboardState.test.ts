@@ -35,6 +35,10 @@ describe('DashboardState reducer', () => {
       ),
     ).toEqual({ activeTabs: ['tab2'] });
   });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
   it('SET_ACTIVE_TABS', () => {
     expect(
       dashboardStateReducer({ activeTabs: [] }, setActiveTabs(['tab1'])),

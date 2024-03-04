@@ -108,6 +108,12 @@ describe('CategoricalColorScale', () => {
       expect(c3).not.toBe(c1);
     });
     it('recycles colors when number of items exceed available colors', () => {
+<<<<<<< HEAD
+=======
+      window.featureFlags = {
+        [FeatureFlag.UseAnalagousColors]: false,
+      };
+>>>>>>> 2d98af4662 (merge from upstream to master)
       const colorSet: { [key: string]: number } = {};
       const scale = new CategoricalColorScale(['blue', 'red', 'green']);
       const colors = [
@@ -148,6 +154,7 @@ describe('CategoricalColorScale', () => {
       const sliceId = 123;
       const colorScheme = 'preset';
 
+<<<<<<< HEAD
       expect(scale.chartLabelsColorMap.has(value)).toBe(false);
 
       scale.getColor(value, sliceId, colorScheme);
@@ -189,6 +196,25 @@ describe('CategoricalColorScale', () => {
 
       expect(getNextAvailableColorSpy).not.toHaveBeenCalled();
     });
+=======
+    it('should remove shared color from range if avoid colors collision enabled', () => {
+      window.featureFlags = {
+        [FeatureFlag.AvoidColorsCollision]: true,
+      };
+      const scale = new CategoricalColorScale(['blue', 'red', 'green']);
+      const color1 = scale.getColor('a', 1);
+      expect(scale.range()).toHaveLength(3);
+      const color2 = scale.getColor('a', 2);
+      expect(color1).toBe(color2);
+      scale.getColor('b', 2);
+      expect(scale.range()).toHaveLength(2);
+      scale.getColor('c', 2);
+      expect(scale.range()).toHaveLength(1);
+    });
+    window.featureFlags = {
+      [FeatureFlag.AvoidColorsCollision]: false,
+    };
+>>>>>>> 2d98af4662 (merge from upstream to master)
   });
 
   describe('.setColor(value, forcedColor)', () => {

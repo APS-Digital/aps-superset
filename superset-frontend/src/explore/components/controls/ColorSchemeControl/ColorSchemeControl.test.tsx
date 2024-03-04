@@ -34,10 +34,15 @@ const defaultProps = () => ({
   name: 'color',
   value: 'supersetDefault',
   clearable: true,
+<<<<<<< HEAD
   choices: getCategoricalSchemeRegistry()
     .keys()
     .map(s => [s, s]),
   schemes: getCategoricalSchemeRegistry().getMap() as ColorSchemes,
+=======
+  choices: [],
+  schemes: () => ({}) as ColorSchemes,
+>>>>>>> 2d98af4662 (merge from upstream to master)
   isLinear: false,
 });
 

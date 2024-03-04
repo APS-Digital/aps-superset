@@ -132,6 +132,7 @@ class CategoricalColorScale extends ExtensibleFunction {
       }
     }
 
+<<<<<<< HEAD
     // keep track of values in this slice
     this.chartLabelsColorMap.set(cleanedValue, color);
 
@@ -142,8 +143,27 @@ class CategoricalColorScale extends ExtensibleFunction {
         color,
         sliceId,
         colorScheme,
+=======
+    if (isFeatureEnabled(FeatureFlag.UseAnalagousColors)) {
+      const multiple = Math.floor(
+        this.domain().length / this.originColors.length,
+>>>>>>> 2d98af4662 (merge from upstream to master)
       );
     }
+<<<<<<< HEAD
+=======
+    const newColor = this.scale(cleanedValue);
+    if (!color) {
+      color = newColor;
+      if (isFeatureEnabled(FeatureFlag.AvoidColorsCollision)) {
+        this.removeSharedLabelColorFromRange(sharedColorMap, cleanedValue);
+        color = this.scale(cleanedValue);
+      }
+    }
+
+    sharedLabelColor.addSlice(cleanedValue, color, sliceId);
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
     return color;
   }
 

@@ -15,11 +15,17 @@
 # specific language governing permissions and limitations
 # under the License.
 
+<<<<<<< HEAD
 import pytest  # noqa: F401
 from pytest_mock import MockerFixture
 
 from superset.sql_parse import Table
 
+=======
+import pytest
+from pytest_mock import MockerFixture
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 def test_epoch_to_dttm() -> None:
     """
@@ -45,7 +51,11 @@ def test_get_table_comment(mocker: MockerFixture):
     }
 
     assert (
+<<<<<<< HEAD
         Db2EngineSpec.get_table_comment(mock_inspector, Table("my_table", "my_schema"))
+=======
+        Db2EngineSpec.get_table_comment(mock_inspector, "my_table", "my_schema")
+>>>>>>> 2d98af4662 (merge from upstream to master)
         == "This is a table comment"
     )
 
@@ -61,20 +71,33 @@ def test_get_table_comment_empty(mocker: MockerFixture):
     mock_inspector.get_table_comment.return_value = {}
 
     assert (
+<<<<<<< HEAD
         Db2EngineSpec.get_table_comment(mock_inspector, Table("my_table", "my_schema"))
         is None
     )
 
 
 def test_get_prequeries(mocker: MockerFixture) -> None:
+=======
+        Db2EngineSpec.get_table_comment(mock_inspector, "my_table", "my_schema") == None
+    )
+
+
+def test_get_prequeries() -> None:
+>>>>>>> 2d98af4662 (merge from upstream to master)
     """
     Test the ``get_prequeries`` method.
     """
     from superset.db_engine_specs.db2 import Db2EngineSpec
 
+<<<<<<< HEAD
     database = mocker.MagicMock()
 
     assert Db2EngineSpec.get_prequeries(database) == []
     assert Db2EngineSpec.get_prequeries(database, schema="my_schema") == [
+=======
+    assert Db2EngineSpec.get_prequeries() == []
+    assert Db2EngineSpec.get_prequeries(schema="my_schema") == [
+>>>>>>> 2d98af4662 (merge from upstream to master)
         'set current_schema "my_schema"'
     ]

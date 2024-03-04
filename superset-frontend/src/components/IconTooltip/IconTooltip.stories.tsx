@@ -53,7 +53,11 @@ InteractiveIconTooltip.args = {
 InteractiveIconTooltip.argTypes = {
   placement: {
     defaultValue: 'top',
+<<<<<<< HEAD
     control: { type: 'select' },
     options: PLACEMENTS,
+=======
+    control: { type: 'select', options: PLACEMENTS },
+>>>>>>> 2d98af4662 (merge from upstream to master)
   },
 };

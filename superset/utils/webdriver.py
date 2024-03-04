@@ -180,23 +180,41 @@ class WebDriverPlaywright(WebDriverProxy):
                     )
                     element = page.locator(f".{element_name}")
                     element.wait_for()
+<<<<<<< HEAD
                 except PlaywrightTimeout:
                     logger.exception("Timed out requesting url %s", url)
                     raise
+=======
+                except PlaywrightTimeout as ex:
+                    logger.exception("Timed out requesting url %s", url)
+                    raise ex
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
                 try:
                     # chart containers didn't render
                     logger.debug("Wait for chart containers to draw at url: %s", url)
+<<<<<<< HEAD
                     slice_container_locator = page.locator(".chart-container")
                     slice_container_locator.first.wait_for()
                     for slice_container_elem in slice_container_locator.all():
                         slice_container_elem.wait_for()
                 except PlaywrightTimeout:
+=======
+                    slice_container_locator = page.locator(".slice_container")
+                    slice_container_locator.first.wait_for()
+                    for slice_container_elem in slice_container_locator.all():
+                        slice_container_elem.wait_for()
+                except PlaywrightTimeout as ex:
+>>>>>>> 2d98af4662 (merge from upstream to master)
                     logger.exception(
                         "Timed out waiting for chart containers to draw at url %s",
                         url,
                     )
+<<<<<<< HEAD
                     raise
+=======
+                    raise ex
+>>>>>>> 2d98af4662 (merge from upstream to master)
                 try:
                     # charts took too long to load
                     logger.debug(
@@ -204,11 +222,19 @@ class WebDriverPlaywright(WebDriverProxy):
                     )
                     for loading_element in page.locator(".loading").all():
                         loading_element.wait_for(state="detached")
+<<<<<<< HEAD
                 except PlaywrightTimeout:
                     logger.exception(
                         "Timed out waiting for charts to load at url %s", url
                     )
                     raise
+=======
+                except PlaywrightTimeout as ex:
+                    logger.exception(
+                        "Timed out waiting for charts to load at url %s", url
+                    )
+                    raise ex
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
                 selenium_animation_wait = current_app.config[
                     "SCREENSHOT_SELENIUM_ANIMATION_WAIT"
@@ -314,7 +340,13 @@ class WebDriverSelenium(WebDriverProxy):
                     EC.visibility_of_any_elements_located(
                         (By.CLASS_NAME, "ant-modal-content")
                     )
+<<<<<<< HEAD
                 )[0]
+=======
+                )[
+                    0
+                ]
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
                 err_msg_div = modal.find_element(By.CLASS_NAME, "ant-modal-body")
 

@@ -29,8 +29,13 @@ from tests.integration_tests.base_tests import (
     post_assert_metric,
 )
 from tests.integration_tests.fixtures.birth_names_dashboard import (
+<<<<<<< HEAD
     load_birth_names_dashboard_with_slices,  # noqa: F401
     load_birth_names_data,  # noqa: F401
+=======
+    load_birth_names_dashboard_with_slices,
+    load_birth_names_data,
+>>>>>>> 2d98af4662 (merge from upstream to master)
 )
 
 

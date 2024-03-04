@@ -25,7 +25,11 @@ from celery.exceptions import SoftTimeLimitExceeded
 from superset import app, db, security_manager
 from superset.commands.base import BaseCommand
 from superset.commands.dashboard.permalink.create import CreateDashboardPermalinkCommand
+<<<<<<< HEAD
 from superset.commands.exceptions import CommandException, UpdateFailedError
+=======
+from superset.commands.exceptions import CommandException
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.commands.report.alert import AlertCommand
 from superset.commands.report.exceptions import (
     ReportScheduleAlertGracePeriodError,
@@ -70,11 +74,17 @@ from superset.reports.notifications.exceptions import (
     SlackV1NotificationError,
 )
 from superset.tasks.utils import get_executor
+<<<<<<< HEAD
 from superset.utils import json
 from superset.utils.core import HeaderDataType, override_user
 from superset.utils.csv import get_chart_csv_data, get_chart_dataframe
 from superset.utils.decorators import logs_context, transaction
 from superset.utils.pdf import build_pdf_from_screenshots
+=======
+from superset.utils.core import HeaderDataType, override_user
+from superset.utils.csv import get_chart_csv_data, get_chart_dataframe
+from superset.utils.decorators import logs_context
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.screenshots import ChartScreenshot, DashboardScreenshot
 from superset.utils.slack import get_channels_with_search, SlackChannelTypes
 from superset.utils.urls import get_url_path
@@ -125,6 +135,7 @@ class BaseReportState:
 
         self._report_schedule.last_state = state
         self._report_schedule.last_eval_dttm = datetime.utcnow()
+<<<<<<< HEAD
 
     def update_report_schedule_slack_v2(self) -> None:
         """
@@ -154,6 +165,9 @@ class BaseReportState:
                 "Failed to update slack recipients to v2: %s", str(ex), exc_info=True
             )
             raise UpdateFailedError from ex
+=======
+        db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     def create_log(self, error_message: Optional[str] = None) -> None:
         """
@@ -171,7 +185,11 @@ class BaseReportState:
             uuid=self._execution_id,
         )
         db.session.add(log)
+<<<<<<< HEAD
         db.session.commit()  # pylint: disable=consider-using-transaction
+=======
+        db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     def _get_url(
         self,
@@ -795,8 +813,13 @@ class AsyncExecuteReportScheduleCommand(BaseCommand):
                 ReportScheduleStateMachine(
                     self._execution_id, self._model, self._scheduled_dttm
                 ).run()
+<<<<<<< HEAD
         except CommandException:
             raise
+=======
+        except CommandException as ex:
+            raise ex
+>>>>>>> 2d98af4662 (merge from upstream to master)
         except Exception as ex:
             raise ReportScheduleUnexpectedError(str(ex)) from ex
 

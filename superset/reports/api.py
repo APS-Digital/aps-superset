@@ -40,7 +40,10 @@ from superset.commands.report.update import UpdateReportScheduleCommand
 from superset.constants import MODEL_API_RW_METHOD_PERMISSION_MAP, RouteMethod
 from superset.dashboards.filters import DashboardAccessFilter
 from superset.databases.filters import DatabaseFilter
+<<<<<<< HEAD
 from superset.exceptions import SupersetException
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.extensions import event_logger
 from superset.reports.filters import ReportScheduleAllTextFilter, ReportScheduleFilter
 from superset.reports.models import ReportSchedule

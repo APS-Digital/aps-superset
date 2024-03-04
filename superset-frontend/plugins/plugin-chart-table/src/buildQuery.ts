@@ -91,6 +91,7 @@ const buildQuery: BuildQuery<TableChartFormData> = (
       (shift: string) => shift === 'custom' || shift === 'inherit',
     );
 
+<<<<<<< HEAD
     let timeOffsets: string[] = [];
 
     // Shifts for non-custom or non inherit time comparison
@@ -117,6 +118,8 @@ const buildQuery: BuildQuery<TableChartFormData> = (
     let temporalColumAdded = false;
     let temporalColum = null;
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     if (queryMode === QueryMode.Aggregate) {
       metrics = metrics || [];
       // override orderby with timeseries metric when in aggregation mode
@@ -167,10 +170,16 @@ const buildQuery: BuildQuery<TableChartFormData> = (
         const shouldBeAdded =
           isPhysicalColumn(col) &&
           time_grain_sqla &&
+<<<<<<< HEAD
           temporalColumnsLookup?.[col];
 
         if (shouldBeAdded && !temporalColumAdded) {
           temporalColum = {
+=======
+          formData?.temporal_columns_lookup?.[col]
+        ) {
+          return {
+>>>>>>> 2d98af4662 (merge from upstream to master)
             timeGrain: time_grain_sqla,
             columnType: 'BASE_AXIS',
             sqlExpression: col,

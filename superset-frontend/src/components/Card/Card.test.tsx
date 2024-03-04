@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<<< HEAD:superset-frontend/src/components/Card/Card.test.tsx
 import { render } from 'spec/helpers/testing-library';
 import Card from '.';
 
@@ -23,3 +24,13 @@ test('should render', () => {
   const { container } = render(<Card />);
   expect(container).toBeInTheDocument();
 });
+========
+import { t } from '../translation';
+
+export default function validateMaxValue(v: unknown, max: Number) {
+  if (Number(v) > +max) {
+    return t('Value cannot exceed %s', max);
+  }
+  return false;
+}
+>>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/packages/superset-ui-core/src/validator/validateMaxValue.ts

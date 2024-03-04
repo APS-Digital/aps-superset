@@ -17,18 +17,34 @@
 
 # pylint: disable=too-many-lines
 
+<<<<<<< HEAD
 from __future__ import annotations
 
 import logging
 import re
 from collections.abc import Iterator
 from typing import Any, cast, TYPE_CHECKING
+=======
+import logging
+import re
+import urllib.parse
+from collections.abc import Iterable, Iterator
+from dataclasses import dataclass
+from typing import Any, cast, Optional
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 import sqlparse
 from flask_babel import gettext as __
 from jinja2 import nodes
 from sqlalchemy import and_
+<<<<<<< HEAD
 from sqlglot.dialects.dialect import Dialects
+=======
+from sqlglot import exp, parse, parse_one
+from sqlglot.dialects import Dialects
+from sqlglot.errors import SqlglotError
+from sqlglot.optimizer.scope import Scope, ScopeType, traverse_scope
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from sqlparse import keywords
 from sqlparse.lexer import Lexer
 from sqlparse.sql import (
@@ -96,7 +112,10 @@ SQLGLOT_DIALECTS = {
     "clickhouse": Dialects.CLICKHOUSE,
     "clickhousedb": Dialects.CLICKHOUSE,
     "cockroachdb": Dialects.POSTGRES,
+<<<<<<< HEAD
     "couchbase": Dialects.MYSQL,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     # "crate": ???
     # "databend": ???
     "databricks": Dialects.DATABRICKS,
@@ -117,7 +136,11 @@ SQLGLOT_DIALECTS = {
     # "impala": ???
     # "kustokql": ???
     # "kylin": ???
+<<<<<<< HEAD
     "mssql": Dialects.TSQL,
+=======
+    # "mssql": ???
+>>>>>>> 2d98af4662 (merge from upstream to master)
     "mysql": Dialects.MYSQL,
     "netezza": Dialects.POSTGRES,
     # "ocient": ???
@@ -133,7 +156,10 @@ SQLGLOT_DIALECTS = {
     "shillelagh": Dialects.SQLITE,
     "snowflake": Dialects.SNOWFLAKE,
     # "solr": ???
+<<<<<<< HEAD
     "spark": Dialects.SPARK,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     "sqlite": Dialects.SQLITE,
     "starrocks": Dialects.STARROCKS,
     "superset": Dialects.SQLITE,
@@ -219,6 +245,7 @@ def get_cte_remainder_query(sql: str) -> tuple[str | None, str]:
     return cte, remainder
 
 
+<<<<<<< HEAD
 def check_sql_functions_exist(
     sql: str,
     function_list: set[str],
@@ -235,6 +262,9 @@ def check_sql_functions_exist(
 
 
 def strip_comments_from_sql(statement: str, engine: str = "base") -> str:
+=======
+def strip_comments_from_sql(statement: str, engine: Optional[str] = None) -> str:
+>>>>>>> 2d98af4662 (merge from upstream to master)
     """
     Strips comments from a SQL statement, does a simple test first
     to avoid always instantiating the expensive ParsedQuery constructor
@@ -249,6 +279,34 @@ def strip_comments_from_sql(statement: str, engine: str = "base") -> str:
         if "--" in statement
         else statement
     )
+<<<<<<< HEAD
+=======
+
+
+@dataclass(eq=True, frozen=True)
+class Table:
+    """
+    A fully qualified SQL table conforming to [[catalog.]schema.]table.
+    """
+
+    table: str
+    schema: Optional[str] = None
+    catalog: Optional[str] = None
+
+    def __str__(self) -> str:
+        """
+        Return the fully qualified SQL table name.
+        """
+
+        return ".".join(
+            urllib.parse.quote(part, safe="").replace(".", "%2E")
+            for part in [self.catalog, self.schema, self.table]
+            if part
+        )
+
+    def __eq__(self, __o: object) -> bool:
+        return str(self) == str(__o)
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 class ParsedQuery:
@@ -256,13 +314,20 @@ class ParsedQuery:
         self,
         sql_statement: str,
         strip_comments: bool = False,
+<<<<<<< HEAD
         engine: str = "base",
+=======
+        engine: Optional[str] = None,
+>>>>>>> 2d98af4662 (merge from upstream to master)
     ):
         if strip_comments:
             sql_statement = sqlparse.format(sql_statement, strip_comments=True)
 
         self.sql: str = sql_statement
+<<<<<<< HEAD
         self._engine = engine
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         self._dialect = SQLGLOT_DIALECTS.get(engine) if engine else None
         self._tables: set[Table] = set()
         self._alias_names: set[str] = set()
@@ -279,6 +344,7 @@ class ParsedQuery:
             self._tables = self._extract_tables_from_sql()
         return self._tables
 
+<<<<<<< HEAD
     def _check_functions_exist_in_token(
         self, token: Token, functions: set[str]
     ) -> bool:
@@ -307,6 +373,8 @@ class ParsedQuery:
                     return True
         return False
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     def _extract_tables_from_sql(self) -> set[Table]:
         """
         Extract all table references in a query.
@@ -314,6 +382,7 @@ class ParsedQuery:
         Note: this uses sqlglot, since it's better at catching more edge cases.
         """
         try:
+<<<<<<< HEAD
             statements = [
                 statement._parsed  # pylint: disable=protected-access
                 for statement in SQLScript(self.stripped(), self._engine).statements
@@ -329,14 +398,98 @@ class ParsedQuery:
                     level=ErrorLevel.ERROR,
                 )
             ) from ex
+=======
+            statements = parse(self.stripped(), dialect=self._dialect)
+        except SqlglotError:
+            logger.warning("Unable to parse SQL (%s): %s", self._dialect, self.sql)
+            return set()
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         return {
             table
             for statement in statements
+<<<<<<< HEAD
             for table in extract_tables_from_statement(statement, self._dialect)
             if statement
         }
 
+=======
+            for table in self._extract_tables_from_statement(statement)
+            if statement
+        }
+
+    def _extract_tables_from_statement(self, statement: exp.Expression) -> set[Table]:
+        """
+        Extract all table references in a single statement.
+
+        Please not that this is not trivial; consider the following queries:
+
+            DESCRIBE some_table;
+            SHOW PARTITIONS FROM some_table;
+            WITH masked_name AS (SELECT * FROM some_table) SELECT * FROM masked_name;
+
+        See the unit tests for other tricky cases.
+        """
+        sources: Iterable[exp.Table]
+
+        if isinstance(statement, exp.Describe):
+            # A `DESCRIBE` query has no sources in sqlglot, so we need to explicitly
+            # query for all tables.
+            sources = statement.find_all(exp.Table)
+        elif isinstance(statement, exp.Command):
+            # Commands, like `SHOW COLUMNS FROM foo`, have to be converted into a
+            # `SELECT` statetement in order to extract tables.
+            if not (literal := statement.find(exp.Literal)):
+                return set()
+
+            try:
+                pseudo_query = parse_one(
+                    f"SELECT {literal.this}",
+                    dialect=self._dialect,
+                )
+                sources = pseudo_query.find_all(exp.Table)
+            except SqlglotError:
+                return set()
+        else:
+            sources = [
+                source
+                for scope in traverse_scope(statement)
+                for source in scope.sources.values()
+                if isinstance(source, exp.Table) and not self._is_cte(source, scope)
+            ]
+
+        return {
+            Table(
+                source.name,
+                source.db if source.db != "" else None,
+                source.catalog if source.catalog != "" else None,
+            )
+            for source in sources
+        }
+
+    def _is_cte(self, source: exp.Table, scope: Scope) -> bool:
+        """
+        Is the source a CTE?
+
+        CTEs in the parent scope look like tables (and are represented by
+        exp.Table objects), but should not be considered as such;
+        otherwise a user with access to table `foo` could access any table
+        with a query like this:
+
+            WITH foo AS (SELECT * FROM target_table) SELECT * FROM foo
+
+        """
+        parent_sources = scope.parent.sources if scope.parent else {}
+        ctes_in_scope = {
+            name
+            for name, parent_scope in parent_sources.items()
+            if isinstance(parent_scope, Scope)
+            and parent_scope.scope_type == ScopeType.CTE
+        }
+
+        return source.name in ctes_in_scope
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
     @property
     def limit(self) -> int | None:
         return self._limit
@@ -371,7 +524,10 @@ class ParsedQuery:
     def is_select(self) -> bool:
         # make sure we strip comments; prevents a bug with comments in the CTE
         parsed = sqlparse.parse(self.strip_comments())
+<<<<<<< HEAD
         seen_select = False
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         for statement in parsed:
             # Check if this is a CTE
@@ -395,7 +551,10 @@ class ParsedQuery:
                     return False
 
             if statement.get_type() == "SELECT":
+<<<<<<< HEAD
                 seen_select = True
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
                 continue
 
             if statement.get_type() != "UNKNOWN":
@@ -409,11 +568,16 @@ class ParsedQuery:
             ):
                 return False
 
+<<<<<<< HEAD
             if imt(statement.tokens[0], m=(Keyword, "USE")):
                 continue
 
             # return false on `EXPLAIN`, `SET`, `SHOW`, etc.
             if imt(statement.tokens[0], t=Keyword):
+=======
+            # return false on `EXPLAIN`, `SET`, `SHOW`, etc.
+            if statement[0].ttype == Keyword:
+>>>>>>> 2d98af4662 (merge from upstream to master)
                 return False
 
             if not any(
@@ -422,9 +586,15 @@ class ParsedQuery:
             ):
                 return False
 
+<<<<<<< HEAD
         return seen_select
 
     def get_inner_cte_expression(self, tokens: TokenList) -> TokenList | None:
+=======
+        return True
+
+    def get_inner_cte_expression(self, tokens: TokenList) -> Optional[TokenList]:
+>>>>>>> 2d98af4662 (merge from upstream to master)
         for token in tokens:
             if self._is_identifier(token):
                 for identifier_token in token.tokens:
@@ -821,7 +991,11 @@ def insert_rls_as_subquery(
 def insert_rls_in_predicate(
     token_list: TokenList,
     database_id: int,
+<<<<<<< HEAD
     default_schema: str | None,
+=======
+    default_schema: Optional[str],
+>>>>>>> 2d98af4662 (merge from upstream to master)
 ) -> TokenList:
     """
     Update a statement inplace applying any associated RLS predicates.
@@ -832,7 +1006,11 @@ def insert_rls_in_predicate(
         after:  SELECT * FROM some_table WHERE ( 1=1) AND some_table.id=42
 
     """
+<<<<<<< HEAD
     rls: TokenList | None = None
+=======
+    rls: Optional[TokenList] = None
+>>>>>>> 2d98af4662 (merge from upstream to master)
     state = InsertRLSState.SCANNING
     for token in token_list.tokens:
         # Recurse into child token list

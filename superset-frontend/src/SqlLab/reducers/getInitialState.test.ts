@@ -25,6 +25,10 @@ const apiData = {
   common: DEFAULT_COMMON_BOOTSTRAP_DATA,
   tab_state_ids: [],
   databases: [],
+<<<<<<< HEAD
+=======
+  queries: {},
+>>>>>>> 2d98af4662 (merge from upstream to master)
   user: {
     userId: 1,
     username: 'some name',
@@ -219,6 +223,7 @@ describe('getInitialState', () => {
         }),
       );
 
+<<<<<<< HEAD
       const latestQuery = {
         ...runningQuery,
         id: 'latestPersisted',
@@ -233,6 +238,20 @@ describe('getInitialState', () => {
         },
       }).sqlLab.queries;
       expect(initializedQueries.latestPersisted).toEqual(
+=======
+      const initializedQueries = getInitialState({
+        ...apiData,
+        queries: {
+          backendPersisted: {
+            ...runningQuery,
+            id: 'backendPersisted',
+            startDttm: startDttmInStr,
+            endDttm: endDttmInStr,
+          },
+        },
+      }).sqlLab.queries;
+      expect(initializedQueries.backendPersisted).toEqual(
+>>>>>>> 2d98af4662 (merge from upstream to master)
         expect.objectContaining({
           startDttm: Number(startDttmInStr),
           endDttm: Number(endDttmInStr),
@@ -274,9 +293,12 @@ describe('getInitialState', () => {
                 name: expectedValue,
               },
             ],
+<<<<<<< HEAD
             destroyedQueryEditors: {
               10: 12345,
             },
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
           },
         }),
       );
@@ -294,10 +316,14 @@ describe('getInitialState', () => {
             updatedAt: lastUpdatedTime,
           },
         },
+<<<<<<< HEAD
         tab_state_ids: [
           { id: 1, label: '' },
           { id: 10, label: 'removed' },
         ],
+=======
+        tab_state_ids: [{ id: 1, label: '' }],
+>>>>>>> 2d98af4662 (merge from upstream to master)
       };
       expect(
         getInitialState(apiDataWithLocalStorage).sqlLab.queryEditors[0],
@@ -307,6 +333,7 @@ describe('getInitialState', () => {
           name: expectedValue,
         }),
       );
+<<<<<<< HEAD
       expect(
         getInitialState(apiDataWithLocalStorage).sqlLab.queryEditors,
       ).not.toContainEqual(
@@ -317,6 +344,8 @@ describe('getInitialState', () => {
       expect(
         getInitialState(apiDataWithLocalStorage).sqlLab.lastUpdatedActiveTab,
       ).toEqual(apiDataWithTabState.active_tab.id.toString());
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     });
 
     it('skip unsaved changes for expired data', () => {

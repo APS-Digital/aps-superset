@@ -58,7 +58,27 @@ jobs:
           submodules: recursive
           ref: master
       - name: Setup Python
+<<<<<<< HEAD
         uses: ./.github/actions/setup-backend/
+=======
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+      - name: OS dependencies
+        uses: ./.github/actions/cached-dependencies
+        with:
+          run: apt-get-install
+      - name: Install python dependencies
+        uses: ./.github/actions/cached-dependencies
+        with:
+          run: |
+            pip-upgrade
+            pip install -r requirements/testing.txt
+      - name: Setup postgres
+        uses: ./.github/actions/cached-dependencies
+        with:
+          run: setup-postgres
+>>>>>>> 2d98af4662 (merge from upstream to master)
       - name: Import test data
         uses: ./.github/actions/cached-dependencies
         with:

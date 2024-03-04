@@ -34,8 +34,12 @@ from superset.examples.helpers import (
 )
 from superset.models.dashboard import Dashboard
 from superset.models.slice import Slice
+<<<<<<< HEAD
 from superset.sql_parse import Table
 from superset.utils import core as utils, json
+=======
+from superset.utils import core as utils
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.core import DatasourceType
 
 
@@ -108,6 +112,10 @@ def load_world_bank_health_n_pop(  # pylint: disable=too-many-locals
                 SqlMetric(metric_name=metric, expression=f"{aggr_func}({col})")
             )
 
+<<<<<<< HEAD
+=======
+    db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
     tbl.fetch_metadata()
 
     slices = create_slices(tbl)
@@ -131,6 +139,10 @@ def load_world_bank_health_n_pop(  # pylint: disable=too-many-locals
     dash.position_json = json.dumps(pos, indent=4)
     dash.slug = slug
     dash.slices = slices
+<<<<<<< HEAD
+=======
+    db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def create_slices(tbl: BaseDatasource) -> list[Slice]:

@@ -25,11 +25,15 @@ from sqlalchemy.exc import SQLAlchemyError
 
 from superset.connectors.sqla.models import SqlaTable, SqlMetric, TableColumn
 from superset.daos.base import BaseDAO
+from superset.daos.exceptions import DAOUpdateFailedError
 from superset.extensions import db
 from superset.models.core import Database
 from superset.models.dashboard import Dashboard
 from superset.models.slice import Slice
+<<<<<<< HEAD
 from superset.sql_parse import Table
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.core import DatasourceType
 from superset.views.base import DatasourceFilter
 
@@ -107,19 +111,32 @@ class DatasetDAO(BaseDAO[SqlaTable]):
 
     @staticmethod
     def validate_update_uniqueness(
+<<<<<<< HEAD
         database: Database,
         table: Table,
         dataset_id: int,
+=======
+        database_id: int,
+        schema: str | None,
+        dataset_id: int,
+        name: str,
+>>>>>>> 2d98af4662 (merge from upstream to master)
     ) -> bool:
         # The catalog might not be set even if the database supports catalogs, in case
         # multi-catalog is disabled.
         catalog = table.catalog or database.get_default_catalog()
 
         dataset_query = db.session.query(SqlaTable).filter(
+<<<<<<< HEAD
             SqlaTable.table_name == table.table,
             SqlaTable.database_id == database.id,
             SqlaTable.schema == table.schema,
             SqlaTable.catalog == catalog,
+=======
+            SqlaTable.table_name == name,
+            SqlaTable.database_id == database_id,
+            SqlaTable.schema == schema,
+>>>>>>> 2d98af4662 (merge from upstream to master)
             SqlaTable.id != dataset_id,
         )
         return not db.session.query(dataset_query.exists()).scalar()
@@ -178,6 +195,10 @@ class DatasetDAO(BaseDAO[SqlaTable]):
         cls,
         item: SqlaTable | None = None,
         attributes: dict[str, Any] | None = None,
+<<<<<<< HEAD
+=======
+        commit: bool = True,
+>>>>>>> 2d98af4662 (merge from upstream to master)
     ) -> SqlaTable:
         """
         Updates a Dataset model on the metadata DB
@@ -188,13 +209,23 @@ class DatasetDAO(BaseDAO[SqlaTable]):
                 cls.update_columns(
                     item,
                     attributes.pop("columns"),
+<<<<<<< HEAD
+=======
+                    commit=commit,
+>>>>>>> 2d98af4662 (merge from upstream to master)
                     override_columns=bool(attributes.get("override_columns")),
                 )
 
             if "metrics" in attributes:
+<<<<<<< HEAD
                 cls.update_metrics(item, attributes.pop("metrics"))
 
         return super().update(item, attributes)
+=======
+                cls.update_metrics(item, attributes.pop("metrics"), commit=commit)
+
+        return super().update(item, attributes, commit=commit)
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     @classmethod
     def update_columns(
@@ -221,7 +252,11 @@ class DatasetDAO(BaseDAO[SqlaTable]):
                 if not DatasetDAO.validate_python_date_format(
                     column["python_date_format"]
                 ):
+<<<<<<< HEAD
                     raise ValueError(
+=======
+                    raise DAOUpdateFailedError(
+>>>>>>> 2d98af4662 (merge from upstream to master)
                         "python_date_format is an invalid date/timestamp format."
                     )
 

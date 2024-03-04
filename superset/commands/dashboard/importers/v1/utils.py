@@ -21,7 +21,10 @@ from typing import Any
 from superset import db, security_manager
 from superset.commands.exceptions import ImportFailedError
 from superset.models.dashboard import Dashboard
+<<<<<<< HEAD
 from superset.utils import json
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.core import get_user
 
 logger = logging.getLogger(__name__)
@@ -188,7 +191,11 @@ def import_dashboard(
     if dashboard.id is None:
         db.session.flush()
 
+<<<<<<< HEAD
     if (user := get_user()) and user not in dashboard.owners:
+=======
+    if user := get_user():
+>>>>>>> 2d98af4662 (merge from upstream to master)
         dashboard.owners.append(user)
 
     return dashboard

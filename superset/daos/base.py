@@ -21,8 +21,18 @@ from typing import Any, Generic, get_args, TypeVar
 from flask_appbuilder.models.filters import BaseFilter
 from flask_appbuilder.models.sqla import Model
 from flask_appbuilder.models.sqla.interface import SQLAInterface
+<<<<<<< HEAD
 from sqlalchemy.exc import StatementError
 
+=======
+from sqlalchemy.exc import SQLAlchemyError, StatementError
+
+from superset.daos.exceptions import (
+    DAOCreateFailedError,
+    DAODeleteFailedError,
+    DAOUpdateFailedError,
+)
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.extensions import db
 
 T = TypeVar("T", bound=Model)
@@ -122,6 +132,7 @@ class BaseDAO(Generic[T]):
         cls,
         item: T | None = None,
         attributes: dict[str, Any] | None = None,
+<<<<<<< HEAD
     ) -> T:
         """
         Create an object from the specified item and/or attributes.
@@ -152,6 +163,18 @@ class BaseDAO(Generic[T]):
         :param item: The object to update
         :param attributes: The attributes associated with the object to update
         """
+=======
+        commit: bool = True,
+    ) -> T:
+        """
+        Create an object from the specified item and/or attributes.
+
+        :param item: The object to create
+        :param attributes: The attributes associated with the object to create
+        :param commit: Whether to commit the transaction
+        :raises DAOCreateFailedError: If the creation failed
+        """
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         if not item:
             item = cls.model_cls()  # type: ignore  # pylint: disable=not-callable
@@ -160,14 +183,66 @@ class BaseDAO(Generic[T]):
             for key, value in attributes.items():
                 setattr(item, key, value)
 
+<<<<<<< HEAD
         if item not in db.session:
             return db.session.merge(item)
 
         return item  # type: ignore
+=======
+        try:
+            db.session.add(item)
+
+            if commit:
+                db.session.commit()
+        except SQLAlchemyError as ex:  # pragma: no cover
+            db.session.rollback()
+            raise DAOCreateFailedError(exception=ex) from ex
+>>>>>>> 2d98af4662 (merge from upstream to master)
+
+        return item  # type: ignore
 
     @classmethod
+<<<<<<< HEAD
     def delete(cls, items: list[T]) -> None:
         """
+=======
+    def update(
+        cls,
+        item: T | None = None,
+        attributes: dict[str, Any] | None = None,
+        commit: bool = True,
+    ) -> T:
+        """
+        Update an object from the specified item and/or attributes.
+
+        :param item: The object to update
+        :param attributes: The attributes associated with the object to update
+        :param commit: Whether to commit the transaction
+        :raises DAOUpdateFailedError: If the updating failed
+        """
+
+        if not item:
+            item = cls.model_cls()  # type: ignore  # pylint: disable=not-callable
+
+        if attributes:
+            for key, value in attributes.items():
+                setattr(item, key, value)
+
+        try:
+            db.session.merge(item)
+
+            if commit:
+                db.session.commit()
+        except SQLAlchemyError as ex:  # pragma: no cover
+            db.session.rollback()
+            raise DAOUpdateFailedError(exception=ex) from ex
+
+        return item  # type: ignore
+
+    @classmethod
+    def delete(cls, items: list[T], commit: bool = True) -> None:
+        """
+>>>>>>> 2d98af4662 (merge from upstream to master)
         Delete the specified items including their associated relationships.
 
         Note that bulk deletion via `delete` is not invoked in the base class as this
@@ -179,8 +254,25 @@ class BaseDAO(Generic[T]):
         post-deletion logic.
 
         :param items: The items to delete
+<<<<<<< HEAD
         :see: https://docs.sqlalchemy.org/en/latest/orm/queryguide/dml.html
         """
 
         for item in items:
             db.session.delete(item)
+=======
+        :param commit: Whether to commit the transaction
+        :raises DAODeleteFailedError: If the deletion failed
+        :see: https://docs.sqlalchemy.org/en/latest/orm/queryguide/dml.html
+        """
+
+        try:
+            for item in items:
+                db.session.delete(item)
+
+            if commit:
+                db.session.commit()
+        except SQLAlchemyError as ex:
+            db.session.rollback()
+            raise DAODeleteFailedError(exception=ex) from ex
+>>>>>>> 2d98af4662 (merge from upstream to master)

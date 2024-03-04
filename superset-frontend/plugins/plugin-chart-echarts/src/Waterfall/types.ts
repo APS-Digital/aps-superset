@@ -24,8 +24,13 @@ import {
   QueryFormMetric,
   RgbaColor,
 } from '@superset-ui/core';
+<<<<<<< HEAD
 import type { BarDataItemOption } from 'echarts/types/src/chart/bar/BarSeries';
 import type { CallbackDataParams } from 'echarts/types/src/util/types';
+=======
+import { BarDataItemOption } from 'echarts/types/src/chart/bar/BarSeries';
+import { CallbackDataParams } from 'echarts/types/src/util/types';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { BaseTransformedProps, LegendFormData } from '../types';
 
 export type WaterfallFormXTicksLayout =

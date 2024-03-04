@@ -16,7 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { ReactNode } from 'react';
+=======
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { Store } from 'redux';
 import { render } from 'spec/helpers/testing-library';
 import {
@@ -36,7 +40,11 @@ import { dashboardWithFilter } from 'spec/fixtures/mockDashboardLayout';
 jest.mock(
   'src/dashboard/components/FiltersBadge/DetailsPanel',
   () =>
+<<<<<<< HEAD
     ({ children }: { children: ReactNode }) => (
+=======
+    ({ children }: { children: React.ReactNode }) => (
+>>>>>>> 2d98af4662 (merge from upstream to master)
       <div data-test="mock-details-panel">{children}</div>
     ),
 );

@@ -23,7 +23,11 @@ import pyarrow as pa
 from superset import db, is_feature_enabled
 from superset.common.db_query_status import QueryStatus
 from superset.daos.database import DatabaseDAO
+<<<<<<< HEAD
 from superset.models.sql_lab import TabState
+=======
+from superset.models.sql_lab import Query, TabState
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 DATABASE_KEYS = [
     "allow_file_upload",
@@ -38,8 +42,11 @@ DATABASE_KEYS = [
     "force_ctas_schema",
     "id",
     "disable_data_preview",
+<<<<<<< HEAD
     "disable_drill_to_detail",
     "allow_multi_catalog",
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 ]
 
 
@@ -89,6 +96,10 @@ def bootstrap_sqllab_data(user_id: int | None) -> dict[str, Any]:
             k: v for k, v in database.to_json().items() if k in DATABASE_KEYS
         }
         databases[database.id]["backend"] = database.backend
+<<<<<<< HEAD
+=======
+    queries: dict[str, Any] = {}
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     # These are unnecessary if sqllab backend persistence is disabled
     if is_feature_enabled("SQLLAB_BACKEND_PERSISTENCE"):
@@ -98,6 +109,10 @@ def bootstrap_sqllab_data(user_id: int | None) -> dict[str, Any]:
             .filter_by(user_id=user_id)
             .all()
         )
+<<<<<<< HEAD
+=======
+        tab_state_ids = [str(tab_state[0]) for tab_state in tabs_state]
+>>>>>>> 2d98af4662 (merge from upstream to master)
         # return first active tab, or fallback to another one if no tab is active
         active_tab = (
             db.session.query(TabState)
@@ -105,9 +120,26 @@ def bootstrap_sqllab_data(user_id: int | None) -> dict[str, Any]:
             .order_by(TabState.active.desc())
             .first()
         )
+<<<<<<< HEAD
+=======
+        # return all user queries associated with existing SQL editors
+        user_queries = (
+            db.session.query(Query)
+            .filter_by(user_id=user_id)
+            .filter(Query.sql_editor_id.in_(tab_state_ids))
+            .all()
+        )
+        queries = {
+            query.client_id: dict(query.to_dict().items()) for query in user_queries
+        }
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     return {
         "tab_state_ids": tabs_state,
         "active_tab": active_tab.to_dict() if active_tab else None,
         "databases": databases,
+<<<<<<< HEAD
+=======
+        "queries": queries,
+>>>>>>> 2d98af4662 (merge from upstream to master)
     }

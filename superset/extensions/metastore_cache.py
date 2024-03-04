@@ -71,6 +71,18 @@ class SupersetMetastoreCache(BaseCache):
     def get_key(self, key: str) -> UUID:
         return uuid3(self.namespace, key)
 
+<<<<<<< HEAD
+=======
+    @staticmethod
+    def _prune() -> None:
+        # pylint: disable=import-outside-toplevel
+        from superset.commands.key_value.delete_expired import (
+            DeleteExpiredKeyValueCommand,
+        )
+
+        DeleteExpiredKeyValueCommand(resource=RESOURCE).run()
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
     def _get_expiry(self, timeout: Optional[int]) -> Optional[datetime]:
         timeout = self._normalize_timeout(timeout)
         if timeout is not None and timeout > 0:
@@ -79,7 +91,11 @@ class SupersetMetastoreCache(BaseCache):
 
     def set(self, key: str, value: Any, timeout: Optional[int] = None) -> bool:
         # pylint: disable=import-outside-toplevel
+<<<<<<< HEAD
         from superset.daos.key_value import KeyValueDAO
+=======
+        from superset.commands.key_value.upsert import UpsertKeyValueCommand
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         KeyValueDAO.upsert_entry(
             resource=RESOURCE,
@@ -93,7 +109,11 @@ class SupersetMetastoreCache(BaseCache):
 
     def add(self, key: str, value: Any, timeout: Optional[int] = None) -> bool:
         # pylint: disable=import-outside-toplevel
+<<<<<<< HEAD
         from superset.daos.key_value import KeyValueDAO
+=======
+        from superset.commands.key_value.create import CreateKeyValueCommand
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         try:
             KeyValueDAO.delete_expired_entries(RESOURCE)
@@ -112,7 +132,11 @@ class SupersetMetastoreCache(BaseCache):
 
     def get(self, key: str) -> Any:
         # pylint: disable=import-outside-toplevel
+<<<<<<< HEAD
         from superset.daos.key_value import KeyValueDAO
+=======
+        from superset.commands.key_value.get import GetKeyValueCommand
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         return KeyValueDAO.get_value(RESOURCE, self.get_key(key), self.codec)
 
@@ -125,6 +149,10 @@ class SupersetMetastoreCache(BaseCache):
     @transaction()
     def delete(self, key: str) -> Any:
         # pylint: disable=import-outside-toplevel
+<<<<<<< HEAD
         from superset.daos.key_value import KeyValueDAO
+=======
+        from superset.commands.key_value.delete import DeleteKeyValueCommand
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         return KeyValueDAO.delete_entry(RESOURCE, self.get_key(key))

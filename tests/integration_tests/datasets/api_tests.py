@@ -26,6 +26,7 @@ import prison
 import pytest
 import yaml
 from sqlalchemy import inspect
+<<<<<<< HEAD
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import joinedload
 from sqlalchemy.sql import func
@@ -33,6 +34,20 @@ from sqlalchemy.sql import func
 from superset import app  # noqa: F401
 from superset.commands.dataset.exceptions import DatasetCreateFailedError
 from superset.connectors.sqla.models import SqlaTable, SqlMetric, TableColumn
+=======
+from sqlalchemy.orm import joinedload
+from sqlalchemy.sql import func
+
+from superset import app
+from superset.commands.dataset.exceptions import DatasetCreateFailedError
+from superset.connectors.sqla.models import SqlaTable, SqlMetric, TableColumn
+from superset.daos.exceptions import (
+    DAOCreateFailedError,
+    DAODeleteFailedError,
+    DAOUpdateFailedError,
+)
+from superset.datasets.models import Dataset
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.extensions import db, security_manager
 from superset.models.core import Database
 from superset.models.slice import Slice
@@ -260,10 +275,13 @@ class TestDatasetApi(SupersetTestCase):
         """
         Dataset API: Test get dataset list gamma
         """
+<<<<<<< HEAD
 
         if backend() == "postgresql":
             # failing
             return
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         self.login(GAMMA_USERNAME)
         uri = "api/v1/dataset/"
@@ -276,10 +294,13 @@ class TestDatasetApi(SupersetTestCase):
         """
         Dataset API: Test get dataset list with database access
         """
+<<<<<<< HEAD
 
         if backend() == "postgresql":
             # failing
             return
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         self.login(GAMMA_USERNAME)
 
@@ -591,7 +612,11 @@ class TestDatasetApi(SupersetTestCase):
         """
 
         main_db = get_main_database()
+<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
+=======
+        self.login(username="admin")
+>>>>>>> 2d98af4662 (merge from upstream to master)
         table_data = {
             "database": main_db.id,
             "schema": None,
@@ -676,6 +701,52 @@ class TestDatasetApi(SupersetTestCase):
         assert data == expected_result
 
     @pytest.mark.usefixtures("load_energy_table_with_slice")
+<<<<<<< HEAD
+=======
+    def test_create_dataset_validate_uniqueness(self):
+        """
+        Dataset API: Test create dataset validate table uniqueness
+        """
+
+        energy_usage_ds = self.get_energy_usage_dataset()
+        self.login(username="admin")
+        table_data = {
+            "database": energy_usage_ds.database_id,
+            "table_name": energy_usage_ds.table_name,
+        }
+        if schema := get_example_default_schema():
+            table_data["schema"] = schema
+        rv = self.post_assert_metric("/api/v1/dataset/", table_data, "post")
+        assert rv.status_code == 422
+        data = json.loads(rv.data.decode("utf-8"))
+        assert data == {
+            "message": {"table_name": ["Dataset energy_usage already exists"]}
+        }
+
+    @pytest.mark.usefixtures("load_energy_table_with_slice")
+    def test_create_dataset_with_sql_validate_uniqueness(self):
+        """
+        Dataset API: Test create dataset with sql
+        """
+
+        energy_usage_ds = self.get_energy_usage_dataset()
+        self.login(username="admin")
+        table_data = {
+            "database": energy_usage_ds.database_id,
+            "table_name": energy_usage_ds.table_name,
+            "sql": "select * from energy_usage",
+        }
+        if schema := get_example_default_schema():
+            table_data["schema"] = schema
+        rv = self.post_assert_metric("/api/v1/dataset/", table_data, "post")
+        assert rv.status_code == 422
+        data = json.loads(rv.data.decode("utf-8"))
+        assert data == {
+            "message": {"table_name": ["Dataset energy_usage already exists"]}
+        }
+
+    @pytest.mark.usefixtures("load_energy_table_with_slice")
+>>>>>>> 2d98af4662 (merge from upstream to master)
     def test_create_dataset_with_sql(self):
         """
         Dataset API: Test create dataset with sql
@@ -1332,10 +1403,13 @@ class TestDatasetApi(SupersetTestCase):
         """
         Dataset API: Tests that no username is returned
         """
+<<<<<<< HEAD
 
         if backend() == "postgresql":
             # failing
             return
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         dataset = self.insert_default_dataset()
         self.login(ADMIN_USERNAME)
@@ -1403,6 +1477,32 @@ class TestDatasetApi(SupersetTestCase):
         db.session.delete(dataset)
         db.session.commit()
 
+<<<<<<< HEAD
+=======
+    def test_update_dataset_item_uniqueness(self):
+        """
+        Dataset API: Test update dataset uniqueness
+        """
+
+        dataset = self.insert_default_dataset()
+        self.login(username="admin")
+        ab_user = self.insert_dataset(
+            "ab_user", [self.get_user("admin").id], get_main_database()
+        )
+        table_data = {"table_name": "ab_user"}
+        uri = f"api/v1/dataset/{dataset.id}"
+        rv = self.put_assert_metric(uri, table_data, "put")
+        data = json.loads(rv.data.decode("utf-8"))
+        assert rv.status_code == 422
+        expected_response = {
+            "message": {"table_name": ["Dataset ab_user already exists"]}
+        }
+        assert data == expected_response
+        db.session.delete(dataset)
+        db.session.delete(ab_user)
+        db.session.commit()
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
     @patch("superset.daos.dataset.DatasetDAO.update")
     def test_update_dataset_sqlalchemy_error(self, mock_dao_update):
         """
@@ -2383,6 +2483,12 @@ class TestDatasetApi(SupersetTestCase):
 
         db.session.delete(table)
         db.session.commit()
+<<<<<<< HEAD
+=======
+
+        with examples_db.get_sqla_engine_with_context() as engine:
+            engine.execute("DROP TABLE test_create_sqla_table_api")
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         with examples_db.get_sqla_engine() as engine:
             engine.execute("DROP TABLE test_create_sqla_table_api")

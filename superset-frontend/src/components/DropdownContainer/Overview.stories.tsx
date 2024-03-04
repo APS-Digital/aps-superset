@@ -17,7 +17,13 @@
  * under the License.
  */
 
+<<<<<<< HEAD
 import Markdown from 'markdown-to-jsx';
+=======
+// import { Meta, Source } from '@storybook/addon-docs';
+import Markdown from 'markdown-to-jsx';
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 export default {
   title: 'Design System/Components/DropdownContainer/Overview',

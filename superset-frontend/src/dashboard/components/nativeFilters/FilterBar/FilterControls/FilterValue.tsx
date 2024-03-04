@@ -175,7 +175,11 @@ const FilterValue: FC<FilterControlProps> = ({
       setIsRefreshing(true);
       getChartDataRequest({
         formData: newFormData,
+<<<<<<< HEAD
         force: shouldRefresh,
+=======
+        force: false,
+>>>>>>> 2d98af4662 (merge from upstream to master)
         ownState: filterOwnState,
       })
         .then(({ response, json }) => {

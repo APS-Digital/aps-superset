@@ -17,7 +17,11 @@
  * under the License.
  */
 import { t, styled } from '@superset-ui/core';
+<<<<<<< HEAD
 import { useCallback, useEffect, useRef, useState, ReactNode } from 'react';
+=======
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import Alert from 'src/components/Alert';
 import cx from 'classnames';
 import Button from 'src/components/Button';

@@ -14,14 +14,23 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+<<<<<<< HEAD
 
 from __future__ import annotations
 
+=======
+import contextlib
+import json
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import re
 import urllib
 from datetime import datetime
 from re import Pattern
+<<<<<<< HEAD
 from typing import Any, TYPE_CHECKING, TypedDict
+=======
+from typing import Any, Optional, TYPE_CHECKING, TypedDict
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 import pandas as pd
 from apispec import APISpec
@@ -598,6 +607,52 @@ class BigQueryEngineSpec(BaseEngineSpec):  # pylint: disable=too-many-public-met
         raise ValidationError("Invalid service credentials")
 
     @classmethod
+<<<<<<< HEAD
+=======
+    def mask_encrypted_extra(cls, encrypted_extra: Optional[str]) -> Optional[str]:
+        if encrypted_extra is None:
+            return encrypted_extra
+
+        try:
+            config = json.loads(encrypted_extra)
+        except (json.JSONDecodeError, TypeError):
+            return encrypted_extra
+
+        with contextlib.suppress(KeyError):
+            config["credentials_info"]["private_key"] = PASSWORD_MASK
+        return json.dumps(config)
+
+    @classmethod
+    def unmask_encrypted_extra(
+        cls, old: Optional[str], new: Optional[str]
+    ) -> Optional[str]:
+        """
+        Reuse ``private_key`` if available and unchanged.
+        """
+        if old is None or new is None:
+            return new
+
+        try:
+            old_config = json.loads(old)
+            new_config = json.loads(new)
+        except (TypeError, json.JSONDecodeError):
+            return new
+
+        if "credentials_info" not in new_config:
+            return new
+
+        if "private_key" not in new_config["credentials_info"]:
+            return new
+
+        if new_config["credentials_info"]["private_key"] == PASSWORD_MASK:
+            new_config["credentials_info"]["private_key"] = old_config[
+                "credentials_info"
+            ]["private_key"]
+
+        return json.dumps(new_config)
+
+    @classmethod
+>>>>>>> 2d98af4662 (merge from upstream to master)
     def get_dbapi_exception_mapping(cls) -> dict[type[Exception], type[Exception]]:
         # pylint: disable=import-outside-toplevel
         from google.auth.exceptions import DefaultCredentialsError

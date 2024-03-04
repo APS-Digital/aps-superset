@@ -55,7 +55,10 @@ import {
   hasCustomLabels,
   getOption,
   isObject,
+<<<<<<< HEAD
   isEqual as utilsIsEqual,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 } from './utils';
 import { RawValue, SelectOptionsType, SelectProps } from './types';
 import {
@@ -454,7 +457,11 @@ const Select = forwardRef(
       [selectAllEligible],
     );
 
+<<<<<<< HEAD
     const handleOnBlur = (event: FocusEvent<HTMLElement>) => {
+=======
+    const handleOnBlur = (event: React.FocusEvent<HTMLElement>) => {
+>>>>>>> 2d98af4662 (merge from upstream to master)
       setInputValue('');
       onBlur?.(event);
     };
@@ -555,9 +562,12 @@ const Select = forwardRef(
     const getPastedTextValue = useCallback(
       (text: string) => {
         const option = getOption(text, fullSelectOptions, true);
+<<<<<<< HEAD
         if (!option && !allowNewOptions) {
           return undefined;
         }
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         if (labelInValue) {
           const value: AntdLabeledValue = {
             label: text,
@@ -571,12 +581,17 @@ const Select = forwardRef(
         }
         return option ? (isObject(option) ? option.value! : option) : text;
       },
+<<<<<<< HEAD
       [allowNewOptions, fullSelectOptions, labelInValue],
+=======
+      [fullSelectOptions, labelInValue],
+>>>>>>> 2d98af4662 (merge from upstream to master)
     );
 
     const onPaste = (e: ClipboardEvent<HTMLInputElement>) => {
       const pastedText = e.clipboardData.getData('text');
       if (isSingleMode) {
+<<<<<<< HEAD
         const value = getPastedTextValue(pastedText);
         if (value) {
           setSelectValue(value);
@@ -587,6 +602,13 @@ const Select = forwardRef(
         const values = array
           .map(item => getPastedTextValue(item))
           .filter(item => item !== undefined);
+=======
+        setSelectValue(getPastedTextValue(pastedText));
+      } else {
+        const token = tokenSeparators.find(token => pastedText.includes(token));
+        const array = token ? uniq(pastedText.split(token)) : [pastedText];
+        const values = array.map(item => getPastedTextValue(item));
+>>>>>>> 2d98af4662 (merge from upstream to master)
         if (labelInValue) {
           setSelectValue(previous => [
             ...((previous || []) as AntdLabeledValue[]),

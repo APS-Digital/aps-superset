@@ -48,7 +48,10 @@ import {
 } from 'src/explore/components/DatasourcePanel/types';
 import { DndItemType } from 'src/explore/components/DndItemType';
 import { ControlComponentProps } from 'src/explore/components/Control';
+<<<<<<< HEAD
 import { toQueryString } from 'src/utils/urlUtils';
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import DndAdhocFilterOption from './DndAdhocFilterOption';
 import { useDefaultTimeFilter } from '../DateFilterControl/utils';
 import { Clauses, ExpressionTypes } from '../FilterControl/types';

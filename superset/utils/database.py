@@ -79,4 +79,8 @@ def remove_database(database: Database) -> None:
     from superset import db
 
     db.session.delete(database)
+<<<<<<< HEAD
     db.session.flush()
+=======
+    db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)

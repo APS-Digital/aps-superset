@@ -150,9 +150,12 @@ export default function setupErrorMessages() {
     ErrorTypeEnum.MARSHMALLOW_ERROR,
     MarshmallowErrorMessage,
   );
+<<<<<<< HEAD
   errorMessageComponentRegistry.registerValue(
     ErrorTypeEnum.OAUTH2_REDIRECT,
     OAuth2RedirectMessage,
   );
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   setupErrorMessagesExtra();
 }

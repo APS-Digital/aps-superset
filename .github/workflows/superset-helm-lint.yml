@@ -23,12 +23,20 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Helm
+<<<<<<< HEAD
         uses: azure/setup-helm@v4
         with:
           version: v3.5.4
 
       - name: Setup Python
         uses: ./.github/actions/setup-backend/
+=======
+        uses: azure/setup-helm@v3
+        with:
+          version: v3.5.4
+
+      - uses: actions/setup-python@v5
+>>>>>>> 2d98af4662 (merge from upstream to master)
         with:
           install-superset: 'false'
 

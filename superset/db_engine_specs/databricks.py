@@ -17,7 +17,11 @@
 from __future__ import annotations
 
 from datetime import datetime
+<<<<<<< HEAD
 from typing import Any, TYPE_CHECKING, TypedDict, Union
+=======
+from typing import Any, TYPE_CHECKING, TypedDict
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 from apispec import APISpec
 from apispec.ext.marshmallow import MarshmallowPlugin
@@ -179,8 +183,13 @@ class DatabricksBaseEngineSpec(BaseEngineSpec):
         return HiveEngineSpec.epoch_to_dttm()
 
 
+<<<<<<< HEAD
 class DatabricksODBCEngineSpec(DatabricksBaseEngineSpec):
     engine_name = "Databricks SQL Endpoint"
+=======
+class DatabricksNativeEngineSpec(BasicParametersMixin, DatabricksODBCEngineSpec):
+    engine_name = "Databricks"
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     engine = "databricks"
     drivers = {"pyodbc": "ODBC driver for SQL endpoint"}

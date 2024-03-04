@@ -89,7 +89,11 @@ const TabTitleContainer = styled.div`
 const renderDraggableContent = dropProps =>
   dropProps.dropIndicatorProps && <div {...dropProps.dropIndicatorProps} />;
 
+<<<<<<< HEAD
 class Tab extends PureComponent {
+=======
+class Tab extends React.PureComponent {
+>>>>>>> 2d98af4662 (merge from upstream to master)
   constructor(props) {
     super(props);
     this.handleChangeText = this.handleChangeText.bind(this);
@@ -223,7 +227,11 @@ class Tab extends PureComponent {
           />
         )}
         {tabComponent.children.map((componentId, componentIndex) => (
+<<<<<<< HEAD
           <Fragment key={componentId}>
+=======
+          <React.Fragment key={componentId}>
+>>>>>>> 2d98af4662 (merge from upstream to master)
             <DashboardComponent
               id={componentId}
               parentId={tabComponent.id}
@@ -253,7 +261,11 @@ class Tab extends PureComponent {
                 {renderDraggableContent}
               </Droppable>
             )}
+<<<<<<< HEAD
           </Fragment>
+=======
+          </React.Fragment>
+>>>>>>> 2d98af4662 (merge from upstream to master)
         ))}
       </div>
     );

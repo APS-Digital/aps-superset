@@ -15,17 +15,25 @@
 # specific language governing permissions and limitations
 # under the License.
 
+<<<<<<< HEAD
 # pylint: disable=invalid-name, unused-argument, redefined-outer-name
 
 import pytest
 from flask_appbuilder.security.sqla.models import Role, User
 from pytest_mock import MockerFixture
 
+=======
+import pytest
+from flask_appbuilder.security.sqla.models import Role, User
+from pytest_mock import MockFixture
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.common.query_object import QueryObject
 from superset.connectors.sqla.models import Database, SqlaTable
 from superset.exceptions import SupersetSecurityException
 from superset.extensions import appbuilder
 from superset.models.slice import Slice
+<<<<<<< HEAD
 from superset.security.manager import (
     query_context_modified,
     SupersetSecurityManager,
@@ -33,6 +41,10 @@ from superset.security.manager import (
 from superset.sql_parse import Table
 from superset.superset_typing import AdhocColumn, AdhocMetric
 from superset.utils.core import DatasourceName, override_user
+=======
+from superset.security.manager import SupersetSecurityManager
+from superset.utils.core import override_user
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def test_security_manager(app_context: None) -> None:
@@ -43,6 +55,7 @@ def test_security_manager(app_context: None) -> None:
     assert sm
 
 
+<<<<<<< HEAD
 @pytest.fixture
 def stored_metrics() -> list[AdhocMetric]:
     """
@@ -97,10 +110,46 @@ def test_raise_for_access_guest_user_ok(
         "slice_id": 42,
         "metrics": stored_metrics,
         "columns": stored_columns,
+=======
+def test_raise_for_access_guest_user(
+    mocker: MockFixture,
+    app_context: None,
+) -> None:
+    """
+    Test that guest user can't modify chart payload.
+    """
+    sm = SupersetSecurityManager(appbuilder)
+    mocker.patch.object(sm, "is_guest_user", return_value=True)
+    mocker.patch.object(sm, "can_access", return_value=True)
+
+    query_context = mocker.MagicMock()
+    query_context.slice_.id = 42
+    stored_metrics = [
+        {
+            "aggregate": None,
+            "column": None,
+            "datasourceWarning": False,
+            "expressionType": "SQL",
+            "hasCustomLabel": False,
+            "label": "COUNT(*) + 1",
+            "optionName": "metric_ssa1gwimio_cxpyjc7vj3s",
+            "sqlExpression": "COUNT(*) + 1",
+        }
+    ]
+    query_context.slice_.params_dict = {
+        "metrics": stored_metrics,
+    }
+
+    # normal request
+    query_context.form_data = {
+        "slice_id": 42,
+        "metrics": stored_metrics,
+>>>>>>> 2d98af4662 (merge from upstream to master)
     }
     query_context.queries = [QueryObject(metrics=stored_metrics)]  # type: ignore
     sm.raise_for_access(query_context=query_context)
 
+<<<<<<< HEAD
 
 def test_raise_for_access_guest_user_ok_subset(
     mocker: MockerFixture,
@@ -151,6 +200,9 @@ def test_raise_for_access_guest_user_tampered_id(
         "metrics": stored_metrics,
     }
 
+=======
+    # tampered requests
+>>>>>>> 2d98af4662 (merge from upstream to master)
     query_context.form_data = {
         "slice_id": 43,
         "metrics": stored_metrics,
@@ -159,6 +211,7 @@ def test_raise_for_access_guest_user_tampered_id(
     with pytest.raises(SupersetSecurityException):
         sm.raise_for_access(query_context=query_context)
 
+<<<<<<< HEAD
 
 def test_raise_for_access_guest_user_tampered_form_data_metrics(
     mocker: MockerFixture,
@@ -185,6 +238,17 @@ def test_raise_for_access_guest_user_tampered_form_data_metrics(
             "expressionType": "SQL",
             "hasCustomLabel": False,
             "label": "COUNT(*) + 2",
+=======
+    tampered_metrics = [
+        {
+            "aggregate": None,
+            "column": None,
+            "datasourceWarning": False,
+            "expressionType": "SQL",
+            "hasCustomLabel": False,
+            "label": "COUNT(*) + 2",
+            "optionName": "metric_ssa1gwimio_cxpyjc7vj3s",
+>>>>>>> 2d98af4662 (merge from upstream to master)
             "sqlExpression": "COUNT(*) + 2",
         }
     ]
@@ -196,6 +260,7 @@ def test_raise_for_access_guest_user_tampered_form_data_metrics(
     with pytest.raises(SupersetSecurityException):
         sm.raise_for_access(query_context=query_context)
 
+<<<<<<< HEAD
 
 def test_raise_for_access_guest_user_tampered_form_data_columns(
     mocker: MockerFixture,
@@ -296,6 +361,8 @@ def test_raise_for_access_guest_user_tampered_queries_metrics(
         }
     ]
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
     query_context.form_data = {
         "slice_id": 42,
         "metrics": stored_metrics,
@@ -305,6 +372,7 @@ def test_raise_for_access_guest_user_tampered_queries_metrics(
         sm.raise_for_access(query_context=query_context)
 
 
+<<<<<<< HEAD
 def test_raise_for_access_guest_user_tampered_queries_columns(
     mocker: MockerFixture,
     app_context: None,
@@ -341,6 +409,8 @@ def test_raise_for_access_guest_user_tampered_queries_columns(
         sm.raise_for_access(query_context=query_context)
 
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 def test_raise_for_access_query_default_schema(
     mocker: MockerFixture,
     app_context: None,
@@ -403,6 +473,7 @@ def test_raise_for_access_query_default_schema(
     )
 
 
+<<<<<<< HEAD
 def test_raise_for_access_jinja_sql(mocker: MockerFixture, app_context: None) -> None:
     """
     Test that Jinja gets rendered to SQL.
@@ -441,6 +512,10 @@ def test_raise_for_access_jinja_sql(mocker: MockerFixture, app_context: None) ->
 
 def test_raise_for_access_chart_for_datasource_permission(
     mocker: MockerFixture,
+=======
+def test_raise_for_access_chart_for_datasource_permission(
+    mocker: MockFixture,
+>>>>>>> 2d98af4662 (merge from upstream to master)
     app_context: None,
 ) -> None:
     """
@@ -567,11 +642,16 @@ def test_raise_for_access_chart_owner(
         owners=[alpha],
     )
     session.add(slice)
+<<<<<<< HEAD
+=======
+    session.flush()
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     with override_user(alpha):
         sm.raise_for_access(
             chart=slice,
         )
+<<<<<<< HEAD
 
 
 def test_query_context_modified(
@@ -833,3 +913,5 @@ def test_get_catalogs_accessible_by_user_schema_access(
     catalogs = {"catalog1", "catalog2"}
 
     assert sm.get_catalogs_accessible_by_user(database, catalogs) == {"catalog2"}
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)

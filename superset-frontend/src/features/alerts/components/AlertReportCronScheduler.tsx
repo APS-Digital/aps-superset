@@ -46,10 +46,16 @@ const SCHEDULE_TYPE_OPTIONS = [
   },
 ];
 
+<<<<<<< HEAD
 export const AlertReportCronScheduler: FC<AlertReportCronSchedulerProps> = ({
   value,
   onChange,
 }) => {
+=======
+export const AlertReportCronScheduler: React.FC<
+  AlertReportCronSchedulerProps
+> = ({ value, onChange }) => {
+>>>>>>> 2d98af4662 (merge from upstream to master)
   const theme = useTheme();
   const inputRef = useRef<AntdInput>(null);
   const [scheduleFormat, setScheduleFormat] = useState<ScheduleType>(

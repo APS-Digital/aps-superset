@@ -247,6 +247,7 @@ test('Should database select display options', async () => {
   expect(await screen.findByText('test-mysql')).toBeInTheDocument();
 });
 
+<<<<<<< HEAD
 test('should display options in order of the api response', async () => {
   fetchMock.get(databaseApiRoute, fakeDatabaseApiResultInReverseOrder, {
     overwriteRoutes: true,
@@ -271,6 +272,8 @@ test('should display options in order of the api response', async () => {
   );
 });
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 test('Should fetch the search keyword when total count exceeds initial options', async () => {
   fetchMock.get(
     databaseApiRoute,
@@ -364,7 +367,11 @@ test('Sends the correct schema when changing the schema', async () => {
   });
   await waitFor(() => expect(fetchMock.calls(databaseApiRoute).length).toBe(1));
   rerender(<DatabaseSelector {...props} />);
+<<<<<<< HEAD
   expect(props.onSchemaChange).toHaveBeenCalledTimes(0);
+=======
+  expect(props.onSchemaChange).toBeCalledTimes(0);
+>>>>>>> 2d98af4662 (merge from upstream to master)
   const select = screen.getByRole('combobox', {
     name: 'Select schema or type to search schemas',
   });
@@ -375,5 +382,9 @@ test('Sends the correct schema when changing the schema', async () => {
   await waitFor(() =>
     expect(props.onSchemaChange).toHaveBeenCalledWith('information_schema'),
   );
+<<<<<<< HEAD
   expect(props.onSchemaChange).toHaveBeenCalledTimes(1);
+=======
+  expect(props.onSchemaChange).toBeCalledTimes(1);
+>>>>>>> 2d98af4662 (merge from upstream to master)
 });

@@ -17,7 +17,11 @@
  * under the License.
  */
 
+<<<<<<< HEAD
 import { FC } from 'react';
+=======
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { startCase } from 'lodash';
 import AntdEnhancedIcons from './AntdEnhanced';
 import Icon from './Icon';

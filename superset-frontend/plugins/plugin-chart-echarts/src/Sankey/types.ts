@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<<< HEAD:superset-frontend/plugins/plugin-chart-echarts/src/Sankey/types.ts
 import {
   QueryFormColumn,
   QueryFormData,
@@ -35,3 +36,24 @@ export interface SankeyChartProps extends BaseChartProps<SankeyFormData> {
 }
 
 export type SankeyTransformedProps = BaseTransformedProps<SankeyFormData> & {};
+========
+import { tagToSelectOption } from 'src/components/Tags/utils';
+
+describe('tagToSelectOption', () => {
+  test('converts a Tag object with table_name to a SelectTagsValue', () => {
+    const tag = {
+      id: '1',
+      name: 'TagName',
+      table_name: 'Table1',
+    };
+
+    const expectedSelectTagsValue = {
+      value: 'TagName',
+      label: 'TagName',
+      key: '1',
+    };
+
+    expect(tagToSelectOption(tag)).toEqual(expectedSelectTagsValue);
+  });
+});
+>>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/src/components/Tags/utils.test.tsx

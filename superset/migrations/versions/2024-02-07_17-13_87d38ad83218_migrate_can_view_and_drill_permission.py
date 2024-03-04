@@ -26,11 +26,19 @@ Create Date: 2024-02-07 17:13:20.937186
 revision = "87d38ad83218"
 down_revision = "1cf8e4344e2b"
 
+<<<<<<< HEAD
 from alembic import op  # noqa: E402
 from sqlalchemy.exc import SQLAlchemyError  # noqa: E402
 from sqlalchemy.orm import Session  # noqa: E402
 
 from superset.migrations.shared.security_converge import (  # noqa: E402
+=======
+from alembic import op
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm import Session
+
+from superset.migrations.shared.security_converge import (
+>>>>>>> 2d98af4662 (merge from upstream to master)
     add_pvms,
     get_reversed_new_pvms,
     get_reversed_pvm_map,
@@ -38,7 +46,11 @@ from superset.migrations.shared.security_converge import (  # noqa: E402
     Pvm,
 )
 
+<<<<<<< HEAD
 NEW_PVMS = {"Dashboard": ("can_view_chart_as_table", "can_view_query")}
+=======
+NEW_PVMS = {"Dashboard": ("can_view_chart_as_table",)}
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 PVM_MAP = {
     Pvm("Dashboard", "can_view_and_drill"): (
@@ -68,7 +80,11 @@ def upgrade():
         session.commit()
     except SQLAlchemyError as ex:
         session.rollback()
+<<<<<<< HEAD
         raise Exception(f"An error occurred while upgrading permissions: {ex}") from ex
+=======
+        raise Exception(f"An error occurred while upgrading permissions: {ex}")
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def downgrade():

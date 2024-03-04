@@ -10,7 +10,11 @@ on:
 
 jobs:
   lint-check:
+<<<<<<< HEAD
     runs-on: ubuntu-22.04
+=======
+    runs-on: ubuntu-latest
+>>>>>>> 2d98af4662 (merge from upstream to master)
     permissions:
       contents: read
       pull-requests: write

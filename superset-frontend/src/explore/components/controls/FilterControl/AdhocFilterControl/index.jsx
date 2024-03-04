@@ -48,7 +48,10 @@ import AdhocFilterOption from 'src/explore/components/controls/FilterControl/Adh
 import AdhocFilter from 'src/explore/components/controls/FilterControl/AdhocFilter';
 import adhocFilterType from 'src/explore/components/controls/FilterControl/adhocFilterType';
 import columnType from 'src/explore/components/controls/FilterControl/columnType';
+<<<<<<< HEAD
 import { toQueryString } from 'src/utils/urlUtils';
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { Clauses, ExpressionTypes } from '../types';
 
 const { warning } = Modal;

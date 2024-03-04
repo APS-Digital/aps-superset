@@ -50,7 +50,10 @@ export enum LocalStorageKeys {
    * sqllab__is_autocomplete_enabled
    */
   SqllabIsAutocompleteEnabled = 'sqllab__is_autocomplete_enabled',
+<<<<<<< HEAD
   SqllabIsRenderHtmlEnabled = 'sqllab__is_render_html_enabled',
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   ExploreDataTableOriginalFormattedTimeColumns = 'explore__data_table_original_formatted_time_columns',
   DashboardCustomFilterBarWidths = 'dashboard__custom_filter_bar_widths',
   DashboardExploreContext = 'dashboard__explore_context',

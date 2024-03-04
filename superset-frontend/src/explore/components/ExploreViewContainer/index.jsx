@@ -602,7 +602,11 @@ function ExploreViewContainer(props) {
         />
         <Resizable
           onResizeStop={(evt, direction, ref, d) => {
+<<<<<<< HEAD
             setWidth(ref.getBoundingClientRect().width);
+=======
+            setShouldForceUpdate(d?.width);
+>>>>>>> 2d98af4662 (merge from upstream to master)
             setSidebarWidths(LocalStorageKeys.DatasourceWidth, d);
           }}
           defaultSize={{

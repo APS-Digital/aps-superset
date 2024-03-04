@@ -55,8 +55,23 @@ governing permissions and limitations under the License. #}
     <link
       rel="stylesheet"
       type="text/css"
+<<<<<<< HEAD
       href="{{ assets_prefix }}/static/appbuilder/css/select2/select2.min.css"
     />
+=======
+      href="{{ assets_prefix }}/static/appbuilder/css/bootstrap-datepicker/bootstrap-datepicker3.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ assets_prefix }}/static/appbuilder/css/select2/select2.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ assets_prefix }}/static/appbuilder/css/select2/select2-bootstrap.min.css"
+    />
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     {{ css_bundle("theme") }} {% if entry %} {{ css_bundle(entry) }} {% endif %}
     {% endblock %} {{ js_bundle("theme") }}

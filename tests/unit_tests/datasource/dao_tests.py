@@ -62,6 +62,35 @@ def session_with_data(session: Session) -> Iterator[Session]:
 
     saved_query = SavedQuery(database=database, sql="select * from foo")
 
+<<<<<<< HEAD
+=======
+    table = Table(
+        name="my_table",
+        schema="my_schema",
+        catalog="my_catalog",
+        database=database,
+        columns=[],
+    )
+
+    dataset = Dataset(
+        database=table.database,
+        name="positions",
+        expression="""
+SELECT array_agg(array[longitude,latitude]) AS position
+FROM my_catalog.my_schema.my_table
+""",
+        tables=[table],
+        columns=[
+            Column(
+                name="position",
+                expression="array_agg(array[longitude,latitude])",
+            ),
+        ],
+    )
+
+    session.add(dataset)
+    session.add(table)
+>>>>>>> 2d98af4662 (merge from upstream to master)
     session.add(saved_query)
     session.add(query_obj)
     session.add(database)
@@ -109,6 +138,35 @@ def test_get_datasource_saved_query(session_with_data: Session) -> None:
     assert isinstance(result, SavedQuery)
 
 
+<<<<<<< HEAD
+=======
+def test_get_datasource_sl_table(session_with_data: Session) -> None:
+    from superset.daos.datasource import DatasourceDAO
+    from superset.tables.models import Table
+
+    result = DatasourceDAO.get_datasource(
+        datasource_type=DatasourceType.SLTABLE,
+        datasource_id=1,
+    )
+
+    assert result.id == 1
+    assert isinstance(result, Table)
+
+
+def test_get_datasource_sl_dataset(session_with_data: Session) -> None:
+    from superset.daos.datasource import DatasourceDAO
+    from superset.datasets.models import Dataset
+
+    result = DatasourceDAO.get_datasource(
+        datasource_type=DatasourceType.DATASET,
+        datasource_id=1,
+    )
+
+    assert result.id == 1
+    assert isinstance(result, Dataset)
+
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
 def test_get_datasource_w_str_param(session_with_data: Session) -> None:
     from superset.connectors.sqla.models import SqlaTable
     from superset.daos.datasource import DatasourceDAO
@@ -121,6 +179,17 @@ def test_get_datasource_w_str_param(session_with_data: Session) -> None:
         SqlaTable,
     )
 
+<<<<<<< HEAD
+=======
+    assert isinstance(
+        DatasourceDAO.get_datasource(
+            datasource_type="sl_table",
+            datasource_id=1,
+        ),
+        Table,
+    )
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 def test_get_all_datasources(session_with_data: Session) -> None:
     from superset.connectors.sqla.models import SqlaTable

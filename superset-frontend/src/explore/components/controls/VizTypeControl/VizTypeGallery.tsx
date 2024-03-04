@@ -63,11 +63,70 @@ type VizEntry = {
 
 enum Sections {
   AllCharts = 'ALL_CHARTS',
+<<<<<<< HEAD
   Featured = 'FEATURED',
   Category = 'CATEGORY',
   Tags = 'TAGS',
 }
 
+=======
+  Category = 'CATEGORY',
+  Tags = 'TAGS',
+  RecommendedTags = 'RECOMMENDED_TAGS',
+}
+
+const DEFAULT_ORDER = [
+  'line',
+  'big_number',
+  'big_number_total',
+  'table',
+  'pivot_table_v2',
+  'echarts_timeseries_line',
+  'echarts_area',
+  'echarts_timeseries_bar',
+  'echarts_timeseries_scatter',
+  'pie',
+  'mixed_timeseries',
+  'dist_bar',
+  'area',
+  'bar',
+  'deck_polygon',
+  'time_table',
+  'histogram',
+  'deck_scatter',
+  'deck_hex',
+  'time_pivot',
+  'deck_arc',
+  'heatmap',
+  'deck_grid',
+  'deck_screengrid',
+  'treemap_v2',
+  'box_plot',
+  'sankey',
+  'word_cloud',
+  'mapbox',
+  'kepler',
+  'cal_heatmap',
+  'rose',
+  'bubble',
+  'bubble_v2',
+  'deck_geojson',
+  'horizon',
+  'deck_multi',
+  'compare',
+  'partition',
+  'event_flow',
+  'deck_path',
+  'graph_chart',
+  'world_map',
+  'paired_ttest',
+  'para',
+  'country_map',
+];
+
+const typesWithDefaultOrder = new Set(DEFAULT_ORDER);
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
 const THUMBNAIL_GRID_UNITS = 24;
 
 export const MAX_ADVISABLE_VIZ_GALLERY_WIDTH = 1090;
@@ -519,7 +578,13 @@ export default function VizTypeGallery(props: VizTypeGalleryProps) {
   );
 
   const [activeSection, setActiveSection] = useState<string>(() =>
+<<<<<<< HEAD
     selectedVizMetadata?.category ? Sections.Category : Sections.Featured,
+=======
+    selectedVizMetadata?.category
+      ? Sections.Category
+      : Sections.RecommendedTags,
+>>>>>>> 2d98af4662 (merge from upstream to master)
   );
 
   // get a fuse instance for fuzzy search
@@ -611,6 +676,14 @@ export default function VizTypeGallery(props: VizTypeGalleryProps) {
 
   const sectionMap = useMemo(
     () => ({
+<<<<<<< HEAD
+=======
+      [Sections.RecommendedTags]: {
+        title: t('Recommended tags'),
+        icon: <Icons.Tags />,
+        selectors: RECOMMENDED_TAGS,
+      },
+>>>>>>> 2d98af4662 (merge from upstream to master)
       [Sections.Category]: {
         title: t('Category'),
         icon: <Icons.Category iconSize="m" />,
@@ -633,6 +706,7 @@ export default function VizTypeGallery(props: VizTypeGalleryProps) {
       return sortedMetadata;
     }
     if (
+<<<<<<< HEAD
       activeSelector === FEATURED &&
       activeSection === Sections.Featured &&
       chartsByTags[FEATURED]
@@ -640,12 +714,22 @@ export default function VizTypeGallery(props: VizTypeGalleryProps) {
       return chartsByTags[FEATURED];
     }
     if (
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
       activeSection === Sections.Category &&
       chartsByCategory[activeSelector]
     ) {
       return chartsByCategory[activeSelector];
     }
+<<<<<<< HEAD
     if (activeSection === Sections.Tags && chartsByTags[activeSelector]) {
+=======
+    if (
+      (activeSection === Sections.Tags ||
+        activeSection === Sections.RecommendedTags) &&
+      chartsByTags[activeSelector]
+    ) {
+>>>>>>> 2d98af4662 (merge from upstream to master)
       return chartsByTags[activeSelector];
     }
     return [];
@@ -672,6 +756,7 @@ export default function VizTypeGallery(props: VizTypeGalleryProps) {
             !isActivelySearching &&
             ALL_CHARTS === activeSelector &&
             Sections.AllCharts === activeSection
+<<<<<<< HEAD
           }
           onClick={clickSelector}
         />
@@ -690,6 +775,8 @@ export default function VizTypeGallery(props: VizTypeGalleryProps) {
             !isActivelySearching &&
             FEATURED === activeSelector &&
             Sections.Featured === activeSection
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
           }
           onClick={clickSelector}
         />

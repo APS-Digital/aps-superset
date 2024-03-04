@@ -403,7 +403,11 @@ class DBEventLogger(AbstractEventLogger):
             logs.append(log)
         try:
             db.session.bulk_save_objects(logs)
+<<<<<<< HEAD
             db.session.commit()  # pylint: disable=consider-using-transaction
+=======
+            db.session.commit()
+>>>>>>> 2d98af4662 (merge from upstream to master)
         except SQLAlchemyError as ex:
             logging.error("DBEventLogger failed to log event(s)")
             logging.exception(ex)

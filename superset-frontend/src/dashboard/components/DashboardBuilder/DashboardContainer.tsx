@@ -18,13 +18,23 @@
  */
 // ParentSize uses resize observer so the dashboard will update size
 // when its container size changes, due to e.g., builder side panel opening
+<<<<<<< HEAD
 import { FC, useEffect, useMemo, useRef } from 'react';
+=======
+import React, { FC, useCallback, useEffect, useMemo, useRef } from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Filter,
   Filters,
+<<<<<<< HEAD
   LabelsColorMapSource,
   getLabelsColorMap,
+=======
+  getCategoricalSchemeRegistry,
+  SupersetClient,
+  useComponentDidUpdate,
+>>>>>>> 2d98af4662 (merge from upstream to master)
 } from '@superset-ui/core';
 import { ParentSize } from '@visx/responsive';
 import { pick } from 'lodash';

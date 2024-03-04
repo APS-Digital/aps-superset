@@ -50,7 +50,11 @@ from superset.viz import BaseViz, viz_types
 if TYPE_CHECKING:
     from superset.common.query_context import QueryContext
     from superset.common.query_context_factory import QueryContextFactory
+<<<<<<< HEAD
     from superset.connectors.sqla.models import SqlaTable
+=======
+    from superset.connectors.sqla.models import BaseDatasource
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 metadata = Model.metadata  # pylint: disable=no-member
 slice_user = Table(

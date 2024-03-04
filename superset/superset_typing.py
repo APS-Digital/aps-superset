@@ -18,7 +18,10 @@ from collections.abc import Sequence
 from datetime import datetime
 from typing import Any, Literal, Optional, TYPE_CHECKING, TypedDict, Union
 
+<<<<<<< HEAD
 from sqlalchemy.sql.type_api import TypeEngine
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from typing_extensions import NotRequired
 from werkzeug.wrappers import Response
 

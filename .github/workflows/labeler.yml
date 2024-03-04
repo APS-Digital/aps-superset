@@ -7,7 +7,11 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
+<<<<<<< HEAD
     runs-on: ubuntu-22.04
+=======
+    runs-on: ubuntu-latest
+>>>>>>> 2d98af4662 (merge from upstream to master)
     steps:
     - uses: actions/labeler@v5
       with:

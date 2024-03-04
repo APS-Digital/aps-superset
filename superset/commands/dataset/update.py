@@ -41,9 +41,14 @@ from superset.commands.dataset.exceptions import (
 )
 from superset.connectors.sqla.models import SqlaTable
 from superset.daos.dataset import DatasetDAO
+<<<<<<< HEAD
 from superset.exceptions import SupersetSecurityException
 from superset.sql_parse import Table
 from superset.utils.decorators import on_error, transaction
+=======
+from superset.daos.exceptions import DAOUpdateFailedError
+from superset.exceptions import SupersetSecurityException
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 logger = logging.getLogger(__name__)
 
@@ -73,8 +78,22 @@ class UpdateDatasetCommand(UpdateMixin, BaseCommand):
     )
     def run(self) -> Model:
         self.validate()
+<<<<<<< HEAD
         assert self._model
         return DatasetDAO.update(self._model, attributes=self._properties)
+=======
+        if self._model:
+            try:
+                dataset = DatasetDAO.update(
+                    self._model,
+                    attributes=self._properties,
+                )
+                return dataset
+            except DAOUpdateFailedError as ex:
+                logger.exception(ex.exception)
+                raise DatasetUpdateFailedError() from ex
+        raise DatasetUpdateFailedError()
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     def validate(self) -> None:
         exceptions: list[ValidationError] = []
@@ -107,9 +126,16 @@ class UpdateDatasetCommand(UpdateMixin, BaseCommand):
 
         # Validate uniqueness
         if not DatasetDAO.validate_update_uniqueness(
+<<<<<<< HEAD
             self._model.database,
             table,
             self._model_id,
+=======
+            self._model.database_id,
+            self._model.schema,
+            self._model_id,
+            table_name,
+>>>>>>> 2d98af4662 (merge from upstream to master)
         ):
             exceptions.append(DatasetExistsValidationError(table))
 
@@ -126,7 +152,10 @@ class UpdateDatasetCommand(UpdateMixin, BaseCommand):
             self._properties["owners"] = owners
         except ValidationError as ex:
             exceptions.append(ex)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         # Validate columns
         if columns := self._properties.get("columns"):
             self._validate_columns(columns, exceptions)

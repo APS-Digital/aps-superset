@@ -50,7 +50,10 @@ export interface QueryEditor {
   dbId?: number;
   name: string;
   title?: string; // keep it optional for backward compatibility
+<<<<<<< HEAD
   catalog?: string | null;
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   schema?: string;
   autorun: boolean;
   sql: string;
@@ -82,7 +85,10 @@ export type UnsavedQueryEditor = Partial<QueryEditor>;
 export interface Table {
   id: string;
   dbId: number;
+<<<<<<< HEAD
   catalog: string | null;
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   schema: string;
   name: string;
   queryEditorId: QueryEditor['id'];
@@ -109,8 +115,11 @@ export type SqlLabRootState = {
     unsavedQueryEditor: UnsavedQueryEditor;
     queryCostEstimates?: Record<string, QueryCostEstimate>;
     editorTabLastUpdatedAt: number;
+<<<<<<< HEAD
     lastUpdatedActiveTab: string;
     destroyedQueryEditors: Record<string, number>;
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   };
   localStorageUsageInKilobytes: number;
   messageToasts: toastState[];

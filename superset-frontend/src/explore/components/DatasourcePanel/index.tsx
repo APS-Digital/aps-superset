@@ -27,8 +27,11 @@ import {
 } from '@superset-ui/core';
 
 import { ControlConfig } from '@superset-ui/chart-controls';
+<<<<<<< HEAD
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { FixedSizeList as List } from 'react-window';
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 import { isArray } from 'lodash';
 import { matchSorter, rankings } from 'match-sorter';
@@ -78,6 +81,21 @@ export interface Props {
   formData?: QueryFormData;
 }
 
+<<<<<<< HEAD
+=======
+const Button = styled.button`
+  background: none;
+  border: none;
+  text-decoration: underline;
+  color: ${({ theme }) => theme.colors.primary.dark1};
+`;
+
+const ButtonContainer = styled.div`
+  text-align: center;
+  padding-top: 2px;
+`;
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
 const DatasourceContainer = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.grayscale.light5};
@@ -114,6 +132,59 @@ const DatasourceContainer = styled.div`
   `};
 `;
 
+<<<<<<< HEAD
+=======
+const LabelWrapper = styled.div`
+  ${({ theme }) => css`
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: ${theme.typography.sizes.s}px;
+    background-color: ${theme.colors.grayscale.light4};
+    margin: ${theme.gridUnit * 2}px 0;
+    border-radius: 4px;
+    padding: 0 ${theme.gridUnit}px;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    padding: 0;
+    cursor: pointer;
+    &:hover {
+      background-color: ${theme.colors.grayscale.light3};
+    }
+
+    & > span {
+      white-space: nowrap;
+    }
+
+    .option-label {
+      display: inline;
+    }
+
+    .metric-option {
+      & > svg {
+        min-width: ${theme.gridUnit * 4}px;
+      }
+      & > .option-label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  `}
+`;
+
+const SectionHeader = styled.span`
+  ${({ theme }) => `
+    font-size: ${theme.typography.sizes.m}px;
+    line-height: 1.3;
+  `}
+`;
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
 const StyledInfoboxWrapper = styled.div`
   ${({ theme }) => css`
     margin: 0 ${theme.gridUnit * 2.5}px;
@@ -353,10 +424,75 @@ export default function DataSourcePanel({
                 }}
                 overscanCount={5}
               >
+<<<<<<< HEAD
                 {DatasourcePanelItem}
               </List>
             )}
           </AutoSizer>
+=======
+                <div className="field-length">
+                  {t(
+                    `Showing %s of %s`,
+                    metricSlice?.length,
+                    lists?.metrics.length,
+                  )}
+                </div>
+                {metricSlice?.map?.((m: Metric) => (
+                  <LabelContainer
+                    key={m.metric_name + String(shouldForceUpdate)}
+                    className="column"
+                  >
+                    <DatasourcePanelDragOption
+                      value={m}
+                      type={DndItemType.Metric}
+                    />
+                  </LabelContainer>
+                ))}
+                {lists?.metrics?.length > DEFAULT_MAX_METRICS_LENGTH ? (
+                  <ButtonContainer>
+                    <Button onClick={() => setShowAllMetrics(!showAllMetrics)}>
+                      {showAllMetrics ? t('Show less...') : t('Show all...')}
+                    </Button>
+                  </ButtonContainer>
+                ) : (
+                  <></>
+                )}
+              </Collapse.Panel>
+            )}
+            <Collapse.Panel
+              header={<SectionHeader>{t('Columns')}</SectionHeader>}
+              key="column"
+            >
+              <div className="field-length">
+                {t(
+                  `Showing %s of %s`,
+                  columnSlice.length,
+                  lists.columns.length,
+                )}
+              </div>
+              {columnSlice.map(col => (
+                <LabelContainer
+                  key={col.column_name + String(shouldForceUpdate)}
+                  className="column"
+                >
+                  <DatasourcePanelDragOption
+                    value={col as DndItemValue}
+                    type={DndItemType.Column}
+                  />
+                </LabelContainer>
+              ))}
+              {lists.columns.length > DEFAULT_MAX_COLUMNS_LENGTH ? (
+                <ButtonContainer>
+                  <Button onClick={() => setShowAllColumns(!showAllColumns)}>
+                    {showAllColumns ? t('Show Less...') : t('Show all...')}
+                  </Button>
+                </ButtonContainer>
+              ) : (
+                <></>
+              )}
+            </Collapse.Panel>
+          </Collapse>
+>>>>>>> 2d98af4662 (merge from upstream to master)
         </div>
       </>
     ),

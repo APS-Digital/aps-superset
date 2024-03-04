@@ -20,10 +20,14 @@ from collections.abc import Iterator
 import pytest
 from sqlalchemy.orm.session import Session
 
+<<<<<<< HEAD
 from superset.commands.database.ssh_tunnel.exceptions import (
     SSHTunnelDatabasePortError,
     SSHTunnelInvalidError,
 )
+=======
+from superset.commands.database.ssh_tunnel.exceptions import SSHTunnelInvalidError
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 @pytest.fixture
@@ -35,8 +39,12 @@ def session_with_data(request, session: Session) -> Iterator[Session]:
     engine = session.get_bind()
     SqlaTable.metadata.create_all(engine)  # pylint: disable=no-member
 
+<<<<<<< HEAD
     sqlalchemy_uri = getattr(request, "param", "postgresql://u:p@localhost:5432/db")
     database = Database(database_name="my_database", sqlalchemy_uri=sqlalchemy_uri)
+=======
+    database = Database(database_name="my_database", sqlalchemy_uri="sqlite://")
+>>>>>>> 2d98af4662 (merge from upstream to master)
     sqla_table = SqlaTable(
         table_name="my_sqla_table",
         columns=[],

@@ -16,8 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
 import { useState, useEffect, useMemo, ChangeEvent } from 'react';
 
+=======
+import React, { useState, useEffect, useMemo } from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import type { DatabaseObject } from 'src/features/databases/types';
 import { Row, Col } from 'src/components';
 import { Input, TextArea } from 'src/components/Input';

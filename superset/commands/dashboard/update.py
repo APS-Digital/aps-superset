@@ -14,15 +14,24 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+<<<<<<< HEAD
 import logging
 import textwrap
 from functools import partial
+=======
+import json
+import logging
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from typing import Any, Optional
 
 from flask_appbuilder.models.sqla import Model
 from marshmallow import ValidationError
 
+<<<<<<< HEAD
 from superset import app, security_manager
+=======
+from superset import security_manager
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.commands.base import BaseCommand, UpdateMixin
 from superset.commands.dashboard.exceptions import (
     DashboardForbiddenError,
@@ -31,6 +40,7 @@ from superset.commands.dashboard.exceptions import (
     DashboardSlugExistsValidationError,
     DashboardUpdateFailedError,
 )
+<<<<<<< HEAD
 from superset.commands.utils import populate_roles, update_tags, validate_tags
 from superset.daos.dashboard import DashboardDAO
 from superset.daos.report import ReportScheduleDAO
@@ -41,6 +51,14 @@ from superset.tags.models import ObjectType
 from superset.utils import json
 from superset.utils.core import send_email_smtp
 from superset.utils.decorators import on_error, transaction
+=======
+from superset.commands.utils import populate_roles
+from superset.daos.dashboard import DashboardDAO
+from superset.daos.exceptions import DAOUpdateFailedError
+from superset.exceptions import SupersetSecurityException
+from superset.extensions import db
+from superset.models.dashboard import Dashboard
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 logger = logging.getLogger(__name__)
 
@@ -51,6 +69,7 @@ class UpdateDashboardCommand(UpdateMixin, BaseCommand):
         self._properties = data.copy()
         self._model: Optional[Dashboard] = None
 
+<<<<<<< HEAD
     @transaction(on_error=partial(on_error, reraise=DashboardUpdateFailedError))
     def run(self) -> Model:
         self.validate()
@@ -68,14 +87,38 @@ class UpdateDashboardCommand(UpdateMixin, BaseCommand):
                 data=json.loads(self._properties.get("json_metadata", "{}")),
             )
 
+=======
+    def run(self) -> Model:
+        self.validate()
+        assert self._model
+
+        try:
+            dashboard = DashboardDAO.update(self._model, self._properties, commit=False)
+            if self._properties.get("json_metadata"):
+                dashboard = DashboardDAO.set_dash_metadata(
+                    dashboard,
+                    data=json.loads(self._properties.get("json_metadata", "{}")),
+                    commit=False,
+                )
+            db.session.commit()
+        except DAOUpdateFailedError as ex:
+            logger.exception(ex.exception)
+            raise DashboardUpdateFailedError() from ex
+>>>>>>> 2d98af4662 (merge from upstream to master)
         return dashboard
 
     def validate(self) -> None:
         exceptions: list[ValidationError] = []
+<<<<<<< HEAD
         owner_ids: Optional[list[int]] = self._properties.get("owners")
         roles_ids: Optional[list[int]] = self._properties.get("roles")
         slug: Optional[str] = self._properties.get("slug")
         tag_ids: Optional[list[int]] = self._properties.get("tags")
+=======
+        owners_ids: Optional[list[int]] = self._properties.get("owners")
+        roles_ids: Optional[list[int]] = self._properties.get("roles")
+        slug: Optional[str] = self._properties.get("slug")
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         # Validate/populate model exists
         self._model = DashboardDAO.find_by_id(self._model_id)
@@ -92,6 +135,7 @@ class UpdateDashboardCommand(UpdateMixin, BaseCommand):
             exceptions.append(DashboardSlugExistsValidationError())
 
         # Validate/Populate owner
+<<<<<<< HEAD
         try:
             owners = self.compute_owners(
                 self._model.owners,
@@ -106,6 +150,17 @@ class UpdateDashboardCommand(UpdateMixin, BaseCommand):
             validate_tags(ObjectType.dashboard, self._model.tags, tag_ids)
         except ValidationError as ex:
             exceptions.append(ex)
+=======
+        if owners_ids is None:
+            owners_ids = [owner.id for owner in self._model.owners]
+        try:
+            owners = self.populate_owners(owners_ids)
+            self._properties["owners"] = owners
+        except ValidationError as ex:
+            exceptions.append(ex)
+        if exceptions:
+            raise DashboardInvalidError(exceptions=exceptions)
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
         # Validate/Populate role
         if roles_ids is None:
@@ -117,6 +172,7 @@ class UpdateDashboardCommand(UpdateMixin, BaseCommand):
             exceptions.append(ex)
         if exceptions:
             raise DashboardInvalidError(exceptions=exceptions)
+<<<<<<< HEAD
 
     def process_tab_diff(self) -> None:
         def find_deleted_tabs() -> list[str]:
@@ -187,3 +243,5 @@ class UpdateDashboardCommand(UpdateMixin, BaseCommand):
         deleted_tabs = find_deleted_tabs()
         reports = find_reports_containing_tabs(deleted_tabs)
         deactivate_reports(reports)
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)

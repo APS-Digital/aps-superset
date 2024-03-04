@@ -16,6 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<< HEAD
+=======
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { FilterXSS, getDefaultWhiteList } from 'xss';
 
 const xssFilter = new FilterXSS({
@@ -52,6 +56,7 @@ export function hasHtmlTagPattern(str: string): boolean {
 }
 
 export function isProbablyHTML(text: string) {
+<<<<<<< HEAD
   const cleanedStr = text.trim().toLowerCase();
 
   if (
@@ -64,6 +69,11 @@ export function isProbablyHTML(text: string) {
   const parser = new DOMParser();
   const doc = parser.parseFromString(cleanedStr, 'text/html');
   return Array.from(doc.body.childNodes).some(({ nodeType }) => nodeType === 1);
+=======
+  return Array.from(
+    new DOMParser().parseFromString(text, 'text/html').body.childNodes,
+  ).some(({ nodeType }) => nodeType === 1);
+>>>>>>> 2d98af4662 (merge from upstream to master)
 }
 
 export function sanitizeHtmlIfNeeded(htmlString: string) {

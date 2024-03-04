@@ -17,6 +17,10 @@
  * under the License.
  */
 import { ThemeProvider, supersetTheme } from '@superset-ui/core';
+<<<<<<< HEAD
+=======
+import React from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import { render, screen, waitFor } from 'spec/helpers/testing-library';
 import Control, { ControlProps } from 'src/explore/components/Control';
 

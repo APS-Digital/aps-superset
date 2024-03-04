@@ -74,8 +74,15 @@ class ImportModelsCommand(BaseCommand):
 
         try:
             self._import(self._configs, self.overwrite)
+<<<<<<< HEAD
         except CommandException:
             raise
+=======
+            db.session.commit()
+        except CommandException as ex:
+            db.session.rollback()
+            raise ex
+>>>>>>> 2d98af4662 (merge from upstream to master)
         except Exception as ex:
             raise self.import_error() from ex
 

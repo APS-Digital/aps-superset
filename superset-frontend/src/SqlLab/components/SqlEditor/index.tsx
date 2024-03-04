@@ -25,9 +25,13 @@ import {
   useRef,
   useCallback,
   ChangeEvent,
+<<<<<<< HEAD
   FC,
 } from 'react';
 
+=======
+} from 'react';
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import type AceEditor from 'react-ace';
 import useEffectEvent from 'src/hooks/useEffectEvent';
 import { CSSTransition } from 'react-transition-group';
@@ -79,7 +83,10 @@ import {
   setActiveSouthPaneTab,
   updateSavedQuery,
   formatQuery,
+<<<<<<< HEAD
   fetchQueryEditor,
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   switchQueryEditor,
 } from 'src/SqlLab/actions/sqlLab';
 import {
@@ -102,6 +109,7 @@ import {
 import { EmptyStateBig } from 'src/components/EmptyState';
 import Alert from 'src/components/Alert';
 import getBootstrapData from 'src/utils/getBootstrapData';
+<<<<<<< HEAD
 import useLogAction from 'src/logger/useLogAction';
 import {
   LOG_ACTIONS_SQLLAB_CREATE_TABLE_AS,
@@ -113,6 +121,8 @@ import {
   LOG_ACTIONS_SQLLAB_STOP_QUERY,
   Logger,
 } from 'src/logger/LogUtils';
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 import TemplateParamsEditor from '../TemplateParamsEditor';
 import SouthPane from '../SouthPane';
 import SaveQuery, { QueryPayload } from '../SaveQuery';
@@ -249,7 +259,11 @@ const elementStyle = (
   }px)`,
 });
 
+<<<<<<< HEAD
 const SqlEditor: FC<Props> = ({
+=======
+const SqlEditor: React.FC<Props> = ({
+>>>>>>> 2d98af4662 (merge from upstream to master)
   queryEditor,
   defaultQueryLimit,
   maxRow,
@@ -260,6 +274,7 @@ const SqlEditor: FC<Props> = ({
   const theme = useTheme();
   const dispatch = useDispatch();
 
+<<<<<<< HEAD
   const {
     database,
     latestQuery,
@@ -294,6 +309,34 @@ const SqlEditor: FC<Props> = ({
   }, shallowEqual);
 
   const logAction = useLogAction({ queryEditorId: queryEditor.id });
+=======
+  const { database, latestQuery, hideLeftBar, currentQueryEditorId } =
+    useSelector<
+      SqlLabRootState,
+      {
+        database?: DatabaseObject;
+        latestQuery?: QueryResponse;
+        hideLeftBar?: boolean;
+        currentQueryEditorId: QueryEditor['id'];
+      }
+    >(({ sqlLab: { unsavedQueryEditor, databases, queries, tabHistory } }) => {
+      let { dbId, latestQueryId, hideLeftBar } = queryEditor;
+      if (unsavedQueryEditor?.id === queryEditor.id) {
+        dbId = unsavedQueryEditor.dbId || dbId;
+        latestQueryId = unsavedQueryEditor.latestQueryId || latestQueryId;
+        hideLeftBar = isBoolean(unsavedQueryEditor.hideLeftBar)
+          ? unsavedQueryEditor.hideLeftBar
+          : hideLeftBar;
+      }
+      return {
+        database: databases[dbId || ''],
+        latestQuery: queries[latestQueryId || ''],
+        hideLeftBar,
+        currentQueryEditorId: tabHistory.slice(-1)[0],
+      };
+    }, shallowEqual);
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
   const isActive = currentQueryEditorId === queryEditor.id;
   const [height, setHeight] = useState(0);
   const [autorun, setAutorun] = useState(queryEditor.autorun);
@@ -306,9 +349,12 @@ const SqlEditor: FC<Props> = ({
   );
   const [autocompleteEnabled, setAutocompleteEnabled] = useState(
     getItem(LocalStorageKeys.SqllabIsAutocompleteEnabled, true),
+<<<<<<< HEAD
   );
   const [renderHTMLEnabled, setRenderHTMLEnabled] = useState(
     getItem(LocalStorageKeys.SqllabIsRenderHtmlEnabled, false),
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   );
   const [showCreateAsModal, setShowCreateAsModal] = useState(false);
   const [createAs, setCreateAs] = useState('');
@@ -343,6 +389,7 @@ const SqlEditor: FC<Props> = ({
     [ctas, database, defaultQueryLimit, dispatch, queryEditor],
   );
 
+<<<<<<< HEAD
   const formatCurrentQuery = useCallback(
     (useShortcut?: boolean) => {
       logAction(LOG_ACTIONS_SQLLAB_FORMAT_SQL, {
@@ -352,6 +399,11 @@ const SqlEditor: FC<Props> = ({
     },
     [dispatch, queryEditor, logAction],
   );
+=======
+  const formatCurrentQuery = useCallback(() => {
+    dispatch(formatQuery(queryEditor));
+  }, [dispatch, queryEditor]);
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
   const stopQuery = useCallback(() => {
     if (latestQuery && ['running', 'pending'].indexOf(latestQuery.state) >= 0) {
@@ -418,7 +470,10 @@ const SqlEditor: FC<Props> = ({
               descr: KEY_MAP[KeyboardShortcut.CtrlT],
             }),
         func: () => {
+<<<<<<< HEAD
           Logger.markTimeOrigin();
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
           dispatch(addNewQueryEditor());
         },
       },
@@ -433,16 +488,21 @@ const SqlEditor: FC<Props> = ({
               key: KeyboardShortcut.CtrlE,
               descr: KEY_MAP[KeyboardShortcut.CtrlE],
             }),
+<<<<<<< HEAD
         func: () => {
           logAction(LOG_ACTIONS_SQLLAB_STOP_QUERY, { shortcut: true });
           stopQuery();
         },
+=======
+        func: stopQuery,
+>>>>>>> 2d98af4662 (merge from upstream to master)
       },
       {
         name: 'formatQuery',
         key: KeyboardShortcut.CtrlShiftF,
         descr: KEY_MAP[KeyboardShortcut.CtrlShiftF],
         func: () => {
+<<<<<<< HEAD
           formatCurrentQuery(true);
         },
       },
@@ -460,6 +520,9 @@ const SqlEditor: FC<Props> = ({
         descr: KEY_MAP[KeyboardShortcut.CtrlRight],
         func: () => {
           dispatch(switchQueryEditor(false));
+=======
+          formatCurrentQuery();
+>>>>>>> 2d98af4662 (merge from upstream to master)
         },
       },
     ];
@@ -557,6 +620,7 @@ const SqlEditor: FC<Props> = ({
     !queryEditor.loaded;
 
   const loadQueryEditor = useEffectEvent(() => {
+<<<<<<< HEAD
     const duration = Logger.getTimestamp();
     logAction(LOG_ACTIONS_SQLLAB_LOAD_TAB_STATE, {
       duration,
@@ -566,6 +630,10 @@ const SqlEditor: FC<Props> = ({
     });
     if (shouldLoadQueryEditor) {
       dispatch(fetchQueryEditor(queryEditor, displayLimit));
+=======
+    if (shouldLoadQueryEditor) {
+      dispatch(switchQueryEditor(queryEditor, displayLimit));
+>>>>>>> 2d98af4662 (merge from upstream to master)
     }
   });
 
@@ -589,6 +657,15 @@ const SqlEditor: FC<Props> = ({
     };
     // TODO: Remove useEffectEvent deps once https://github.com/facebook/react/pull/25881 is released
   }, [onBeforeUnload, loadQueryEditor, isActive]);
+<<<<<<< HEAD
+=======
+
+  useEffect(() => {
+    if (!database || isEmpty(database)) {
+      setShowEmptyState(true);
+    }
+  }, [database]);
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
   useEffect(() => {
     // setup hotkeys
@@ -666,11 +743,14 @@ const SqlEditor: FC<Props> = ({
     setAutocompleteEnabled(!autocompleteEnabled);
   };
 
+<<<<<<< HEAD
   const handleToggleRenderHTMLEnabled = () => {
     setItem(LocalStorageKeys.SqllabIsRenderHtmlEnabled, !renderHTMLEnabled);
     setRenderHTMLEnabled(!renderHTMLEnabled);
   };
 
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
   const createTableAs = () => {
     startQuery(true, CtasEnum.Table);
     setShowCreateAsModal(false);
@@ -695,6 +775,7 @@ const SqlEditor: FC<Props> = ({
       : t('You must run the query successfully first');
     return (
       <Menu css={{ width: theme.gridUnit * 50 }}>
+<<<<<<< HEAD
         <Menu.Item css={{ display: 'flex', justifyContent: 'space-between' }}>
           {' '}
           <span>{t('Render HTML')}</span>{' '}
@@ -703,6 +784,8 @@ const SqlEditor: FC<Props> = ({
             onChange={handleToggleRenderHTMLEnabled}
           />{' '}
         </Menu.Item>
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
         <Menu.Item css={{ display: 'flex', justifyContent: 'space-between' }}>
           {' '}
           <span>{t('Autocomplete')}</span>{' '}
@@ -722,9 +805,13 @@ const SqlEditor: FC<Props> = ({
             />
           </Menu.Item>
         )}
+<<<<<<< HEAD
         <Menu.Item onClick={() => formatCurrentQuery()}>
           {t('Format SQL')}
         </Menu.Item>
+=======
+        <Menu.Item onClick={formatCurrentQuery}>{t('Format SQL')}</Menu.Item>
+>>>>>>> 2d98af4662 (merge from upstream to master)
         {!isEmpty(scheduledQueriesConf) && (
           <Menu.Item>
             <ScheduleQueryButton
@@ -792,6 +879,7 @@ const SqlEditor: FC<Props> = ({
 
     return (
       <StyledToolbar className="sql-toolbar" id="js-sql-toolbar">
+<<<<<<< HEAD
         {hideActions ? (
           <Alert
             type="warning"
@@ -806,6 +894,21 @@ const SqlEditor: FC<Props> = ({
         ) : (
           <>
             <div className="leftItems">
+=======
+        <div className="leftItems">
+          <span>
+            <RunQueryActionButton
+              allowAsync={database?.allow_run_async === true}
+              queryEditorId={queryEditor.id}
+              queryState={latestQuery?.state}
+              runQuery={runQuery}
+              stopQuery={stopQuery}
+              overlayCreateAsMenu={showMenu ? runMenuBtn : null}
+            />
+          </span>
+          {isFeatureEnabled(FeatureFlag.EstimateQueryCost) &&
+            database?.allows_cost_estimate && (
+>>>>>>> 2d98af4662 (merge from upstream to master)
               <span>
                 <RunQueryActionButton
                   allowAsync={database?.allow_run_async === true}
@@ -816,6 +919,7 @@ const SqlEditor: FC<Props> = ({
                   overlayCreateAsMenu={showMenu ? runMenuBtn : null}
                 />
               </span>
+<<<<<<< HEAD
               {isFeatureEnabled(FeatureFlag.EstimateQueryCost) &&
                 database?.allows_cost_estimate && (
                   <span>
@@ -864,6 +968,45 @@ const SqlEditor: FC<Props> = ({
             </div>
           </>
         )}
+=======
+            )}
+          <span>
+            <QueryLimitSelect
+              queryEditorId={queryEditor.id}
+              maxRow={maxRow}
+              defaultQueryLimit={defaultQueryLimit}
+            />
+          </span>
+          {latestQuery && (
+            <Timer
+              startTime={latestQuery.startDttm}
+              endTime={latestQuery.endDttm}
+              status={STATE_TYPE_MAP[latestQuery.state]}
+              isRunning={latestQuery.state === 'running'}
+            />
+          )}
+        </div>
+        <div className="rightItems">
+          <span>
+            <SaveQuery
+              queryEditorId={queryEditor.id}
+              columns={latestQuery?.results?.columns || []}
+              onSave={onSaveQuery}
+              onUpdate={(query, remoteId) =>
+                dispatch(updateSavedQuery(query, remoteId))
+              }
+              saveQueryWarning={saveQueryWarning}
+              database={database}
+            />
+          </span>
+          <span>
+            <ShareSqlLabQuery queryEditorId={queryEditor.id} />
+          </span>
+          <AntdDropdown overlay={renderDropdown()} trigger={['click']}>
+            <Icons.MoreHoriz iconColor={theme.colors.grayscale.base} />
+          </AntdDropdown>
+        </div>
+>>>>>>> 2d98af4662 (merge from upstream to master)
       </StyledToolbar>
     );
   };
@@ -897,6 +1040,7 @@ const SqlEditor: FC<Props> = ({
               startQuery={startQuery}
             />
           )}
+<<<<<<< HEAD
           {isActive && (
             <AceEditorWrapper
               autocomplete={autocompleteEnabled}
@@ -909,6 +1053,18 @@ const SqlEditor: FC<Props> = ({
             />
           )}
           {renderEditorBottomBar(showEmptyState)}
+=======
+          <AceEditorWrapper
+            autocomplete={autocompleteEnabled}
+            onBlur={onSqlChanged}
+            onChange={onSqlChanged}
+            queryEditorId={queryEditor.id}
+            onCursorPositionChange={handleCursorPositionChange}
+            height={`${aceEditorHeight}px`}
+            hotkeys={hotkeys}
+          />
+          {renderEditorBottomBar()}
+>>>>>>> 2d98af4662 (merge from upstream to master)
         </div>
         <SouthPane
           queryEditorId={queryEditor.id}
@@ -950,6 +1106,10 @@ const SqlEditor: FC<Props> = ({
               <SqlEditorLeftBar
                 database={database}
                 queryEditorId={queryEditor.id}
+<<<<<<< HEAD
+=======
+                setEmptyState={bool => setShowEmptyState(bool)}
+>>>>>>> 2d98af4662 (merge from upstream to master)
               />
             </StyledSidebar>
           )}
@@ -965,7 +1125,11 @@ const SqlEditor: FC<Props> = ({
         >
           <Skeleton active />
         </div>
+<<<<<<< HEAD
       ) : showEmptyState && !hasSqlStatement ? (
+=======
+      ) : showEmptyState ? (
+>>>>>>> 2d98af4662 (merge from upstream to master)
         <EmptyStateBig
           image="vector.svg"
           title={t('Select a database to write a query')}

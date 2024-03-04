@@ -31,8 +31,11 @@ from superset.commands.dataset.exceptions import DatasetForbiddenDataURI
 from superset.commands.exceptions import ImportFailedError
 from superset.connectors.sqla.models import SqlaTable
 from superset.models.core import Database
+<<<<<<< HEAD
 from superset.sql_parse import Table
 from superset.utils import json
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.core import get_user
 
 logger = logging.getLogger(__name__)
@@ -178,7 +181,11 @@ def import_dataset(
     if data_uri and (not table_exists or force_data):
         load_data(data_uri, dataset, dataset.database)
 
+<<<<<<< HEAD
     if (user := get_user()) and user not in dataset.owners:
+=======
+    if user := get_user():
+>>>>>>> 2d98af4662 (merge from upstream to master)
         dataset.owners.append(user)
 
     return dataset

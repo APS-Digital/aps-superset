@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+<<<<<<<< HEAD:docs/src/components/InteractiveERDSVG.jsx
 import { UncontrolledReactSVGPanZoom } from 'react-svg-pan-zoom';
 import ErdSvg from '../../static/img/erd.svg';
 
@@ -32,6 +33,27 @@ function InteractiveERDSVG() {
       </svg>
     </UncontrolledReactSVGPanZoom>
   );
+========
+import {
+  buildQueryContext,
+  ensureIsArray,
+  QueryFormData,
+} from '@superset-ui/core';
+
+export default function buildQuery(formData: QueryFormData) {
+  const { x_axis, granularity_sqla, groupby } = formData;
+  const columns = [
+    ...ensureIsArray(x_axis || granularity_sqla),
+    ...ensureIsArray(groupby),
+  ];
+  return buildQueryContext(formData, baseQueryObject => [
+    {
+      ...baseQueryObject,
+      columns,
+      orderby: columns?.map(column => [column, true]),
+    },
+  ]);
+>>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/plugins/plugin-chart-echarts/src/Waterfall/buildQuery.ts
 }
 
 export default InteractiveERDSVG;

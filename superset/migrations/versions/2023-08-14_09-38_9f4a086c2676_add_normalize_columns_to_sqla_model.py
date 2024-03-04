@@ -26,12 +26,22 @@ Create Date: 2023-08-14 09:38:11.897437
 revision = "9f4a086c2676"
 down_revision = "4448fa6deeb1"
 
+<<<<<<< HEAD
 import sqlalchemy as sa  # noqa: E402
 from alembic import op  # noqa: E402
 from sqlalchemy.ext.declarative import declarative_base  # noqa: E402
 
 from superset import db  # noqa: E402
 from superset.migrations.shared.utils import paginated_update  # noqa: E402
+=======
+import sqlalchemy as sa
+from alembic import op
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import Session
+
+from superset import db
+from superset.migrations.shared.utils import paginated_update
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
 Base = declarative_base()
 

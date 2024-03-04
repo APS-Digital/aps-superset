@@ -66,7 +66,29 @@ export function parseParams({
   const name = sanitizeName ? sanitizeHtml(rawName) : rawName;
   const formattedValue = numberFormatter(value as number);
   const formattedPercent = percentFormatter((percent as number) / 100);
+<<<<<<< HEAD
   return [name, formattedValue, formattedPercent];
+=======
+
+  switch (labelType) {
+    case EchartsPieLabelType.Key:
+      return name;
+    case EchartsPieLabelType.Value:
+      return formattedValue;
+    case EchartsPieLabelType.Percent:
+      return formattedPercent;
+    case EchartsPieLabelType.KeyValue:
+      return `${name}: ${formattedValue}`;
+    case EchartsPieLabelType.KeyValuePercent:
+      return `${name}: ${formattedValue} (${formattedPercent})`;
+    case EchartsPieLabelType.KeyPercent:
+      return `${name}: ${formattedPercent}`;
+    case EchartsPieLabelType.ValuePercent:
+      return `${formattedValue} (${formattedPercent})`;
+    default:
+      return name;
+  }
+>>>>>>> 2d98af4662 (merge from upstream to master)
 }
 
 function getTotalValuePadding({

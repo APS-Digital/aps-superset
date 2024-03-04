@@ -26,6 +26,7 @@
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
     "@types/d3-array": "^2.9.0",
+<<<<<<< HEAD
     "@types/react-table": "^7.7.20",
     "classnames": "^2.5.1",
     "d3-array": "^2.4.0",
@@ -34,6 +35,17 @@
     "react-table": "^7.8.0",
     "regenerator-runtime": "^0.14.1",
     "xss": "^1.0.15"
+=======
+    "@types/enzyme": "^3.10.18",
+    "@types/react-table": "^7.7.19",
+    "classnames": "^2.5.1",
+    "d3-array": "^2.4.0",
+    "lodash": "^4.17.21",
+    "memoize-one": "^5.1.1",
+    "react-table": "^7.8.0",
+    "regenerator-runtime": "^0.13.7",
+    "xss": "^1.0.14"
+>>>>>>> 2d98af4662 (merge from upstream to master)
   },
   "peerDependencies": {
     "@ant-design/icons": "^5.0.1",

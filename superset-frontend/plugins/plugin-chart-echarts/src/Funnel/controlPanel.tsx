@@ -89,6 +89,28 @@ const config: ControlPanelConfig = {
             },
           },
         ],
+        [
+          {
+            name: 'percent_calculation_type',
+            config: {
+              type: 'SelectControl',
+              label: t('% calculation'),
+              description: t(
+                'Display percents in the label and tooltip as the percent of the total value, from the first step of the funnel, or from the previous step in the funnel.',
+              ),
+              choices: [
+                [PercentCalcType.FirstStep, t('Calculate from first step')],
+                [
+                  PercentCalcType.PreviousStep,
+                  t('Calculate from previous step'),
+                ],
+                [PercentCalcType.Total, t('Percent of total')],
+              ],
+              default: PercentCalcType.FirstStep,
+              renderTrigger: true,
+            },
+          },
+        ],
       ],
     },
     {

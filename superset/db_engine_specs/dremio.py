@@ -37,6 +37,7 @@ FIXED_ALIAS_IN_SELECT_VERSION = Version("24.1.0")
 class DremioEngineSpec(BaseEngineSpec):
     engine = "dremio"
     engine_name = "Dremio"
+<<<<<<< HEAD
     engine_aliases = {"dremio+flight"}
     drivers = {
         "flight": "Arrow Flight driver for Dremio",
@@ -49,6 +50,8 @@ class DremioEngineSpec(BaseEngineSpec):
         "UseEncryption=true&"
         "disableCertificateVerification=true"
     )
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 
     _time_grain_expressions = {
         None: "{col}",

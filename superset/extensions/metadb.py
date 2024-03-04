@@ -72,6 +72,10 @@ from superset import db, feature_flag_manager, security_manager, sql_parse
 
 # pylint: disable=abstract-method
 class SupersetAPSWDialect(APSWDialect):
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
     """
     A SQLAlchemy dialect for an internal Superset engine.
 
@@ -186,6 +190,10 @@ class FallbackField(Field[Any, str]):
 
 # pylint: disable=too-many-instance-attributes
 class SupersetShillelaghAdapter(Adapter):
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
     """
     A Shillelagh adapter for Superset tables.
 
@@ -270,11 +278,21 @@ class SupersetShillelaghAdapter(Adapter):
         self.schema = parts.pop(-1) if parts else None
         self.catalog = parts.pop(-1) if parts else None
 
+<<<<<<< HEAD
+=======
+        if self.catalog:
+            raise NotImplementedError("Catalogs are not currently supported")
+
+>>>>>>> 2d98af4662 (merge from upstream to master)
         # If the table has a single integer primary key we use that as the row ID in order
         # to perform updates and deletes. Otherwise we can only do inserts and selects.
         self._rowid: str | None = None
 
+<<<<<<< HEAD
         # Does the database allow DDL/DML?
+=======
+        # Does the database allow DML?
+>>>>>>> 2d98af4662 (merge from upstream to master)
         self._allow_dml: bool = False
 
         # Read column information from the database, and store it for later.
@@ -310,9 +328,14 @@ class SupersetShillelaghAdapter(Adapter):
 
         # store this callable for later whenever we need an engine
         self.engine_context = partial(
+<<<<<<< HEAD
             database.get_sqla_engine,
             catalog=self.catalog,
             schema=self.schema,
+=======
+            database.get_sqla_engine_with_context,
+            self.schema,
+>>>>>>> 2d98af4662 (merge from upstream to master)
         )
 
         # fetch column names and types

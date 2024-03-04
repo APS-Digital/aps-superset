@@ -25,11 +25,14 @@ from pytest_mock import MockerFixture
 from sqlalchemy.orm.session import Session
 
 from superset import db
+<<<<<<< HEAD
 from superset.common.db_query_status import QueryStatus
 from superset.errors import ErrorLevel, SupersetErrorType
 from superset.exceptions import OAuth2Error
 from superset.models.core import Database
 from superset.sql_lab import get_sql_results
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.core import override_user
 from tests.unit_tests.models.core_test import oauth2_client_info
 
@@ -66,9 +69,13 @@ def test_execute_sql_statement(mocker: MockerFixture, app: None) -> None:
 
     database.apply_limit_to_sql.assert_called_with("SELECT 42 AS answer", 2, force=True)
     db_engine_spec.execute_with_cursor.assert_called_with(
+<<<<<<< HEAD
         cursor,
         "SELECT 42 AS answer LIMIT 2",
         query,
+=======
+        cursor, "SELECT 42 AS answer LIMIT 2", query
+>>>>>>> 2d98af4662 (merge from upstream to master)
     )
     SupersetResultSet.assert_called_with([(42,)], cursor.description, db_engine_spec)
 
@@ -118,9 +125,13 @@ def test_execute_sql_statement_with_rls(
         force=True,
     )
     db_engine_spec.execute_with_cursor.assert_called_with(
+<<<<<<< HEAD
         cursor,
         "SELECT * FROM sales WHERE organization_id=42 LIMIT 101",
         query,
+=======
+        cursor, "SELECT * FROM sales WHERE organization_id=42 LIMIT 101", query
+>>>>>>> 2d98af4662 (merge from upstream to master)
     )
     SupersetResultSet.assert_called_with([(42,)], cursor.description, db_engine_spec)
 
@@ -228,6 +239,7 @@ def test_sql_lab_insert_rls_as_subquery(
         query.executed_sql
         == "SELECT c FROM (SELECT * FROM t WHERE (t.c > 5)) AS t\nLIMIT 6"
     )
+<<<<<<< HEAD
 
 
 @freeze_time("2021-04-01T00:00:00Z")
@@ -280,3 +292,5 @@ def test_get_sql_results_oauth2(mocker: MockerFixture, app) -> None:
             }
         ],
     }
+=======
+>>>>>>> 2d98af4662 (merge from upstream to master)
