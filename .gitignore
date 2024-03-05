@@ -121,3 +121,4 @@ cache/
 ./docker/.env*
 ./docker/.env-non-dev
 /superset-db-dumps/
+/StartUpCommand.md
