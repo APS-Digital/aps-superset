@@ -208,6 +208,7 @@ EXPOSE ${SUPERSET_PORT}
 
 CMD ["/usr/bin/run-server.sh"]
 
+
 ######################################################################
 # Dev image...
 ######################################################################
@@ -294,3 +295,23 @@ FROM lean AS ci
 COPY --chown=superset:superset --chmod=755 ./docker/*.sh /app/docker/
 
 CMD ["/app/docker/docker-ci.sh"]
+
+
+FROM apache/superset:2.0.0 AS superset
+USER root
+
+RUN rm -rf /var/lib/apt/lists/* && \
+    pip install \
+        Authlib==1.0.1 \
+        flask-oidc==1.3.0 \
+        psycopg2-binary==2.9.1 \
+        redis==3.5.3
+
+## Install prophet and dependencies - there is open issue on Github: https://github.com/apache/superset/issues/20901
+RUN pip install \
+        lunarcalendar==0.0.9 \
+        tqdm==4.64.0 \
+        pystan==2.19.1.1   
+RUN pip install prophet==1.0.1
+
+USER superset
