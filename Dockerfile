@@ -200,7 +200,29 @@ RUN if [ "$BUILD_TRANSLATIONS" = "true" ]; then \
 >>>>>>> 2d98af4662 (merge from upstream to master)
 
 COPY --chmod=755 ./docker/run-server.sh /usr/bin/
+
+USER root
+
+RUN apt-get update -qq \
+    && apt-get install -yqq --no-install-recommends \
+        libnss3 \
+        libdbus-glib-1-2 \
+        libgtk-3-0 \
+        libx11-xcb1 \
+        libasound2 \
+        libxtst6 \
+        wget \
+    # Install GeckoDriver WebDriver
+    && wget -q https://github.com/mozilla/geckodriver/releases/download/${GECKODRIVER_VERSION}/geckodriver-${GECKODRIVER_VERSION}-linux64.tar.gz -O - | tar xfz - -C /usr/local/bin \
+    # Install Firefox
+    && wget -q https://download-installer.cdn.mozilla.net/pub/firefox/releases/${FIREFOX_VERSION}/linux-x86_64/en-US/firefox-${FIREFOX_VERSION}.tar.bz2 -O - | tar xfj - -C /opt \
+    && ln -s /opt/firefox/firefox /usr/local/bin/firefox \
+    && apt-get autoremove -yqq --purge wget && rm -rf /var/[log,tmp]/* /tmp/* /var/lib/apt/lists/*
+
 USER superset
+
+COPY --chown=superset superset_config.py /app/
+ENV SUPERSET_CONFIG_PATH /app/superset_config.py
 
 HEALTHCHECK CMD curl -f "http://localhost:${SUPERSET_PORT}/health"
 
@@ -315,3 +337,6 @@ RUN pip install \
 RUN pip install prophet==1.0.1
 
 USER superset
+
+
+
