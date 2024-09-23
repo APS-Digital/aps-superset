@@ -25,10 +25,6 @@ from superset.commands.report.exceptions import (
     ReportScheduleForbiddenError,
     ReportScheduleNotFoundError,
 )
-<<<<<<< HEAD
-=======
-from superset.daos.exceptions import DAODeleteFailedError
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.daos.report import ReportScheduleDAO
 from superset.exceptions import SupersetSecurityException
 from superset.reports.models import ReportSchedule

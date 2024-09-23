@@ -66,19 +66,12 @@ from superset.commands.chart.exceptions import (
     DashboardsForbiddenError,
 )
 from superset.commands.chart.export import ExportChartsCommand
-<<<<<<< HEAD
 from superset.commands.chart.fave import AddFavoriteChartCommand
 from superset.commands.chart.importers.dispatcher import ImportChartsCommand
 from superset.commands.chart.unfave import DelFavoriteChartCommand
 from superset.commands.chart.update import UpdateChartCommand
 from superset.commands.chart.warm_up_cache import ChartWarmUpCacheCommand
 from superset.commands.exceptions import CommandException, TagForbiddenError
-=======
-from superset.commands.chart.importers.dispatcher import ImportChartsCommand
-from superset.commands.chart.update import UpdateChartCommand
-from superset.commands.chart.warm_up_cache import ChartWarmUpCacheCommand
-from superset.commands.exceptions import CommandException
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.commands.importers.exceptions import (
     IncorrectFormatError,
     NoValidFilesFoundError,

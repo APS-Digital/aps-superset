@@ -69,16 +69,10 @@ class ExportSavedQueriesCommand(ExportModelsCommand):
     def _export(
         model: SavedQuery, export_related: bool = True
     ) -> Iterator[tuple[str, Callable[[], str]]]:
-<<<<<<< HEAD
         yield (
             ExportSavedQueriesCommand._file_name(model),
             lambda: ExportSavedQueriesCommand._file_content(model),
         )
-=======
-        yield ExportSavedQueriesCommand._file_name(
-            model
-        ), lambda: ExportSavedQueriesCommand._file_content(model)
->>>>>>> 2d98af4662 (merge from upstream to master)
 
         if export_related:  # TODO: Maybe we can use database export command here?
             # include database as well

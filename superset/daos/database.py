@@ -15,12 +15,6 @@
 # specific language governing permissions and limitations
 # under the License.
 from __future__ import annotations
-<<<<<<< HEAD
-=======
-
-import logging
-from typing import Any
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 import logging
 from typing import Any
@@ -48,10 +42,6 @@ class DatabaseDAO(BaseDAO[Database]):
         cls,
         item: Database | None = None,
         attributes: dict[str, Any] | None = None,
-<<<<<<< HEAD
-=======
-        commit: bool = True,
->>>>>>> 2d98af4662 (merge from upstream to master)
     ) -> Database:
         """
         Unmask ``encrypted_extra`` before updating.
@@ -69,11 +59,7 @@ class DatabaseDAO(BaseDAO[Database]):
                 attributes["encrypted_extra"],
             )
 
-<<<<<<< HEAD
         return super().update(item, attributes)
-=======
-        return super().update(item, attributes, commit)
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     @staticmethod
     def validate_uniqueness(database_name: str) -> bool:
@@ -146,7 +132,6 @@ class DatabaseDAO(BaseDAO[Database]):
         }
 
     @classmethod
-<<<<<<< HEAD
     def get_datasets(
         cls,
         database_id: int,
@@ -172,8 +157,6 @@ class DatabaseDAO(BaseDAO[Database]):
         )
 
     @classmethod
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
     def get_ssh_tunnel(cls, database_id: int) -> SSHTunnel | None:
         ssh_tunnel = (
             db.session.query(SSHTunnel)
@@ -190,10 +173,6 @@ class SSHTunnelDAO(BaseDAO[SSHTunnel]):
         cls,
         item: SSHTunnel | None = None,
         attributes: dict[str, Any] | None = None,
-<<<<<<< HEAD
-=======
-        commit: bool = True,
->>>>>>> 2d98af4662 (merge from upstream to master)
     ) -> SSHTunnel:
         """
         Unmask ``password``, ``private_key`` and ``private_key_password`` before updating.
@@ -209,7 +188,6 @@ class SSHTunnelDAO(BaseDAO[SSHTunnel]):
             attributes.pop("id", None)
             attributes = unmask_password_info(attributes, item)
 
-<<<<<<< HEAD
         return super().update(item, attributes)
 
 
@@ -217,6 +195,3 @@ class DatabaseUserOAuth2TokensDAO(BaseDAO[DatabaseUserOAuth2Tokens]):
     """
     DAO for OAuth2 tokens.
     """
-=======
-        return super().update(item, attributes, commit)
->>>>>>> 2d98af4662 (merge from upstream to master)

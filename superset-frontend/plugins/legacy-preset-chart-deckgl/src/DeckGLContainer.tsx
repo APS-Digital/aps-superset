@@ -20,11 +20,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import {
-=======
-import React, {
->>>>>>> 2d98af4662 (merge from upstream to master)
   forwardRef,
   memo,
   ReactNode,

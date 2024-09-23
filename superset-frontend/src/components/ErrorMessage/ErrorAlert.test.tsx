@@ -19,11 +19,7 @@
 
 import userEvent from '@testing-library/user-event';
 import { render, screen } from 'spec/helpers/testing-library';
-<<<<<<< HEAD
 import { ErrorLevel, ErrorSource, supersetTheme } from '@superset-ui/core';
-=======
-import { supersetTheme } from '@superset-ui/core';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { isCurrentUserBot } from 'src/utils/isBot';
 import ErrorAlert from './ErrorAlert';
 

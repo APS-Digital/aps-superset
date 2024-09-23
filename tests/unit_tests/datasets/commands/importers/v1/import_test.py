@@ -32,10 +32,7 @@ from superset.commands.dataset.exceptions import (
     DatasetForbiddenDataURI,
 )
 from superset.commands.dataset.importers.v1.utils import validate_data_uri
-<<<<<<< HEAD
 from superset.utils import json
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def test_import_dataset(mocker: MockerFixture, session: Session) -> None:
@@ -162,10 +159,6 @@ def test_import_dataset_duplicate_column(
     Test importing a dataset with a column that already exists.
     """
     from superset import security_manager
-<<<<<<< HEAD
-=======
-    from superset.columns.models import Column as NewColumn
->>>>>>> 2d98af4662 (merge from upstream to master)
     from superset.commands.dataset.importers.v1.utils import import_dataset
     from superset.connectors.sqla.models import SqlaTable, TableColumn
     from superset.models.core import Database
@@ -292,11 +285,7 @@ def test_import_column_extra_is_string(mocker: MockerFixture, session: Session) 
     """
     from superset import security_manager
     from superset.commands.dataset.importers.v1.utils import import_dataset
-<<<<<<< HEAD
     from superset.connectors.sqla.models import SqlaTable
-=======
-    from superset.connectors.sqla.models import SqlaTable, SqlMetric, TableColumn
->>>>>>> 2d98af4662 (merge from upstream to master)
     from superset.datasets.schemas import ImportV1DatasetSchema
     from superset.models.core import Database
 

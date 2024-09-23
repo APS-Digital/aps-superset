@@ -16,17 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<<< HEAD:superset-frontend/packages/generator-superset/.eslintrc
 {
   "settings": {
     "import/resolver": {
       "typescript": {}
     }
   }
-========
-/* eslint camelcase: 0 */
-
-export function formatSelectOptions(options: (string | number)[]) {
-  return options.map(opt => [opt, opt.toString()]);
->>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/plugins/legacy-preset-chart-deckgl/src/utilities/utils.ts
 }

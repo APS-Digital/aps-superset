@@ -2,12 +2,8 @@ name: WebSocket server
 on:
   push:
     branches:
-<<<<<<< HEAD
       - "master"
       - "[0-9].[0-9]*"
-=======
-      - 'master'
->>>>>>> 2d98af4662 (merge from upstream to master)
     paths:
       - "superset-websocket/**"
   pull_request:

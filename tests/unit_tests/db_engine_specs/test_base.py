@@ -14,10 +14,6 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
-<<<<<<< HEAD
-=======
-# pylint: disable=import-outside-toplevel, protected-access
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 # pylint: disable=import-outside-toplevel, protected-access
 
@@ -28,16 +24,10 @@ from textwrap import dedent
 from typing import Any
 
 import pytest
-<<<<<<< HEAD
 from pytest_mock import MockerFixture
 from sqlalchemy import types
 from sqlalchemy.dialects import sqlite
 from sqlalchemy.engine.url import URL
-=======
-from pytest_mock import MockFixture
-from sqlalchemy import types
-from sqlalchemy.dialects import sqlite
->>>>>>> 2d98af4662 (merge from upstream to master)
 from sqlalchemy.sql import sqltypes
 
 from superset.sql_parse import Table
@@ -208,11 +198,7 @@ def test_convert_inspector_columns(
     assert convert_inspector_columns(cols) == expected_result
 
 
-<<<<<<< HEAD
 def test_select_star(mocker: MockerFixture) -> None:
-=======
-def test_select_star(mocker: MockFixture) -> None:
->>>>>>> 2d98af4662 (merge from upstream to master)
     """
     Test the ``select_star`` method.
     """
@@ -247,14 +233,8 @@ def test_select_star(mocker: MockFixture) -> None:
 
     sql = BaseEngineSpec.select_star(
         database=database,
-<<<<<<< HEAD
         table=Table("my_table"),
         engine=engine,
-=======
-        table_name="my_table",
-        engine=engine,
-        schema=None,
->>>>>>> 2d98af4662 (merge from upstream to master)
         limit=100,
         show_cols=True,
         indent=True,
@@ -263,12 +243,8 @@ def test_select_star(mocker: MockFixture) -> None:
     )
     assert (
         sql
-<<<<<<< HEAD
         == """SELECT
   a
-=======
-        == """SELECT a
->>>>>>> 2d98af4662 (merge from upstream to master)
 FROM my_table
 LIMIT ?
 OFFSET ?"""
@@ -276,14 +252,8 @@ OFFSET ?"""
 
     sql = NoLimitDBEngineSpec.select_star(
         database=database,
-<<<<<<< HEAD
         table=Table("my_table"),
         engine=engine,
-=======
-        table_name="my_table",
-        engine=engine,
-        schema=None,
->>>>>>> 2d98af4662 (merge from upstream to master)
         limit=100,
         show_cols=True,
         indent=True,
@@ -292,7 +262,6 @@ OFFSET ?"""
     )
     assert (
         sql
-<<<<<<< HEAD
         == """SELECT
   a
 FROM my_table"""
@@ -423,8 +392,3 @@ def test_unmask_encrypted_extra() -> None:
             },
         }
     )
-=======
-        == """SELECT a
-FROM my_table"""
-    )
->>>>>>> 2d98af4662 (merge from upstream to master)

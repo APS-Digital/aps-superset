@@ -17,11 +17,7 @@
  * under the License.
  */
 
-<<<<<<< HEAD
 import { useEffect, useState } from 'react';
-=======
-import React, { useEffect, useState } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import {
   JsonObject,
   seed,

@@ -148,11 +148,7 @@ def test_scheduler_feature_flag_off(execute_mock, is_feature_enabled, owners):
     db.session.commit()
 
 
-<<<<<<< HEAD
 @pytest.mark.usefixtures("app_context")
-=======
-@pytest.mark.usefixtures("owners")
->>>>>>> 2d98af4662 (merge from upstream to master)
 @patch("superset.commands.report.execute.AsyncExecuteReportScheduleCommand.__init__")
 @patch("superset.commands.report.execute.AsyncExecuteReportScheduleCommand.run")
 @patch("superset.tasks.scheduler.execute.update_state")
@@ -176,11 +172,7 @@ def test_execute_task(update_state_mock, command_mock, init_mock, owners):
     db.session.commit()
 
 
-<<<<<<< HEAD
 @pytest.mark.usefixtures("app_context")
-=======
-@pytest.mark.usefixtures("owners")
->>>>>>> 2d98af4662 (merge from upstream to master)
 @patch("superset.commands.report.execute.AsyncExecuteReportScheduleCommand.__init__")
 @patch("superset.commands.report.execute.AsyncExecuteReportScheduleCommand.run")
 @patch("superset.tasks.scheduler.execute.update_state")

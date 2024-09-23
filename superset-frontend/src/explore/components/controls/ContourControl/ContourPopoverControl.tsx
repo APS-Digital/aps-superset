@@ -16,11 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { useState, useEffect } from 'react';
-=======
-import React, { useState, useEffect } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { Row, Col } from 'src/components';
 import Button from 'src/components/Button';
 import Tabs from 'src/components/Tabs';

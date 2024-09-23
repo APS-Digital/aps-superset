@@ -38,16 +38,12 @@ from superset.utils import core as utils, json
 from superset.models.sql_lab import Query
 
 from tests.integration_tests.base_tests import SupersetTestCase
-<<<<<<< HEAD
 from tests.integration_tests.constants import (
     ADMIN_USERNAME,
     GAMMA_SQLLAB_NO_DATA_USERNAME,
 )
 from tests.integration_tests.fixtures.birth_names_dashboard import load_birth_names_data  # noqa: F401
 from tests.integration_tests.fixtures.users import create_gamma_sqllab_no_data  # noqa: F401
-=======
-from tests.integration_tests.fixtures.users import create_gamma_sqllab_no_data
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 QUERIES_FIXTURE_COUNT = 10
 
@@ -59,27 +55,17 @@ class TestSqlLabApi(SupersetTestCase):
         {"SQLLAB_BACKEND_PERSISTENCE": False},
         clear=True,
     )
-<<<<<<< HEAD
     def test_get_from_empty_bootstrap_data(self):
         if utils.backend() == "postgresql":
             # failing
             return
 
         self.login(GAMMA_SQLLAB_NO_DATA_USERNAME)
-=======
-    def test_get_from_empty_bootsrap_data(self):
-        self.login(username="gamma_sqllab_no_data")
->>>>>>> 2d98af4662 (merge from upstream to master)
         resp = self.client.get("/api/v1/sqllab/")
         assert resp.status_code == 200
         data = json.loads(resp.data.decode("utf-8"))
         result = data.get("result")
-<<<<<<< HEAD
         assert result["active_tab"] is None  # noqa: E711
-=======
-        assert result["active_tab"] == None
-        assert result["queries"] == {}
->>>>>>> 2d98af4662 (merge from upstream to master)
         assert result["tab_state_ids"] == []
         self.assertEqual(len(result["databases"]), 0)
 
@@ -89,11 +75,7 @@ class TestSqlLabApi(SupersetTestCase):
         clear=True,
     )
     def test_get_from_bootstrap_data_for_non_persisted_tab_state(self):
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
-=======
-        self.login("admin")
->>>>>>> 2d98af4662 (merge from upstream to master)
         # create a tab
         data = {
             "queryEditor": json.dumps(
@@ -112,30 +94,17 @@ class TestSqlLabApi(SupersetTestCase):
         assert resp.status_code == 200
         data = json.loads(resp.data.decode("utf-8"))
         result = data.get("result")
-<<<<<<< HEAD
         assert result["active_tab"] is None  # noqa: E711
         assert result["tab_state_ids"] == []
 
     @pytest.mark.usefixtures("load_birth_names_data")
-=======
-        assert result["active_tab"] == None
-        assert result["queries"] == {}
-        assert result["tab_state_ids"] == []
-
->>>>>>> 2d98af4662 (merge from upstream to master)
     @mock.patch.dict(
         "superset.extensions.feature_flag_manager._feature_flags",
         {"SQLLAB_BACKEND_PERSISTENCE": True},
         clear=True,
     )
-<<<<<<< HEAD
     def test_get_from_bootstrap_data_with_latest_query(self):
         self.login(ADMIN_USERNAME)
-=======
-    def test_get_from_bootstrap_data_with_queries(self):
-        username = "admin"
-        self.login(username)
->>>>>>> 2d98af4662 (merge from upstream to master)
 
         # create a tab
         data = {
@@ -153,30 +122,10 @@ class TestSqlLabApi(SupersetTestCase):
         resp = self.get_json_resp("/tabstateview/", data=data)
         tab_state_id = resp["id"]
 
-<<<<<<< HEAD
-=======
-        # run a query in the created tab
-        self.run_sql(
-            "SELECT name FROM birth_names",
-            "client_id_1",
-            username=username,
-            raise_on_error=True,
-            sql_editor_id=str(tab_state_id),
-        )
-        # run an orphan query (no tab)
-        self.run_sql(
-            "SELECT name FROM birth_names",
-            "client_id_2",
-            username=username,
-            raise_on_error=True,
-        )
-
->>>>>>> 2d98af4662 (merge from upstream to master)
         # we should have only 1 query returned, since the second one is not
         # associated with any tabs
         resp = self.get_json_resp("/api/v1/sqllab/")
         result = resp["result"]
-<<<<<<< HEAD
         self.assertEqual(result["active_tab"]["id"], tab_state_id)
 
     @mock.patch.dict(
@@ -237,9 +186,6 @@ class TestSqlLabApi(SupersetTestCase):
         assert resp.status_code == 200
         resp = self.client.delete("/tabstateview/" + str(tab_state_id))
         assert resp.status_code == 404
-=======
-        self.assertEqual(len(result["queries"]), 1)
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     def test_get_access_denied(self):
         new_role = Role(name="Dummy Role", permissions=[])
@@ -249,11 +195,7 @@ class TestSqlLabApi(SupersetTestCase):
             "unauth_user1",
             "password",
             "Dummy Role",
-<<<<<<< HEAD
             email="unauth_user1@superset.org",  # noqa: F541
-=======
-            email=f"unauth_user1@superset.org",
->>>>>>> 2d98af4662 (merge from upstream to master)
         )
         self.login(username="unauth_user1", password="password")
         rv = self.client.get("/api/v1/sqllab/")
@@ -332,22 +274,14 @@ class TestSqlLabApi(SupersetTestCase):
         self.assertEqual(rv.status_code, 200)
 
     def test_format_sql_request(self):
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
-=======
-        self.login()
->>>>>>> 2d98af4662 (merge from upstream to master)
 
         data = {"sql": "select 1 from my_table"}
         rv = self.client.post(
             "/api/v1/sqllab/format_sql/",
             json=data,
         )
-<<<<<<< HEAD
         success_resp = {"result": "SELECT\n  1\nFROM my_table"}
-=======
-        success_resp = {"result": "SELECT 1\nFROM my_table"}
->>>>>>> 2d98af4662 (merge from upstream to master)
         resp_data = json.loads(rv.data.decode("utf-8"))
         self.assertDictEqual(resp_data, success_resp)
         self.assertEqual(rv.status_code, 200)

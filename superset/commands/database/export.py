@@ -16,10 +16,6 @@
 # under the License.
 # isort:skip_file
 import functools
-<<<<<<< HEAD
-=======
-import json
->>>>>>> 2d98af4662 (merge from upstream to master)
 import logging
 from typing import Any, Callable
 from collections.abc import Iterator
@@ -110,16 +106,10 @@ class ExportDatabasesCommand(ExportModelsCommand):
     def _export(
         model: Database, export_related: bool = True
     ) -> Iterator[tuple[str, Callable[[], str]]]:
-<<<<<<< HEAD
         yield (
             ExportDatabasesCommand._file_name(model),
             lambda: ExportDatabasesCommand._file_content(model),
         )
-=======
-        yield ExportDatabasesCommand._file_name(
-            model
-        ), lambda: ExportDatabasesCommand._file_content(model)
->>>>>>> 2d98af4662 (merge from upstream to master)
 
         if export_related:
             db_file_name = get_filename(model.database_name, model.id, skip_id=True)
@@ -138,14 +128,9 @@ class ExportDatabasesCommand(ExportModelsCommand):
                 payload["version"] = EXPORT_VERSION
                 payload["database_uuid"] = str(model.uuid)
 
-<<<<<<< HEAD
                 yield (
                     file_path,
                     functools.partial(  # type: ignore
                         yaml.safe_dump, payload, sort_keys=False
                     ),
-=======
-                yield file_path, functools.partial(  # type: ignore
-                    yaml.safe_dump, payload, sort_keys=False
->>>>>>> 2d98af4662 (merge from upstream to master)
                 )

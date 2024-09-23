@@ -450,10 +450,7 @@ const ExploreChartPanel = ({
           chartStatus={chart.chartStatus}
           errorMessage={errorMessage}
           actions={actions}
-<<<<<<< HEAD
           canDownload={canDownload}
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         />
       </Split>
       {showDatasetModal && (

@@ -109,16 +109,12 @@ class TimeseriesChart(MigrateViz):
         "show_controls": "show_extra_controls",
         "x_axis_label": "x_axis_title",
         "x_axis_format": "x_axis_time_format",
-<<<<<<< HEAD
         "x_axis_showminmax": "truncateXAxis",
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         "x_ticks_layout": "xAxisLabelRotation",
         "y_axis_label": "y_axis_title",
         "y_axis_showminmax": "truncateYAxis",
         "y_log_scale": "logAxis",
     }
-<<<<<<< HEAD
     remove_keys = {
         "contribution",
         "line_interpolation",
@@ -126,9 +122,6 @@ class TimeseriesChart(MigrateViz):
         "show_brush",
         "show_markers",
     }
-=======
-    remove_keys = {"contribution", "show_brush", "show_markers"}
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     def _pre_action(self) -> None:
         self.data["contributionMode"] = "row" if self.data.get("contribution") else None
@@ -142,13 +135,10 @@ class TimeseriesChart(MigrateViz):
         ):
             self.data["bottom_margin"] = 30
 
-<<<<<<< HEAD
         left_margin = self.data.get("left_margin")
         if self.data.get("y_axis_label") and (not left_margin or left_margin == "auto"):
             self.data["left_margin"] = 30
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         if (rolling_type := self.data.get("rolling_type")) and rolling_type != "None":
             self.data["rolling_type"] = rolling_type
 
@@ -173,11 +163,6 @@ class MigrateLineChart(TimeseriesChart):
     def _pre_action(self) -> None:
         super()._pre_action()
 
-<<<<<<< HEAD
-=======
-        self.remove_keys.add("line_interpolation")
-
->>>>>>> 2d98af4662 (merge from upstream to master)
         line_interpolation = self.data.get("line_interpolation")
         if line_interpolation == "cardinal":
             self.target_viz_type = "echarts_timeseries_smooth"
@@ -210,7 +195,6 @@ class MigrateAreaChart(TimeseriesChart):
         self.data["opacity"] = 0.7
 
 
-<<<<<<< HEAD
 class MigrateBarChart(TimeseriesChart):
     source_viz_type = "bar"
     target_viz_type = "echarts_timeseries_bar"
@@ -254,8 +238,6 @@ class MigrateDistBarChart(TimeseriesChart):
         self.data["stack"] = "Stack" if self.data.get("bar_stacked") else None
 
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 class MigrateBubbleChart(MigrateViz):
     source_viz_type = "bubble"
     target_viz_type = "bubble_v2"
@@ -283,7 +265,6 @@ class MigrateBubbleChart(MigrateViz):
 
         # Truncate y-axis by default to preserve layout
         self.data["y_axis_showminmax"] = True
-<<<<<<< HEAD
 
 
 class MigrateHeatmapChart(MigrateViz):
@@ -334,5 +315,3 @@ class MigrateSankey(MigrateViz):
         if groupby and len(groupby) > 1:
             self.data["source"] = groupby[0]
             self.data["target"] = groupby[1]
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)

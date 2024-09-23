@@ -17,33 +17,8 @@
  * under the License.
  */
 
-<<<<<<< HEAD
 import { createContext, useContext, FC, ReactNode } from 'react';
 
-=======
-<<<<<<<< HEAD:superset-frontend/src/explore/controlUtils/getColumnKeywords.test.tsx
-import { getColumnKeywords } from './getColumnKeywords';
-
-test('returns HTML for a column tooltip', () => {
-  const expected = {
-    column_name: 'test column1',
-    verbose_name: null,
-    is_certified: false,
-    certified_by: null,
-    description: 'test description',
-    type: 'VARCHAR',
-  };
-  expect(getColumnKeywords([expected])).toContainEqual({
-    name: expected.column_name,
-    value: expected.column_name,
-    docHTML: expect.stringContaining(expected.description),
-    score: 50,
-    meta: 'column',
-  });
-});
-========
-import React, { createContext, useContext } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { useLocation } from 'react-router-dom';
 
 export type LocationState = {
@@ -55,21 +30,9 @@ const { Provider } = locationContext;
 
 const EMPTY_STATE: LocationState = {};
 
-<<<<<<< HEAD
 export const LocationProvider: FC = ({ children }: { children: ReactNode }) => {
-=======
-export const LocationProvider: React.FC = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
->>>>>>> 2d98af4662 (merge from upstream to master)
   const location = useLocation<LocationState>();
   return <Provider value={location.state || EMPTY_STATE}>{children}</Provider>;
 };
 
 export const useLocationState = () => useContext(locationContext);
-<<<<<<< HEAD
-=======
->>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/src/pages/SqlLab/LocationContext.tsx
->>>>>>> 2d98af4662 (merge from upstream to master)

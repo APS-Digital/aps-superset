@@ -17,10 +17,6 @@
 # pylint: disable=consider-using-transaction
 import logging
 
-<<<<<<< HEAD
-=======
-import simplejson as json
->>>>>>> 2d98af4662 (merge from upstream to master)
 from flask import request, Response
 from flask_appbuilder import expose
 from flask_appbuilder.models.sqla.interface import SQLAInterface
@@ -45,11 +41,7 @@ from superset.views.base import (
 logger = logging.getLogger(__name__)
 
 
-<<<<<<< HEAD
 class SavedQueryView(DeprecateModelViewMixin, BaseSupersetView):
-=======
-class SavedQueryView(BaseSupersetView):
->>>>>>> 2d98af4662 (merge from upstream to master)
     route_base = "/savedqueryview"
     class_permission_name = "SavedQuery"
 
@@ -59,13 +51,7 @@ class SavedQueryView(BaseSupersetView):
         return super().render_app_template()
 
 
-<<<<<<< HEAD
 class SavedQueryViewApi(DeprecateModelViewMixin, SupersetModelView, DeleteMixin):  # pylint: disable=too-many-ancestors
-=======
-class SavedQueryViewApi(
-    SupersetModelView, DeleteMixin
-):  # pylint: disable=too-many-ancestors
->>>>>>> 2d98af4662 (merge from upstream to master)
     datamodel = SQLAInterface(SavedQuery)
     include_route_methods = RouteMethod.CRUD_SET
     route_base = "/savedqueryviewapi"

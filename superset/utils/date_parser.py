@@ -339,47 +339,6 @@ def get_since_until(  # pylint: disable=too-many-arguments,too-many-locals,too-m
 
                 _since, _until = map(datetime_eval, since_and_until)
 
-    if instant_time_comparison_range:
-        # This is only set using the new time comparison controls
-        # that is made available in some plugins behind the experimental
-        # feature flag.
-        # pylint: disable=import-outside-toplevel
-        from superset import feature_flag_manager
-
-        if feature_flag_manager.is_feature_enabled("CHART_PLUGINS_EXPERIMENTAL"):
-            time_unit = ""
-            delta_in_days = None
-            if instant_time_comparison_range == InstantTimeComparison.YEAR:
-                time_unit = "YEAR"
-            elif instant_time_comparison_range == InstantTimeComparison.MONTH:
-                time_unit = "MONTH"
-            elif instant_time_comparison_range == InstantTimeComparison.WEEK:
-                time_unit = "WEEK"
-            elif instant_time_comparison_range == InstantTimeComparison.INHERITED:
-                delta_in_days = (_until - _since).days if _since and _until else None
-                time_unit = "DAY"
-
-            if time_unit:
-                strtfime_since = (
-                    _since.strftime("%Y-%m-%dT%H:%M:%S") if _since else relative_start
-                )
-                strtfime_until = (
-                    _until.strftime("%Y-%m-%dT%H:%M:%S") if _until else relative_end
-                )
-
-                since_and_until = [
-                    (
-                        f"DATEADD(DATETIME('{strtfime_since}'), "
-                        f"-{delta_in_days or 1}, {time_unit})"
-                    ),
-                    (
-                        f"DATEADD(DATETIME('{strtfime_until}'), "
-                        f"-{delta_in_days or 1}, {time_unit})"
-                    ),
-                ]
-
-                _since, _until = map(datetime_eval, since_and_until)
-
     if _since and _until and _since > _until:
         raise ValueError(_("From date cannot be larger than to date"))
 

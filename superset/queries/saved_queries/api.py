@@ -156,7 +156,6 @@ class SavedQueryRestApi(BaseSupersetModelRestApi):
         "last_run_delta_humanized",
     ]
 
-<<<<<<< HEAD
     search_columns = [
         "id",
         "database",
@@ -167,11 +166,6 @@ class SavedQueryRestApi(BaseSupersetModelRestApi):
         "changed_by",
         "tags",
     ]
-=======
-    search_columns = ["id", "database", "label", "schema", "created_by", "changed_by"]
-    if is_feature_enabled("TAGGING_SYSTEM"):
-        search_columns += ["tags"]
->>>>>>> 2d98af4662 (merge from upstream to master)
     search_filters = {
         "id": [SavedQueryFavoriteFilter],
         "label": [SavedQueryAllTextFilter],
@@ -189,18 +183,12 @@ class SavedQueryRestApi(BaseSupersetModelRestApi):
         "database": "database_name",
         "changed_by": RelatedFieldFilter("first_name", FilterRelatedOwners),
     }
-<<<<<<< HEAD
     base_related_field_filters = {
         "database": [["id", DatabaseFilter, lambda: []]],
         "changed_by": [["id", BaseFilterRelatedUsers, lambda: []]],
     }
     allowed_rel_fields = {"database", "changed_by", "created_by"}
     allowed_distinct_fields = {"catalog", "schema"}
-=======
-    base_related_field_filters = {"database": [["id", DatabaseFilter, lambda: []]]}
-    allowed_rel_fields = {"database", "changed_by", "created_by"}
-    allowed_distinct_fields = {"schema"}
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     def pre_add(self, item: SavedQuery) -> None:
         item.user = g.user

@@ -21,14 +21,8 @@ from marshmallow import fields, post_dump, post_load, pre_load, Schema
 from marshmallow.validate import Length, ValidationError
 
 from superset import security_manager
-<<<<<<< HEAD
 from superset.tags.models import TagType
 from superset.utils import json
-=======
-from superset.exceptions import SupersetException
-from superset.tags.models import TagType
-from superset.utils import core as utils
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 get_delete_ids_schema = {"type": "array", "items": {"type": "integer"}}
 get_export_ids_schema = {"type": "array", "items": {"type": "integer"}}
@@ -283,7 +277,6 @@ class DashboardDatasetSchema(Schema):
             del serialized["owners"]
             del serialized["database"]
         return serialized
-<<<<<<< HEAD
 
 
 class TabSchema(Schema):
@@ -297,8 +290,6 @@ class TabSchema(Schema):
 class TabsPayloadSchema(Schema):
     all_tabs = fields.Dict(keys=fields.String(), values=fields.String())
     tab_tree = fields.List(fields.Nested(lambda: TabSchema))
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 class BaseDashboardSchema(Schema):

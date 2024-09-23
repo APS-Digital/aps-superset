@@ -39,10 +39,7 @@ import {
   QueryFormMetric,
   TimeseriesChartDataResponseResult,
   TimeseriesDataRecord,
-<<<<<<< HEAD
   tooltipHtml,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   ValueFormatter,
 } from '@superset-ui/core';
 import { getOriginalSeries } from '@superset-ui/chart-controls';

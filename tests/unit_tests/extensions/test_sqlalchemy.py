@@ -21,11 +21,7 @@ from collections.abc import Iterator
 from typing import TYPE_CHECKING
 
 import pytest
-<<<<<<< HEAD
 from pytest_mock import MockerFixture
-=======
-from pytest_mock import MockFixture
->>>>>>> 2d98af4662 (merge from upstream to master)
 from sqlalchemy.engine import create_engine
 from sqlalchemy.exc import ProgrammingError
 from sqlalchemy.orm.session import Session
@@ -63,11 +59,7 @@ def database1(session: Session) -> Iterator["Database"]:
 
 @pytest.fixture
 def table1(session: Session, database1: "Database") -> Iterator[None]:
-<<<<<<< HEAD
     with database1.get_sqla_engine() as engine:
-=======
-    with database1.get_sqla_engine_with_context() as engine:
->>>>>>> 2d98af4662 (merge from upstream to master)
         conn = engine.connect()
         conn.execute("CREATE TABLE table1 (a INTEGER NOT NULL PRIMARY KEY, b INTEGER)")
         conn.execute("INSERT INTO table1 (a, b) VALUES (1, 10), (2, 20)")
@@ -100,11 +92,7 @@ def database2(session: Session) -> Iterator["Database"]:
 
 @pytest.fixture
 def table2(session: Session, database2: "Database") -> Iterator[None]:
-<<<<<<< HEAD
     with database2.get_sqla_engine() as engine:
-=======
-    with database2.get_sqla_engine_with_context() as engine:
->>>>>>> 2d98af4662 (merge from upstream to master)
         conn = engine.connect()
         conn.execute("CREATE TABLE table2 (a INTEGER NOT NULL PRIMARY KEY, b TEXT)")
         conn.execute("INSERT INTO table2 (a, b) VALUES (1, 'ten'), (2, 'twenty')")
@@ -117,11 +105,7 @@ def table2(session: Session, database2: "Database") -> Iterator[None]:
 
 
 @with_feature_flags(ENABLE_SUPERSET_META_DB=True)
-<<<<<<< HEAD
 def test_superset(mocker: MockerFixture, app_context: None, table1: None) -> None:
-=======
-def test_superset(mocker: MockFixture, app_context: None, table1: None) -> None:
->>>>>>> 2d98af4662 (merge from upstream to master)
     """
     Simple test querying a table.
     """
@@ -134,25 +118,17 @@ def test_superset(mocker: MockFixture, app_context: None, table1: None) -> None:
 
 
 @with_feature_flags(ENABLE_SUPERSET_META_DB=True)
-<<<<<<< HEAD
 def test_superset_limit(mocker: MockerFixture, app_context: None, table1: None) -> None:
-=======
-def test_superset_limit(mocker: MockFixture, app_context: None, table1: None) -> None:
->>>>>>> 2d98af4662 (merge from upstream to master)
     """
     Simple that limit is applied when querying a table.
     """
     mocker.patch(
         "superset.extensions.metadb.current_app.config",
-<<<<<<< HEAD
         {
             "DB_SQLA_URI_VALIDATOR": None,
             "SUPERSET_META_DB_LIMIT": 1,
             "DATABASE_OAUTH2_CLIENTS": {},
         },
-=======
-        {"SUPERSET_META_DB_LIMIT": 1},
->>>>>>> 2d98af4662 (merge from upstream to master)
     )
     mocker.patch("superset.extensions.metadb.security_manager")
 
@@ -164,11 +140,7 @@ def test_superset_limit(mocker: MockFixture, app_context: None, table1: None) ->
 
 @with_feature_flags(ENABLE_SUPERSET_META_DB=True)
 def test_superset_joins(
-<<<<<<< HEAD
     mocker: MockerFixture,
-=======
-    mocker: MockFixture,
->>>>>>> 2d98af4662 (merge from upstream to master)
     app_context: None,
     table1: None,
     table2: None,
@@ -193,11 +165,7 @@ def test_superset_joins(
 
 @with_feature_flags(ENABLE_SUPERSET_META_DB=True)
 def test_dml(
-<<<<<<< HEAD
     mocker: MockerFixture,
-=======
-    mocker: MockFixture,
->>>>>>> 2d98af4662 (merge from upstream to master)
     app_context: None,
     table1: None,
     table2: None,
@@ -233,13 +201,9 @@ def test_dml(
 
 
 @with_feature_flags(ENABLE_SUPERSET_META_DB=True)
-<<<<<<< HEAD
 def test_security_manager(
     mocker: MockerFixture, app_context: None, table1: None
 ) -> None:
-=======
-def test_security_manager(mocker: MockFixture, app_context: None, table1: None) -> None:
->>>>>>> 2d98af4662 (merge from upstream to master)
     """
     Test that we use the security manager to check for permissions.
     """
@@ -270,11 +234,7 @@ def test_security_manager(mocker: MockFixture, app_context: None, table1: None) 
 
 
 @with_feature_flags(ENABLE_SUPERSET_META_DB=True)
-<<<<<<< HEAD
 def test_allowed_dbs(mocker: MockerFixture, app_context: None, table1: None) -> None:
-=======
-def test_allowed_dbs(mocker: MockFixture, app_context: None, table1: None) -> None:
->>>>>>> 2d98af4662 (merge from upstream to master)
     """
     Test that DBs can be restricted.
     """

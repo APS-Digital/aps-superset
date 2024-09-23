@@ -1,21 +1,11 @@
 ---
-<<<<<<<< HEAD:docs/docs/installation/pypi.mdx
 title: PyPI
-========
-title: Installing from PyPI
->>>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/installation/installing-superset-from-pypi.mdx
 hide_title: true
 sidebar_position: 3
 version: 1
 ---
 
-<<<<<<<< HEAD:docs/docs/installation/pypi.mdx
 import useBaseUrl from "@docusaurus/useBaseUrl";
-========
-## Installing Superset from PyPI
-
-This page describes how to install Superset using the `apache-superset` package [published on PyPI](https://pypi.org/project/apache-superset/).
->>>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/installation/installing-superset-from-pypi.mdx
 
 # Installing Superset from PyPI
 
@@ -81,15 +71,11 @@ We don't recommend using the system installed Python. Instead, first install the
 brew install readline pkg-config libffi openssl mysql postgresql@14
 ```
 
-<<<<<<<< HEAD:docs/docs/installation/pypi.mdx
 You should install a recent version of Python. Refer to the
 [pyproject.toml](https://github.com/apache/superset/blob/master/pyproject.toml) file for a list of Python
 versions officially supported by Superset. We'd recommend using a Python version manager
 like [pyenv](https://github.com/pyenv/pyenv)
 (and also [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)).
-========
-You should install a recent version of Python. Refer to the [setup.py](https://github.com/apache/superset/blob/master/setup.py) file for a list of Python versions officially supported by Superset. We'd recommend using a Python version manager like [pyenv](https://github.com/pyenv/pyenv) (and also [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)).
->>>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/installation/installing-superset-from-pypi.mdx
 
 :::tip
 To identify the Python version used by the official docker image, see the [Dockerfile](https://github.com/apache/superset/blob/master/Dockerfile). Additional docker images published for newer versions of Python can be found in [this file](https://github.com/apache/superset/blob/master/scripts/build_docker.py).
@@ -155,11 +141,7 @@ superset db upgrade
 ```
 
 :::tip
-<<<<<<<< HEAD:docs/docs/installation/pypi.mdx
 Note that some configuration is mandatory for production instances of Superset. In particular, Superset will not start without a user-specified value of SECRET_KEY. Please see [Configuring Superset](/docs/configuration/configuring-superset).
-========
-Note that some configuration is mandatory for production instances of Superset. In particular, Superset will not start without a user-specified value of SECRET_KEY. Please see [Configuring Superset](/docs/installation/configuring-superset).
->>>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/installation/installing-superset-from-pypi.mdx
 :::
 
 Finish installing by running through the following commands:

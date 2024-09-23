@@ -32,11 +32,8 @@ from superset.commands.exceptions import (
 )
 from superset.daos.datasource import DatasourceDAO
 from superset.daos.exceptions import DatasourceNotFound
-<<<<<<< HEAD
 from superset.daos.tag import TagDAO
 from superset.tags.models import ObjectType, Tag, TagType
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.core import DatasourceType, get_user_id
 
 if TYPE_CHECKING:

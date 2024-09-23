@@ -20,11 +20,7 @@ import copy
 from typing import Any
 
 from superset.legacy import update_time_range
-<<<<<<< HEAD
 from tests.unit_tests.conftest import with_feature_flags  # noqa: F401
-=======
-from tests.unit_tests.conftest import with_feature_flags
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 original_form_data = {
     "granularity_sqla": "order_date",

@@ -32,7 +32,6 @@ from pytest_mock import MockerFixture
 from sqlalchemy.orm.session import Session
 
 from superset import db
-<<<<<<< HEAD
 from superset.commands.database.uploaders.base import UploadCommand
 from superset.commands.database.uploaders.columnar_reader import ColumnarReader
 from superset.commands.database.uploaders.csv_reader import CSVReader
@@ -47,8 +46,6 @@ from tests.unit_tests.fixtures.common import (
     create_csv_file,
     create_excel_file,
 )
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def test_filter_by_uuid(
@@ -118,7 +115,7 @@ def test_post_with_uuid(
     payload = response.json
     assert payload["result"]["uuid"] == "7c1b7880-a59d-47cd-8bf1-f1eb8d2863cb"
 
-    database = db.session.query(Database).one()
+    database = session.query(Database).one()
     assert database.uuid == UUID("7c1b7880-a59d-47cd-8bf1-f1eb8d2863cb")
 
 
@@ -240,13 +237,9 @@ def test_database_connection(
             "driver": "gsheets",
             "engine_information": {
                 "disable_ssh_tunneling": True,
-<<<<<<< HEAD
                 "supports_dynamic_catalog": False,
                 "supports_file_upload": True,
                 "supports_oauth2": True,
-=======
-                "supports_file_upload": True,
->>>>>>> 2d98af4662 (merge from upstream to master)
             },
             "expose_in_sqllab": True,
             "extra": '{\n    "metadata_params": {},\n    "engine_params": {},\n    "metadata_cache_timeout": {},\n    "schemas_allowed_for_file_upload": []\n}\n',
@@ -317,13 +310,9 @@ def test_database_connection(
             "driver": "gsheets",
             "engine_information": {
                 "disable_ssh_tunneling": True,
-<<<<<<< HEAD
                 "supports_dynamic_catalog": False,
                 "supports_file_upload": True,
                 "supports_oauth2": True,
-=======
-                "supports_file_upload": True,
->>>>>>> 2d98af4662 (merge from upstream to master)
             },
             "expose_in_sqllab": True,
             "force_ctas_schema": None,

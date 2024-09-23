@@ -78,16 +78,10 @@ class ExportChartsCommand(ExportModelsCommand):
     def _export(
         model: Slice, export_related: bool = True
     ) -> Iterator[tuple[str, Callable[[], str]]]:
-<<<<<<< HEAD
         yield (
             ExportChartsCommand._file_name(model),
             lambda: ExportChartsCommand._file_content(model),
         )
-=======
-        yield ExportChartsCommand._file_name(
-            model
-        ), lambda: ExportChartsCommand._file_content(model)
->>>>>>> 2d98af4662 (merge from upstream to master)
 
         if model.table and export_related:
             yield from ExportDatasetsCommand([model.table.id]).run()

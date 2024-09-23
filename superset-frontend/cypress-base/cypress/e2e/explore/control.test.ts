@@ -198,20 +198,10 @@ describe('Time range filter', () => {
     cy.visitChartByParams(formData);
     cy.verifySliceSuccess({ waitAlias: '@chartData' });
 
-<<<<<<< HEAD
     cy.get('[data-test=time-range-trigger]').click();
     cy.get('.ant-radio-group').children().its('length').should('eq', 5);
     cy.get('.ant-radio-checked + span').contains('Last year');
     cy.get('[data-test=cancel-button]').click();
-=======
-    cy.get('[data-test=time-range-trigger]')
-      .click()
-      .then(() => {
-        cy.get('.ant-radio-group').children().its('length').should('eq', 5);
-        cy.get('.ant-radio-checked + span').contains('Last year');
-        cy.get('[data-test=cancel-button]').click();
-      });
->>>>>>> 2d98af4662 (merge from upstream to master)
   });
 
   it('Previous time_range params', () => {

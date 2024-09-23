@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { useEffect, useMemo, useState } from 'react';
 import { shallowEqual, useSelector } from 'react-redux';
 import { useInView } from 'react-intersection-observer';
@@ -34,14 +33,6 @@ import { SqlLabRootState } from 'src/SqlLab/types';
 import { useEditorQueriesQuery } from 'src/hooks/apiResources/queries';
 import { Skeleton } from 'src/components';
 import useEffectEvent from 'src/hooks/useEffectEvent';
-=======
-import React, { useMemo } from 'react';
-import { shallowEqual, useSelector } from 'react-redux';
-import { EmptyStateMedium } from 'src/components/EmptyState';
-import { t, styled } from '@superset-ui/core';
-import QueryTable from 'src/SqlLab/components/QueryTable';
-import { SqlLabRootState } from 'src/SqlLab/types';
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 interface QueryHistoryProps {
   queryEditorId: string | number;
@@ -73,16 +64,12 @@ const QueryHistory = ({
   displayLimit,
   latestQueryId,
 }: QueryHistoryProps) => {
-<<<<<<< HEAD
   const [ref, hasReachedBottom] = useInView({ threshold: 0 });
   const [pageIndex, setPageIndex] = useState(0);
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   const queries = useSelector(
     ({ sqlLab: { queries } }: SqlLabRootState) => queries,
     shallowEqual,
   );
-<<<<<<< HEAD
   const {
     currentData: data,
     isLoading,
@@ -154,32 +141,6 @@ const QueryHistory = ({
       )}
       {isFetching && <Skeleton active />}
     </>
-=======
-  const editorQueries = useMemo(
-    () =>
-      Object.values(queries).filter(
-        ({ sqlEditorId }) => String(sqlEditorId) === String(queryEditorId),
-      ),
-    [queries, queryEditorId],
-  );
-
-  return editorQueries.length > 0 ? (
-    <QueryTable
-      columns={[
-        'state',
-        'started',
-        'duration',
-        'progress',
-        'rows',
-        'sql',
-        'results',
-        'actions',
-      ]}
-      queries={editorQueries}
-      displayLimit={displayLimit}
-      latestQueryId={latestQueryId}
-    />
->>>>>>> 2d98af4662 (merge from upstream to master)
   ) : (
     <StyledEmptyStateWrapper>
       <EmptyStateMedium

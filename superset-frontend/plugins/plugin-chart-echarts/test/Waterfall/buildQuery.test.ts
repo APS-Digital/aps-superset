@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<<< HEAD:superset-frontend/plugins/plugin-chart-echarts/test/Waterfall/buildQuery.test.ts
 import { SqlaFormData } from '@superset-ui/core';
 import buildQuery from '../../src/Waterfall/buildQuery';
 
@@ -39,30 +38,4 @@ describe('Waterfall buildQuery', () => {
     );
     expect(query.columns?.[1]).toEqual('baz');
   });
-========
-import React from 'react';
-import { render, screen } from 'spec/helpers/testing-library';
-import DownloadMenuItems from '.';
-
-const createProps = () => ({
-  addDangerToast: jest.fn(),
-  pdfMenuItemTitle: 'Export to PDF',
-  imageMenuItemTitle: 'Download as Image',
-  dashboardTitle: 'Test Dashboard',
-  logEvent: jest.fn(),
-});
-
-const renderComponent = () => {
-  render(<DownloadMenuItems {...createProps()} />);
-};
-
-test('Should render menu items', () => {
-  renderComponent();
-  expect(
-    screen.getByRole('menuitem', { name: 'Export to PDF' }),
-  ).toBeInTheDocument();
-  expect(
-    screen.getByRole('menuitem', { name: 'Download as Image' }),
-  ).toBeInTheDocument();
->>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/src/dashboard/components/menu/DownloadMenuItems/DownloadMenuItems.test.tsx
 });

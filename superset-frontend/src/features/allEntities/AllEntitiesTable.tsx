@@ -16,10 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import moment from 'moment';
 import { t, styled } from '@superset-ui/core';
 import TableView, { EmptyWrapperType } from 'src/components/TableView';

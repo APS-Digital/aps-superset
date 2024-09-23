@@ -22,9 +22,5 @@ export default function getOwnerName(owner?: Owner): string {
   if (!owner) {
     return '';
   }
-<<<<<<< HEAD
   return owner.full_name || `${owner.first_name} ${owner.last_name}`;
-=======
-  return `${owner.first_name} ${owner.last_name}`;
->>>>>>> 2d98af4662 (merge from upstream to master)
 }

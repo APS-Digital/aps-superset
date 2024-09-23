@@ -19,12 +19,8 @@
 
 /* eslint-disable no-param-reassign */
 import { throttle } from 'lodash';
-<<<<<<< HEAD
 import {
   memo,
-=======
-import React, {
->>>>>>> 2d98af4662 (merge from upstream to master)
   useEffect,
   useState,
   useCallback,

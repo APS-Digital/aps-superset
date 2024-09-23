@@ -15,7 +15,6 @@
 # specific language governing permissions and limitations
 # under the License.
 # isort:skip_file
-import json
 import inspect
 import time
 import unittest
@@ -156,10 +155,7 @@ class TestRolePermission(SupersetTestCase):
         delete_schema_perm(schema_perm)
         db.session.delete(security_manager.find_role(SCHEMA_ACCESS_ROLE))
         db.session.commit()
-<<<<<<< HEAD
         super().tearDown()
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     def test_after_insert_dataset(self):
         security_manager.on_view_menu_after_insert = Mock()
@@ -1187,15 +1183,9 @@ class TestRolePermission(SupersetTestCase):
         with self.client.application.test_request_context():
             with override_user(security_manager.find_user("gamma")):
                 schemas = security_manager.get_schemas_accessible_by_user(
-<<<<<<< HEAD
                     database, None, {"temp_schema", "2", "3"}
                 )
                 self.assertEqual(schemas, {"temp_schema"})
-=======
-                    database, ["temp_schema", "2", "3"]
-                )
-                self.assertEqual(schemas, ["temp_schema"])
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     def test_schemas_accessible_by_user_datasource_and_schema_access(self):
         # User has schema access to the datasource temp_schema.wb_health_population in examples DB.
@@ -1204,15 +1194,9 @@ class TestRolePermission(SupersetTestCase):
             database = get_example_database()
             with override_user(security_manager.find_user("gamma")):
                 schemas = security_manager.get_schemas_accessible_by_user(
-<<<<<<< HEAD
                     database, None, {"temp_schema", "2", "3"}
                 )
                 self.assertEqual(schemas, {"temp_schema", "2"})
-=======
-                    database, ["temp_schema", "2", "3"]
-                )
-                self.assertEqual(schemas, ["temp_schema", "2"])
->>>>>>> 2d98af4662 (merge from upstream to master)
                 vm = security_manager.find_permission_view_menu(
                     "schema_access", "[examples].[2]"
                 )
@@ -1368,12 +1352,7 @@ class TestRolePermission(SupersetTestCase):
         self.assert_can_all("CssTemplate", perm_set)
         self.assert_can_all("Dataset", perm_set)
         self.assert_can_read("Database", perm_set)
-<<<<<<< HEAD
         self.assertIn(("can_csv_upload", "Database"), perm_set)
-=======
-        self.assertIn(("can_this_form_post", "CsvToDatabaseView"), perm_set)
-        self.assertIn(("can_this_form_get", "CsvToDatabaseView"), perm_set)
->>>>>>> 2d98af4662 (merge from upstream to master)
         self.assert_can_menu("Manage", perm_set)
         self.assert_can_menu("Annotation Layers", perm_set)
         self.assert_can_menu("CSS Templates", perm_set)
@@ -1910,7 +1889,6 @@ class TestSecurityManager(SupersetTestCase):
         with override_user(security_manager.get_anonymous_user()):
             roles = security_manager.get_user_roles()
             self.assertEqual([security_manager.get_public_role()], roles)
-<<<<<<< HEAD
 
     def test_all_database_access(self):
         gamma_user = security_manager.find_user(username="gamma")
@@ -1925,8 +1903,6 @@ class TestSecurityManager(SupersetTestCase):
         with self.temporary_user(gamma_user, extra_pvms=[all_db_pvm]):
             assert security_manager.can_access_all_databases()
             assert security_manager.can_access_datasource(self.get_datasource_mock())
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 class TestDatasources(SupersetTestCase):

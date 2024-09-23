@@ -97,10 +97,6 @@ def load_long_lat_data(only_metadata: bool = False, force: bool = False) -> None
     obj.main_dttm_col = "datetime"
     obj.database = database
     obj.filter_select_enabled = True
-<<<<<<< HEAD
-=======
-    db.session.commit()
->>>>>>> 2d98af4662 (merge from upstream to master)
     obj.fetch_metadata()
     tbl = obj
 

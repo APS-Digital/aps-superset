@@ -68,7 +68,6 @@ def import_database(
     if database.id is None:
         db.session.flush()
 
-<<<<<<< HEAD
     if ssh_tunnel_config:
         ssh_tunnel_config["database_id"] = database.id
         ssh_tunnel = SSHTunnel.import_from_dict(ssh_tunnel_config, recursive=False)
@@ -77,11 +76,6 @@ def import_database(
 
     # TODO (betodealmeida): we should use the `CreateDatabaseCommand` for imports
     add_permissions(database, ssh_tunnel)
-=======
-    if ssh_tunnel:
-        ssh_tunnel["database_id"] = database.id
-        SSHTunnel.import_from_dict(ssh_tunnel, recursive=False)
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     return database
 

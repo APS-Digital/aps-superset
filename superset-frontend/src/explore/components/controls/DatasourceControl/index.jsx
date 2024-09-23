@@ -171,11 +171,7 @@ const preventRouterLinkWhileMetaClicked = evt => {
   }
 };
 
-<<<<<<< HEAD
 class DatasourceControl extends PureComponent {
-=======
-class DatasourceControl extends React.PureComponent {
->>>>>>> 2d98af4662 (merge from upstream to master)
   constructor(props) {
     super(props);
     this.state = {

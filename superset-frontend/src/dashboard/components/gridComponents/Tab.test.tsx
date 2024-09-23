@@ -131,7 +131,6 @@ test('Render tab (no content) editMode:true', () => {
   expect(screen.getByText('🚀 Aspiring Developers')).toBeInTheDocument();
   expect(EditableTitle).toBeCalledTimes(1);
   expect(getByTestId('dragdroppable-object')).toBeInTheDocument();
-<<<<<<< HEAD
 });
 
 test('Drop on a tab', async () => {
@@ -208,8 +207,6 @@ test('Drop on a tab', async () => {
       },
     }),
   );
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 });
 
 test('Edit table title', () => {

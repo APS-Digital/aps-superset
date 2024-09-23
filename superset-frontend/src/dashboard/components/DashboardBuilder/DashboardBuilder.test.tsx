@@ -44,11 +44,7 @@ jest.mock('src/dashboard/actions/dashboardState', () => ({
 }));
 jest.mock('src/components/ResizableSidebar/useStoredSidebarWidth');
 
-<<<<<<< HEAD
 // mock following dependent components to fix the prop warnings
-=======
-// mock following dependant components to fix the prop warnings
->>>>>>> 2d98af4662 (merge from upstream to master)
 jest.mock('src/components/Select/Select', () => () => (
   <div data-test="mock-select" />
 ));

@@ -28,11 +28,7 @@ from superset.models.slice import Slice
 from superset.utils.core import get_user_id
 
 if TYPE_CHECKING:
-<<<<<<< HEAD
     pass
-=======
-    from superset.connectors.sqla.models import BaseDatasource
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 logger = logging.getLogger(__name__)
 

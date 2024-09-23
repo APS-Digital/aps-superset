@@ -204,11 +204,7 @@ function RowLevelSecurityModal(props: RowLevelSecurityModalProps) {
   // initialize
   useEffect(() => {
     if (!isEditMode) {
-<<<<<<< HEAD
       setCurrentRule({ ...DEFAULT_RULE });
-=======
-      setCurrentRule({ ...DEAFULT_RULE });
->>>>>>> 2d98af4662 (merge from upstream to master)
     } else if (rule?.id !== null && !loading && !fetchError) {
       fetchResource(rule.id as number);
     }

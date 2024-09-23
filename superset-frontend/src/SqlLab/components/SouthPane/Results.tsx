@@ -16,11 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { FC } from 'react';
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { shallowEqual, useSelector } from 'react-redux';
 import Alert from 'src/components/Alert';
 import { EmptyStateMedium } from 'src/components/EmptyState';
@@ -50,11 +46,7 @@ const StyledEmptyStateWrapper = styled.div`
   }
 `;
 
-<<<<<<< HEAD
 const Results: FC<Props> = ({
-=======
-const Results: React.FC<Props> = ({
->>>>>>> 2d98af4662 (merge from upstream to master)
   latestQueryId,
   height,
   displayLimit,

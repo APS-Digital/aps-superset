@@ -14,10 +14,6 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
-<<<<<<< HEAD
-=======
-import json
->>>>>>> 2d98af4662 (merge from upstream to master)
 from collections import defaultdict
 from textwrap import dedent
 from typing import Any
@@ -26,10 +22,7 @@ from shortid import ShortId
 
 from superset.models.dashboard import Dashboard
 from superset.models.slice import Slice
-<<<<<<< HEAD
 from superset.utils import json
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.dashboard_filter_scopes_converter import convert_filter_scopes
 
 

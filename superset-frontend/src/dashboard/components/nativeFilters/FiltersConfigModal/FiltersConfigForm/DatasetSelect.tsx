@@ -16,15 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { useCallback, useMemo, ReactNode } from 'react';
 import rison from 'rison';
-=======
-import React, { useCallback, useMemo, ReactNode } from 'react';
-import rison from 'rison';
-import { t, JsonResponse } from '@superset-ui/core';
-import { AsyncSelect } from 'src/components';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import {
   t,
   JsonResponse,

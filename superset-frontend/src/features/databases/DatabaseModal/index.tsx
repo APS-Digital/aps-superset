@@ -33,10 +33,7 @@ import {
   useCallback,
   ChangeEvent,
 } from 'react';
-<<<<<<< HEAD
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { useHistory } from 'react-router-dom';
 import { setItem, LocalStorageKeys } from 'src/utils/localStorageHelpers';
 import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface';
@@ -157,10 +154,7 @@ export enum ActionType {
   EditorChange,
   ExtraEditorChange,
   ExtraInputChange,
-<<<<<<< HEAD
   EncryptedExtraInputChange,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   Fetched,
   InputChange,
   ParametersChange,
@@ -192,10 +186,7 @@ export type DBReducerActionType =
       type:
         | ActionType.ExtraEditorChange
         | ActionType.ExtraInputChange
-<<<<<<< HEAD
         | ActionType.EncryptedExtraInputChange
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         | ActionType.TextChange
         | ActionType.QueryChange
         | ActionType.InputChange
@@ -222,13 +213,8 @@ export type DBReducerActionType =
   | {
       type:
         | ActionType.Reset
-<<<<<<< HEAD
         | ActionType.RemoveSSHTunnelConfig
         | ActionType.AddTableCatalogSheet;
-=======
-        | ActionType.AddTableCatalogSheet
-        | ActionType.RemoveSSHTunnelConfig;
->>>>>>> 2d98af4662 (merge from upstream to master)
     }
   | {
       type: ActionType.RemoveTableCatalogSheet;
@@ -285,7 +271,6 @@ export function dbReducer(
           [action.payload.name]: actionPayloadJson,
         }),
       };
-<<<<<<< HEAD
     case ActionType.EncryptedExtraInputChange:
       return {
         ...trimmedState,
@@ -294,8 +279,6 @@ export function dbReducer(
           [action.payload.name]: action.payload.value,
         }),
       };
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
     case ActionType.ExtraInputChange:
       // "extra" payload in state is a string
       if (
@@ -650,17 +633,6 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
   const dbImages = getDatabaseImages();
   const connectionAlert = getConnectionAlert();
   const isEditMode = !!databaseId;
-<<<<<<< HEAD
-=======
-  const disableSSHTunnelingForEngine = (
-    availableDbs?.databases?.find(
-      (DB: DatabaseObject) =>
-        DB.backend === db?.engine || DB.engine === db?.engine,
-    ) as DatabaseObject
-  )?.engine_information?.disable_ssh_tunneling;
-  const isSSHTunneling =
-    isFeatureEnabled(FeatureFlag.SshTunneling) && !disableSSHTunnelingForEngine;
->>>>>>> 2d98af4662 (merge from upstream to master)
   const hasAlert =
     connectionAlert || !!(db?.engine && engineSpecificAlertMapping[db.engine]);
   const useSqlAlchemyForm =
@@ -1630,15 +1602,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
   const renderSSHTunnelForm = () => (
     <SSHTunnelForm
       db={db as DatabaseObject}
-<<<<<<< HEAD
       onSSHTunnelParametersChange={({ target }) => {
-=======
-      onSSHTunnelParametersChange={({
-        target,
-      }: {
-        target: HTMLInputElement | HTMLTextAreaElement;
-      }) =>
->>>>>>> 2d98af4662 (merge from upstream to master)
         onChange(ActionType.ParametersSSHTunnelChange, {
           type: target.type,
           name: target.name,
@@ -1698,7 +1662,6 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
         }
         onExtraInputChange={({ target }: { target: HTMLInputElement }) =>
           onChange(ActionType.ExtraInputChange, {
-<<<<<<< HEAD
             name: target.name,
             value: target.value,
           })
@@ -1709,8 +1672,6 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
           target: HTMLInputElement;
         }) =>
           onChange(ActionType.EncryptedExtraInputChange, {
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
             name: target.name,
             value: target.value,
           })
@@ -1721,18 +1682,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
             payload: { indexToDelete: idx },
           });
         }}
-<<<<<<< HEAD
         onParametersChange={handleParametersChange}
-=======
-        onParametersChange={({ target }: { target: HTMLInputElement }) =>
-          onChange(ActionType.ParametersChange, {
-            type: target.type,
-            name: target.name,
-            checked: target.checked,
-            value: target.value,
-          })
-        }
->>>>>>> 2d98af4662 (merge from upstream to master)
         onChange={({ target }: { target: HTMLInputElement }) =>
           onChange(ActionType.TextChange, {
             name: target.name,

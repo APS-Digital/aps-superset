@@ -17,18 +17,8 @@
  * under the License.
  */
 
-<<<<<<< HEAD
 import { SuperChart } from '@superset-ui/core';
 import { WordCloudChartPlugin } from '@superset-ui/plugin-chart-word-cloud';
-=======
-import React from 'react';
-import { SuperChart, getChartTransformPropsRegistry } from '@superset-ui/core';
-import {
-  WordCloudChartPlugin,
-  LegacyWordCloudChartPlugin,
-  WordCloudTransformProps,
-} from '@superset-ui/plugin-chart-word-cloud';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { withResizableChartDemo } from '../../../shared/components/ResizableChartDemo';
 import data from './data';
 

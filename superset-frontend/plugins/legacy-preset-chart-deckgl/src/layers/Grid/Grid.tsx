@@ -17,10 +17,6 @@
  * under the License.
  */
 import { Color, GridLayer } from 'deck.gl/typed';
-<<<<<<< HEAD
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import {
   t,
   CategoricalColorNamespace,

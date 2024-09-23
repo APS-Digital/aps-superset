@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<<< HEAD:superset-frontend/cypress-base/cypress/applitools/explore.test.ts
 import {
   FORM_DATA_DEFAULTS,
   NUM_METRIC,
@@ -40,24 +39,5 @@ describe('explore view', () => {
       testName: 'Explore page',
     });
     cy.eyesCheckWindow('Explore loaded');
-========
-import { NumberFormats } from '@superset-ui/core';
-import { getPercentFormatter } from '../../src/utils/formatters';
-
-describe('getPercentFormatter', () => {
-  const value = 0.6;
-  it('should format as percent if no format is specified', () => {
-    expect(getPercentFormatter().format(value)).toEqual('60%');
-  });
-  it('should format as percent if SMART_NUMBER is specified', () => {
-    expect(
-      getPercentFormatter(NumberFormats.SMART_NUMBER).format(value),
-    ).toEqual('60%');
-  });
-  it('should format using a provided format', () => {
-    expect(
-      getPercentFormatter(NumberFormats.PERCENT_2_POINT).format(value),
-    ).toEqual('60.00%');
->>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/plugins/plugin-chart-echarts/test/utils/formatters.test.ts
   });
 });

@@ -89,10 +89,7 @@ export default function getInitialState({
         autorun: Boolean(activeTab.autorun),
         templateParams: activeTab.template_params || undefined,
         dbId: activeTab.database_id,
-<<<<<<< HEAD
         catalog: activeTab.catalog,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         schema: activeTab.schema,
         queryLimit: activeTab.query_limit,
         hideLeftBar: activeTab.hide_left_bar,
@@ -105,10 +102,7 @@ export default function getInitialState({
         id: id.toString(),
         loaded: false,
         name: label,
-<<<<<<< HEAD
         dbId: undefined,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
       };
     }
     queryEditors = {
@@ -117,10 +111,7 @@ export default function getInitialState({
     };
   });
   const tabHistory = activeTab ? [activeTab.id.toString()] : [];
-<<<<<<< HEAD
   let lastUpdatedActiveTab = activeTab ? activeTab.id.toString() : '';
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   let tables = {} as Record<string, Table>;
   let editorTabLastUpdatedAt = Date.now();
   if (activeTab) {
@@ -133,10 +124,7 @@ export default function getInitialState({
         const table = {
           dbId: tableSchema.database_id,
           queryEditorId: tableSchema.tab_state_id.toString(),
-<<<<<<< HEAD
           catalog: tableSchema.catalog,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
           schema: tableSchema.schema,
           name: tableSchema.table,
           expanded: tableSchema.expanded,
@@ -152,7 +140,6 @@ export default function getInitialState({
       });
   }
 
-<<<<<<< HEAD
   const queries = {
     ...queries_,
     ...(activeTab?.latest_query && {
@@ -161,9 +148,6 @@ export default function getInitialState({
   };
 
   const destroyedQueryEditors = {};
-=======
-  const queries = { ...queries_ };
->>>>>>> 2d98af4662 (merge from upstream to master)
 
   /**
    * If the `SQLLAB_BACKEND_PERSISTENCE` feature flag is off, or if the user
@@ -237,7 +221,6 @@ export default function getInitialState({
         if (sqlLab.tabHistory) {
           tabHistory.push(...sqlLab.tabHistory);
         }
-<<<<<<< HEAD
         lastUpdatedActiveTab = tabHistory.slice(tabHistory.length - 1)[0] || '';
 
         if (sqlLab.destroyedQueryEditors) {
@@ -248,8 +231,6 @@ export default function getInitialState({
             }
           });
         }
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
       }
     }
   } catch (error) {
@@ -283,11 +264,8 @@ export default function getInitialState({
       editorTabLastUpdatedAt,
       queryCostEstimates: {},
       unsavedQueryEditor,
-<<<<<<< HEAD
       lastUpdatedActiveTab,
       destroyedQueryEditors,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
     },
     localStorageUsageInKilobytes: 0,
     common,

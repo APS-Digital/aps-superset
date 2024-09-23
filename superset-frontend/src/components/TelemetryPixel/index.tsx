@@ -17,11 +17,7 @@
  * under the License.
  */
 
-<<<<<<< HEAD
 import { ReactElement } from 'react';
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 interface TelemetryPixelProps {
   version?: string;
@@ -47,18 +43,11 @@ const TelemetryPixel = ({
   version = 'unknownVersion',
   sha = 'unknownSHA',
   build = 'unknownBuild',
-<<<<<<< HEAD
 }: TelemetryPixelProps): ReactElement | null => {
   const pixelPath = `https://apachesuperset.gateway.scarf.sh/pixel/${PIXEL_ID}/${version}/${sha}/${build}`;
   return process.env.SCARF_ANALYTICS === 'false' ? null : (
     <img
       // @ts-ignore
-=======
-}: TelemetryPixelProps): React.ReactElement | null => {
-  const pixelPath = `https://apachesuperset.gateway.scarf.sh/pixel/${PIXEL_ID}/${version}/${sha}/${build}`;
-  return process.env.SCARF_ANALYTICS === 'false' ? null : (
-    <img
->>>>>>> 2d98af4662 (merge from upstream to master)
       referrerPolicy="no-referrer-when-downgrade"
       src={pixelPath}
       width={0}

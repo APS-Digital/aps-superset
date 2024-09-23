@@ -27,11 +27,7 @@ from numpy.typing import NDArray
 
 from superset.db_engine_specs import BaseEngineSpec
 from superset.superset_typing import DbapiDescription, DbapiResult, ResultSetColumnType
-<<<<<<< HEAD
 from superset.utils import core as utils, json
-=======
-from superset.utils import core as utils
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.core import GenericDataType
 
 logger = logging.getLogger(__name__)

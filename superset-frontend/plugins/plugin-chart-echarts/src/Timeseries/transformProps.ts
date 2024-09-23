@@ -39,10 +39,7 @@ import {
   isTimeseriesAnnotationLayer,
   t,
   TimeseriesChartDataResponseResult,
-<<<<<<< HEAD
   NumberFormats,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 } from '@superset-ui/core';
 import {
   extractExtraMetrics,
@@ -228,11 +225,7 @@ export default function transformProps(
     getMetricLabel,
   );
 
-<<<<<<< HEAD
   const isMultiSeries = groupBy.length || metrics?.length > 1;
-=======
-  const isMultiSeries = groupby?.length || metrics?.length > 1;
->>>>>>> 2d98af4662 (merge from upstream to master)
 
   const [rawSeries, sortedTotalValues, minPositiveValue] = extractSeries(
     rebasedData,
@@ -267,13 +260,9 @@ export default function transformProps(
   const series: SeriesOption[] = [];
 
   const forcePercentFormatter = Boolean(contributionMode || isAreaExpand);
-<<<<<<< HEAD
   const percentFormatter = forcePercentFormatter
     ? getPercentFormatter(yAxisFormat)
     : getPercentFormatter(NumberFormats.PERCENT_2_POINT);
-=======
-  const percentFormatter = getPercentFormatter(yAxisFormat);
->>>>>>> 2d98af4662 (merge from upstream to master)
   const defaultFormatter = currencyFormat?.symbol
     ? new CurrencyFormatter({ d3Format: yAxisFormat, currency: currencyFormat })
     : getNumberFormatter(yAxisFormat);
@@ -331,11 +320,7 @@ export default function transformProps(
               customFormatters,
               metrics,
               labelMap?.[seriesName]?.[0],
-<<<<<<< HEAD
             ) ?? defaultFormatter),
-=======
-            ) ?? defaultFormatter,
->>>>>>> 2d98af4662 (merge from upstream to master)
         showValue,
         onlyTotal,
         totalStackedValues: sortedTotalValues,
@@ -635,10 +620,7 @@ export default function transformProps(
       right: TIMESERIES_CONSTANTS.toolboxRight,
       feature: {
         dataZoom: {
-<<<<<<< HEAD
           ...(stack ? { yAxisIndex: false } : {}), // disable y-axis zoom for stacked charts
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
           title: {
             zoom: t('zoom area'),
             back: t('restore zoom'),
@@ -654,7 +636,6 @@ export default function transformProps(
             end: TIMESERIES_CONSTANTS.dataZoomEnd,
             bottom: TIMESERIES_CONSTANTS.zoomBottom,
             yAxisIndex: isHorizontal ? 0 : undefined,
-<<<<<<< HEAD
           },
           {
             type: 'inside',
@@ -667,8 +648,6 @@ export default function transformProps(
             xAxisIndex: 0,
             zoomOnMouseWheel: false,
             moveOnMouseWheel: true,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
           },
         ]
       : [],

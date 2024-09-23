@@ -15,11 +15,7 @@
 # specific language governing permissions and limitations
 # under the License.
 import pytest
-<<<<<<< HEAD
 from pytest_mock import MockerFixture
-=======
-from pytest_mock import MockFixture
->>>>>>> 2d98af4662 (merge from upstream to master)
 from sqlalchemy.orm.session import Session
 
 from superset import db
@@ -32,11 +28,7 @@ def session_with_data(session: Session):
     from superset.models.core import Database
     from superset.models.dashboard import Dashboard
     from superset.models.slice import Slice
-<<<<<<< HEAD
     from superset.models.sql_lab import SavedQuery
-=======
-    from superset.models.sql_lab import Query, SavedQuery
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     engine = session.get_bind()
     SqlaTable.metadata.create_all(engine)  # pylint: disable=no-member
@@ -51,11 +43,7 @@ def session_with_data(session: Session):
 
     database = Database(database_name="my_database", sqlalchemy_uri="postgresql://")
 
-<<<<<<< HEAD
     [  # noqa: F841
-=======
-    columns = [
->>>>>>> 2d98af4662 (merge from upstream to master)
         TableColumn(column_name="a", type="INTEGER"),
     ]
 
@@ -79,21 +67,11 @@ def session_with_data(session: Session):
     yield session
 
 
-<<<<<<< HEAD
 def test_create_command_success(session_with_data: Session, mocker: MockerFixture):
     from superset.commands.tag.create import CreateCustomTagWithRelationshipsCommand
     from superset.models.dashboard import Dashboard
     from superset.models.slice import Slice
     from superset.models.sql_lab import SavedQuery
-=======
-def test_create_command_success(session_with_data: Session, mocker: MockFixture):
-    from superset.commands.tag.create import CreateCustomTagWithRelationshipsCommand
-    from superset.connectors.sqla.models import SqlaTable
-    from superset.daos.tag import TagDAO
-    from superset.models.dashboard import Dashboard
-    from superset.models.slice import Slice
-    from superset.models.sql_lab import Query, SavedQuery
->>>>>>> 2d98af4662 (merge from upstream to master)
     from superset.tags.models import ObjectType, TaggedObject
 
     # Define a list of objects to tag
@@ -130,7 +108,6 @@ def test_create_command_success(session_with_data: Session, mocker: MockFixture)
         )
 
 
-<<<<<<< HEAD
 def test_create_command_success_clear(
     session_with_data: Session, mocker: MockerFixture
 ):
@@ -138,15 +115,6 @@ def test_create_command_success_clear(
     from superset.models.dashboard import Dashboard
     from superset.models.slice import Slice
     from superset.models.sql_lab import SavedQuery
-=======
-def test_create_command_success_clear(session_with_data: Session, mocker: MockFixture):
-    from superset.commands.tag.create import CreateCustomTagWithRelationshipsCommand
-    from superset.connectors.sqla.models import SqlaTable
-    from superset.daos.tag import TagDAO
-    from superset.models.dashboard import Dashboard
-    from superset.models.slice import Slice
-    from superset.models.sql_lab import Query, SavedQuery
->>>>>>> 2d98af4662 (merge from upstream to master)
     from superset.tags.models import ObjectType, TaggedObject
 
     # Define a list of objects to tag

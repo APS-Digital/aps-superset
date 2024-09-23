@@ -179,10 +179,7 @@ export default function EchartsTimeseries({
           ...(eventParams.name ? [eventParams.name] : []),
           ...(labelMap[seriesName] ?? []),
         ];
-<<<<<<< HEAD
         const groupBy = ensureIsArray(formData.groupby);
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         if (data && xAxis.type === AxisType.Time) {
           drillToDetailFilters.push({
             col:
@@ -198,11 +195,7 @@ export default function EchartsTimeseries({
         }
         [
           ...(xAxis.type === AxisType.Category && data ? [xAxis.label] : []),
-<<<<<<< HEAD
           ...groupBy,
-=======
-          ...formData.groupby,
->>>>>>> 2d98af4662 (merge from upstream to master)
         ].forEach((dimension, i) =>
           drillToDetailFilters.push({
             col: dimension,

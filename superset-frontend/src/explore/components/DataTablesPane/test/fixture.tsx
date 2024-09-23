@@ -73,10 +73,7 @@ export const createDataTablesPaneProps = (sliceId: number) =>
     chartStatus: 'rendered' as ChartStatus,
     onCollapseChange: jest.fn(),
     actions: exploreActions,
-<<<<<<< HEAD
     canDownload: true,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   }) as DataTablesPaneProps;
 
 export const createSamplesPaneProps = ({
@@ -94,10 +91,7 @@ export const createSamplesPaneProps = ({
     queryForce,
     isVisible: true,
     actions: exploreActions,
-<<<<<<< HEAD
     canDownload: true,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   }) as SamplesPaneProps;
 
 export const createResultsPaneOnDashboardProps = ({
@@ -124,8 +118,5 @@ export const createResultsPaneOnDashboardProps = ({
     isVisible: true,
     actions: exploreActions,
     errorMessage,
-<<<<<<< HEAD
     canDownload: true,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   }) as ResultsPaneProps;

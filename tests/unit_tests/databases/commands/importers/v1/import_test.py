@@ -17,17 +17,13 @@
 # pylint: disable=unused-argument, import-outside-toplevel, invalid-name
 
 import copy
-import json
 
 import pytest
 from pytest_mock import MockerFixture
 from sqlalchemy.orm.session import Session
 
 from superset import db
-<<<<<<< HEAD
 from superset.commands.database.importers.v1.utils import add_permissions
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.commands.exceptions import ImportFailedError
 from superset.utils import json
 
@@ -155,11 +151,7 @@ def test_import_database_without_permission(
     )
 
 
-<<<<<<< HEAD
 def test_import_database_with_version(mocker: MockerFixture, session: Session) -> None:
-=======
-def test_import_database_with_version(mocker: MockFixture, session: Session) -> None:
->>>>>>> 2d98af4662 (merge from upstream to master)
     """
     Test importing a database with a version set.
     """
@@ -169,10 +161,7 @@ def test_import_database_with_version(mocker: MockFixture, session: Session) -> 
     from tests.integration_tests.fixtures.importexport import database_config
 
     mocker.patch.object(security_manager, "can_access", return_value=True)
-<<<<<<< HEAD
     mocker.patch("superset.commands.database.importers.v1.utils.add_permissions")
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     engine = db.session.get_bind()
     Database.metadata.create_all(engine)  # pylint: disable=no-member
@@ -181,7 +170,6 @@ def test_import_database_with_version(mocker: MockFixture, session: Session) -> 
     config["extra"]["version"] = "1.1.1"
     database = import_database(config)
     assert json.loads(database.extra)["version"] == "1.1.1"
-<<<<<<< HEAD
 
 
 def test_import_database_with_user_impersonation(
@@ -233,5 +221,3 @@ def test_add_permissions(mocker: MockerFixture) -> None:
             mocker.call("schema_access", "[my_db].[catalog2].[schema2]"),
         ]
     )
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)

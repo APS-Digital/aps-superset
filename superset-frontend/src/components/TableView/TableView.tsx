@@ -16,11 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { memo, useEffect, useRef } from 'react';
-=======
-import React, { useEffect, useRef } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { isEqual } from 'lodash';
 import { styled, t } from '@superset-ui/core';
 import { useFilters, usePagination, useSortBy, useTable } from 'react-table';

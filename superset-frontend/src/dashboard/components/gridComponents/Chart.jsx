@@ -488,14 +488,10 @@ class Chart extends Component {
           />
         )}
 
-<<<<<<< HEAD
         <ChartWrapper
           className={cx('dashboard-chart')}
           aria-label={slice.description}
         >
-=======
-        <ChartWrapper className={cx('dashboard-chart')}>
->>>>>>> 2d98af4662 (merge from upstream to master)
           {isLoading && (
             <ChartOverlay
               style={{

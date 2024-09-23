@@ -55,10 +55,7 @@ from superset.utils.core import backend
 from superset.utils.database import get_example_database
 from superset.views.database.views import DatabaseView
 from tests.integration_tests.conftest import with_feature_flags
-<<<<<<< HEAD
 from tests.integration_tests.constants import ADMIN_USERNAME, GAMMA_USERNAME
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 from tests.integration_tests.fixtures.birth_names_dashboard import (
     load_birth_names_dashboard_with_slices,  # noqa: F401
     load_birth_names_data,  # noqa: F401
@@ -140,11 +137,7 @@ class TestCore(SupersetTestCase):
 
     @pytest.mark.usefixtures("load_birth_names_dashboard_with_slices")
     def test_viz_cache_key(self):
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
-=======
-        self.login(username="admin")
->>>>>>> 2d98af4662 (merge from upstream to master)
         slc = self.get_slice("Top 10 Girl Name Share")
 
         viz = slc.viz
@@ -183,13 +176,8 @@ class TestCore(SupersetTestCase):
 
     @pytest.mark.usefixtures("load_energy_table_with_slice")
     def test_save_slice(self):
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
         slice_name = f"Energy Sankey"  # noqa: F541
-=======
-        self.login(username="admin")
-        slice_name = f"Energy Sankey"
->>>>>>> 2d98af4662 (merge from upstream to master)
         slice_id = self.get_slice(slice_name).id
         copy_name_prefix = "Test Sankey"
         copy_name = f"{copy_name_prefix}[save]{random.random()}"
@@ -252,11 +240,7 @@ class TestCore(SupersetTestCase):
     @pytest.mark.usefixtures("load_birth_names_dashboard_with_slices")
     def test_slice_data(self):
         # slice data should have some required attributes
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
-=======
-        self.login(username="admin")
->>>>>>> 2d98af4662 (merge from upstream to master)
         slc = self.get_slice(slice_name="Top 10 Girl Name Share")
         slc_data_attributes = slc.data.keys()
         assert "changed_on" in slc_data_attributes
@@ -368,11 +352,7 @@ class TestCore(SupersetTestCase):
         "load_energy_table_with_slice",
     )
     def test_warm_up_cache(self):
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
-=======
-        self.login()
->>>>>>> 2d98af4662 (merge from upstream to master)
         slc = self.get_slice("Top 10 Girl Name Share")
         data = self.get_json_resp(f"/superset/warm_up_cache?slice_id={slc.id}")
         self.assertEqual(
@@ -397,11 +377,7 @@ class TestCore(SupersetTestCase):
 
     @pytest.mark.usefixtures("load_birth_names_dashboard_with_slices")
     def test_warm_up_cache_error(self) -> None:
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
-=======
-        self.login()
->>>>>>> 2d98af4662 (merge from upstream to master)
         slc = self.get_slice("Pivot Table v2")
 
         with mock.patch.object(
@@ -571,11 +547,7 @@ class TestCore(SupersetTestCase):
         form_data = {
             "viz_type": "dist_bar",
         }
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
-=======
-        self.login(username="admin")
->>>>>>> 2d98af4662 (merge from upstream to master)
         rv = self.client.post(
             "/superset/explore_json/",
             data={"form_data": json.dumps(form_data)},
@@ -725,11 +697,7 @@ class TestCore(SupersetTestCase):
         }
         app._got_first_request = False
         async_query_manager_factory.init_app(app)
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
-=======
-        self.login(username="admin")
->>>>>>> 2d98af4662 (merge from upstream to master)
         rv = self.client.post(
             "/superset/explore_json/",
             data={"form_data": json.dumps(form_data)},
@@ -768,11 +736,7 @@ class TestCore(SupersetTestCase):
         }
         app._got_first_request = False
         async_query_manager_factory.init_app(app)
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
-=======
-        self.login(username="admin")
->>>>>>> 2d98af4662 (merge from upstream to master)
         rv = self.client.post(
             "/superset/explore_json/?results=true",
             data={"form_data": json.dumps(form_data)},
@@ -1030,12 +994,7 @@ class TestCore(SupersetTestCase):
         self.assertEqual(payload["label"], "Untitled Query foo")
 
     def test_tabstate_update(self):
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
-=======
-        username = "admin"
-        self.login(username)
->>>>>>> 2d98af4662 (merge from upstream to master)
         # create a tab
         data = {
             "queryEditor": json.dumps(
@@ -1235,11 +1194,7 @@ class TestCore(SupersetTestCase):
         self.login(ADMIN_USERNAME)
         random_key = "random_key"
         mock_command.return_value = random_key
-<<<<<<< HEAD
         slice_name = f"Energy Sankey"  # noqa: F541
-=======
-        slice_name = f"Energy Sankey"
->>>>>>> 2d98af4662 (merge from upstream to master)
         slice_id = self.get_slice(slice_name).id
         form_data = {"slice_id": slice_id, "viz_type": "line", "datasource": "1__table"}
         rv = self.client.get(

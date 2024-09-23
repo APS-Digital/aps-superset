@@ -18,15 +18,10 @@
 from datetime import datetime, timezone
 
 import pandas as pd
-<<<<<<< HEAD
 from pandas.api.types import is_numeric_dtype
 
 from superset.utils.core import GenericDataType
 from superset.utils.excel import apply_column_types, df_to_excel
-=======
-
-from superset.utils.excel import df_to_excel
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def test_timezone_conversion() -> None:
@@ -34,7 +29,6 @@ def test_timezone_conversion() -> None:
     Test that columns with timezones are converted to a string.
     """
     df = pd.DataFrame({"dt": [datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)]})
-<<<<<<< HEAD
     apply_column_types(df, [GenericDataType.TEMPORAL])
     contents = df_to_excel(df)
     assert pd.read_excel(contents)["dt"][0] == "2023-01-01 00:00:00+00:00"
@@ -98,7 +92,3 @@ def test_column_data_types_with_failing_conversion():
     assert not is_numeric_dtype(df["col1"])
     assert not is_numeric_dtype(df["col2"])
     assert not is_numeric_dtype(df["col3"])
-=======
-    contents = df_to_excel(df)
-    assert pd.read_excel(contents)["dt"][0] == "2023-01-01 00:00:00+00:00"
->>>>>>> 2d98af4662 (merge from upstream to master)

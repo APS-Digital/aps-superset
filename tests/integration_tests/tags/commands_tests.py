@@ -21,7 +21,6 @@ import pytest
 import yaml  # noqa: F401
 from werkzeug.utils import secure_filename  # noqa: F401
 
-<<<<<<< HEAD
 from superset import db, security_manager  # noqa: F401
 from superset.commands.dashboard.exceptions import DashboardNotFoundError  # noqa: F401
 from superset.commands.dashboard.export import (
@@ -38,24 +37,6 @@ from superset.connectors.sqla.models import SqlaTable  # noqa: F401
 from superset.models.core import Database  # noqa: F401
 from superset.models.dashboard import Dashboard
 from superset.models.slice import Slice  # noqa: F401
-=======
-from superset import db, security_manager
-from superset.commands.dashboard.exceptions import DashboardNotFoundError
-from superset.commands.dashboard.export import (
-    append_charts,
-    ExportDashboardsCommand,
-    get_default_position,
-)
-from superset.commands.dashboard.importers import v0, v1
-from superset.commands.exceptions import CommandInvalidError
-from superset.commands.importers.exceptions import IncorrectVersionError
-from superset.commands.tag.create import CreateCustomTagCommand
-from superset.commands.tag.delete import DeleteTaggedObjectCommand, DeleteTagsCommand
-from superset.connectors.sqla.models import SqlaTable
-from superset.models.core import Database
-from superset.models.dashboard import Dashboard
-from superset.models.slice import Slice
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.tags.models import ObjectType, Tag, TaggedObject, TagType
 from tests.integration_tests.base_tests import SupersetTestCase
 from tests.integration_tests.fixtures.importexport import (

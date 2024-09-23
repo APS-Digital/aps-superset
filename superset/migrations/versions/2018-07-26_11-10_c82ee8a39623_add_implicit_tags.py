@@ -33,13 +33,8 @@ from flask_appbuilder.models.mixins import AuditMixin  # noqa: E402
 from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer, String  # noqa: E402
 from sqlalchemy.ext.declarative import declarative_base, declared_attr  # noqa: E402
 
-<<<<<<< HEAD
 from superset.tags.models import ObjectType, TagType  # noqa: E402
 from superset.utils.core import get_user_id  # noqa: E402
-=======
-from superset.tags.models import ObjectType, TagType
-from superset.utils.core import get_user_id
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 Base = declarative_base()
 

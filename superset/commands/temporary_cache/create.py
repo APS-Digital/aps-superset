@@ -21,10 +21,7 @@ from functools import partial
 from superset.commands.base import BaseCommand
 from superset.commands.temporary_cache.exceptions import TemporaryCacheCreateFailedError
 from superset.commands.temporary_cache.parameters import CommandParameters
-<<<<<<< HEAD
 from superset.utils.decorators import on_error, transaction
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 logger = logging.getLogger(__name__)
 

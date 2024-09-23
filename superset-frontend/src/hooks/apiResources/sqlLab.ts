@@ -27,10 +27,7 @@ export type InitialState = {
     label: string;
     active: boolean;
     database_id: number;
-<<<<<<< HEAD
     catalog?: string | null;
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
     schema?: string;
     table_schemas: {
       id: number;
@@ -42,10 +39,7 @@ export type InitialState = {
         }[];
         dataPreviewQueryId?: string;
       } & Record<string, any>;
-<<<<<<< HEAD
       catalog?: string | null;
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
       schema?: string;
       tab_state_id: number;
       database_id?: number;
@@ -75,11 +69,7 @@ export type InitialState = {
   }[];
 };
 
-<<<<<<< HEAD
 const initialStateApi = api.injectEndpoints({
-=======
-const queryValidationApi = api.injectEndpoints({
->>>>>>> 2d98af4662 (merge from upstream to master)
   endpoints: builder => ({
     sqlLabInitialState: builder.query<InitialState, void>({
       providesTags: ['SqlLabInitialState'],
@@ -93,8 +83,4 @@ const queryValidationApi = api.injectEndpoints({
 });
 
 export const { useSqlLabInitialStateQuery: useSqlLabInitialState } =
-<<<<<<< HEAD
   initialStateApi;
-=======
-  queryValidationApi;
->>>>>>> 2d98af4662 (merge from upstream to master)

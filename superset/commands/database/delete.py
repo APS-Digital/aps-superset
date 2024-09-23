@@ -28,10 +28,6 @@ from superset.commands.database.exceptions import (
     DatabaseNotFoundError,
 )
 from superset.daos.database import DatabaseDAO
-<<<<<<< HEAD
-=======
-from superset.daos.exceptions import DAODeleteFailedError
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.daos.report import ReportScheduleDAO
 from superset.models.core import Database
 from superset.utils.decorators import on_error, transaction
@@ -48,16 +44,7 @@ class DeleteDatabaseCommand(BaseCommand):
     def run(self) -> None:
         self.validate()
         assert self._model
-<<<<<<< HEAD
         DatabaseDAO.delete([self._model])
-=======
-
-        try:
-            DatabaseDAO.delete([self._model])
-        except DAODeleteFailedError as ex:
-            logger.exception(ex.exception)
-            raise DatabaseDeleteFailedError() from ex
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     def validate(self) -> None:
         # Validate/populate model exists

@@ -18,23 +18,16 @@
  */
 
 /* eslint-disable no-param-reassign */
-<<<<<<< HEAD
 import {
   FC,
   memo,
-=======
-import React, {
->>>>>>> 2d98af4662 (merge from upstream to master)
   useEffect,
   useState,
   useCallback,
   createContext,
   useRef,
 } from 'react';
-<<<<<<< HEAD
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { useDispatch, useSelector } from 'react-redux';
 import {
   DataMaskStateWithId,
@@ -137,11 +130,7 @@ const publishDataMask = debounce(
 );
 
 export const FilterBarScrollContext = createContext(false);
-<<<<<<< HEAD
 const FilterBar: FC<FiltersBarProps> = ({
-=======
-const FilterBar: React.FC<FiltersBarProps> = ({
->>>>>>> 2d98af4662 (merge from upstream to master)
   orientation = FilterBarOrientation.Vertical,
   verticalConfig,
   hidden = false,

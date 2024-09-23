@@ -45,15 +45,9 @@ type SelectTagsValue = {
 export const tagToSelectOption = (
   tag: Tag & { table_name: string },
 ): SelectTagsValue => ({
-<<<<<<< HEAD
   value: tag.id,
   label: tag.name,
   key: tag.id,
-=======
-  value: item.name,
-  label: item.name,
-  key: item.id,
->>>>>>> 2d98af4662 (merge from upstream to master)
 });
 
 export const loadTags = async (

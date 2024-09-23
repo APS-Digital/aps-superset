@@ -14,10 +14,6 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
-<<<<<<< HEAD
-=======
-import json
->>>>>>> 2d98af4662 (merge from upstream to master)
 from datetime import datetime
 from typing import Any
 
@@ -26,13 +22,8 @@ from flask_babel import lazy_gettext as _
 from marshmallow import fields, pre_load, Schema, ValidationError
 from marshmallow.validate import Length
 
-<<<<<<< HEAD
 from superset.exceptions import SupersetMarshmallowValidationError
 from superset.utils import json
-=======
-from superset.datasets.models import Dataset
-from superset.exceptions import SupersetMarshmallowValidationError
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 get_delete_ids_schema = {"type": "array", "items": {"type": "integer"}}
 get_export_ids_schema = {"type": "array", "items": {"type": "integer"}}
@@ -297,20 +288,6 @@ class GetOrCreateDatasetSchema(Schema):
     )
     normalize_columns = fields.Boolean(load_default=False)
     always_filter_main_dttm = fields.Boolean(load_default=False)
-<<<<<<< HEAD
-=======
-
-
-class DatasetSchema(SQLAlchemyAutoSchema):
-    """
-    Schema for the ``Dataset`` model.
-    """
-
-    class Meta:  # pylint: disable=too-few-public-methods
-        model = Dataset
-        load_instance = True
-        include_relationships = True
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 class DatasetCacheWarmUpRequestSchema(Schema):

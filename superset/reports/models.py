@@ -130,11 +130,7 @@ class ReportSchedule(AuditMixinNullable, ExtraJSONMixin, Model):
         String(255), server_default=ReportCreationMethod.ALERTS_REPORTS
     )
     timezone = Column(String(100), default="UTC", nullable=False)
-<<<<<<< HEAD
     report_format = Column(String(50), default=ReportDataFormat.PNG)
-=======
-    report_format = Column(String(50), default=ReportDataFormat.VISUALIZATION)
->>>>>>> 2d98af4662 (merge from upstream to master)
     sql = Column(MediumText())
     # (Alerts/Reports) M-O to chart
     chart_id = Column(Integer, ForeignKey("slices.id"), nullable=True)

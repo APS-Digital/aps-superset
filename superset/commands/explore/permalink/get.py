@@ -21,11 +21,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 from superset.commands.dataset.exceptions import DatasetNotFoundError
 from superset.commands.explore.permalink.base import BaseExplorePermalinkCommand
-<<<<<<< HEAD
 from superset.daos.key_value import KeyValueDAO
-=======
-from superset.commands.key_value.get import GetKeyValueCommand
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.explore.permalink.exceptions import ExplorePermalinkGetFailedError
 from superset.explore.permalink.types import ExplorePermalinkValue
 from superset.explore.utils import check_access as check_chart_access

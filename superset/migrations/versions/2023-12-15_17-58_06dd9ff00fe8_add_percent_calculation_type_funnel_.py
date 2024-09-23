@@ -21,10 +21,6 @@ Revises: b7851ee5522f
 Create Date: 2023-12-15 17:58:18.277951
 
 """
-<<<<<<< HEAD
-=======
-import json
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 from alembic import op
 from sqlalchemy import Column, Integer, String, Text
@@ -32,10 +28,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 from superset import db
 from superset.migrations.shared.utils import paginated_update
-<<<<<<< HEAD
 from superset.utils import json
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 # revision identifiers, used by Alembic.
 revision = "06dd9ff00fe8"

@@ -122,7 +122,6 @@ export const Databases = [
     href: 'https://doris.apache.org/',
     imgName: 'doris.png',
   },
-<<<<<<< HEAD
   {
     title: 'OceanBase',
     href: 'https://www.oceanbase.com/',
@@ -133,6 +132,4 @@ export const Databases = [
     href: 'https://www.couchbase.com/',
     imgName: 'couchbase.svg',
   },
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 ];

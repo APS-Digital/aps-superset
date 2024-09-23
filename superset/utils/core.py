@@ -58,11 +58,7 @@ import pandas as pd
 import sqlalchemy as sa
 from cryptography.hazmat.backends import default_backend
 from cryptography.x509 import Certificate, load_pem_x509_certificate
-<<<<<<< HEAD
 from flask import current_app, g, request
-=======
-from flask import current_app, g, Markup, request
->>>>>>> 2d98af4662 (merge from upstream to master)
 from flask_appbuilder import SQLA
 from flask_appbuilder.security.sqla.models import User
 from flask_babel import gettext as __
@@ -418,136 +414,6 @@ def cast_to_boolean(value: Any) -> bool | None:
     return False
 
 
-<<<<<<< HEAD
-=======
-class DashboardEncoder(json.JSONEncoder):
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.sort_keys = True
-
-    def default(self, o: Any) -> dict[Any, Any] | str:
-        if isinstance(o, uuid.UUID):
-            return str(o)
-        try:
-            vals = {k: v for k, v in o.__dict__.items() if k != "_sa_instance_state"}
-            return {f"__{o.__class__.__name__}__": vals}
-        except Exception:  # pylint: disable=broad-except
-            if isinstance(o, datetime):
-                return {"__datetime__": o.replace(microsecond=0).isoformat()}
-            return json.JSONEncoder(sort_keys=True).default(o)
-
-
-def format_timedelta(time_delta: timedelta) -> str:
-    """
-    Ensures negative time deltas are easily interpreted by humans
-
-    >>> td = timedelta(0) - timedelta(days=1, hours=5,minutes=6)
-    >>> str(td)
-    '-2 days, 18:54:00'
-    >>> format_timedelta(td)
-    '-1 day, 5:06:00'
-    """
-    if time_delta < timedelta(0):
-        return "-" + str(abs(time_delta))
-
-    # Change this to format positive time deltas the way you want
-    return str(time_delta)
-
-
-def base_json_conv(obj: Any) -> Any:
-    """
-    Tries to convert additional types to JSON compatible forms.
-
-    :param obj: The serializable object
-    :returns: The JSON compatible form
-    :raises TypeError: If the object cannot be serialized
-    :see: https://docs.python.org/3/library/json.html#encoders-and-decoders
-    """
-
-    if isinstance(obj, memoryview):
-        obj = obj.tobytes()
-    if isinstance(obj, np.int64):
-        return int(obj)
-    if isinstance(obj, np.bool_):
-        return bool(obj)
-    if isinstance(obj, np.ndarray):
-        return obj.tolist()
-    if isinstance(obj, set):
-        return list(obj)
-    if isinstance(obj, decimal.Decimal):
-        return float(obj)
-    if isinstance(obj, (uuid.UUID, time, LazyString)):
-        return str(obj)
-    if isinstance(obj, timedelta):
-        return format_timedelta(obj)
-    if isinstance(obj, bytes):
-        try:
-            return obj.decode("utf-8")
-        except Exception:  # pylint: disable=broad-except
-            return "[bytes]"
-
-    raise TypeError(f"Unserializable object {obj} of type {type(obj)}")
-
-
-def json_iso_dttm_ser(obj: Any, pessimistic: bool = False) -> Any:
-    """
-    A JSON serializer that deals with dates by serializing them to ISO 8601.
-
-        >>> json.dumps({'dttm': datetime(1970, 1, 1)}, default=json_iso_dttm_ser)
-        '{"dttm": "1970-01-01T00:00:00"}'
-
-    :param obj: The serializable object
-    :param pessimistic: Whether to be pessimistic regarding serialization
-    :returns: The JSON compatible form
-    :raises TypeError: If the non-pessimistic object cannot be serialized
-    """
-
-    if isinstance(obj, (datetime, date, pd.Timestamp)):
-        return obj.isoformat()
-
-    try:
-        return base_json_conv(obj)
-    except TypeError as ex:
-        if pessimistic:
-            return f"Unserializable [{type(obj)}]"
-
-        raise ex
-
-
-def pessimistic_json_iso_dttm_ser(obj: Any) -> Any:
-    """Proxy to call json_iso_dttm_ser in a pessimistic way
-
-    If one of object is not serializable to json, it will still succeed"""
-    return json_iso_dttm_ser(obj, pessimistic=True)
-
-
-def json_int_dttm_ser(obj: Any) -> Any:
-    """
-    A JSON serializer that deals with dates by serializing them to EPOCH.
-
-        >>> json.dumps({'dttm': datetime(1970, 1, 1)}, default=json_int_dttm_ser)
-        '{"dttm": 0.0}'
-
-    :param obj: The serializable object
-    :returns: The JSON compatible form
-    :raises TypeError: If the object cannot be serialized
-    """
-
-    if isinstance(obj, (datetime, pd.Timestamp)):
-        return datetime_to_epoch(obj)
-
-    if isinstance(obj, date):
-        return (obj - EPOCH.date()).total_seconds() * 1000
-
-    return base_json_conv(obj)
-
-
-def json_dumps_w_dates(payload: dict[Any, Any], sort_keys: bool = False) -> str:
-    """Dumps payload to JSON with Datetime objects properly converted"""
-    return json.dumps(payload, default=json_int_dttm_ser, sort_keys=sort_keys)
-
-
->>>>>>> 2d98af4662 (merge from upstream to master)
 def error_msg_from_exception(ex: Exception) -> str:
     """Translate exception into error message
 

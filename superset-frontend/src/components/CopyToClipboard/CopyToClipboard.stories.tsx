@@ -55,11 +55,7 @@ InteractiveCopyToClipboard.argTypes = {
   onCopyEnd: { action: 'onCopyEnd' },
   copyNode: {
     defaultValue: 'Button',
-<<<<<<< HEAD
     control: { type: 'radio' },
     options: ['Button', 'Icon', 'Text'],
-=======
-    control: { type: 'radio', options: ['Button', 'Icon', 'Text'] },
->>>>>>> 2d98af4662 (merge from upstream to master)
   },
 };

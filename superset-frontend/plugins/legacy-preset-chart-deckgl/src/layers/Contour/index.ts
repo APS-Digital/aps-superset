@@ -32,11 +32,7 @@ const metadata = new ChartMetadata({
   name: t('deck.gl Contour'),
   thumbnail,
   useLegacyApi: true,
-<<<<<<< HEAD
   tags: [t('deckGL'), t('Spatial'), t('Comparison')],
-=======
-  tags: [t('deckGL'), t('Spatial'), t('Comparison'), t('Experimental')],
->>>>>>> 2d98af4662 (merge from upstream to master)
 });
 
 export default class ContourChartPlugin extends ChartPlugin {

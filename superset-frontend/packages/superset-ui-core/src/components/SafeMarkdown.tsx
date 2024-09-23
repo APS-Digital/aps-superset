@@ -43,7 +43,6 @@ function SafeMarkdown({
   htmlSchemaOverrides = {},
 }: SafeMarkdownProps) {
   const escapeHtml = isFeatureEnabled(FeatureFlag.EscapeMarkdownHtml);
-<<<<<<< HEAD
   const [rehypeRawPlugin, setRehypeRawPlugin] = useState<any>(null);
   const [ReactMarkdown, setReactMarkdown] = useState<any>(null);
   useEffect(() => {
@@ -54,8 +53,6 @@ function SafeMarkdown({
       },
     );
   }, []);
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
   const rehypePlugins = useMemo(() => {
     const rehypePlugins: any = [];

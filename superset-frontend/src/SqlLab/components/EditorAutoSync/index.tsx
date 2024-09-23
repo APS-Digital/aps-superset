@@ -17,12 +17,8 @@
  * under the License.
  */
 
-<<<<<<< HEAD
 import { useRef, useEffect, FC } from 'react';
 
-=======
-import React, { useRef, useEffect } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { useDispatch, useSelector } from 'react-redux';
 import { logging } from '@superset-ui/core';
 import {
@@ -30,7 +26,6 @@ import {
   QueryEditor,
   UnsavedQueryEditor,
 } from 'src/SqlLab/types';
-<<<<<<< HEAD
 import {
   useUpdateCurrentSqlEditorTabMutation,
   useUpdateSqlEditorTabMutation,
@@ -46,13 +41,6 @@ import {
 import useEffectEvent from 'src/hooks/useEffectEvent';
 
 export const INTERVAL = 5000;
-=======
-import { useUpdateSqlEditorTabMutation } from 'src/hooks/apiResources/sqlEditorTabs';
-import { useDebounceValue } from 'src/hooks/useDebounceValue';
-import { setEditorTabLastUpdate } from 'src/SqlLab/actions/sqlLab';
-
-const INTERVAL = 5000;
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 function hasUnsavedChanges(
   queryEditor: QueryEditor,
@@ -77,11 +65,7 @@ export function filterUnsavedQueryEditorList(
     .filter(queryEditor => hasUnsavedChanges(queryEditor, lastSavedTimestamp));
 }
 
-<<<<<<< HEAD
 const EditorAutoSync: FC = () => {
-=======
-const EditorAutoSync: React.FC = () => {
->>>>>>> 2d98af4662 (merge from upstream to master)
   const queryEditors = useSelector<SqlLabRootState, QueryEditor[]>(
     state => state.sqlLab.queryEditors,
   );
@@ -93,7 +77,6 @@ const EditorAutoSync: React.FC = () => {
   );
   const dispatch = useDispatch();
   const lastSavedTimestampRef = useRef<number>(editorTabLastUpdatedAt);
-<<<<<<< HEAD
 
   const currentQueryEditorId = useSelector<SqlLabRootState, string>(
     ({ sqlLab }) => sqlLab.tabHistory.slice(-1)[0] || '',
@@ -108,16 +91,12 @@ const EditorAutoSync: React.FC = () => {
   const [updateSqlEditor, { error }] = useUpdateSqlEditorTabMutation();
   const [updateCurrentSqlEditor] = useUpdateCurrentSqlEditorTabMutation();
   const [deleteSqlEditor] = useDeleteSqlEditorTabMutation();
-=======
-  const [updateSqlEditor, { error }] = useUpdateSqlEditorTabMutation();
->>>>>>> 2d98af4662 (merge from upstream to master)
 
   const debouncedUnsavedQueryEditor = useDebounceValue(
     unsavedQueryEditor,
     INTERVAL,
   );
 
-<<<<<<< HEAD
   const getUnsavedItems = useEffectEvent(unsavedQE =>
     filterUnsavedQueryEditorList(
       queryEditors,
@@ -193,19 +172,6 @@ const EditorAutoSync: React.FC = () => {
 
     Promise.all(
       unsaved
-=======
-  useEffect(() => {
-    const unsaved = filterUnsavedQueryEditorList(
-      queryEditors,
-      debouncedUnsavedQueryEditor,
-      lastSavedTimestampRef.current,
-    );
-
-    Promise.all(
-      unsaved
-        // TODO: Migrate migrateQueryEditorFromLocalStorage
-        //       in TabbedSqlEditors logic by addSqlEditor mutation later
->>>>>>> 2d98af4662 (merge from upstream to master)
         .filter(({ inLocalStorage }) => !inLocalStorage)
         .map(queryEditor => updateSqlEditor({ queryEditor })),
     ).then(resolvers => {
@@ -214,11 +180,7 @@ const EditorAutoSync: React.FC = () => {
         dispatch(setEditorTabLastUpdate(lastSavedTimestampRef.current));
       }
     });
-<<<<<<< HEAD
   }, [debouncedUnsavedQueryEditor, getUnsavedItems, dispatch, updateSqlEditor]);
-=======
-  }, [debouncedUnsavedQueryEditor, dispatch, queryEditors, updateSqlEditor]);
->>>>>>> 2d98af4662 (merge from upstream to master)
 
   useEffect(() => {
     if (error) {

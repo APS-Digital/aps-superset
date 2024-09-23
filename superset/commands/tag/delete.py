@@ -26,15 +26,9 @@ from superset.commands.tag.exceptions import (
     TagNotFoundError,
 )
 from superset.commands.tag.utils import to_object_type
-<<<<<<< HEAD
 from superset.daos.tag import TagDAO
 from superset.tags.models import ObjectType
 from superset.utils.decorators import on_error, transaction
-=======
-from superset.daos.exceptions import DAODeleteFailedError
-from superset.daos.tag import TagDAO
-from superset.tags.models import ObjectType
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.views.base import DeleteMixin
 
 logger = logging.getLogger(__name__)

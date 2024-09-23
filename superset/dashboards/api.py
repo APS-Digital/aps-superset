@@ -22,11 +22,7 @@ from io import BytesIO
 from typing import Any, Callable, cast, Optional
 from zipfile import is_zipfile, ZipFile
 
-<<<<<<< HEAD
 from flask import g, redirect, request, Response, send_file, url_for
-=======
-from flask import redirect, request, Response, send_file, url_for
->>>>>>> 2d98af4662 (merge from upstream to master)
 from flask_appbuilder import permission_name
 from flask_appbuilder.api import expose, protect, rison, safe
 from flask_appbuilder.hooks import before_request
@@ -38,17 +34,12 @@ from werkzeug.wsgi import FileWrapper
 
 from superset import db, is_feature_enabled, thumbnail_cache
 from superset.charts.schemas import ChartEntityResponseSchema
-<<<<<<< HEAD
 from superset.commands.dashboard.copy import CopyDashboardCommand
 from superset.commands.dashboard.create import CreateDashboardCommand
 from superset.commands.dashboard.delete import (
     DeleteDashboardCommand,
     DeleteEmbeddedDashboardCommand,
 )
-=======
-from superset.commands.dashboard.create import CreateDashboardCommand
-from superset.commands.dashboard.delete import DeleteDashboardCommand
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.commands.dashboard.exceptions import (
     DashboardAccessDeniedError,
     DashboardCopyError,
@@ -60,17 +51,12 @@ from superset.commands.dashboard.exceptions import (
     DashboardUpdateFailedError,
 )
 from superset.commands.dashboard.export import ExportDashboardsCommand
-<<<<<<< HEAD
 from superset.commands.dashboard.fave import AddFavoriteDashboardCommand
 from superset.commands.dashboard.importers.dispatcher import ImportDashboardsCommand
 from superset.commands.dashboard.permalink.create import CreateDashboardPermalinkCommand
 from superset.commands.dashboard.unfave import DelFavoriteDashboardCommand
 from superset.commands.dashboard.update import UpdateDashboardCommand
 from superset.commands.exceptions import TagForbiddenError
-=======
-from superset.commands.dashboard.importers.dispatcher import ImportDashboardsCommand
-from superset.commands.dashboard.update import UpdateDashboardCommand
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.commands.importers.exceptions import NoValidFilesFoundError
 from superset.commands.importers.v1.utils import get_contents_from_bundle
 from superset.constants import MODEL_API_RW_METHOD_PERMISSION_MAP, RouteMethod
@@ -115,16 +101,12 @@ from superset.tasks.thumbnails import (
     cache_dashboard_thumbnail,
 )
 from superset.tasks.utils import get_current_user
-<<<<<<< HEAD
 from superset.utils import json
 from superset.utils.pdf import build_pdf_from_screenshots
 from superset.utils.screenshots import (
     DashboardScreenshot,
     DEFAULT_DASHBOARD_WINDOW_SIZE,
 )
-=======
-from superset.utils.screenshots import DashboardScreenshot
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.urls import get_url_path
 from superset.views.base_api import (
     BaseSupersetModelRestApi,
@@ -1582,11 +1564,7 @@ class DashboardRestApi(BaseSupersetModelRestApi):
             500:
               $ref: '#/components/responses/500'
         """
-<<<<<<< HEAD
         DeleteEmbeddedDashboardCommand(dashboard).run()
-=======
-        EmbeddedDashboardDAO.delete(dashboard.embedded)
->>>>>>> 2d98af4662 (merge from upstream to master)
         return self.response(200, message="OK")
 
     @expose("/<id_or_slug>/copy/", methods=("POST",))

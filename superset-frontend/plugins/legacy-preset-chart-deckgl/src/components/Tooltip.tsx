@@ -18,11 +18,7 @@
  */
 
 import { styled, safeHtmlSpan } from '@superset-ui/core';
-<<<<<<< HEAD
 import { ReactNode } from 'react';
-=======
-import React, { ReactNode } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 export type TooltipProps = {
   tooltip:

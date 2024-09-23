@@ -2,11 +2,7 @@
 
 # https://github.com/apache/superset/issues/13351
 
-<<<<<<< HEAD
 /superset/migrations/ @mistercrunch @michael-s-molina @betodealmeida @eschutho
-=======
-/superset/migrations/ @apache/superset-committers
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 # Notify some committers of changes in the components
 
@@ -31,14 +27,6 @@
 /.asf.yaml @villebro @geido @eschutho @rusackas @betodealmeida @nytai @mistercrunch @craig-rueda @john-bodley @kgabryje @dpgaspar
 
 # Maps are a finnicky contribution process we care about
-<<<<<<< HEAD
 
 **/*.geojson @villebro @rusackas
 /superset-frontend/plugins/legacy-plugin-chart-country-map/ @villebro @rusackas
-=======
-**/*.geojson @villebro @rusackas
-/superset-frontend/plugins/legacy-plugin-chart-country-map/ @villebro @rusackas
-
-# Translations are a finnicky contribution that we care about
-/superset/translations/ @villebro @rusackas @michael-s-molina
->>>>>>> 2d98af4662 (merge from upstream to master)

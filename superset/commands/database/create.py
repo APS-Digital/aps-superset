@@ -40,19 +40,12 @@ from superset.commands.database.ssh_tunnel.exceptions import (
 )
 from superset.commands.database.test_connection import TestConnectionDatabaseCommand
 from superset.daos.database import DatabaseDAO
-<<<<<<< HEAD
 from superset.databases.ssh_tunnel.models import SSHTunnel
 from superset.db_engine_specs.base import GenericDBException
 from superset.exceptions import OAuth2RedirectError, SupersetErrorsException
 from superset.extensions import event_logger, security_manager
 from superset.models.core import Database
 from superset.utils.decorators import on_error, transaction
-=======
-from superset.daos.exceptions import DAOCreateFailedError
-from superset.exceptions import SupersetErrorsException
-from superset.extensions import db, event_logger, security_manager
-from superset.models.core import Database
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 logger = logging.getLogger(__name__)
 stats_logger = current_app.config["STATS_LOGGER"]
@@ -94,26 +87,12 @@ class CreateDatabaseCommand(BaseCommand):
 
         ssh_tunnel: Optional[SSHTunnel] = None
 
-<<<<<<< HEAD
-=======
-        ssh_tunnel = None
-
->>>>>>> 2d98af4662 (merge from upstream to master)
         try:
             database = self._create_database()
 
             if ssh_tunnel_properties := self._properties.get("ssh_tunnel"):
                 if not is_feature_enabled("SSH_TUNNELING"):
                     raise SSHTunnelingNotEnabledError()
-<<<<<<< HEAD
-=======
-
-                ssh_tunnel = CreateSSHTunnelCommand(
-                    database, ssh_tunnel_properties
-                ).run()
-
-            db.session.commit()
->>>>>>> 2d98af4662 (merge from upstream to master)
 
                 ssh_tunnel = CreateSSHTunnelCommand(
                     database, ssh_tunnel_properties
@@ -136,46 +115,28 @@ class CreateDatabaseCommand(BaseCommand):
                 # add a dummy catalog for DBs that don't support them
                 catalogs = [None]
 
-<<<<<<< HEAD
             for catalog in catalogs:
                 try:
                     self.add_schema_permissions(database, catalog, ssh_tunnel)
                 except GenericDBException:  # pylint: disable=broad-except
                     logger.warning("Error processing catalog '%s'", catalog)
                     continue
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         except (
             SSHTunnelInvalidError,
             SSHTunnelCreateFailedError,
             SSHTunnelingNotEnabledError,
-<<<<<<< HEAD
             SSHTunnelDatabasePortError,
         ) as ex:
-=======
-        ) as ex:
-            db.session.rollback()
->>>>>>> 2d98af4662 (merge from upstream to master)
             event_logger.log_with_context(
                 action=f"db_creation_failed.{ex.__class__.__name__}.ssh_tunnel",
                 engine=self._properties.get("sqlalchemy_uri", "").split(":")[0],
             )
             # So we can show the original message
-<<<<<<< HEAD
             raise
         except (
             DatabaseInvalidError,
             Exception,
         ) as ex:
-=======
-            raise ex
-        except (
-            DAOCreateFailedError,
-            DatabaseInvalidError,
-            Exception,
-        ) as ex:
-            db.session.rollback()
->>>>>>> 2d98af4662 (merge from upstream to master)
             event_logger.log_with_context(
                 action=f"db_creation_failed.{ex.__class__.__name__}",
                 engine=database.db_engine_spec.__name__,
@@ -233,7 +194,6 @@ class CreateDatabaseCommand(BaseCommand):
             raise exception
 
     def _create_database(self) -> Database:
-<<<<<<< HEAD
         # when creating a new database we don't need to unmask encrypted extra
         self._properties["encrypted_extra"] = self._properties.pop(
             "masked_encrypted_extra",
@@ -241,8 +201,5 @@ class CreateDatabaseCommand(BaseCommand):
         )
 
         database = DatabaseDAO.create(attributes=self._properties)
-=======
-        database = DatabaseDAO.create(attributes=self._properties, commit=False)
->>>>>>> 2d98af4662 (merge from upstream to master)
         database.set_sqlalchemy_uri(database.sqlalchemy_uri)
         return database

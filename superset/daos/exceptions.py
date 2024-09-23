@@ -23,33 +23,6 @@ class DAOException(SupersetException):
     """
 
 
-<<<<<<< HEAD
-=======
-class DAOCreateFailedError(DAOException):
-    """
-    DAO Create failed
-    """
-
-    message = "Create failed"
-
-
-class DAOUpdateFailedError(DAOException):
-    """
-    DAO Update failed
-    """
-
-    message = "Update failed"
-
-
-class DAODeleteFailedError(DAOException):
-    """
-    DAO Delete failed
-    """
-
-    message = "Delete failed"
-
-
->>>>>>> 2d98af4662 (merge from upstream to master)
 class DatasourceTypeNotSupportedError(DAOException):
     """
     DAO datasource query source type is not supported

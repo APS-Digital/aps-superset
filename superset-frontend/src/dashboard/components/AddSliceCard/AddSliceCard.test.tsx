@@ -38,11 +38,7 @@ declare const globalThis: {
 };
 
 test('do not render thumbnail if feature flag is not set', async () => {
-<<<<<<< HEAD
   globalThis.featureFlags = {
-=======
-  global.featureFlags = {
->>>>>>> 2d98af4662 (merge from upstream to master)
     [FeatureFlag.Thumbnails]: false,
   };
 
@@ -54,11 +50,7 @@ test('do not render thumbnail if feature flag is not set', async () => {
 });
 
 test('render thumbnail if feature flag is set', async () => {
-<<<<<<< HEAD
   globalThis.featureFlags = {
-=======
-  global.featureFlags = {
->>>>>>> 2d98af4662 (merge from upstream to master)
     [FeatureFlag.Thumbnails]: true,
   };
 

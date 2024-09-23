@@ -34,13 +34,8 @@ metadata:
   annotations: {{- toYaml .Values.supersetNode.deploymentAnnotations | nindent 4 }}
   {{- end }}
 spec:
-<<<<<<< HEAD
   {{- if and (not .Values.supersetNode.autoscaling.enabled) .Values.supersetNode.replicas.enabled }}
   replicas: {{ .Values.supersetNode.replicas.replicaCount }}
-=======
-  {{- if not .Values.supersetNode.autoscaling.enabled }}
-  replicas: {{ .Values.supersetNode.replicaCount }}
->>>>>>> 2d98af4662 (merge from upstream to master)
   {{- end }}
   {{- if .Values.supersetNode.strategy }}
   strategy: {{- toYaml .Values.supersetNode.strategy | nindent 4 }}

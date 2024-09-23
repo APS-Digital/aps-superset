@@ -25,12 +25,7 @@ from collections import defaultdict
 from collections.abc import Hashable
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
-<<<<<<< HEAD
 from typing import Any, Callable, cast, Optional, Union
-=======
-from json.decoder import JSONDecodeError
-from typing import Any, Callable, cast
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 import dateutil.parser
 import numpy as np
@@ -109,11 +104,7 @@ from superset.models.helpers import (
     QueryResult,
 )
 from superset.models.slice import Slice
-<<<<<<< HEAD
 from superset.sql_parse import ParsedQuery, Table
-=======
-from superset.sql_parse import ParsedQuery, sanitize_clause
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.superset_typing import (
     AdhocColumn,
     AdhocMetric,
@@ -123,11 +114,7 @@ from superset.superset_typing import (
     QueryObjectDict,
     ResultSetColumnType,
 )
-<<<<<<< HEAD
 from superset.utils import core as utils, json
-=======
-from superset.utils import core as utils
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.backports import StrEnum
 from superset.utils.core import GenericDataType, MediumText
 
@@ -184,13 +171,7 @@ class DatasourceKind(StrEnum):
     PHYSICAL = "physical"
 
 
-<<<<<<< HEAD
 class BaseDatasource(AuditMixinNullable, ImportExportMixin):  # pylint: disable=too-many-public-methods
-=======
-class BaseDatasource(
-    AuditMixinNullable, ImportExportMixin
-):  # pylint: disable=too-many-public-methods
->>>>>>> 2d98af4662 (merge from upstream to master)
     """A common interface to objects that are queryable
     (tables and datasources)"""
 
@@ -226,10 +207,7 @@ class BaseDatasource(
     params = Column(String(1000))
     perm = Column(String(1000))
     schema_perm = Column(String(1000))
-<<<<<<< HEAD
     catalog_perm = Column(String(1000), nullable=True, default=None)
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
     is_managed_externally = Column(Boolean, nullable=False, default=False)
     external_url = Column(Text, nullable=True)
 
@@ -304,14 +282,11 @@ class BaseDatasource(
         return None
 
     @property
-<<<<<<< HEAD
     def catalog(self) -> str | None:
         """String representing the catalog of the Datasource (if it applies)"""
         return None
 
     @property
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
     def schema(self) -> str | None:
         """String representing the schema of the Datasource (if it applies)"""
         return None
@@ -356,12 +331,8 @@ class BaseDatasource(
             "edit_url": self.url,
             "id": self.id,
             "uid": self.uid,
-<<<<<<< HEAD
             "catalog": self.catalog,
             "schema": self.schema or None,
-=======
-            "schema": self.schema,
->>>>>>> 2d98af4662 (merge from upstream to master)
             "name": self.name,
             "type": self.type,
             "connection": self.connection,
@@ -415,12 +386,8 @@ class BaseDatasource(
             "datasource_name": self.datasource_name,
             "table_name": self.datasource_name,
             "type": self.type,
-<<<<<<< HEAD
             "catalog": self.catalog,
             "schema": self.schema or None,
-=======
-            "schema": self.schema,
->>>>>>> 2d98af4662 (merge from upstream to master)
             "offset": self.offset,
             "cache_timeout": self.cache_timeout,
             "params": self.params,
@@ -493,17 +460,11 @@ class BaseDatasource(
                 )
             else:
                 _columns = [
-<<<<<<< HEAD
                     (
                         utils.get_column_name(column_)
                         if utils.is_adhoc_column(column_)
                         else column_
                     )
-=======
-                    utils.get_column_name(column_)
-                    if utils.is_adhoc_column(column_)
-                    else column_
->>>>>>> 2d98af4662 (merge from upstream to master)
                     for column_param in COLUMN_FORM_DATA_PARAMS
                     for column_ in utils.as_list(form_data.get(column_param) or [])
                 ]
@@ -712,12 +673,8 @@ class BaseDatasource(
         )
 
     def get_extra_cache_keys(
-<<<<<<< HEAD
         self,
         query_obj: QueryObjectDict,  # pylint: disable=unused-argument
-=======
-        self, query_obj: QueryObjectDict  # pylint: disable=unused-argument
->>>>>>> 2d98af4662 (merge from upstream to master)
     ) -> list[Hashable]:
         """If a datasource needs to provide additional keys for calculation of
         cache keys, those can be provided via this method
@@ -746,7 +703,6 @@ class BaseDatasource(
 
     @classmethod
     def get_datasource_by_name(
-<<<<<<< HEAD
         cls,
         datasource_name: str,
         catalog: str | None,
@@ -805,12 +761,6 @@ class BaseDatasource(
                 )
             ) from ex
 
-=======
-        cls, datasource_name: str, schema: str, database_name: str
-    ) -> BaseDatasource | None:
-        raise NotImplementedError()
-
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 class AnnotationDatasource(BaseDatasource):
     """Dummy object so we can query annotations using 'Viz' objects just like
@@ -866,10 +816,6 @@ class AnnotationDatasource(BaseDatasource):
 
 
 class TableColumn(AuditMixinNullable, ImportExportMixin, CertificationMixin, Model):
-<<<<<<< HEAD
-=======
-
->>>>>>> 2d98af4662 (merge from upstream to master)
     """ORM object for table columns, each table can have multiple columns"""
 
     __tablename__ = "table_columns"
@@ -1083,10 +1029,6 @@ class TableColumn(AuditMixinNullable, ImportExportMixin, CertificationMixin, Mod
 
 
 class SqlMetric(AuditMixinNullable, ImportExportMixin, CertificationMixin, Model):
-<<<<<<< HEAD
-=======
-
->>>>>>> 2d98af4662 (merge from upstream to master)
     """ORM object for metrics, each table can have multiple metrics"""
 
     __tablename__ = "sql_metrics"
@@ -1157,11 +1099,7 @@ class SqlMetric(AuditMixinNullable, ImportExportMixin, CertificationMixin, Model
     def currency_json(self) -> dict[str, str | None] | None:
         try:
             return json.loads(self.currency or "{}") or None
-<<<<<<< HEAD
         except (TypeError, json.JSONDecodeError) as exc:
-=======
-        except (TypeError, JSONDecodeError) as exc:
->>>>>>> 2d98af4662 (merge from upstream to master)
             logger.error(
                 "Unable to load currency json: %r. Leaving empty.", exc, exc_info=True
             )
@@ -1440,12 +1378,7 @@ class SqlaTable(
             return get_virtual_table_metadata(dataset=self)
         return get_physical_table_metadata(
             database=self.database,
-<<<<<<< HEAD
             table=Table(self.table_name, self.schema or None, self.catalog),
-=======
-            table_name=self.table_name,
-            schema_name=self.schema,
->>>>>>> 2d98af4662 (merge from upstream to master)
             normalize_columns=self.normalize_columns,
         )
 
@@ -1522,23 +1455,6 @@ class SqlaTable(
                 )
             ) from ex
 
-<<<<<<< HEAD
-=======
-    def mutate_query_from_config(self, sql: str) -> str:
-        """Apply config's SQL_QUERY_MUTATOR
-
-        Typically adds comments to the query with context"""
-        sql_query_mutator = config["SQL_QUERY_MUTATOR"]
-        mutate_after_split = config["MUTATE_AFTER_SPLIT"]
-        if sql_query_mutator and not mutate_after_split:
-            sql = sql_query_mutator(
-                sql,
-                security_manager=security_manager,
-                database=self.database,
-            )
-        return sql
-
->>>>>>> 2d98af4662 (merge from upstream to master)
     def get_template_processor(self, **kwargs: Any) -> BaseTemplateProcessor:
         return get_template_processor(table=self, database=self.database, **kwargs)
 
@@ -1564,11 +1480,7 @@ class SqlaTable(
         if not self.is_virtual:
             return self.get_sqla_table(), None
 
-<<<<<<< HEAD
         from_sql = self.get_rendered_sql(template_processor) + "\n"
-=======
-        from_sql = self.get_rendered_sql(template_processor)
->>>>>>> 2d98af4662 (merge from upstream to master)
         parsed_query = ParsedQuery(from_sql, engine=self.db_engine_spec.engine)
         if not (
             parsed_query.is_unknown()
@@ -1677,16 +1589,12 @@ class SqlaTable(
                     tbl, _ = self.get_from_clause(template_processor)
                     qry = sa.select([sqla_column]).limit(1).select_from(tbl)
                     sql = self.database.compile_sqla_query(qry)
-<<<<<<< HEAD
                     col_desc = get_columns_description(
                         self.database,
                         self.catalog,
                         self.schema or None,
                         sql,
                     )
-=======
-                    col_desc = get_columns_description(self.database, self.schema, sql)
->>>>>>> 2d98af4662 (merge from upstream to master)
                     if not col_desc:
                         raise SupersetGenericDBErrorException("Column not found")
                     is_dttm = col_desc[0]["is_dttm"]  # type: ignore
@@ -1987,20 +1895,12 @@ class SqlaTable(
         catalog: str | None = None,
         schema: str | None = None,
     ) -> list[SqlaTable]:
-<<<<<<< HEAD
         filters = {
             "database_id": database.id,
             "table_name": datasource_name,
         }
         if catalog:
             filters["catalog"] = catalog
-=======
-        query = (
-            db.session.query(cls)
-            .filter_by(database_id=database.id)
-            .filter_by(table_name=datasource_name)
-        )
->>>>>>> 2d98af4662 (merge from upstream to master)
         if schema:
             filters["schema"] = schema
 
@@ -2014,7 +1914,6 @@ class SqlaTable(
         catalog_perms: set[str],
         schema_perms: set[str],
     ) -> list[SqlaTable]:
-<<<<<<< HEAD
         # remove empty sets from the query, since SQLAlchemy produces horrible SQL for
         # Model.column._in({}):
         #
@@ -2024,17 +1923,6 @@ class SqlaTable(
             for method, perms in zip(
                 (SqlaTable.perm, SqlaTable.schema_perm, SqlaTable.catalog_perm),
                 (permissions, schema_perms, catalog_perms),
-=======
-        # TODO(hughhhh): add unit test
-        return (
-            db.session.query(cls)
-            .filter_by(database_id=database.id)
-            .filter(
-                or_(
-                    SqlaTable.perm.in_(permissions),
-                    SqlaTable.schema_perm.in_(schema_perms),
-                )
->>>>>>> 2d98af4662 (merge from upstream to master)
             )
             if perms
         ]

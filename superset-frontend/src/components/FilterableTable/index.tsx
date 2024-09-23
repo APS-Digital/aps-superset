@@ -16,27 +16,19 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import _JSONbig from 'json-bigint';
 import { useEffect, useRef, useState, useMemo } from 'react';
-=======
-import JSONbig from 'json-bigint';
-import React, { useEffect, useRef, useState, useMemo } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { getMultipleTextDimensions, styled } from '@superset-ui/core';
 import { useDebounceValue } from 'src/hooks/useDebounceValue';
 import { useCellContentParser } from './useCellContentParser';
 import { renderResultCell } from './utils';
 import { Table, TableSize } from '../Table';
 
-<<<<<<< HEAD
 const JSONbig = _JSONbig({
   storeAsString: true,
   constructorAction: 'preserve',
 });
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 const SCROLL_BAR_HEIGHT = 15;
 // This regex handles all possible number formats in javascript, including ints, floats,
 // exponential notation, NaN, and Infinity.

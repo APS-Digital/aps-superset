@@ -505,11 +505,7 @@ We also need to update the Environment section of [ISSUE_TEMPLATE/bug-report.yml
 
 Docker release with proper tags should happen automatically as version
 tags get pushed to the `apache/superset` GitHub repository through this
-<<<<<<< HEAD
 [GitHub action](https://github.com/apache/superset/blob/master/.github/workflows/docker.yml)
-=======
-[GitHub action](https://github.com/apache/superset/blob/master/.github/workflows/docker-release.yml)
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 Note that this GH action implements a `workflow_dispatch` trigger,
 meaning that it can be triggered manually from the GitHub UI. If anything
@@ -518,7 +514,6 @@ and re-push the proper images and tags through this interface. The action
 takes the version (ie `3.1.1`), the git reference (any SHA, tag or branch
 reference), and whether to force the `latest` Docker tag on the
 generated images.
-<<<<<<< HEAD
 
 ### Npm Release
 
@@ -540,5 +535,3 @@ This action will publish the specified version to npm registry.
 ```bash
 npx lerna publish from-package --yes
 ```
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)

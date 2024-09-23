@@ -21,10 +21,7 @@ Revises: c747c78868b6
 Create Date: 2022-06-13 14:17:51.872706
 
 """
-<<<<<<< HEAD
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 from alembic import op
 
 from superset import db

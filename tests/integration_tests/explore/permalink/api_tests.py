@@ -37,11 +37,7 @@ from tests.integration_tests.test_app import app  # noqa: F401
 
 
 @pytest.fixture
-<<<<<<< HEAD
 def chart(app_context, load_world_bank_dashboard_with_slices) -> Slice:  # noqa: F811
-=======
-def chart(app_context, load_world_bank_dashboard_with_slices) -> Slice:
->>>>>>> 2d98af4662 (merge from upstream to master)
     chart = db.session.query(Slice).filter_by(slice_name="World's Population").one()
     return chart
 

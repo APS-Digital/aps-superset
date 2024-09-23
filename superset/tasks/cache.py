@@ -220,14 +220,10 @@ def fetch_url(data: str, headers: dict[str, str]) -> dict[str, str]:
     """
     result = {}
     try:
-<<<<<<< HEAD
         # Fetch CSRF token for API request
         headers.update(fetch_csrf_token(headers))
 
         url = get_url_path("ChartRestApi.warm_up_cache")
-=======
-        url = get_url_path("Superset.warm_up_cache")
->>>>>>> 2d98af4662 (merge from upstream to master)
         logger.info("Fetching %s with payload %s", url, data)
         req = request.Request(
             url, data=bytes(data, "utf-8"), headers=headers, method="PUT"

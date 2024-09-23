@@ -39,10 +39,6 @@ import CheckboxControl from 'src/explore/components/controls/CheckboxControl';
 import PopoverSection from 'src/components/PopoverSection';
 import ControlHeader from 'src/explore/components/ControlHeader';
 import { EmptyStateSmall } from 'src/components/EmptyState';
-<<<<<<< HEAD
-=======
-import { FILTER_OPTIONS_LIMIT } from 'src/explore/constants';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import {
   ANNOTATION_SOURCE_TYPES,
   ANNOTATION_TYPES,

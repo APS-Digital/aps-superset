@@ -30,13 +30,8 @@ import {
   tooltipHtml,
   ValueFormatter,
 } from '@superset-ui/core';
-<<<<<<< HEAD
 import type { EChartsCoreOption } from 'echarts/core';
 import type { CallbackDataParams } from 'echarts/types/src/util/types';
-=======
-import { EChartsCoreOption } from 'echarts';
-import { CallbackDataParams } from 'echarts/types/src/util/types';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { NULL_STRING, OpacityEnum } from '../constants';
 import { defaultGrid } from '../defaults';
 import { Refs } from '../types';
@@ -135,29 +130,11 @@ export function formatTooltip({
   const parentNode =
     treePathInfo.length > 2 ? treePathInfo[treePathInfo.length - 2] : undefined;
 
-<<<<<<< HEAD
   const title = (node.name || NULL_STRING)
     .toString()
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;');
   const rows = [[t('% of total'), absolutePercentage]];
-=======
-  const result = [
-    `<div style="
-      font-size: ${theme.typography.sizes.m}px;
-      color: ${theme.colors.grayscale.base}"
-     >`,
-    `<div style="font-weight: ${theme.typography.weights.bold}">
-      ${(node.name || NULL_STRING)
-        .toString()
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')}
-     </div>`,
-    `<div">
-      ${absolutePercentage} of total
-     </div>`,
-  ];
->>>>>>> 2d98af4662 (merge from upstream to master)
   if (parentNode) {
     const conditionalPercentage = percentFormatter(
       node.value / parentNode.value,

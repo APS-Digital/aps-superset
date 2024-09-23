@@ -20,14 +20,7 @@ import logging
 from datetime import datetime
 from typing import Any
 
-<<<<<<< HEAD
 from superset.daos.base import BaseDAO
-=======
-from sqlalchemy.exc import SQLAlchemyError
-
-from superset.daos.base import BaseDAO
-from superset.daos.exceptions import DAODeleteFailedError
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.extensions import db
 from superset.reports.filters import ReportScheduleFilter
 from superset.reports.models import (
@@ -149,21 +142,12 @@ class ReportScheduleDAO(BaseDAO[ReportSchedule]):
         cls,
         item: ReportSchedule | None = None,
         attributes: dict[str, Any] | None = None,
-<<<<<<< HEAD
-=======
-        commit: bool = True,
->>>>>>> 2d98af4662 (merge from upstream to master)
     ) -> ReportSchedule:
         """
         Create a report schedule with nested recipients.
 
         :param item: The object to create
         :param attributes: The attributes associated with the object to create
-<<<<<<< HEAD
-=======
-        :param commit: Whether to commit the transaction
-        :raises: DAOCreateFailedError: If the creation failed
->>>>>>> 2d98af4662 (merge from upstream to master)
         """
 
         # TODO(john-bodley): Determine why we need special handling for recipients.
@@ -183,32 +167,19 @@ class ReportScheduleDAO(BaseDAO[ReportSchedule]):
                     for recipient in recipients
                 ]
 
-<<<<<<< HEAD
         return super().create(item, attributes)
-=======
-        return super().create(item, attributes, commit)
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     @classmethod
     def update(
         cls,
         item: ReportSchedule | None = None,
         attributes: dict[str, Any] | None = None,
-<<<<<<< HEAD
-=======
-        commit: bool = True,
->>>>>>> 2d98af4662 (merge from upstream to master)
     ) -> ReportSchedule:
         """
         Update a report schedule with nested recipients.
 
         :param item: The object to update
         :param attributes: The attributes associated with the object to update
-<<<<<<< HEAD
-=======
-        :param commit: Whether to commit the transaction
-        :raises: DAOUpdateFailedError: If the update failed
->>>>>>> 2d98af4662 (merge from upstream to master)
         """
 
         # TODO(john-bodley): Determine why we need special handling for recipients.
@@ -228,11 +199,7 @@ class ReportScheduleDAO(BaseDAO[ReportSchedule]):
                     for recipient in recipients
                 ]
 
-<<<<<<< HEAD
         return super().update(item, attributes)
-=======
-        return super().update(item, attributes, commit)
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     @staticmethod
     def find_active() -> list[ReportSchedule]:
@@ -315,7 +282,6 @@ class ReportScheduleDAO(BaseDAO[ReportSchedule]):
         return last_error_email_log if not report_from_last_email else None
 
     @staticmethod
-<<<<<<< HEAD
     def bulk_delete_logs(model: ReportSchedule, from_date: datetime) -> int | None:
         return (
             db.session.query(ReportExecutionLog)
@@ -325,25 +291,3 @@ class ReportScheduleDAO(BaseDAO[ReportSchedule]):
             )
             .delete(synchronize_session="fetch")
         )
-=======
-    def bulk_delete_logs(
-        model: ReportSchedule,
-        from_date: datetime,
-        commit: bool = True,
-    ) -> int | None:
-        try:
-            row_count = (
-                db.session.query(ReportExecutionLog)
-                .filter(
-                    ReportExecutionLog.report_schedule == model,
-                    ReportExecutionLog.end_dttm < from_date,
-                )
-                .delete(synchronize_session="fetch")
-            )
-            if commit:
-                db.session.commit()
-            return row_count
-        except SQLAlchemyError as ex:
-            db.session.rollback()
-            raise DAODeleteFailedError(str(ex)) from ex
->>>>>>> 2d98af4662 (merge from upstream to master)

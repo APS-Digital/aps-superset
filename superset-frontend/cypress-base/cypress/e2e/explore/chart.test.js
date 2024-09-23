@@ -31,21 +31,13 @@ const SAMPLE_DASHBOARDS_INDEXES = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 function openDashboardsAddedTo() {
   cy.getBySel('actions-trigger').click();
   cy.get('.ant-dropdown-menu-submenu-title')
-<<<<<<< HEAD
     .contains('On dashboards')
-=======
-    .contains('Dashboards added to')
->>>>>>> 2d98af4662 (merge from upstream to master)
     .trigger('mouseover', { force: true });
 }
 
 function closeDashboardsAddedTo() {
   cy.get('.ant-dropdown-menu-submenu-title')
-<<<<<<< HEAD
     .contains('On dashboards')
-=======
-    .contains('Dashboards added to')
->>>>>>> 2d98af4662 (merge from upstream to master)
     .trigger('mouseout', { force: true });
   cy.getBySel('actions-trigger').click();
 }

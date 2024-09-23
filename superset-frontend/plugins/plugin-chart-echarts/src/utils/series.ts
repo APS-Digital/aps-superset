@@ -606,7 +606,6 @@ export function getMinAndMaxFromBounds(
   }
   return {};
 }
-<<<<<<< HEAD
 
 /**
  * Returns the stackId used in stacked series.
@@ -643,5 +642,3 @@ export function getTimeCompareStackId(
     }) || defaultId
   );
 }
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)

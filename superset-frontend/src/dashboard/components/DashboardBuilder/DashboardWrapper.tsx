@@ -16,12 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { FC, useEffect, useState } from 'react';
 
-=======
-import React, { useEffect } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { FAST_DEBOUNCE, css, styled } from '@superset-ui/core';
 import { RootState } from 'src/dashboard/types';
 import { useSelector } from 'react-redux';
@@ -52,15 +48,12 @@ const StyledDiv = styled.div`
       & .grid-row:after {
         border-style: hidden;
       }
-<<<<<<< HEAD
       & .droptarget-side:last-child {
         inset-inline-end: 0;
       }
       & .droptarget-edge:last-child {
         inset-block-end: 0;
       }
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
     }
 
     /* A row within a column has inset hover menu */
@@ -120,20 +113,12 @@ const StyledDiv = styled.div`
 
 type Props = {};
 
-<<<<<<< HEAD
 const DashboardWrapper: FC<Props> = ({ children }) => {
-=======
-const DashboardWrapper: React.FC<Props> = ({ children }) => {
->>>>>>> 2d98af4662 (merge from upstream to master)
   const editMode = useSelector<RootState, boolean>(
     state => state.dashboardState.editMode,
   );
   const dragDropManager = useDragDropManager();
-<<<<<<< HEAD
   const [isDragged, setIsDragged] = useState(
-=======
-  const [isDragged, setIsDragged] = React.useState(
->>>>>>> 2d98af4662 (merge from upstream to master)
     dragDropManager.getMonitor().isDragging(),
   );
 

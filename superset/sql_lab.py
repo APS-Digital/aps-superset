@@ -25,10 +25,6 @@ from typing import Any, cast, Optional, Union
 
 import backoff
 import msgpack
-<<<<<<< HEAD
-=======
-import simplejson as json
->>>>>>> 2d98af4662 (merge from upstream to master)
 from celery.exceptions import SoftTimeLimitExceeded
 from flask import current_app
 from flask_babel import gettext as __
@@ -55,10 +51,7 @@ from superset.extensions import celery_app, event_logger
 from superset.models.core import Database
 from superset.models.sql_lab import Query
 from superset.result_set import SupersetResultSet
-<<<<<<< HEAD
 from superset.sql.parse import SQLStatement, Table
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.sql_parse import (
     CtasMethod,
     insert_rls_as_subquery,
@@ -67,10 +60,7 @@ from superset.sql_parse import (
 )
 from superset.sqllab.limiting_factor import LimitingFactor
 from superset.sqllab.utils import write_ipc_buffer
-<<<<<<< HEAD
 from superset.utils import json
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.core import (
     override_user,
     QuerySource,
@@ -185,7 +175,6 @@ def get_sql_results(  # pylint: disable=too-many-arguments
     log_params: Optional[dict[str, Any]] = None,
 ) -> Optional[dict[str, Any]]:
     """Executes the sql query returns the results."""
-<<<<<<< HEAD
     with current_app.test_request_context():
         with override_user(security_manager.find_user(username)):
             try:
@@ -206,27 +195,6 @@ def get_sql_results(  # pylint: disable=too-many-arguments
 
 
 def execute_sql_statement(  # pylint: disable=too-many-statements, too-many-locals
-=======
-    with override_user(security_manager.find_user(username)):
-        try:
-            return execute_sql_statements(
-                query_id,
-                rendered_query,
-                return_results,
-                store_results,
-                start_time=start_time,
-                expand_data=expand_data,
-                log_params=log_params,
-            )
-        except Exception as ex:  # pylint: disable=broad-except
-            logger.debug("Query %d: %s", query_id, ex)
-            stats_logger.incr("error_sqllab_unhandled")
-            query = get_query(query_id)
-            return handle_query_error(ex, query)
-
-
-def execute_sql_statement(
->>>>>>> 2d98af4662 (merge from upstream to master)
     sql_statement: str,
     query: Query,
     cursor: Any,
@@ -312,7 +280,6 @@ def execute_sql_statement(
                 log_params,
             )
         db.session.commit()
-<<<<<<< HEAD
         with event_logger.log_context(
             action="execute_sql",
             database=database,
@@ -320,10 +287,6 @@ def execute_sql_statement(
         ):
             with stats_timing("sqllab.query.time_executing_query", stats_logger):
                 db_engine_spec.execute_with_cursor(cursor, sql, query)
-=======
-        with stats_timing("sqllab.query.time_executing_query", stats_logger):
-            db_engine_spec.execute_with_cursor(cursor, sql, query)
->>>>>>> 2d98af4662 (merge from upstream to master)
 
             with stats_timing("sqllab.query.time_fetching_results", stats_logger):
                 logger.debug(
@@ -460,10 +423,6 @@ def execute_sql_statements(
     # Breaking down into multiple statements
     parsed_query = ParsedQuery(
         rendered_query,
-<<<<<<< HEAD
-=======
-        strip_comments=True,
->>>>>>> 2d98af4662 (merge from upstream to master)
         engine=db_engine_spec.engine,
     )
     if not db_engine_spec.run_multiple_statements_as_one:

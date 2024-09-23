@@ -16,11 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { FocusEventHandler } from 'react';
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import * as uiCore from '@superset-ui/core';
 import { act } from 'react-dom/test-utils';
 import { fireEvent, render, waitFor } from 'spec/helpers/testing-library';
@@ -49,11 +45,7 @@ jest.mock('src/components/AsyncAceEditor', () => ({
     value,
   }: {
     onChange: (value: string) => void;
-<<<<<<< HEAD
     onBlur: FocusEventHandler<HTMLTextAreaElement>;
-=======
-    onBlur: React.FocusEventHandler<HTMLTextAreaElement>;
->>>>>>> 2d98af4662 (merge from upstream to master)
     value: string;
   }) => (
     <textarea
@@ -197,7 +189,6 @@ describe('SqlEditor', () => {
     expect(await findByTestId('react-ace')).toBeInTheDocument();
   });
 
-<<<<<<< HEAD
   it('skip rendering an AceEditorWrapper when the current tab is inactive', async () => {
     const { findByTestId, queryByTestId } = setup(
       {
@@ -210,8 +201,6 @@ describe('SqlEditor', () => {
     expect(queryByTestId('react-ace')).not.toBeInTheDocument();
   });
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   it('avoids rerendering EditorLeftBar and ResultSet while typing', async () => {
     const { findByTestId } = setup(mockedProps, store);
     const editor = await findByTestId('react-ace');
@@ -327,7 +316,6 @@ describe('SqlEditor', () => {
     ).toBeInTheDocument();
   });
 
-<<<<<<< HEAD
   describe('with EstimateQueryCost enabled', () => {
     let isFeatureEnabledMock: jest.MockInstance<
       boolean,
@@ -410,8 +398,6 @@ describe('SqlEditor', () => {
     });
   });
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   describe('with SqllabBackendPersistence enabled', () => {
     let isFeatureEnabledMock: jest.MockInstance<
       boolean,
@@ -447,12 +433,8 @@ describe('SqlEditor', () => {
       await waitFor(() =>
         expect(fetchMock.calls('glob:*/tabstateview/*').length).toBe(1),
       );
-<<<<<<< HEAD
       // it will be called from EditorAutoSync
       expect(fetchMock.calls(switchTabApi).length).toBe(0);
-=======
-      expect(fetchMock.calls(switchTabApi).length).toBe(1);
->>>>>>> 2d98af4662 (merge from upstream to master)
     });
   });
 });

@@ -240,13 +240,9 @@ def test_query_dao_stop_query_failed(
     assert query.status == QueryStatus.RUNNING
 
 
-<<<<<<< HEAD
 def test_query_dao_stop_query(
     mocker: MockerFixture, app: Any, session: Session
 ) -> None:
-=======
-def test_query_dao_stop_query(mocker: MockFixture, app: Any, session: Session) -> None:
->>>>>>> 2d98af4662 (merge from upstream to master)
     from superset import db
     from superset.common.db_query_status import QueryStatus
     from superset.models.core import Database

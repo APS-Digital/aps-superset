@@ -93,11 +93,7 @@ test('Context menu contains all displayed items only', () => {
   expect(screen.getByText('Drill by')).toBeInTheDocument();
 });
 
-<<<<<<< HEAD
 test('Context menu shows "Drill by" with `can_explore` & `can_write` perms', () => {
-=======
-test('Context menu shows "Drill by"', () => {
->>>>>>> 2d98af4662 (merge from upstream to master)
   const result = setup({
     roles: {
       Admin: [
@@ -110,7 +106,6 @@ test('Context menu shows "Drill by"', () => {
   expect(screen.getByText('Drill by')).toBeInTheDocument();
 });
 
-<<<<<<< HEAD
 test('Context menu shows "Drill by" with `can_drill` & `can_write` perms', () => {
   const result = setup({
     roles: {
@@ -139,9 +134,6 @@ test('Context menu shows "Drill by" with `can_drill` & `can_explore` + `can_writ
 });
 
 test('Context menu does not show "Drill by" with neither of required perms', () => {
-=======
-test('Context menu does not show "Drill by"', () => {
->>>>>>> 2d98af4662 (merge from upstream to master)
   const result = setup({
     roles: {
       Admin: [['invalid_permission', 'Dashboard']],
@@ -151,7 +143,6 @@ test('Context menu does not show "Drill by"', () => {
   expect(screen.queryByText('Drill by')).not.toBeInTheDocument();
 });
 
-<<<<<<< HEAD
 test('Context menu does not show "Drill by" with just `can_dril` perm', () => {
   const result = setup({
     roles: {
@@ -163,9 +154,6 @@ test('Context menu does not show "Drill by" with just `can_dril` perm', () => {
 });
 
 test('Context menu shows "Drill to detail" with `can_samples` and `can_explore` perms', () => {
-=======
-test('Context menu shows "Drill to detail"', () => {
->>>>>>> 2d98af4662 (merge from upstream to master)
   const result = setup({
     roles: {
       Admin: [
@@ -178,7 +166,6 @@ test('Context menu shows "Drill to detail"', () => {
   expect(screen.getByText('Drill to detail')).toBeInTheDocument();
 });
 
-<<<<<<< HEAD
 test('Context menu shows "Drill to detail" with `can_drill` & `can_samples` perms', () => {
   const result = setup({
     roles: {
@@ -220,12 +207,6 @@ test('Context menu does not show "Drill to detail" with just `can_dril` perm', (
   const result = setup({
     roles: {
       Admin: [['can_drill', 'Dashboard']],
-=======
-test('Context menu does not show "Drill to detail"', () => {
-  const result = setup({
-    roles: {
-      Admin: [['can_explore', 'Superset']],
->>>>>>> 2d98af4662 (merge from upstream to master)
     },
   });
   result.current.onContextMenu(0, 0, {});

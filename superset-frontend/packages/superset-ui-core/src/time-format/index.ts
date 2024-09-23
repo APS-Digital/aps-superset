@@ -33,7 +33,6 @@ export {
 export { default as createD3TimeFormatter } from './factories/createD3TimeFormatter';
 export { default as createMultiFormatter } from './factories/createMultiFormatter';
 
-<<<<<<< HEAD
 export {
   SMART_DATE_ID,
   createSmartDateFormatter,
@@ -46,11 +45,6 @@ export {
   SMART_DATE_VERBOSE_ID,
   createSmartDateVerboseFormatter,
 } from './formatters/smartDateVerbose';
-=======
-export { default as smartDateFormatter } from './formatters/smartDate';
-export { default as smartDateDetailedFormatter } from './formatters/smartDateDetailed';
-export { default as smartDateVerboseFormatter } from './formatters/smartDateVerbose';
->>>>>>> 2d98af4662 (merge from upstream to master)
 export { default as finestTemporalGrainFormatter } from './formatters/finestTemporalGrain';
 
 export { default as normalizeTimestamp } from './utils/normalizeTimestamp';

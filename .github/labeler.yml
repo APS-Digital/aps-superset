@@ -72,14 +72,11 @@
   - any-glob-to-any-file:
     - 'superset/translations/zh/**'
 
-<<<<<<< HEAD
 "i18n:traditional-chinese":
 - changed-files:
   - any-glob-to-any-file:
     - 'superset/translations/zh_TW/**'
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 "i18n:dutch":
 - changed-files:
   - any-glob-to-any-file:

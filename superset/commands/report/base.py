@@ -33,11 +33,7 @@ from superset.commands.report.exceptions import (
 )
 from superset.daos.chart import ChartDAO
 from superset.daos.dashboard import DashboardDAO
-<<<<<<< HEAD
 from superset.reports.models import ReportCreationMethod, ReportScheduleType
-=======
-from superset.reports.models import ReportCreationMethod
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 logger = logging.getLogger(__name__)
 

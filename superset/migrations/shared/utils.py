@@ -68,7 +68,6 @@ def table_has_column(table_name: str, column_name: str) -> bool:
     :returns: True iff the column exists in the table
     """
 
-<<<<<<< HEAD
     return bool(get_table_column(table_name, column_name))
 
 
@@ -81,8 +80,6 @@ def table_has_index(table: str, index: str) -> bool:
     :returns: True if the index exists in the table
     """
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
     insp = inspect(op.get_context().bind)
 
     try:

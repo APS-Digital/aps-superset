@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import {
   Children,
   ReactElement,
@@ -25,9 +24,6 @@ import {
   MouseEventHandler,
 } from 'react';
 
-=======
-import React, { Children, ReactElement, ReactNode } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { mix } from 'polished';
 import cx from 'classnames';
 import { Button as AntdButton } from 'antd';

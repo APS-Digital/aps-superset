@@ -725,13 +725,9 @@ class TestPostChartDataApi(BaseTestChartDataApi):
         self.logout()
         app._got_first_request = False
         async_query_manager_factory.init_app(app)
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
         # Introducing time.sleep to make test less flaky with MySQL
         time.sleep(1)
-=======
-        self.login("admin")
->>>>>>> 2d98af4662 (merge from upstream to master)
         rv = self.post_assert_metric(CHART_DATA_URI, self.query_context_payload, "data")
         time.sleep(1)
         self.assertEqual(rv.status_code, 202)

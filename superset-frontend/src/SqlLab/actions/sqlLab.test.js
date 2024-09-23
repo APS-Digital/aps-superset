@@ -20,10 +20,6 @@ import sinon from 'sinon';
 import fetchMock from 'fetch-mock';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-<<<<<<< HEAD
-=======
-import shortid from 'shortid';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { waitFor } from '@testing-library/react';
 import * as uiCore from '@superset-ui/core';
 import * as actions from 'src/SqlLab/actions/sqlLab';
@@ -651,16 +647,12 @@ describe('async actions', () => {
         const expectedActions = [
           {
             type: actions.ADD_QUERY_EDITOR,
-<<<<<<< HEAD
             queryEditor: {
               ...queryEditor,
               id: 'abcd',
               loaded: true,
               inLocalStorage: true,
             },
-=======
-            queryEditor: { ...queryEditor, id: '1', loaded: true },
->>>>>>> 2d98af4662 (merge from upstream to master)
           },
         ];
         store.dispatch(actions.addQueryEditor(queryEditor));
@@ -701,7 +693,6 @@ describe('async actions', () => {
         ];
         store.dispatch(actions.queryEditorSetDb(queryEditor, dbId));
         expect(store.getActions()).toEqual(expectedActions);
-<<<<<<< HEAD
       });
     });
 
@@ -720,8 +711,6 @@ describe('async actions', () => {
         ];
         store.dispatch(actions.queryEditorSetCatalog(queryEditor, catalog));
         expect(store.getActions()).toEqual(expectedActions);
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
       });
     });
 
@@ -1117,17 +1106,12 @@ describe('async actions', () => {
             inLocalStorage: true,
           },
         ];
-<<<<<<< HEAD
         const store = mockStore({
           sqlLab: {
             queries,
             tables,
           },
         });
-=======
-        const store = mockStore({});
-        const oldQueryEditor = { ...queryEditor, inLocalStorage: true };
->>>>>>> 2d98af4662 (merge from upstream to master)
         const expectedActions = [
           {
             type: actions.MIGRATE_QUERY_EDITOR,
@@ -1137,10 +1121,7 @@ describe('async actions', () => {
               ...oldQueryEditor,
               id: '1',
               inLocalStorage: false,
-<<<<<<< HEAD
               loaded: true,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
             },
           },
           {
@@ -1172,17 +1153,7 @@ describe('async actions', () => {
           },
         ];
         return store
-<<<<<<< HEAD
           .dispatch(actions.syncQueryEditor(oldQueryEditor))
-=======
-          .dispatch(
-            actions.migrateQueryEditorFromLocalStorage(
-              oldQueryEditor,
-              tables,
-              queries,
-            ),
-          )
->>>>>>> 2d98af4662 (merge from upstream to master)
           .then(() => {
             expect(store.getActions()).toEqual(expectedActions);
             expect(fetchMock.calls(updateTabStateEndpoint)).toHaveLength(3);

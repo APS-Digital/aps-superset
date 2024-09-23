@@ -18,11 +18,7 @@
  */
 /* eslint-disable no-param-reassign */
 import { css, styled, t, useTheme } from '@superset-ui/core';
-<<<<<<< HEAD
 import { memo, FC, useMemo } from 'react';
-=======
-import React, { FC, useMemo } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import Icons from 'src/components/Icons';
 import Button from 'src/components/Button';
 import { useSelector } from 'react-redux';

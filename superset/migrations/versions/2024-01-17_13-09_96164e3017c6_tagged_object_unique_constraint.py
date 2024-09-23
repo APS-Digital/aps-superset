@@ -17,16 +17,9 @@
 import enum
 
 import migration_utils as utils
-<<<<<<< HEAD
 from alembic import op
 from sqlalchemy import Column, Enum, Integer, MetaData, Table
 from sqlalchemy.sql import func, select
-=======
-import sqlalchemy as sa
-from alembic import op
-from sqlalchemy import Column, Enum, Integer, MetaData, Table
-from sqlalchemy.sql import and_, func, select
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 # revision identifiers, used by Alembic.
 revision = "96164e3017c6"

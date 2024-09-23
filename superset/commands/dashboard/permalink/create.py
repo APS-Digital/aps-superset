@@ -19,7 +19,6 @@ from functools import partial
 
 from sqlalchemy.exc import SQLAlchemyError
 
-<<<<<<< HEAD
 from superset import db
 from superset.commands.dashboard.permalink.base import BaseDashboardPermalinkCommand
 from superset.daos.dashboard import DashboardDAO
@@ -30,14 +29,6 @@ from superset.key_value.exceptions import (
     KeyValueCodecEncodeException,
     KeyValueUpsertFailedError,
 )
-=======
-from superset.commands.dashboard.permalink.base import BaseDashboardPermalinkCommand
-from superset.commands.key_value.upsert import UpsertKeyValueCommand
-from superset.daos.dashboard import DashboardDAO
-from superset.dashboards.permalink.exceptions import DashboardPermalinkCreateFailedError
-from superset.dashboards.permalink.types import DashboardPermalinkState
-from superset.key_value.exceptions import KeyValueCodecEncodeException
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.key_value.utils import encode_permalink_key, get_deterministic_uuid
 from superset.utils.core import get_user_id
 from superset.utils.decorators import on_error, transaction

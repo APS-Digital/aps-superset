@@ -68,7 +68,6 @@ def test_execute_query_as_report_executor(
     from superset.commands.report.alert import AlertCommand
     from superset.reports.models import ReportSchedule
 
-<<<<<<< HEAD
     original_config = app.config["ALERT_REPORTS_EXECUTE_AS"]
     app.config["ALERT_REPORTS_EXECUTE_AS"] = config
     owners = [get_user(owner_name) for owner_name in owner_names]
@@ -95,37 +94,6 @@ def test_execute_query_as_report_executor(
     with cm:
         command.run()
         assert override_user_mock.call_args[0][0].username == expected_result
-=======
-    with app.app_context():
-        original_config = app.config["ALERT_REPORTS_EXECUTE_AS"]
-        app.config["ALERT_REPORTS_EXECUTE_AS"] = config
-        owners = [get_user(owner_name) for owner_name in owner_names]
-        report_schedule = ReportSchedule(
-            created_by=get_user(creator_name) if creator_name else None,
-            owners=owners,
-            type=ReportScheduleType.ALERT,
-            description="description",
-            crontab="0 9 * * *",
-            creation_method=ReportCreationMethod.ALERTS_REPORTS,
-            sql="SELECT 1",
-            grace_period=14400,
-            working_timeout=3600,
-            database=get_example_database(),
-            validator_config_json='{"op": "==", "threshold": 1}',
-        )
-        command = AlertCommand(report_schedule=report_schedule)
-        override_user_mock = mocker.patch(
-            "superset.commands.report.alert.override_user"
-        )
-        cm = (
-            pytest.raises(type(expected_result))
-            if isinstance(expected_result, Exception)
-            else nullcontext()
-        )
-        with cm:
-            command.run()
-            assert override_user_mock.call_args[0][0].username == expected_result
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     app.config["ALERT_REPORTS_EXECUTE_AS"] = original_config
 
@@ -179,13 +147,9 @@ def test_execute_query_succeeded_with_retries(
     assert execute_query_mock.call_count == expected_max_retries
 
 
-<<<<<<< HEAD
 def test_execute_query_failed_no_retry(
     mocker: MockerFixture, app_context: None
 ) -> None:
-=======
-def test_execute_query_failed_no_retry(mocker: MockFixture, app_context: None) -> None:
->>>>>>> 2d98af4662 (merge from upstream to master)
     from superset.commands.report.alert import AlertCommand, AlertQueryTimeout
 
     execute_query_mock = mocker.patch(

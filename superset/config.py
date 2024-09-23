@@ -288,11 +288,7 @@ SCHEDULED_QUERIES: dict[str, Any] = {}
 # feature is on by default to make Superset secure by default, but you should
 # fine tune the limits to your needs. You can read more about the different
 # parameters here: https://flask-limiter.readthedocs.io/en/stable/configuration.html
-<<<<<<< HEAD
 RATELIMIT_ENABLED = os.environ.get("SUPERSET_ENV") == "production"
-=======
-RATELIMIT_ENABLED = True
->>>>>>> 2d98af4662 (merge from upstream to master)
 RATELIMIT_APPLICATION = "50 per second"
 AUTH_RATE_LIMITED = True
 AUTH_RATE_LIMIT = "5 per second"
@@ -545,7 +541,6 @@ DEFAULT_FEATURE_FLAGS: dict[str, bool] = {
     "PLAYWRIGHT_REPORTS_AND_THUMBNAILS": False,
     # Set to True to enable experimental chart plugins
     "CHART_PLUGINS_EXPERIMENTAL": False,
-<<<<<<< HEAD
     # Regardless of database configuration settings, force SQLLAB to run async using Celery
     "SQLLAB_FORCE_RUN_ASYNC": False,
     # Set to True to to enable factory resent CLI command
@@ -554,8 +549,6 @@ DEFAULT_FEATURE_FLAGS: dict[str, bool] = {
     # If on, you'll want to add "https://avatars.slack-edge.com" to the list of allowed
     # domains in your TALISMAN_CONFIG
     "SLACK_ENABLE_AVATARS": False,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 }
 
 # ------------------------------
@@ -989,16 +982,12 @@ CELERY_BEAT_SCHEDULER_EXPIRES = timedelta(weeks=1)
 
 class CeleryConfig:  # pylint: disable=too-few-public-methods
     broker_url = "sqla+sqlite:///celerydb.sqlite"
-<<<<<<< HEAD
     imports = (
         "superset.sql_lab",
         "superset.tasks.scheduler",
         "superset.tasks.thumbnails",
         "superset.tasks.cache",
     )
-=======
-    imports = ("superset.sql_lab", "superset.tasks.scheduler")
->>>>>>> 2d98af4662 (merge from upstream to master)
     result_backend = "db+sqlite:///celery_results.sqlite"
     worker_prefetch_multiplier = 1
     task_acks_late = False
@@ -1566,10 +1555,7 @@ TALISMAN_CONFIG = {
             "data:",
             "https://apachesuperset.gateway.scarf.sh",
             "https://static.scarf.sh/",
-<<<<<<< HEAD
             # "https://avatars.slack-edge.com", # Uncomment when SLACK_ENABLE_AVATARS is True
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         ],
         "worker-src": ["'self'", "blob:"],
         "connect-src": [
@@ -1599,10 +1585,7 @@ TALISMAN_DEV_CONFIG = {
             "data:",
             "https://apachesuperset.gateway.scarf.sh",
             "https://static.scarf.sh/",
-<<<<<<< HEAD
             "https://avatars.slack-edge.com",
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         ],
         "worker-src": ["'self'", "blob:"],
         "connect-src": [
@@ -1637,10 +1620,6 @@ SESSION_SERVER_SIDE = False
 # from flask_session import RedisSessionInterface
 #
 # SESSION_SERVER_SIDE = True
-<<<<<<< HEAD
-=======
-# SESSION_USE_SIGNER = True
->>>>>>> 2d98af4662 (merge from upstream to master)
 # SESSION_TYPE = "redis"
 # SESSION_REDIS = Redis(host="localhost", port=6379, db=0)
 #
@@ -1803,11 +1782,6 @@ ADVANCED_DATA_TYPES: dict[str, AdvancedDataType] = {
 WELCOME_PAGE_LAST_TAB: Literal["examples", "all"] | tuple[str, list[dict[str, Any]]] = (
     "all"
 )
-
-# Max allowed size for a zipped file
-ZIPPED_FILE_MAX_SIZE = 100 * 1024 * 1024  # 100MB
-# Max allowed compression ratio for a zipped file
-ZIP_FILE_MAX_COMPRESS_RATIO = 200.0
 
 # Max allowed size for a zipped file
 ZIPPED_FILE_MAX_SIZE = 100 * 1024 * 1024  # 100MB

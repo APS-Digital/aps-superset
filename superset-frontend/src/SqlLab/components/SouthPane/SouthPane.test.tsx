@@ -16,10 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { render } from 'spec/helpers/testing-library';
 import SouthPane from 'src/SqlLab/components/SouthPane';
 import '@testing-library/jest-dom/extend-expect';

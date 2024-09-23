@@ -17,10 +17,6 @@
  * under the License.
  */
 
-<<<<<<< HEAD
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { Provider } from 'react-redux';

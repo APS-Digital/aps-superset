@@ -46,11 +46,7 @@ from superset.sql_parse import (
 )
 
 
-<<<<<<< HEAD
 def extract_tables(query: str, engine: str = "base") -> set[Table]:
-=======
-def extract_tables(query: str, engine: Optional[str] = None) -> set[Table]:
->>>>>>> 2d98af4662 (merge from upstream to master)
     """
     Helper function to extract tables referenced in a query.
     """
@@ -260,7 +256,6 @@ def test_extract_tables_illdefined() -> None:
     """
     Test that ill-defined tables return an empty set.
     """
-<<<<<<< HEAD
     with pytest.raises(SupersetSecurityException) as excinfo:
         extract_tables("SELECT * FROM schemaname.")
     assert (
@@ -293,15 +288,6 @@ def test_extract_tables_illdefined() -> None:
     assert extract_tables("SELECT * FROM catalogname..tbname") == {
         Table(table="tbname", schema=None, catalog="catalogname")
     }
-=======
-    assert extract_tables("SELECT * FROM schemaname.") == set()
-    assert extract_tables("SELECT * FROM catalogname.schemaname.") == set()
-    assert extract_tables("SELECT * FROM catalogname..") == set()
-    assert extract_tables("SELECT * FROM catalogname..tbname") == {
-        Table(table="tbname", schema=None, catalog="catalogname")
-    }
-    assert extract_tables('SELECT * FROM "tbname') == set()
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def test_extract_tables_show_tables_from() -> None:
@@ -534,18 +520,6 @@ select * from (select key from src) a
         == set()
     )
 
-    # weird query with circular dependency
-    assert (
-        extract_tables(
-            """
-with src as ( select key from q2 where key = '5'),
-q2 as ( select key from src where key = '5')
-select * from (select key from src) a
-"""
-        )
-        == set()
-    )
-
 
 def test_extract_tables_multistatement() -> None:
     """
@@ -677,15 +651,8 @@ select (extractvalue(1,concat(0x7e,(select GROUP_CONCAT(TABLE_NAME)
 from INFORMATION_SCHEMA.COLUMNS
 WHERE TABLE_SCHEMA like "%bi%"),0x7e)));
 """,
-<<<<<<< HEAD
         "mysql",
     ) == {Table("COLUMNS", "INFORMATION_SCHEMA")}
-=======
-            "mysql",
-        )
-        == {Table("COLUMNS", "INFORMATION_SCHEMA")}
-    )
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     assert extract_tables(
         """
@@ -693,15 +660,8 @@ select (extractvalue(1,concat(0x7e,(select GROUP_CONCAT(COLUMN_NAME)
 from INFORMATION_SCHEMA.COLUMNS
 WHERE TABLE_NAME="bi_achievement_daily"),0x7e)));
 """,
-<<<<<<< HEAD
         "mysql",
     ) == {Table("COLUMNS", "INFORMATION_SCHEMA")}
-=======
-            "mysql",
-        )
-        == {Table("COLUMNS", "INFORMATION_SCHEMA")}
-    )
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def test_extract_tables_complex_cte_with_prefix() -> None:
@@ -1865,7 +1825,6 @@ WITH t AS (
 )
 SELECT * FROM t"""
     ).is_select()
-<<<<<<< HEAD
     assert not ParsedQuery("").is_select()
     assert not ParsedQuery("USE foo").is_select()
     assert ParsedQuery("USE foo; SELECT * FROM bar").is_select()
@@ -1918,5 +1877,3 @@ def test_extract_tables_from_jinja_sql(
         )
         == expected
     )
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)

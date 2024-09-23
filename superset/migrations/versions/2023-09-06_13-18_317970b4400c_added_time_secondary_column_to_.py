@@ -26,7 +26,6 @@ Create Date: 2023-09-06 13:18:59.597259
 revision = "317970b4400c"
 down_revision = "ec54aca4c8a2"
 
-<<<<<<< HEAD
 import sqlalchemy as sa  # noqa: E402
 from alembic import op  # noqa: E402
 from sqlalchemy.ext.declarative import declarative_base  # noqa: E402
@@ -36,15 +35,6 @@ from superset.migrations.shared.utils import (  # noqa: E402
     paginated_update,
     table_has_column,
 )
-=======
-import sqlalchemy as sa
-from alembic import op
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import Session
-
-from superset import db
-from superset.migrations.shared.utils import paginated_update, table_has_column
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 Base = declarative_base()
 

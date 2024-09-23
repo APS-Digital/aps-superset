@@ -33,10 +33,7 @@ const sqlEditorApi = api.injectEndpoints({
           version = LatestQueryEditorVersion,
           id,
           dbId,
-<<<<<<< HEAD
           catalog,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
           schema,
           queryLimit,
           sql,
@@ -54,10 +51,7 @@ const sqlEditorApi = api.injectEndpoints({
         postPayload: pickBy(
           {
             database_id: dbId,
-<<<<<<< HEAD
             catalog,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
             schema,
             sql,
             label: name,
@@ -72,7 +66,6 @@ const sqlEditorApi = api.injectEndpoints({
         ),
       }),
     }),
-<<<<<<< HEAD
     updateCurrentSqlEditorTab: builder.mutation<string, string>({
       query: queryEditorId => ({
         method: 'POST',
@@ -95,9 +88,3 @@ export const {
   useUpdateCurrentSqlEditorTabMutation,
   useDeleteSqlEditorTabMutation,
 } = sqlEditorApi;
-=======
-  }),
-});
-
-export const { useUpdateSqlEditorTabMutation } = sqlEditorApi;
->>>>>>> 2d98af4662 (merge from upstream to master)

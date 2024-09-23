@@ -27,7 +27,6 @@ import * as exploreUtils from 'src/explore/exploreUtils';
 import * as actions from 'src/components/Chart/chartAction';
 import * as asyncEvent from 'src/middleware/asyncEvent';
 import { handleChartDataResponse } from 'src/components/Chart/chartAction';
-<<<<<<< HEAD
 
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -49,8 +48,6 @@ const mockGetState = () => ({
     conf: {},
   },
 });
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 describe('chart actions', () => {
   const MOCK_URL = '/mockURL';
@@ -118,11 +115,7 @@ describe('chart actions', () => {
 
     it('should query with the built query', async () => {
       const actionThunk = actions.postChartFormData({}, null);
-<<<<<<< HEAD
       await actionThunk(dispatch, mockGetState);
-=======
-      await actionThunk(dispatch);
->>>>>>> 2d98af4662 (merge from upstream to master)
 
       expect(fetchMock.calls(MOCK_URL)).toHaveLength(1);
       expect(fetchMock.calls(MOCK_URL)[0][1].body).toBe(
@@ -306,20 +299,6 @@ describe('chart actions', () => {
 
   describe('runAnnotationQuery', () => {
     const mockDispatch = jest.fn();
-<<<<<<< HEAD
-=======
-    const mockGetState = () => ({
-      charts: {
-        chartKey: {
-          latestQueryFormData: {
-            time_grain_sqla: 'P1D',
-            granularity_sqla: 'Date',
-          },
-        },
-      },
-    });
-
->>>>>>> 2d98af4662 (merge from upstream to master)
     beforeEach(() => {
       jest.clearAllMocks();
     });
@@ -372,7 +351,6 @@ describe('chart actions', () => {
       });
     });
   });
-<<<<<<< HEAD
 });
 
 describe('chart actions timeout', () => {
@@ -442,6 +420,4 @@ describe('chart actions timeout', () => {
 
     expect(postSpy).toHaveBeenCalledWith(expectedPayload);
   });
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 });

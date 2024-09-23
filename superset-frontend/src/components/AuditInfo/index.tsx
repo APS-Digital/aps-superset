@@ -16,11 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
-=======
-import React from 'react';
-
->>>>>>> 2d98af4662 (merge from upstream to master)
 import Owner from 'src/types/Owner';
 import { Tooltip } from 'src/components/Tooltip';
 import getOwnerName from 'src/utils/getOwnerName';

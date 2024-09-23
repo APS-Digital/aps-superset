@@ -23,10 +23,7 @@ from typing import TYPE_CHECKING
 from flask import current_app
 
 from superset import feature_flag_manager
-<<<<<<< HEAD
 from superset.dashboards.permalink.types import DashboardPermalinkState
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.hashing import md5_sha_from_dict
 from superset.utils.urls import modify_url_query
 from superset.utils.webdriver import (

@@ -26,10 +26,7 @@ from superset.commands.utils import populate_roles
 from superset.connectors.sqla.models import RowLevelSecurityFilter, SqlaTable
 from superset.daos.security import RLSDAO
 from superset.extensions import db
-<<<<<<< HEAD
 from superset.utils.decorators import transaction
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 logger = logging.getLogger(__name__)
 

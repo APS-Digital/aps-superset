@@ -18,7 +18,6 @@
  */
 
 import afghanistan from './countries/afghanistan.geojson';
-<<<<<<< HEAD
 import aland from './countries/aland.geojson';
 import albania from './countries/albania.geojson';
 import algeria from './countries/algeria.geojson';
@@ -28,22 +27,15 @@ import angola from './countries/angola.geojson';
 import anguilla from './countries/anguilla.geojson';
 import antarctica from './countries/antarctica.geojson';
 import antigua_and_barbuda from './countries/antigua_and_barbuda.geojson';
-=======
-import albania from './countries/albania.geojson';
-import algeria from './countries/algeria.geojson';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import argentina from './countries/argentina.geojson';
 import armenia from './countries/armenia.geojson';
 import australia from './countries/australia.geojson';
 import austria from './countries/austria.geojson';
-<<<<<<< HEAD
 import azerbaijan from './countries/azerbaijan.geojson';
 import bahrain from './countries/bahrain.geojson';
 import bangladesh from './countries/bangladesh.geojson';
 import barbados from './countries/barbados.geojson';
 import belarus from './countries/belarus.geojson';
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 import belgium from './countries/belgium.geojson';
 import belize from './countries/belize.geojson';
 import benin from './countries/benin.geojson';
@@ -66,40 +58,26 @@ import chad from './countries/chad.geojson';
 import chile from './countries/chile.geojson';
 import china from './countries/china.geojson';
 import colombia from './countries/colombia.geojson';
-<<<<<<< HEAD
 import comoros from './countries/comoros.geojson';
 import cook_islands from './countries/cook_islands.geojson';
 import costa_rica from './countries/costa_rica.geojson';
 import croatia from './countries/croatia.geojson';
-=======
-import costa_rica from './countries/costa_rica.geojson';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import cuba from './countries/cuba.geojson';
 import cyprus from './countries/cyprus.geojson';
 import czech_republic from './countries/czech_republic.geojson';
 import democratic_republic_of_the_congo from './countries/democratic_republic_of_the_congo.geojson';
 import denmark from './countries/denmark.geojson';
-<<<<<<< HEAD
 import djibouti from './countries/djibouti.geojson';
 import dominica from './countries/dominica.geojson';
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 import dominican_republic from './countries/dominican_republic.geojson';
 import ecuador from './countries/ecuador.geojson';
 import egypt from './countries/egypt.geojson';
 import el_salvador from './countries/el_salvador.geojson';
-<<<<<<< HEAD
 import equatorial_guinea from './countries/equatorial_guinea.geojson';
 import eritrea from './countries/eritrea.geojson';
 import estonia from './countries/estonia.geojson';
 import ethiopia from './countries/ethiopia.geojson';
 import fiji from './countries/fiji.geojson';
-=======
-import estonia from './countries/estonia.geojson';
-import ethiopia from './countries/ethiopia.geojson';
-import france from './countries/france.geojson';
-import france_regions from './countries/france_regions.geojson';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import finland from './countries/finland.geojson';
 import france from './countries/france.geojson';
 import france_regions from './countries/france_regions.geojson';
@@ -139,13 +117,10 @@ import liberia from './countries/liberia.geojson';
 import libya from './countries/libya.geojson';
 import liechtenstein from './countries/liechtenstein.geojson';
 import lithuania from './countries/lithuania.geojson';
-<<<<<<< HEAD
 import luxembourg from './countries/luxembourg.geojson';
 import macedonia from './countries/macedonia.geojson';
 import madagascar from './countries/madagascar.geojson';
 import malawi from './countries/malawi.geojson';
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 import malaysia from './countries/malaysia.geojson';
 import maldives from './countries/maldives.geojson';
 import mali from './countries/mali.geojson';
@@ -168,13 +143,9 @@ import netherlands from './countries/netherlands.geojson';
 import new_caledonia from './countries/new_caledonia.geojson';
 import new_zealand from './countries/new_zealand.geojson';
 import nicaragua from './countries/nicaragua.geojson';
-<<<<<<< HEAD
 import niger from './countries/niger.geojson';
 import nigeria from './countries/nigeria.geojson';
 import northern_mariana_islands from './countries/northern_mariana_islands.geojson';
-=======
-import nigeria from './countries/nigeria.geojson';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import norway from './countries/norway.geojson';
 import oman from './countries/oman.geojson';
 import pakistan from './countries/pakistan.geojson';
@@ -184,30 +155,19 @@ import papua_new_guinea from './countries/papua_new_guinea.geojson';
 import paraguay from './countries/paraguay.geojson';
 import peru from './countries/peru.geojson';
 import philippines from './countries/philippines.geojson';
-<<<<<<< HEAD
 import philippines_regions from './countries/philippines_regions.geojson';
 import poland from './countries/poland.geojson';
 import portugal from './countries/portugal.geojson';
-=======
-import portugal from './countries/portugal.geojson';
-import poland from './countries/poland.geojson';
-import puerto_rico from './countries/puerto_rico.geojson';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import qatar from './countries/qatar.geojson';
 import romania from './countries/romania.geojson';
 import russia from './countries/russia.geojson';
 import rwanda from './countries/rwanda.geojson';
-<<<<<<< HEAD
 import saint_lucia from './countries/saint_lucia.geojson';
 import saint_pierre_and_miquelon from './countries/saint_pierre_and_miquelon.geojson';
 import saint_vincent_and_the_grenadines from './countries/saint_vincent_and_the_grenadines.geojson';
 import samoa from './countries/samoa.geojson';
 import san_marino from './countries/san_marino.geojson';
 import sao_tome_and_principe from './countries/sao_tome_and_principe.geojson';
-=======
-import saint_barthelemy from './countries/saint_barthelemy.geojson';
-import saint_martin from './countries/saint_martin.geojson';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import saudi_arabia from './countries/saudi_arabia.geojson';
 import senegal from './countries/senegal.geojson';
 import seychelles from './countries/seychelles.geojson';
@@ -215,7 +175,6 @@ import sierra_leone from './countries/sierra_leone.geojson';
 import singapore from './countries/singapore.geojson';
 import slovakia from './countries/slovakia.geojson';
 import slovenia from './countries/slovenia.geojson';
-<<<<<<< HEAD
 import solomon_islands from './countries/solomon_islands.geojson';
 import somalia from './countries/somalia.geojson';
 import south_africa from './countries/south_africa.geojson';
@@ -223,10 +182,6 @@ import spain from './countries/spain.geojson';
 import sri_lanka from './countries/sri_lanka.geojson';
 import sudan from './countries/sudan.geojson';
 import suriname from './countries/suriname.geojson';
-=======
-import spain from './countries/spain.geojson';
-import sri_lanka from './countries/sri_lanka.geojson';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import sweden from './countries/sweden.geojson';
 import switzerland from './countries/switzerland.geojson';
 import syria from './countries/syria.geojson';
@@ -243,15 +198,11 @@ import tunisia from './countries/tunisia.geojson';
 import turkey from './countries/turkey.geojson';
 import turkey_regions from './countries/turkey_regions.geojson';
 import turkmenistan from './countries/turkmenistan.geojson';
-<<<<<<< HEAD
 import turks_and_caicos_islands from './countries/turks_and_caicos_islands.geojson';
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 import uganda from './countries/uganda.geojson';
 import uk from './countries/uk.geojson';
 import ukraine from './countries/ukraine.geojson';
 import united_arab_emirates from './countries/united_arab_emirates.geojson';
-<<<<<<< HEAD
 import united_states_minor_outlying_islands from './countries/united_states_minor_outlying_islands.geojson';
 import united_states_virgin_islands from './countries/united_states_virgin_islands.geojson';
 import uruguay from './countries/uruguay.geojson';
@@ -276,31 +227,15 @@ export const countries = {
   anguilla,
   antarctica,
   antigua_and_barbuda,
-=======
-import uruguay from './countries/uruguay.geojson';
-import usa from './countries/usa.geojson';
-import uzbekistan from './countries/uzbekistan.geojson';
-import venezuela from './countries/venezuela.geojson';
-import vietnam from './countries/vietnam.geojson';
-import zambia from './countries/zambia.geojson';
-
-export const countries = {
-  afghanistan,
-  albania,
-  algeria,
->>>>>>> 2d98af4662 (merge from upstream to master)
   argentina,
   armenia,
   australia,
   austria,
-<<<<<<< HEAD
   azerbaijan,
   bahrain,
   bangladesh,
   barbados,
   belarus,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   belgium,
   belize,
   benin,
@@ -342,12 +277,7 @@ export const countries = {
   eritrea,
   estonia,
   ethiopia,
-<<<<<<< HEAD
   fiji,
-=======
-  france,
-  france_regions,
->>>>>>> 2d98af4662 (merge from upstream to master)
   finland,
   france,
   france_regions,
@@ -425,15 +355,9 @@ export const countries = {
   paraguay,
   peru,
   philippines,
-<<<<<<< HEAD
   philippines_regions,
   poland,
   portugal,
-=======
-  portugal,
-  poland,
-  puerto_rico,
->>>>>>> 2d98af4662 (merge from upstream to master)
   qatar,
   romania,
   russia,
@@ -456,11 +380,8 @@ export const countries = {
   south_africa,
   spain,
   sri_lanka,
-<<<<<<< HEAD
   sudan,
   suriname,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   sweden,
   switzerland,
   syria,
@@ -477,15 +398,11 @@ export const countries = {
   turkey,
   turkey_regions,
   turkmenistan,
-<<<<<<< HEAD
   turks_and_caicos_islands,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   uganda,
   uk,
   ukraine,
   united_arab_emirates,
-<<<<<<< HEAD
   united_states_minor_outlying_islands,
   united_states_virgin_islands,
   uruguay,
@@ -498,14 +415,6 @@ export const countries = {
   yemen,
   zambia,
   zimbabwe,
-=======
-  uruguay,
-  usa,
-  uzbekistan,
-  venezuela,
-  vietnam,
-  zambia,
->>>>>>> 2d98af4662 (merge from upstream to master)
 };
 
 export const countryOptions = Object.keys(countries).map(x => {
@@ -518,12 +427,9 @@ export const countryOptions = Object.keys(countries).map(x => {
   if (x === 'france_regions') {
     return [x, 'France (regions)'];
   }
-<<<<<<< HEAD
   if (x === 'turkey_regions') {
     return [x, 'Turkey (regions)'];
   }
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   return [
     x,
     x

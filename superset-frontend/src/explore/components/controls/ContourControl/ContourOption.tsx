@@ -17,10 +17,6 @@
  * under the License.
  */
 
-<<<<<<< HEAD
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { styled, t } from '@superset-ui/core';
 import { ContourOptionProps } from './types';
 import ContourPopoverTrigger from './ContourPopoverTrigger';

@@ -17,11 +17,7 @@
  * under the License.
  */
 
-<<<<<<< HEAD
 import { useState, useEffect } from 'react';
-=======
-import React, { useState, useEffect } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { styled, t } from '@superset-ui/core';
 import DndSelectLabel from 'src/explore/components/controls/DndColumnSelectControl/DndSelectLabel';
 import ContourPopoverTrigger from './ContourPopoverTrigger';

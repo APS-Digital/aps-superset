@@ -22,10 +22,7 @@ import { ColumnKeyTypeType } from 'src/SqlLab/components/ColumnElement';
 import {
   DatasourceType,
   denormalizeTimestamp,
-<<<<<<< HEAD
   ErrorTypeEnum,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   GenericDataType,
   QueryResponse,
   QueryState,
@@ -40,10 +37,7 @@ export const table = {
   dbId: 1,
   selectStar: 'SELECT * FROM ab_user',
   queryEditorId: 'dfsadfs',
-<<<<<<< HEAD
   catalog: null,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   schema: 'superset',
   name: 'ab_user',
   id: 'r11Vgt60',

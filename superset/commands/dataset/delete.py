@@ -27,10 +27,6 @@ from superset.commands.dataset.exceptions import (
 )
 from superset.connectors.sqla.models import SqlaTable
 from superset.daos.dataset import DatasetDAO
-<<<<<<< HEAD
-=======
-from superset.daos.exceptions import DAODeleteFailedError
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.exceptions import SupersetSecurityException
 from superset.utils.decorators import on_error, transaction
 

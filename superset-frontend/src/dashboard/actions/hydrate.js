@@ -69,19 +69,6 @@ export const hydrateDashboard =
       // eslint-disable-next-line no-param-reassign
       chart.slice_id = chart.form_data.slice_id;
     });
-<<<<<<< HEAD
-=======
-
-    if (metadata?.shared_label_colors) {
-      updateColorSchema(metadata, metadata?.shared_label_colors);
-    }
-
-    // Priming the color palette with user's label-color mapping provided in
-    // the dashboard's JSON metadata
-    if (metadata?.label_colors) {
-      updateColorSchema(metadata, metadata?.label_colors);
-    }
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     // new dash: position_json could be {} or null
     const layout =

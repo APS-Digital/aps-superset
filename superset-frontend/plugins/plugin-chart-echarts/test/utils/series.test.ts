@@ -1042,7 +1042,6 @@ test('getMinAndMaxFromBounds returns automatic lower bound when truncating', () 
     scale: true,
   });
 });
-<<<<<<< HEAD
 
 describe('getTimeCompareStackId', () => {
   it('returns the defaultId when timeCompare is empty', () => {
@@ -1073,5 +1072,3 @@ describe('getTimeCompareStackId', () => {
     expect(result).toEqual('123');
   });
 });
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)

@@ -34,10 +34,6 @@ export default class PopKPIPlugin extends ChartPlugin {
         t('Business'),
         t('Percentages'),
         t('Report'),
-<<<<<<< HEAD
-=======
-        t('Description'),
->>>>>>> 2d98af4662 (merge from upstream to master)
         t('Advanced-Analytics'),
       ],
       thumbnail,

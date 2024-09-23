@@ -22,7 +22,6 @@ from typing import Any, TYPE_CHECKING
 from sqlalchemy.engine.url import make_url, URL
 
 from superset.commands.database.exceptions import DatabaseInvalidError
-<<<<<<< HEAD
 from superset.sql_parse import Table
 
 if TYPE_CHECKING:
@@ -31,8 +30,6 @@ if TYPE_CHECKING:
         TableMetadataForeignKeysIndexesResponse,
         TableMetadataResponse,
     )
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def get_foreign_keys_metadata(

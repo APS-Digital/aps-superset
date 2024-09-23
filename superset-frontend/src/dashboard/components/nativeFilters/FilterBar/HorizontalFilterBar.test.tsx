@@ -17,10 +17,6 @@
  * under the License.
  */
 import { NativeFilterType } from '@superset-ui/core';
-<<<<<<< HEAD
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { render, screen, waitFor } from 'spec/helpers/testing-library';
 import HorizontalBar from './Horizontal';
 

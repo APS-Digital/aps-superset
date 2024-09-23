@@ -291,7 +291,6 @@ const processColumns = memoizeOne(function processColumns(
     typeof columns,
   ];
 }, isEqualColumns);
-<<<<<<< HEAD
 
 const getComparisonColConfig = (
   label: string,
@@ -418,8 +417,6 @@ const processComparisonColumns = (
       return [];
     })
     .flat();
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 /**
  * Automatically set page size based on number of cells.
@@ -653,13 +650,9 @@ const transformProps = (
   );
   const totals =
     showTotals && queryMode === QueryMode.Aggregate
-<<<<<<< HEAD
       ? isUsingTimeComparison
         ? processComparisonTotals(comparisonSuffix, totalQuery?.data)
         : totalQuery?.data[0]
-=======
-      ? totalQuery?.data[0]
->>>>>>> 2d98af4662 (merge from upstream to master)
       : undefined;
 
   const passedData = isUsingTimeComparison ? comparisonData || [] : data;
@@ -682,11 +675,7 @@ const transformProps = (
     height,
     width,
     isRawRecords: queryMode === QueryMode.Raw,
-<<<<<<< HEAD
     data: passedData,
-=======
-    data,
->>>>>>> 2d98af4662 (merge from upstream to master)
     totals,
     columns: passedColumns,
     serverPagination,

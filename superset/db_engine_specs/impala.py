@@ -151,11 +151,7 @@ class ImpalaEngineSpec(BaseEngineSpec):
                         needs_commit = True
 
                     if needs_commit:
-<<<<<<< HEAD
                         db.session.commit()  # pylint: disable=consider-using-transaction
-=======
-                        db.session.commit()
->>>>>>> 2d98af4662 (merge from upstream to master)
                 sleep_interval = current_app.config["DB_POLL_INTERVAL_SECONDS"].get(
                     cls.engine, 5
                 )

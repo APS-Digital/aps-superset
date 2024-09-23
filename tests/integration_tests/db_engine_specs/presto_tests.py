@@ -552,11 +552,7 @@ class TestPrestoDbEngineSpec(TestDbEngineSpec):
         self.assertEqual(actual_data, expected_data)
         self.assertEqual(actual_expanded_cols, expected_expanded_cols)
 
-<<<<<<< HEAD
     def test_presto_get_extra_table_metadata(self):
-=======
-    def test_presto_extra_table_metadata(self):
->>>>>>> 2d98af4662 (merge from upstream to master)
         database = mock.Mock()
         database.get_indexes = mock.Mock(
             return_value=[{"column_names": ["ds", "hour"]}]
@@ -565,14 +561,9 @@ class TestPrestoDbEngineSpec(TestDbEngineSpec):
         df = pd.DataFrame({"ds": ["01-01-19"], "hour": [1]})
         database.get_df = mock.Mock(return_value=df)
         PrestoEngineSpec.get_create_view = mock.Mock(return_value=None)
-<<<<<<< HEAD
         result = PrestoEngineSpec.get_extra_table_metadata(
             database,
             Table("test_table", "test_schema"),
-=======
-        result = PrestoEngineSpec.extra_table_metadata(
-            database, "test_table", "test_schema"
->>>>>>> 2d98af4662 (merge from upstream to master)
         )
         assert result["partitions"]["cols"] == ["ds", "hour"]
         assert result["partitions"]["latest"] == {"ds": "01-01-19", "hour": 1}

@@ -40,10 +40,6 @@ SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(  # noqa: F405
     DATA_DIR,
     "unittests.integration_tests.db",  # noqa: F405
 )
-<<<<<<< HEAD
-=======
-DEBUG = False
->>>>>>> 2d98af4662 (merge from upstream to master)
 SILENCE_FAB = False
 # Allowing SQLALCHEMY_DATABASE_URI and SQLALCHEMY_EXAMPLES_URI to be defined as an env vars for
 # continuous integration
@@ -76,10 +72,7 @@ FEATURE_FLAGS = {
     "SHARE_QUERIES_VIA_KV_STORE": True,
     "ENABLE_TEMPLATE_PROCESSING": True,
     "ALERT_REPORTS": True,
-<<<<<<< HEAD
     "AVOID_COLORS_COLLISION": True,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
     "DRILL_TO_DETAIL": True,
     "DRILL_BY": True,
     "HORIZONTAL_FILTER_BAR": True,
@@ -106,8 +99,6 @@ REDIS_PORT = os.environ.get("REDIS_PORT", "6379")  # noqa: F405
 REDIS_CELERY_DB = os.environ.get("REDIS_CELERY_DB", 2)  # noqa: F405
 REDIS_RESULTS_DB = os.environ.get("REDIS_RESULTS_DB", 3)  # noqa: F405
 REDIS_CACHE_DB = os.environ.get("REDIS_CACHE_DB", 4)  # noqa: F405
-
-RATELIMIT_ENABLED = False
 
 RATELIMIT_ENABLED = False
 

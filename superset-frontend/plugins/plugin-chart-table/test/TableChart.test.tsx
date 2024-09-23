@@ -185,13 +185,8 @@ describe('plugin-chart-table', () => {
         </ThemeProvider>,
       );
 
-<<<<<<< HEAD
       const firstDataRow = screen.getAllByRole('rowgroup')[1];
       const cells = firstDataRow.querySelectorAll('td');
-=======
-      tree = wrap.render(); // returns a CheerioWrapper with jQuery-like API
-      const cells = tree.find('td');
->>>>>>> 2d98af4662 (merge from upstream to master)
       expect(cells).toHaveLength(12);
       expect(cells[0]).toHaveTextContent('2020-01-01 12:34:56');
       expect(cells[1]).toHaveTextContent('Michael');

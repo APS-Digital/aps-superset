@@ -31,12 +31,9 @@ export interface RgbaColor {
   b: number;
   a: number;
 }
-<<<<<<< HEAD
 
 export enum ColorSchemeGroup {
   Custom = 'custom',
   Featured = 'featured',
   Other = 'other',
 }
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)

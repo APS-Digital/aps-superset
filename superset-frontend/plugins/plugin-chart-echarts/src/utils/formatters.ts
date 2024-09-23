@@ -25,19 +25,13 @@ import {
   isSavedMetric,
   NumberFormats,
   QueryFormMetric,
-<<<<<<< HEAD
   SMART_DATE_DETAILED_ID,
   SMART_DATE_ID,
   SMART_DATE_VERBOSE_ID,
-=======
-  smartDateDetailedFormatter,
-  smartDateFormatter,
->>>>>>> 2d98af4662 (merge from upstream to master)
   TimeFormatter,
   ValueFormatter,
 } from '@superset-ui/core';
 
-<<<<<<< HEAD
 export const getSmartDateDetailedFormatter = () =>
   getTimeFormatter(SMART_DATE_DETAILED_ID);
 
@@ -46,8 +40,6 @@ export const getSmartDateFormatter = () => getTimeFormatter(SMART_DATE_ID);
 export const getSmartDateVerboseFormatter = () =>
   getTimeFormatter(SMART_DATE_VERBOSE_ID);
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 export const getPercentFormatter = (format?: string) =>
   getNumberFormatter(
     !format || format === NumberFormats.SMART_NUMBER
@@ -85,13 +77,8 @@ export const getYAxisFormatter = (
 export function getTooltipTimeFormatter(
   format?: string,
 ): TimeFormatter | StringConstructor {
-<<<<<<< HEAD
   if (format === SMART_DATE_ID) {
     return getSmartDateDetailedFormatter();
-=======
-  if (format === smartDateFormatter.id) {
-    return smartDateDetailedFormatter;
->>>>>>> 2d98af4662 (merge from upstream to master)
   }
   if (format) {
     return getTimeFormatter(format);
@@ -102,11 +89,7 @@ export function getTooltipTimeFormatter(
 export function getXAxisFormatter(
   format?: string,
 ): TimeFormatter | StringConstructor | undefined {
-<<<<<<< HEAD
   if (format === SMART_DATE_ID || !format) {
-=======
-  if (format === smartDateFormatter.id || !format) {
->>>>>>> 2d98af4662 (merge from upstream to master)
     return undefined;
   }
   if (format) {

@@ -19,12 +19,9 @@ from copy import copy
 
 from sqlalchemy.engine import make_url
 
-<<<<<<< HEAD
 from superset.config import *  # noqa: F403
 from superset.config import DATA_DIR
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 SECRET_KEY = "dummy_secret_key_for_test_to_silence_warnings"
 AUTH_USER_REGISTRATION_ROLE = "alpha"
 SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(  # noqa: F405

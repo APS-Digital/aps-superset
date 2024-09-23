@@ -15,7 +15,6 @@
 # specific language governing permissions and limitations
 # under the License.
 """Defines the templating context for SQL Lab"""
-<<<<<<< HEAD
 
 from __future__ import annotations
 
@@ -25,14 +24,6 @@ from datetime import datetime
 from functools import lru_cache, partial
 from typing import Any, Callable, cast, Optional, TYPE_CHECKING, TypedDict, Union
 
-=======
-import json
-import re
-from datetime import datetime
-from functools import lru_cache, partial
-from typing import Any, Callable, cast, Optional, TYPE_CHECKING, TypedDict, Union
-
->>>>>>> 2d98af4662 (merge from upstream to master)
 import dateutil
 from flask import current_app, has_request_context, request
 from flask_babel import gettext as _
@@ -43,12 +34,8 @@ from sqlalchemy.sql.expression import bindparam
 from sqlalchemy.types import String
 
 from superset.commands.dataset.exceptions import DatasetNotFoundError
-<<<<<<< HEAD
 from superset.common.utils.time_range_utils import get_since_until_from_time_range
 from superset.constants import LRU_CACHE_MAX_SIZE, NO_TIME_RANGE
-=======
-from superset.constants import LRU_CACHE_MAX_SIZE
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.exceptions import SupersetTemplateException
 from superset.extensions import feature_flag_manager
 from superset.sql_parse import Table
@@ -56,10 +43,7 @@ from superset.utils import json
 from superset.utils.core import (
     AdhocFilterClause,
     convert_legacy_filters_into_adhoc,
-<<<<<<< HEAD
     FilterOperator,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
     get_user_email,
     get_user_id,
     get_username,
@@ -600,11 +584,7 @@ class BaseTemplateProcessor:
         self.set_context(**kwargs)
 
         # custom filters
-<<<<<<< HEAD
         self.env.filters["where_in"] = WhereInMacro(database.get_dialect())
-=======
-        self._env.filters["where_in"] = WhereInMacro(database.get_dialect())
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     def set_context(self, **kwargs: Any) -> None:
         self._context.update(kwargs)
@@ -665,10 +645,7 @@ class JinjaTemplateProcessor(BaseTemplateProcessor):
             from_dttm=from_dttm,
             to_dttm=to_dttm,
         )
-<<<<<<< HEAD
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         self._context.update(
             {
                 "url_param": partial(safe_proxy, extra_cache.url_param),
@@ -681,11 +658,8 @@ class JinjaTemplateProcessor(BaseTemplateProcessor):
                 "filter_values": partial(safe_proxy, extra_cache.filter_values),
                 "get_filters": partial(safe_proxy, extra_cache.get_filters),
                 "dataset": partial(safe_proxy, dataset_macro_with_context),
-<<<<<<< HEAD
                 "metric": partial(safe_proxy, metric_macro),
                 "get_time_filter": partial(safe_proxy, extra_cache.get_time_filter),
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
             }
         )
 

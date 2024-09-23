@@ -16,11 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { isValidElement } from 'react';
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { AnyAction, combineReducers } from 'redux';
 import Mousetrap from 'mousetrap';
 import configureStore from 'redux-mock-store';

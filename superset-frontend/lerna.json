@@ -1,10 +1,6 @@
 {
   "npmClient": "npm",
   "packages": ["packages/*", "plugins/*", "src/setup/*"],
-<<<<<<< HEAD
-=======
-  "useWorkspaces": true,
->>>>>>> 2d98af4662 (merge from upstream to master)
   "version": "0.18.25",
   "ignoreChanges": [
     "**/*.md",

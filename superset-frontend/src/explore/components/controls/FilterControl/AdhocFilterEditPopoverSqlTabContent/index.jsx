@@ -94,11 +94,7 @@ export default class AdhocFilterEditPopoverSqlTabContent extends Component {
     const keywords = sqlKeywords.concat(
       getColumnKeywords(options.filter(option => option.column_name)),
     );
-<<<<<<< HEAD
     const selectOptions = Object.values(Clauses).map(clause => ({
-=======
-    const selectOptions = Object.keys(Clauses).map(clause => ({
->>>>>>> 2d98af4662 (merge from upstream to master)
       label: clause,
       value: clause,
     }));

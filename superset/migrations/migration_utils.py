@@ -15,11 +15,7 @@
 # specific language governing permissions and limitations
 # under the License.
 
-<<<<<<< HEAD
 from alembic.operations import Operations
-=======
-from alembic.operations import BatchOperations, Operations
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 naming_convention = {
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",

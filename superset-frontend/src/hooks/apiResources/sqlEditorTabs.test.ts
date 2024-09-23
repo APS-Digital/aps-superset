@@ -24,15 +24,11 @@ import {
 } from 'spec/helpers/testing-library';
 import { api } from 'src/hooks/apiResources/queryApi';
 import { LatestQueryEditorVersion } from 'src/SqlLab/types';
-<<<<<<< HEAD
 import {
   useDeleteSqlEditorTabMutation,
   useUpdateCurrentSqlEditorTabMutation,
   useUpdateSqlEditorTabMutation,
 } from './sqlEditorTabs';
-=======
-import { useUpdateSqlEditorTabMutation } from './sqlEditorTabs';
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 const expectedQueryEditor = {
   version: LatestQueryEditorVersion,
@@ -105,7 +101,6 @@ test('puts api request with formData', async () => {
     ),
   );
 });
-<<<<<<< HEAD
 
 test('posts activate request with queryEditorId', async () => {
   const tabStateMutationApiRoute = `glob:*/tabstateview/${expectedQueryEditor.id}/activate`;
@@ -146,5 +141,3 @@ test('deletes destoryed query editors', async () => {
     expect(fetchMock.calls(tabStateMutationApiRoute).length).toBe(1),
   );
 });
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)

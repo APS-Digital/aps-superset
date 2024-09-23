@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { t } from '@superset-ui/core';
 import {
   ControlPanelConfig,
@@ -26,21 +25,6 @@ import {
 } from '@superset-ui/chart-controls';
 import { headerFontSize, subheaderFontSize } from '../sharedControls';
 import { ColorSchemeEnum } from './types';
-=======
-import {
-  ComparisonTimeRangeType,
-  t,
-  validateTimeComparisonRangeValues,
-} from '@superset-ui/core';
-import {
-  ControlPanelConfig,
-  ControlPanelState,
-  ControlState,
-  getStandardizedControls,
-  sharedControls,
-} from '@superset-ui/chart-controls';
-import { headerFontSize, subheaderFontSize } from '../sharedControls';
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 const config: ControlPanelConfig = {
   controlPanelSections: [
@@ -52,60 +36,6 @@ const config: ControlPanelConfig = {
         ['adhoc_filters'],
         [
           {
-<<<<<<< HEAD
-=======
-            name: 'time_comparison',
-            config: {
-              type: 'SelectControl',
-              label: t('Range for Comparison'),
-              default: 'r',
-              choices: [
-                ['r', 'Inherit range from time filters'],
-                ['y', 'Year'],
-                ['m', 'Month'],
-                ['w', 'Week'],
-                ['c', 'Custom'],
-              ],
-              rerender: ['adhoc_custom'],
-              description: t(
-                'Set the time range that will be used for the comparison metrics. ' +
-                  'For example, "Year" will compare to the same dates one year earlier. ' +
-                  'Use "Inherit range from time filters" to shift the comparison time range' +
-                  'by the same length as your time range and use "Custom" to set a custom comparison range.',
-              ),
-            },
-          },
-        ],
-        [
-          {
-            name: `adhoc_custom`,
-            config: {
-              ...sharedControls.adhoc_filters,
-              label: t('Filters for Comparison'),
-              description:
-                'This only applies when selecting the Range for Comparison Type: Custom',
-              visibility: ({ controls }) =>
-                controls?.time_comparison?.value ===
-                ComparisonTimeRangeType.Custom,
-              mapStateToProps: (
-                state: ControlPanelState,
-                controlState: ControlState,
-              ) => ({
-                ...(sharedControls.adhoc_filters.mapStateToProps?.(
-                  state,
-                  controlState,
-                ) || {}),
-                externalValidationErrors: validateTimeComparisonRangeValues(
-                  state.controls?.time_comparison?.value,
-                  controlState.value,
-                ),
-              }),
-            },
-          },
-        ],
-        [
-          {
->>>>>>> 2d98af4662 (merge from upstream to master)
             name: 'row_limit',
             config: sharedControls.row_limit,
           },
@@ -117,7 +47,6 @@ const config: ControlPanelConfig = {
       expanded: true,
       controlSetRows: [
         ['y_axis_format'],
-<<<<<<< HEAD
         [
           {
             name: 'percentDifferenceFormat',
@@ -127,8 +56,6 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         ['currency_format'],
         [
           {
@@ -158,7 +85,6 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-<<<<<<< HEAD
         [
           {
             name: 'comparison_color_scheme',
@@ -187,10 +113,6 @@ const config: ControlPanelConfig = {
       showCalculationType: false,
       showFullChoices: false,
     }),
-=======
-      ],
-    },
->>>>>>> 2d98af4662 (merge from upstream to master)
   ],
   controlOverrides: {
     y_axis_format: {

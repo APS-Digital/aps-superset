@@ -47,7 +47,6 @@ const StyledNotificationMethod = styled.div`
   ${({ theme }) => `
     margin-bottom: ${theme.gridUnit * 3}px;
 
-<<<<<<< HEAD
     .input-container {
       textarea {
         height: auto;
@@ -77,10 +76,6 @@ const StyledNotificationMethod = styled.div`
         margin-left: ${theme.gridUnit * 2}px;
         padding-top: ${theme.gridUnit}px;
       }
-=======
-    > div {
-      margin: 0;
->>>>>>> 2d98af4662 (merge from upstream to master)
     }
 
     .ghost-button {
@@ -444,12 +439,8 @@ export const NotificationMethod: FunctionComponent<NotificationMethodProps> = ({
               value={methodOptions.find(option => option.value === method)}
               loading={methodOptionsLoading}
             />
-<<<<<<< HEAD
             {index !== 0 && !!onRemove ? (
               // eslint-disable-next-line jsx-a11y/control-has-associated-label
-=======
-            {method !== undefined && index !== 0 && !!onRemove ? (
->>>>>>> 2d98af4662 (merge from upstream to master)
               <span
                 role="button"
                 tabIndex={0}
@@ -463,7 +454,6 @@ export const NotificationMethod: FunctionComponent<NotificationMethodProps> = ({
         </StyledInputContainer>
       </div>
       {method !== undefined ? (
-<<<<<<< HEAD
         <>
           <div className="inline-container">
             <StyledInputContainer>
@@ -494,20 +484,6 @@ export const NotificationMethod: FunctionComponent<NotificationMethodProps> = ({
                 </>
               ) : null}
             </StyledInputContainer>
-=======
-        <StyledInputContainer>
-          <div className="control-label">
-            {t('%s recipients', method)}
-            <span className="required">*</span>
-          </div>
-          <div className="input-container">
-            <textarea
-              name="recipients"
-              data-test="recipients"
-              value={recipientValue}
-              onChange={onRecipientsChange}
-            />
->>>>>>> 2d98af4662 (merge from upstream to master)
           </div>
           <div className="inline-container">
             <StyledInputContainer>

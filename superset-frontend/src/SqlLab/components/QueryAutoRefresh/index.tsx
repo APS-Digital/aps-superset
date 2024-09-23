@@ -82,10 +82,7 @@ function QueryAutoRefresh({
         endpoint: `/api/v1/query/updated_since?q=${params}`,
         timeout: QUERY_TIMEOUT_LIMIT,
         parseMethod: 'json-bigint',
-<<<<<<< HEAD
         signal: controller.signal,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
       })
         .then(({ json }) => {
           if (json) {

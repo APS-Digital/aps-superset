@@ -611,11 +611,8 @@ export function setActiveTab(tabId, prevTabId) {
   return { type: SET_ACTIVE_TAB, tabId, prevTabId };
 }
 
-<<<<<<< HEAD
 // Even though SET_ACTIVE_TABS is not being called from Superset's codebase,
 // it is being used by Preset extensions.
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 export const SET_ACTIVE_TABS = 'SET_ACTIVE_TABS';
 export function setActiveTabs(activeTabs) {
   return { type: SET_ACTIVE_TABS, activeTabs };

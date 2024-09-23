@@ -60,10 +60,7 @@ from superset.commands.report.execute import (
 )
 from superset.commands.report.log_prune import AsyncPruneReportScheduleLogCommand
 from superset.exceptions import SupersetException
-<<<<<<< HEAD
 from superset.key_value.models import KeyValueEntry
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.models.core import Database
 from superset.models.dashboard import Dashboard
 from superset.models.slice import Slice
@@ -2044,11 +2041,7 @@ def test_fail_screenshot(screenshot_mock, email_mock, create_report_email_chart)
     """
     from celery.exceptions import SoftTimeLimitExceeded  # noqa: F401
 
-<<<<<<< HEAD
     from superset.commands.report.exceptions import AlertQueryTimeout  # noqa: F401
-=======
-    from superset.commands.report.exceptions import AlertQueryTimeout
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     screenshot_mock.side_effect = Exception("Unexpected error")
     with pytest.raises(ReportScheduleScreenshotFailedError):

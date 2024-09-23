@@ -62,8 +62,4 @@ def load_paris_iris_geojson(only_metadata: bool = False, force: bool = False) ->
     tbl.description = "Map of Paris"
     tbl.database = database
     tbl.filter_select_enabled = True
-<<<<<<< HEAD
-=======
-    db.session.commit()
->>>>>>> 2d98af4662 (merge from upstream to master)
     tbl.fetch_metadata()

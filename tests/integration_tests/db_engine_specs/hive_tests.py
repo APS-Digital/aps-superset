@@ -328,14 +328,10 @@ def test_where_latest_partition(mock_method):
     columns = [{"name": "ds"}, {"name": "hour"}]
     with app.app_context():
         result = HiveEngineSpec.where_latest_partition(
-<<<<<<< HEAD
             database,
             Table("test_table", "test_schema"),
             select(),
             columns,
-=======
-            "test_table", "test_schema", database, select(), columns
->>>>>>> 2d98af4662 (merge from upstream to master)
         )
     query_result = str(result.compile(compile_kwargs={"literal_binds": True}))
     assert "SELECT  \nWHERE ds = '01-01-19' AND hour = 1" == query_result
@@ -348,14 +344,10 @@ def test_where_latest_partition_super_method_exception(mock_method):
     columns = [{"name": "ds"}, {"name": "hour"}]
     with app.app_context():
         result = HiveEngineSpec.where_latest_partition(
-<<<<<<< HEAD
             database,
             Table("test_table", "test_schema"),
             select(),
             columns,
-=======
-            "test_table", "test_schema", database, select(), columns
->>>>>>> 2d98af4662 (merge from upstream to master)
         )
     assert result is None
     mock_method.assert_called()

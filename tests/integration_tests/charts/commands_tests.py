@@ -23,21 +23,14 @@ from flask import g  # noqa: F401
 from superset import db, security_manager
 from superset.commands.chart.create import CreateChartCommand
 from superset.commands.chart.exceptions import (
-<<<<<<< HEAD
     ChartForbiddenError,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
     ChartNotFoundError,
     WarmUpCacheChartNotFoundError,
 )
 from superset.commands.chart.export import ExportChartsCommand
-<<<<<<< HEAD
 from superset.commands.chart.fave import AddFavoriteChartCommand
 from superset.commands.chart.importers.v1 import ImportChartsCommand
 from superset.commands.chart.unfave import DelFavoriteChartCommand
-=======
-from superset.commands.chart.importers.v1 import ImportChartsCommand
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.commands.chart.update import UpdateChartCommand
 from superset.commands.chart.warm_up_cache import ChartWarmUpCacheCommand
 from superset.commands.exceptions import CommandInvalidError

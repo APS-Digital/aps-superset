@@ -22,16 +22,12 @@ from uuid import uuid4
 import pytest
 import redis
 from celery.exceptions import SoftTimeLimitExceeded
-<<<<<<< HEAD
 from parameterized import parameterized
 
 from superset.async_events.cache_backend import (
     RedisCacheBackend,
     RedisSentinelCacheBackend,
 )
-=======
-
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.commands.chart.data.get_data_command import ChartDataCommand
 from superset.commands.chart.exceptions import ChartDataQueryFailedError
 from superset.exceptions import SupersetException
@@ -52,7 +48,6 @@ from tests.integration_tests.test_app import app
     "load_birth_names_data", "load_birth_names_dashboard_with_slices"
 )
 class TestAsyncQueries(SupersetTestCase):
-<<<<<<< HEAD
     @parameterized.expand(
         [
             ("RedisCacheBackend", mock.Mock(spec=RedisCacheBackend)),
@@ -65,14 +60,6 @@ class TestAsyncQueries(SupersetTestCase):
     def test_load_chart_data_into_cache(
         self, cache_type, cache_backend, mock_update_job, mock_set_form_data
     ):
-=======
-    @pytest.mark.usefixtures(
-        "load_birth_names_data", "load_birth_names_dashboard_with_slices"
-    )
-    @mock.patch.object(async_query_manager, "update_job")
-    @mock.patch("superset.tasks.async_queries.set_form_data")
-    def test_load_chart_data_into_cache(self, mock_set_form_data, mock_update_job):
->>>>>>> 2d98af4662 (merge from upstream to master)
         from superset.tasks.async_queries import load_chart_data_into_cache
 
         app._got_first_request = False
@@ -108,13 +95,9 @@ class TestAsyncQueries(SupersetTestCase):
         ChartDataCommand, "run", side_effect=ChartDataQueryFailedError("Error: foo")
     )
     @mock.patch.object(async_query_manager, "update_job")
-<<<<<<< HEAD
     def test_load_chart_data_into_cache_error(
         self, cache_type, cache_backend, mock_update_job, mock_run_command
     ):
-=======
-    def test_load_chart_data_into_cache_error(self, mock_update_job, mock_run_command):
->>>>>>> 2d98af4662 (merge from upstream to master)
         from superset.tasks.async_queries import load_chart_data_into_cache
 
         app._got_first_request = False
@@ -185,13 +168,9 @@ class TestAsyncQueries(SupersetTestCase):
     )
     @pytest.mark.usefixtures("load_birth_names_dashboard_with_slices")
     @mock.patch.object(async_query_manager, "update_job")
-<<<<<<< HEAD
     def test_load_explore_json_into_cache(
         self, cache_type, cache_backend, mock_update_job
     ):
-=======
-    def test_load_explore_json_into_cache(self, mock_update_job):
->>>>>>> 2d98af4662 (merge from upstream to master)
         from superset.tasks.async_queries import load_explore_json_into_cache
 
         app._got_first_request = False

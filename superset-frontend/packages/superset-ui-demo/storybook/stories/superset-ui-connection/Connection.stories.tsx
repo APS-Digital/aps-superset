@@ -17,10 +17,6 @@
  * under the License.
  */
 
-<<<<<<< HEAD
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { bigNumberFormData } from '../../../../superset-ui-core/test/chart/fixtures/formData';
 
 import VerifyCORS, {

@@ -151,16 +151,10 @@ class TestDatabaseModel(SupersetTestCase):
         table1 = SqlaTable(
             table_name="test_has_extra_cache_keys_table",
             sql="""
-<<<<<<< HEAD
             SELECT
               '{{ current_user_id() }}' as id,
               '{{ current_username() }}' as username,
               '{{ current_user_email() }}' as email
-=======
-            SELECT  '{{ current_user_id() }}' as id,
-            SELECT  '{{ current_username() }}' as username,
-            SELECT  '{{ current_user_email() }}' as email,
->>>>>>> 2d98af4662 (merge from upstream to master)
             """,
             database=get_example_database(),
         )
@@ -168,26 +162,16 @@ class TestDatabaseModel(SupersetTestCase):
         query_obj = dict(**base_query_obj, extras={})
         extra_cache_keys = table1.get_extra_cache_keys(query_obj)
         self.assertTrue(table1.has_extra_cache_key_calls(query_obj))
-<<<<<<< HEAD
         assert set(extra_cache_keys) == {1, "abc", "abc@test.com"}
-=======
-        assert extra_cache_keys == [1, "abc", "abc@test.com"]
->>>>>>> 2d98af4662 (merge from upstream to master)
 
         # Table with Jinja callable disabled.
         table2 = SqlaTable(
             table_name="test_has_extra_cache_keys_disabled_table",
             sql="""
-<<<<<<< HEAD
             SELECT
               '{{ current_user_id(False) }}' as id,
               '{{ current_username(False) }}' as username,
               '{{ current_user_email(False) }}' as email,
-=======
-            SELECT  '{{ current_user_id(False) }}' as id,
-            SELECT  '{{ current_username(False) }}' as username,
-            SELECT  '{{ current_user_email(False) }}' as email,
->>>>>>> 2d98af4662 (merge from upstream to master)
             """,
             database=get_example_database(),
         )

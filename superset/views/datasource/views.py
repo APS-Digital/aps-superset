@@ -30,11 +30,7 @@ from superset.commands.dataset.exceptions import (
     DatasetForbiddenError,
     DatasetNotFoundError,
 )
-<<<<<<< HEAD
 from superset.commands.utils import populate_owner_list
-=======
-from superset.commands.utils import populate_owners
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.connectors.sqla.models import SqlaTable
 from superset.connectors.sqla.utils import get_physical_table_metadata
 from superset.daos.datasource import DatasourceDAO
@@ -186,12 +182,7 @@ class Datasource(BaseSupersetView):
                 )
                 external_metadata = get_physical_table_metadata(
                     database=database,
-<<<<<<< HEAD
                     table=Table(params["table_name"], params["schema_name"]),
-=======
-                    table_name=params["table_name"],
-                    schema_name=params["schema_name"],
->>>>>>> 2d98af4662 (merge from upstream to master)
                     normalize_columns=params.get("normalize_columns") or False,
                 )
         except (NoResultFound, NoSuchTableError) as ex:

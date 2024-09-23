@@ -27,10 +27,6 @@ from superset.commands.dataset.columns.exceptions import (
 )
 from superset.connectors.sqla.models import TableColumn
 from superset.daos.dataset import DatasetColumnDAO, DatasetDAO
-<<<<<<< HEAD
-=======
-from superset.daos.exceptions import DAODeleteFailedError
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.exceptions import SupersetSecurityException
 from superset.utils.decorators import on_error, transaction
 
@@ -47,16 +43,7 @@ class DeleteDatasetColumnCommand(BaseCommand):
     def run(self) -> None:
         self.validate()
         assert self._model
-<<<<<<< HEAD
         DatasetColumnDAO.delete([self._model])
-=======
-
-        try:
-            DatasetColumnDAO.delete([self._model])
-        except DAODeleteFailedError as ex:
-            logger.exception(ex.exception)
-            raise DatasetColumnDeleteFailedError() from ex
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     def validate(self) -> None:
         # Validate/populate model exists

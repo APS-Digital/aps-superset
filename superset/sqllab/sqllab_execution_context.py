@@ -17,10 +17,6 @@
 from __future__ import annotations
 
 import contextlib
-<<<<<<< HEAD
-=======
-import json
->>>>>>> 2d98af4662 (merge from upstream to master)
 import logging
 from dataclasses import dataclass
 from typing import Any, cast, TYPE_CHECKING

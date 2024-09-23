@@ -16,38 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { Component, ErrorInfo, ReactNode } from 'react';
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { t } from '@superset-ui/core';
 import ErrorMessageWithStackTrace from 'src/components/ErrorMessage/ErrorMessageWithStackTrace';
 
 export interface ErrorBoundaryProps {
-<<<<<<< HEAD
   children: ReactNode;
   onError?: (error: Error, info: ErrorInfo) => void;
-=======
-  children: React.ReactNode;
-  onError?: (error: Error, info: React.ErrorInfo) => void;
->>>>>>> 2d98af4662 (merge from upstream to master)
   showMessage?: boolean;
 }
 
 interface ErrorBoundaryState {
   error: Error | null;
-<<<<<<< HEAD
   info: ErrorInfo | null;
 }
 
 export default class ErrorBoundary extends Component<
-=======
-  info: React.ErrorInfo | null;
-}
-
-export default class ErrorBoundary extends React.Component<
->>>>>>> 2d98af4662 (merge from upstream to master)
   ErrorBoundaryProps,
   ErrorBoundaryState
 > {
@@ -60,11 +44,7 @@ export default class ErrorBoundary extends React.Component<
     this.state = { error: null, info: null };
   }
 
-<<<<<<< HEAD
   componentDidCatch(error: Error, info: ErrorInfo): void {
-=======
-  componentDidCatch(error: Error, info: React.ErrorInfo): void {
->>>>>>> 2d98af4662 (merge from upstream to master)
     this.props.onError?.(error, info);
     this.setState({ error, info });
   }

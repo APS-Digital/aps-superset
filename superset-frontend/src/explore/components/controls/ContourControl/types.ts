@@ -16,10 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { ReactNode } from 'react';
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { OptionValueType } from 'src/explore/components/controls/DndColumnSelectControl/types';
 import { ControlComponentProps } from 'src/explore/components/Control';
 
@@ -53,11 +50,7 @@ export interface ContourPopoverTriggerProps {
   description?: string;
   hovered?: boolean;
   value?: ContourType;
-<<<<<<< HEAD
   children?: ReactNode;
-=======
-  children?: React.ReactNode;
->>>>>>> 2d98af4662 (merge from upstream to master)
   saveContour: (contour: ContourType) => void;
   isControlled?: boolean;
   visible?: boolean;

@@ -101,7 +101,6 @@ export function ColumnSelect({
             'columns.type_generic',
           ],
         })}`,
-<<<<<<< HEAD
       })
         .then(
           ({ json: { result } }) => {
@@ -126,28 +125,6 @@ export function ColumnSelect({
           },
         )
         .finally(() => setLoading(false));
-=======
-      }).then(
-        ({ json: { result } }) => {
-          const lookupValue = Array.isArray(value) ? value : [value];
-          const valueExists = result.columns.some(
-            (column: Column) => lookupValue?.includes(column.column_name),
-          );
-          if (!valueExists) {
-            resetColumnField();
-          }
-          setColumns(result.columns);
-        },
-        async badResponse => {
-          const { error, message } = await getClientErrorObject(badResponse);
-          let errorText = message || error || t('An error has occurred');
-          if (message === 'Forbidden') {
-            errorText = t('You do not have permission to edit this dashboard');
-          }
-          addDangerToast(errorText);
-        },
-      );
->>>>>>> 2d98af4662 (merge from upstream to master)
     }
   });
 

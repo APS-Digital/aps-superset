@@ -52,10 +52,6 @@ def load_css_templates() -> None:
     """
     )
     obj.css = css
-<<<<<<< HEAD
-=======
-    db.session.commit()
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     obj = db.session.query(CssTemplate).filter_by(template_name="Courier Black").first()
     if not obj:
@@ -100,7 +96,3 @@ def load_css_templates() -> None:
     """
     )
     obj.css = css
-<<<<<<< HEAD
-=======
-    db.session.commit()
->>>>>>> 2d98af4662 (merge from upstream to master)

@@ -16,12 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { withJsx } from '@mihkeleidast/storybook-addon-source';
-=======
-import React from 'react';
-import { jsxDecorator } from 'storybook-addon-jsx';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { supersetTheme, ThemeProvider } from '@superset-ui/core';
 import { AntdThemeProvider } from '../src/components/AntdThemeProvider';
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
@@ -54,11 +49,7 @@ const providerDecorator = Story => (
   </Provider>
 );
 
-<<<<<<< HEAD
 export const decorators = [withJsx, themeDecorator, providerDecorator];
-=======
-export const decorators = [jsxDecorator, themeDecorator, providerDecorator];
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 export const parameters = {
   paddings: {

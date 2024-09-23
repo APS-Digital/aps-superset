@@ -147,34 +147,6 @@ cypress-run-all() {
   local USE_DASHBOARD=$1
   cd "$GITHUB_WORKSPACE/superset-frontend/cypress-base"
 
-<<<<<<< HEAD
-=======
-  local page=$1
-  local group=${2:-Default}
-  local cypress="./node_modules/.bin/cypress run"
-  local browser=${CYPRESS_BROWSER:-chrome}
-
-  export TERM="xterm"
-  export ELECTRON_DISABLE_GPU=true # Attempt to disable GPU for Electron-based Cypress
-
-  say "::group::Run Cypress for [$page]"
-  if [[ -z $CYPRESS_KEY ]]; then
-    xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x24' $cypress --spec "cypress/e2e/$page" --browser "$browser"
-  else
-    export CYPRESS_RECORD_KEY=$(echo $CYPRESS_KEY | base64 --decode)
-    # additional flags for Cypress dashboard recording
-    xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x24' $cypress --spec "cypress/e2e/$page" --browser "$browser" \
-      --record --group "$group" --tag "${GITHUB_REPOSITORY},${GITHUB_EVENT_NAME}" \
-      --parallel --ci-build-id "${GITHUB_SHA:0:8}-${NONCE}"
-
-  fi
-
-  # don't add quotes to $record because we do want word splitting
-  say "::endgroup::"
-}
-
-cypress-run-all() {
->>>>>>> 2d98af4662 (merge from upstream to master)
   # Start Flask and run it in background
   # --no-debugger means disable the interactive debugger on the 500 page
   # so errors can print to stderr.

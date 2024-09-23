@@ -16,11 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { useMemo, useState } from 'react';
-=======
-import React, { useMemo, useState } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { isFeatureEnabled, FeatureFlag, t } from '@superset-ui/core';
 import {
   Actions,

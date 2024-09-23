@@ -25,13 +25,6 @@ from superset.utils.core import GenericDataType
 def df_to_excel(df: pd.DataFrame, **kwargs: Any) -> Any:
     output = io.BytesIO()
 
-<<<<<<< HEAD
-=======
-    # timezones are not supported
-    for column in df.select_dtypes(include=["datetimetz"]).columns:
-        df[column] = df[column].astype(str)
-
->>>>>>> 2d98af4662 (merge from upstream to master)
     # pylint: disable=abstract-class-instantiated
     with pd.ExcelWriter(output, engine="xlsxwriter") as writer:
         df.to_excel(writer, **kwargs)

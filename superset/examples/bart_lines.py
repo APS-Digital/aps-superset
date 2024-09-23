@@ -65,8 +65,4 @@ def load_bart_lines(only_metadata: bool = False, force: bool = False) -> None:
     tbl.description = "BART lines"
     tbl.database = database
     tbl.filter_select_enabled = True
-<<<<<<< HEAD
-=======
-    db.session.commit()
->>>>>>> 2d98af4662 (merge from upstream to master)
     tbl.fetch_metadata()

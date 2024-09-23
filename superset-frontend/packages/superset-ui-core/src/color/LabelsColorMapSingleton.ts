@@ -19,11 +19,7 @@
 
 import { makeSingleton } from '../utils';
 
-<<<<<<< HEAD:superset-frontend/packages/superset-ui-core/src/color/LabelsColorMapSingleton.ts
 export enum LabelsColorMapSource {
-=======
-export enum SharedLabelColorSource {
->>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/packages/superset-ui-core/src/color/SharedLabelColorSingleton.ts
   Dashboard,
   Explore,
 }
@@ -39,11 +35,7 @@ export class LabelsColorMap {
     // holds labels and original color schemes for each chart in context
     this.chartsLabelsMap = new Map();
     this.colorMap = new Map();
-<<<<<<< HEAD:superset-frontend/packages/superset-ui-core/src/color/LabelsColorMapSingleton.ts
     this.source = LabelsColorMapSource.Dashboard;
-=======
-    this.source = SharedLabelColorSource.Dashboard;
->>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/packages/superset-ui-core/src/color/SharedLabelColorSingleton.ts
   }
 
   updateColorMap(categoricalNamespace: any, colorScheme?: string) {
@@ -66,7 +58,6 @@ export class LabelsColorMap {
     return this.colorMap;
   }
 
-<<<<<<< HEAD:superset-frontend/packages/superset-ui-core/src/color/LabelsColorMapSingleton.ts
   addSlice(
     label: string,
     color: string,
@@ -80,15 +71,6 @@ export class LabelsColorMap {
       scheme: '',
     };
     const { labels } = chartConfig;
-=======
-  addSlice(label: string, color: string, sliceId?: number) {
-    if (
-      this.source !== SharedLabelColorSource.Dashboard ||
-      sliceId === undefined
-    )
-      return;
-    const labels = this.sliceLabelMap.get(sliceId) || [];
->>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/packages/superset-ui-core/src/color/SharedLabelColorSingleton.ts
     if (!labels.includes(label)) {
       labels.push(label);
       this.chartsLabelsMap.set(sliceId, {
@@ -100,14 +82,9 @@ export class LabelsColorMap {
   }
 
   removeSlice(sliceId: number) {
-<<<<<<< HEAD:superset-frontend/packages/superset-ui-core/src/color/LabelsColorMapSingleton.ts
     if (this.source !== LabelsColorMapSource.Dashboard) return;
 
     this.chartsLabelsMap.delete(sliceId);
-=======
-    if (this.source !== SharedLabelColorSource.Dashboard) return;
-    this.sliceLabelMap.delete(sliceId);
->>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/packages/superset-ui-core/src/color/SharedLabelColorSingleton.ts
     const newColorMap = new Map();
 
     this.chartsLabelsMap.forEach(chartConfig => {

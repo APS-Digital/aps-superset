@@ -60,11 +60,7 @@ export const InteractiveDropdown = ({
 InteractiveDropdown.argTypes = {
   overlayType: {
     defaultValue: 'menu',
-<<<<<<< HEAD
     control: { type: 'radio' },
     options: ['menu', 'custom'],
-=======
-    control: { type: 'radio', options: ['menu', 'custom'] },
->>>>>>> 2d98af4662 (merge from upstream to master)
   },
 };

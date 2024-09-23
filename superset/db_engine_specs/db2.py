@@ -26,8 +26,6 @@ from superset.sql_parse import Table
 
 logger = logging.getLogger(__name__)
 
-logger = logging.getLogger(__name__)
-
 
 class Db2EngineSpec(BaseEngineSpec):
     engine = "db2"
@@ -68,13 +66,9 @@ class Db2EngineSpec(BaseEngineSpec):
 
     @classmethod
     def get_table_comment(
-<<<<<<< HEAD
         cls,
         inspector: Inspector,
         table: Table,
-=======
-        cls, inspector: Inspector, table_name: str, schema: Union[str, None]
->>>>>>> 2d98af4662 (merge from upstream to master)
     ) -> Optional[str]:
         """
         Get comment of table from a given schema
@@ -82,21 +76,12 @@ class Db2EngineSpec(BaseEngineSpec):
         Ibm Db2 return comments as tuples, so we need to get the first element
 
         :param inspector: SqlAlchemy Inspector instance
-<<<<<<< HEAD
         :param table: Table instance
-=======
-        :param table_name: Table name
-        :param schema: Schema name. If omitted, uses default schema for database
->>>>>>> 2d98af4662 (merge from upstream to master)
         :return: comment of table
         """
         comment = None
         try:
-<<<<<<< HEAD
             table_comment = inspector.get_table_comment(table.table, table.schema)
-=======
-            table_comment = inspector.get_table_comment(table_name, schema)
->>>>>>> 2d98af4662 (merge from upstream to master)
             comment = table_comment.get("text")
             return comment[0]
         except IndexError:
@@ -109,10 +94,7 @@ class Db2EngineSpec(BaseEngineSpec):
     @classmethod
     def get_prequeries(
         cls,
-<<<<<<< HEAD
         database: Database,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         catalog: Union[str, None] = None,
         schema: Union[str, None] = None,
     ) -> list[str]:

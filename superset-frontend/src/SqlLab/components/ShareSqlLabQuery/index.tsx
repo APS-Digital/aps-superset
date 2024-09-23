@@ -93,12 +93,9 @@ const ShareSqlLabQuery = ({
     }
   };
   const getCopyUrl = (callback: Function) => {
-<<<<<<< HEAD
     logAction(LOG_ACTIONS_SQLLAB_COPY_LINK, {
       shortcut: false,
     });
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
     if (isFeatureEnabled(FeatureFlag.ShareQueriesViaKvStore)) {
       return getCopyUrlForKvStore(callback);
     }

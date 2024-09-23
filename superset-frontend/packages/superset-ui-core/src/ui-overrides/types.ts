@@ -160,7 +160,6 @@ export interface DashboardEmbedModalExtensions {
   onHide: () => void;
 }
 
-<<<<<<< HEAD
 export interface ButtonProps {
   name: ReactNode;
   onClick?: MouseEventHandler<HTMLElement>;
@@ -202,15 +201,12 @@ export interface CustomAutocomplete extends AutocompleteItem {
   insertMatch?: (editor: Editor, data: AutocompleteItem) => void;
 }
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 export type Extensions = Partial<{
   'alertsreports.header.icon': ComponentType;
   'load.drillby.options': LoadDrillByOptions;
   'embedded.documentation.configuration_details': ComponentType<ConfigDetailsProps>;
   'embedded.documentation.description': ReturningDisplayable;
   'embedded.documentation.url': string;
-<<<<<<< HEAD
   'embedded.modal': ComponentType<DashboardEmbedModalExtensions>;
   'dashboard.nav.right': ComponentType;
   'home.submenu': ComponentType<SubMenuProps>;
@@ -232,23 +228,4 @@ export type Extensions = Partial<{
   'sqleditor.extension.customAutocomplete': (
     args: CustomAutoCompleteArgs,
   ) => CustomAutocomplete[] | undefined;
-=======
-  'embedded.modal': React.ComponentType<DashboardEmbedModalExtensions>;
-  'dashboard.nav.right': React.ComponentType;
-  'navbar.right-menu.item.icon': React.ComponentType<RightMenuItemIconProps>;
-  'navbar.right': React.ComponentType;
-  'report-modal.dropdown.item.icon': React.ComponentType;
-  'root.context.provider': React.ComponentType;
-  'welcome.message': React.ComponentType;
-  'welcome.banner': React.ComponentType;
-  'welcome.main.replacement': React.ComponentType;
-  'ssh_tunnel.form.switch': React.ComponentType<SwitchProps>;
-  'databaseconnection.extraOption': DatabaseConnectionExtension;
-  /* Custom components to show in the database and dataset delete modals */
-  'database.delete.related': React.ComponentType<DatabaseDeleteRelatedExtensionProps>;
-  'dataset.delete.related': React.ComponentType<DatasetDeleteRelatedExtensionProps>;
-  'sqleditor.extension.form': React.ComponentType<SQLFormExtensionProps>;
-  'sqleditor.extension.resultTable': React.ComponentType<SQLResultTableExtentionProps>;
-  'dashboard.slice.header': React.ComponentType<SliceHeaderExtension>;
->>>>>>> 2d98af4662 (merge from upstream to master)
 }>;

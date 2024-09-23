@@ -40,10 +40,6 @@ import {
 import { LabeledValue as AntdLabeledValue } from 'antd/lib/select';
 import { debounce, isEqual, uniq } from 'lodash';
 import Icons from 'src/components/Icons';
-<<<<<<< HEAD
-=======
-import { getClientErrorObject } from 'src/utils/getClientErrorObject';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { FAST_DEBOUNCE, SLOW_DEBOUNCE } from 'src/constants';
 import {
   getValue,
@@ -60,10 +56,7 @@ import {
   mapOptions,
   getOption,
   isObject,
-<<<<<<< HEAD
   isEqual as utilsIsEqual,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 } from './utils';
 import {
   AsyncSelectProps,
@@ -470,11 +463,7 @@ const AsyncSelect = forwardRef(
       fireOnChange();
     };
 
-<<<<<<< HEAD
     const handleOnBlur = (event: FocusEvent<HTMLElement>) => {
-=======
-    const handleOnBlur = (event: React.FocusEvent<HTMLElement>) => {
->>>>>>> 2d98af4662 (merge from upstream to master)
       setInputValue('');
       onBlur?.(event);
     };
@@ -551,7 +540,6 @@ const AsyncSelect = forwardRef(
     );
 
     const getPastedTextValue = useCallback(
-<<<<<<< HEAD
       async (text: string) => {
         let option = getOption(text, fullSelectOptions, true);
         if (!option && !allValuesLoaded) {
@@ -564,10 +552,6 @@ const AsyncSelect = forwardRef(
         if (!option && !allowNewOptions) {
           return undefined;
         }
-=======
-      (text: string) => {
-        const option = getOption(text, fullSelectOptions, true);
->>>>>>> 2d98af4662 (merge from upstream to master)
         const value: AntdLabeledValue = {
           label: text,
           value: text,
@@ -578,7 +562,6 @@ const AsyncSelect = forwardRef(
         }
         return value;
       },
-<<<<<<< HEAD
       [allValuesLoaded, allowNewOptions, fullSelectOptions, options, pageSize],
     );
 
@@ -598,22 +581,6 @@ const AsyncSelect = forwardRef(
         setSelectValue(previous => [
           ...((previous || []) as AntdLabeledValue[]),
           ...values.filter(value => !hasOption(value.value, previous)),
-=======
-      [fullSelectOptions],
-    );
-
-    const onPaste = (e: ClipboardEvent<HTMLInputElement>) => {
-      const pastedText = e.clipboardData.getData('text');
-      if (isSingleMode) {
-        setSelectValue(getPastedTextValue(pastedText));
-      } else {
-        const token = tokenSeparators.find(token => pastedText.includes(token));
-        const array = token ? uniq(pastedText.split(token)) : [pastedText];
-        const values = array.map(item => getPastedTextValue(item));
-        setSelectValue(previous => [
-          ...((previous || []) as AntdLabeledValue[]),
-          ...values,
->>>>>>> 2d98af4662 (merge from upstream to master)
         ]);
       }
       fireOnChange();

@@ -38,11 +38,7 @@ export interface RunQueryActionButtonProps {
   queryState?: string;
   runQuery: (c?: boolean) => void;
   stopQuery: () => void;
-<<<<<<< HEAD
   overlayCreateAsMenu: ReactElement | null;
-=======
-  overlayCreateAsMenu: React.ReactElement | null;
->>>>>>> 2d98af4662 (merge from upstream to master)
 }
 
 const buildText = (

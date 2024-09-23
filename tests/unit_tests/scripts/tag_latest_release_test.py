@@ -16,10 +16,6 @@
 # under the License.
 import subprocess
 from unittest import mock
-<<<<<<< HEAD
-=======
-from unittest.mock import patch
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 import pytest
 

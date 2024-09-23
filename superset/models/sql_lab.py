@@ -58,7 +58,6 @@ from superset.models.helpers import (
 )
 from superset.sql_parse import CtasMethod, extract_tables_from_jinja_sql, Table
 from superset.sqllab.limiting_factor import LimitingFactor
-<<<<<<< HEAD
 from superset.utils import json
 from superset.utils.core import (
     get_column_name,
@@ -67,9 +66,6 @@ from superset.utils.core import (
     QueryStatus,
     user_label,
 )
-=======
-from superset.utils.core import get_column_name, MediumText, QueryStatus, user_label
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 if TYPE_CHECKING:
     from superset.connectors.sqla.models import TableColumn
@@ -94,14 +90,10 @@ class SqlTablesMixin:  # pylint: disable=too-few-public-methods
 
 
 class Query(
-<<<<<<< HEAD
     SqlTablesMixin,
     ExtraJSONMixin,
     ExploreMixin,
     Model,
-=======
-    ExtraJSONMixin, ExploreMixin, Model
->>>>>>> 2d98af4662 (merge from upstream to master)
 ):  # pylint: disable=abstract-method,too-many-public-methods
     """ORM model for SQL query
 
@@ -123,20 +115,12 @@ class Query(
     tab_name = Column(String(256))
     sql_editor_id = Column(String(256), index=True)
     schema = Column(String(256))
-<<<<<<< HEAD
     catalog = Column(String(256), nullable=True, default=None)
     sql = Column(LongText())
     # Query to retrieve the results,
     # used only in case of select_as_cta_used is true.
     select_sql = Column(LongText())
     executed_sql = Column(LongText())
-=======
-    sql = Column(MediumText())
-    # Query to retrieve the results,
-    # used only in case of select_as_cta_used is true.
-    select_sql = Column(MediumText())
-    executed_sql = Column(MediumText())
->>>>>>> 2d98af4662 (merge from upstream to master)
     # Could be configured in the superset config.
     limit = Column(Integer)
     limiting_factor = Column(
@@ -227,13 +211,6 @@ class Query(
         return self.user.username
 
     @property
-<<<<<<< HEAD
-=======
-    def sql_tables(self) -> list[Table]:
-        return list(ParsedQuery(self.sql, engine=self.db_engine_spec.engine).tables)
-
-    @property
->>>>>>> 2d98af4662 (merge from upstream to master)
     def columns(self) -> list["TableColumn"]:
         from superset.connectors.sqla.models import (  # pylint: disable=import-outside-toplevel
             TableColumn,
@@ -404,7 +381,6 @@ class Query(
         return self.make_sqla_column_compatible(sqla_column, label)
 
 
-<<<<<<< HEAD
 class SavedQuery(
     SqlTablesMixin,
     AuditMixinNullable,
@@ -412,9 +388,6 @@ class SavedQuery(
     ImportExportMixin,
     Model,
 ):
-=======
-class SavedQuery(AuditMixinNullable, ExtraJSONMixin, ImportExportMixin, Model):
->>>>>>> 2d98af4662 (merge from upstream to master)
     """ORM model for SQL query"""
 
     __tablename__ = "saved_query"
@@ -486,15 +459,6 @@ class SavedQuery(AuditMixinNullable, ExtraJSONMixin, ImportExportMixin, Model):
 
     def url(self) -> str:
         return f"/sqllab?savedQueryId={self.id}"
-<<<<<<< HEAD
-=======
-
-    @property
-    def sql_tables(self) -> list[Table]:
-        return list(
-            ParsedQuery(self.sql, engine=self.database.db_engine_spec.engine).tables
-        )
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     @property
     def last_run_humanized(self) -> str:

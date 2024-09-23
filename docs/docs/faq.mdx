@@ -1,21 +1,10 @@
 ---
-<<<<<<< HEAD:docs/docs/faq.mdx
 sidebar_position: 9
-=======
-title: Frequently Asked Questions
-hide_title: true
-sidebar_position: 8
->>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/frequently-asked-questions.mdx
 ---
 
 # FAQ
 
-<<<<<<< HEAD:docs/docs/faq.mdx
 ## How big of a dataset can Superset handle?
-=======
-
-### How big of a dataset can Superset handle?
->>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/frequently-asked-questions.mdx
 
 Superset can work with even gigantic databases! Superset acts as a thin layer above your underlying
 databases or data engines, which do all the processing.  Superset simply visualizes the results of
@@ -25,11 +14,7 @@ The key to achieving acceptable performance in Superset is whether your database
 and return results at a speed that is acceptable to your users. If you experience slow performance with
 Superset, benchmark and tune your data warehouse.
 
-<<<<<<< HEAD:docs/docs/faq.mdx
 ## What are the computing specifications required to run Superset?
-=======
-### What are the computing specifications required to run Superset?
->>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/frequently-asked-questions.mdx
 
 The specs of your Superset installation depend on how many users you have and what their activity is, not
 on the size of your data.  Superset admins in the community have reported 8GB RAM, 2vCPUs as adequate to
@@ -42,12 +27,7 @@ to occur in spikes, e.g., if everyone in a meeting loads the same dashboard at o
 Superset's application metadata does not require a very large database to store it, though
 the log file grows over time.
 
-<<<<<<< HEAD:docs/docs/faq.mdx
 ## Can I join / query multiple tables at one time?
-=======
-
-### Can I join / query multiple tables at one time?
->>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/frequently-asked-questions.mdx
 
 Not in the Explore or Visualization UI. A Superset SQLAlchemy datasource can only be a single table
 or a view.
@@ -68,11 +48,7 @@ the result to users interacting with Superset.
 However, if you are using SQL Lab, there is no such limitation. You can write SQL queries to join
 multiple tables as long as your database account has access to the tables.
 
-<<<<<<< HEAD:docs/docs/faq.mdx
 ## How do I create my own visualization?
-=======
-### How do I create my own visualization?
->>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/frequently-asked-questions.mdx
 
 We recommend reading the instructions in
 [Creating Visualization Plugins](/docs/contributing/howtos#creating-visualization-plugins).
@@ -115,11 +91,7 @@ to **.env** at the key MAPBOX_API_KEY:
 MAPBOX_API_KEY = "longstringofalphanumer1c"
 ```
 
-<<<<<<< HEAD:docs/docs/faq.mdx
 ## How to limit the timed refresh on a dashboard?
-=======
-### How to limit the timed refresh on a dashboard?
->>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/frequently-asked-questions.mdx
 
 By default, the dashboard timed refresh feature allows you to automatically re-query every slice on
 a dashboard according to a set schedule. Sometimes, however, you won’t want all of the slices to be
@@ -185,11 +157,7 @@ table afterwards to configure the Columns tab, check the appropriate boxes and s
 
 To clarify, the database backend is an OLTP database used by Superset to store its internal
 information like your list of users and dashboard definitions. While Superset supports a
-<<<<<<< HEAD:docs/docs/faq.mdx
 [variety of databases as data *sources*](/docs/configuration/databases#installing-database-drivers),
-=======
-[variety of databases as data *sources*](/docs/databases/installing-database-drivers/),
->>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/frequently-asked-questions.mdx
 only a few database engines are supported for use as the OLTP backend / metadata store.
 
 Superset is tested using MySQL, PostgreSQL, and SQLite backends. It’s recommended you install
@@ -198,20 +166,12 @@ may work but isn’t tested.  It has been reported that [Microsoft SQL Server do
 work as a Superset backend](https://github.com/apache/superset/issues/18961). Column-store,
 non-OLTP databases are not designed for this type of workload.
 
-<<<<<<< HEAD:docs/docs/faq.mdx
 ## How can I configure OAuth authentication and authorization?
-=======
-### How can I configure OAuth authentication and authorization?
->>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/frequently-asked-questions.mdx
 
 You can take a look at this Flask-AppBuilder
 [configuration example](https://github.com/dpgaspar/Flask-AppBuilder/blob/master/examples/oauth/config.py).
 
-<<<<<<< HEAD:docs/docs/faq.mdx
 ## Is there a way to force the dashboard to use specific colors?
-=======
-### Is there a way to force the dashboard to use specific colors?
->>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/frequently-asked-questions.mdx
 
 It is possible on a per-dashboard basis by providing a mapping of labels to colors in the JSON
 Metadata attribute using the `label_colors` key.
@@ -284,22 +244,14 @@ guarantees and are not recommended but may fit your use case temporarily:
 - using the internal FAB ModelView API (to be deprecated in Superset)
 - altering the source code in your fork
 
-<<<<<<< HEAD:docs/docs/faq.mdx
 ## How can I see usage statistics (e.g., monthly active users)?
-=======
-### How can I see usage statistics (e.g., monthly active users)?
->>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/frequently-asked-questions.mdx
 
 This functionality is not included with Superset, but you can extract and analyze Superset's application
 metadata to see what actions have occurred.  By default, user activities are logged in the `logs` table
 in Superset's metadata database.  One company has published a write-up of [how they analyzed Superset
 usage, including example queries](https://engineering.hometogo.com/monitor-superset-usage-via-superset-c7f9fba79525).
 
-<<<<<<< HEAD:docs/docs/faq.mdx
 ## What Does Hours Offset in the Edit Dataset view do?
-=======
-### What Does Hours Offset in the Edit Dataset view do?
->>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/frequently-asked-questions.mdx
 
 In the Edit Dataset view, you can specify a time offset. This field lets you configure the
 number of hours to be added or subtracted from the time column.
@@ -311,15 +263,9 @@ Superset uses [Scarf](https://about.scarf.sh/) by default to collect basic telem
 We use the [Scarf Gateway](https://docs.scarf.sh/gateway/) to sit in front of container registries, the [scarf-js](https://about.scarf.sh/package-sdks) package to track `npm` installations, and a Scarf pixel to gather anonymous analytics on Superset page views.
 Scarf purges PII and provides aggregated statistics. Superset users can easily opt out of analytics in various ways documented [here](https://docs.scarf.sh/gateway/#do-not-track) and [here](https://docs.scarf.sh/package-analytics/#as-a-user-of-a-package-using-scarf-js-how-can-i-opt-out-of-analytics).
 Superset maintainers can also opt out of telemetry data collection by setting the `SCARF_ANALYTICS` environment variable to `false` in the Superset container (or anywhere Superset/webpack are run).
-<<<<<<< HEAD:docs/docs/faq.mdx
 Additional opt-out instructions for Docker users are available on the [Docker Installation](/docs/installation/docker-compose) page.
 
 ## Does Superset have an archive panel or trash bin from which a user can recover deleted assets?
-=======
-Additional opt-out instructions for Docker users are available on the [Docker Installation](/docs/installation/installing-superset-using-docker-compose) page.
-
-### Does Superset have an archive panel or trash bin from which a user can recover deleted assets?
->>>>>>> 2d98af4662 (merge from upstream to master):docs/docs/frequently-asked-questions.mdx
 
 No. Currently, there is no way to recover a deleted Superset dashboard/chart/dataset/database from the UI. However, there is an [ongoing discussion](https://github.com/apache/superset/discussions/18386) about implementing such a feature.
 

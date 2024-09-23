@@ -96,11 +96,7 @@ const StyledSectionHeaderH2 = styled(StyledSectionHeader)`
 interface SectionHeaderProps {
   level: any;
   title: string;
-<<<<<<< HEAD
   subtitle?: string | ReactNode;
-=======
-  subtitle?: string | Element | React.ReactNode;
->>>>>>> 2d98af4662 (merge from upstream to master)
   dark?: boolean;
 }
 

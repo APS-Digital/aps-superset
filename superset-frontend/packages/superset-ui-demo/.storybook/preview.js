@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { withJsx } from '@mihkeleidast/storybook-addon-source';
-=======
-import { jsxDecorator } from 'storybook-addon-jsx';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import {
   configure,
   getTimeFormatterRegistry,
@@ -19,11 +15,7 @@ import themeDecorator from './themeDecorator';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './storybook.css';
 
-<<<<<<< HEAD
 export const decorators = [withJsx, themeDecorator];
-=======
-export const decorators = [jsxDecorator, themeDecorator];
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 export const parameters = {
   passArgsFirst: false,

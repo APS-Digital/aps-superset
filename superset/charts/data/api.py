@@ -17,10 +17,6 @@
 from __future__ import annotations
 
 import contextlib
-<<<<<<< HEAD
-=======
-import json
->>>>>>> 2d98af4662 (merge from upstream to master)
 import logging
 from typing import Any, TYPE_CHECKING
 
@@ -49,18 +45,11 @@ from superset.daos.exceptions import DatasourceNotFound
 from superset.exceptions import QueryObjectValidationError
 from superset.extensions import event_logger
 from superset.models.sql_lab import Query
-<<<<<<< HEAD
 from superset.utils import json
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.core import (
     create_zip,
     DatasourceType,
     get_user_id,
-<<<<<<< HEAD
-=======
-    json_int_dttm_ser,
->>>>>>> 2d98af4662 (merge from upstream to master)
 )
 from superset.utils.decorators import logs_context
 from superset.views.base import CsvResponse, generate_download_headers, XlsxResponse

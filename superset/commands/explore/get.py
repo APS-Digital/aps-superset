@@ -115,7 +115,6 @@ class GetExploreCommand(BaseCommand, ABC):
                 datasource = DatasourceDAO.get_datasource(
                     cast(str, self._datasource_type), self._datasource_id
                 )
-<<<<<<< HEAD
 
         datasource_name = _("[Missing Dataset]")
 
@@ -123,9 +122,6 @@ class GetExploreCommand(BaseCommand, ABC):
             datasource_name = datasource.name
             security_manager.can_access_datasource(datasource)
 
-=======
-        datasource_name = datasource.name if datasource else _("[Missing Dataset]")
->>>>>>> 2d98af4662 (merge from upstream to master)
         viz_type = form_data.get("viz_type")
         if not viz_type and datasource and datasource.default_endpoint:
             raise WrongEndpointError(redirect=datasource.default_endpoint)

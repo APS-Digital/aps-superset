@@ -29,37 +29,24 @@ from superset.commands.database.ssh_tunnel.exceptions import (
     SSHTunnelRequiredFieldValidationError,
 )
 from superset.daos.database import SSHTunnelDAO
-<<<<<<< HEAD
 from superset.databases.utils import make_url_safe
 from superset.extensions import event_logger
 from superset.models.core import Database
 from superset.utils.decorators import on_error, transaction
-=======
-from superset.daos.exceptions import DAOCreateFailedError
-from superset.extensions import event_logger
-from superset.models.core import Database
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 logger = logging.getLogger(__name__)
 
 
 class CreateSSHTunnelCommand(BaseCommand):
-<<<<<<< HEAD
     _database: Database
 
     def __init__(self, database: Database, data: dict[str, Any]):
         self._properties = data.copy()
         self._properties["database"] = database
         self._database = database
-=======
-    def __init__(self, database: Database, data: dict[str, Any]):
-        self._properties = data.copy()
-        self._properties["database"] = database
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     @transaction(on_error=partial(on_error, reraise=SSHTunnelCreateFailedError))
     def run(self) -> Model:
-<<<<<<< HEAD
         """
         Create an SSH tunnel.
 
@@ -71,17 +58,6 @@ class CreateSSHTunnelCommand(BaseCommand):
         self.validate()
         return SSHTunnelDAO.create(attributes=self._properties)
 
-=======
-        try:
-            self.validate()
-            ssh_tunnel = SSHTunnelDAO.create(attributes=self._properties, commit=False)
-            return ssh_tunnel
-        except DAOCreateFailedError as ex:
-            raise SSHTunnelCreateFailedError() from ex
-        except SSHTunnelInvalidError as ex:
-            raise ex
-
->>>>>>> 2d98af4662 (merge from upstream to master)
     def validate(self) -> None:
         # TODO(hughhh): check to make sure the server port is not localhost
         # using the config.SSH_TUNNEL_MANAGER
@@ -95,12 +71,9 @@ class CreateSSHTunnelCommand(BaseCommand):
         private_key_password: Optional[str] = self._properties.get(
             "private_key_password"
         )
-<<<<<<< HEAD
         url = make_url_safe(self._database.sqlalchemy_uri)
         if not url.port:
             raise SSHTunnelDatabasePortError()
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         if not server_address:
             exceptions.append(SSHTunnelRequiredFieldValidationError("server_address"))
         if not server_port:

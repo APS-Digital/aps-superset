@@ -34,22 +34,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import fetchMock from 'fetch-mock';
 import { render, act } from 'spec/helpers/testing-library';
 import ToastContainer from 'src/components/MessageToasts/ToastContainer';
 import { initialState, defaultQueryEditor } from 'src/SqlLab/fixtures';
 import { logging } from '@superset-ui/core';
 import EditorAutoSync, { INTERVAL } from '.';
-=======
-import React from 'react';
-import fetchMock from 'fetch-mock';
-import { render, waitFor } from 'spec/helpers/testing-library';
-import ToastContainer from 'src/components/MessageToasts/ToastContainer';
-import { initialState, defaultQueryEditor } from 'src/SqlLab/fixtures';
-import { logging } from '@superset-ui/core';
-import EditorAutoSync from '.';
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 jest.mock('@superset-ui/core', () => ({
   ...jest.requireActual('@superset-ui/core'),
@@ -68,10 +58,7 @@ const unsavedSqlLabState = {
   },
   editorTabLastUpdatedAt,
 };
-<<<<<<< HEAD
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 beforeAll(() => {
   jest.useFakeTimers();
 });
@@ -80,7 +67,6 @@ afterAll(() => {
   jest.useRealTimers();
 });
 
-<<<<<<< HEAD
 const updateActiveEditorTabState = `glob:*/tabstateview/*/activate`;
 
 beforeEach(() => {
@@ -91,8 +77,6 @@ afterEach(() => {
   fetchMock.reset();
 });
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 test('sync the unsaved editor tab state when there are new changes since the last update', async () => {
   const updateEditorTabState = `glob:*/tabstateview/${defaultQueryEditor.id}`;
   fetchMock.put(updateEditorTabState, 200);
@@ -104,18 +88,13 @@ test('sync the unsaved editor tab state when there are new changes since the las
       sqlLab: unsavedSqlLabState,
     },
   });
-<<<<<<< HEAD
   await act(async () => {
     jest.advanceTimersByTime(INTERVAL);
   });
-=======
-  await waitFor(() => jest.runAllTimers());
->>>>>>> 2d98af4662 (merge from upstream to master)
   expect(fetchMock.calls(updateEditorTabState)).toHaveLength(1);
   fetchMock.restore();
 });
 
-<<<<<<< HEAD
 test('sync the unsaved NEW editor state when there are new in local storage', async () => {
   const createEditorTabState = `glob:*/tabstateview/`;
   fetchMock.post(createEditorTabState, { id: 123 });
@@ -202,8 +181,6 @@ test('sync the destroyed editor id when there are updates in destroyed editors',
   expect(fetchMock.calls(deleteEditorState)).toHaveLength(1);
 });
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 test('skip syncing the unsaved editor tab state when the updates are already synced', async () => {
   const updateEditorTabState = `glob:*/tabstateview/${defaultQueryEditor.id}`;
   fetchMock.put(updateEditorTabState, 200);
@@ -223,13 +200,9 @@ test('skip syncing the unsaved editor tab state when the updates are already syn
       },
     },
   });
-<<<<<<< HEAD
   await act(async () => {
     jest.advanceTimersByTime(INTERVAL);
   });
-=======
-  await waitFor(() => jest.runAllTimers());
->>>>>>> 2d98af4662 (merge from upstream to master)
   expect(fetchMock.calls(updateEditorTabState)).toHaveLength(0);
   fetchMock.restore();
 });
@@ -253,13 +226,9 @@ test('renders an error toast when the sync failed', async () => {
       },
     },
   );
-<<<<<<< HEAD
   await act(async () => {
     jest.advanceTimersByTime(INTERVAL);
   });
-=======
-  await waitFor(() => jest.runAllTimers());
->>>>>>> 2d98af4662 (merge from upstream to master)
 
   expect(logging.warn).toHaveBeenCalledTimes(1);
   expect(logging.warn).toHaveBeenCalledWith(

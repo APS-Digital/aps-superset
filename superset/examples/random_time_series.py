@@ -71,10 +71,6 @@ def load_random_time_series_data(
     obj.main_dttm_col = "ds"
     obj.database = database
     obj.filter_select_enabled = True
-<<<<<<< HEAD
-=======
-    db.session.commit()
->>>>>>> 2d98af4662 (merge from upstream to master)
     obj.fetch_metadata()
     tbl = obj
 

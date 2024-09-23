@@ -16,49 +16,29 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { Menu } from 'src/components/Menu';
 import DownloadScreenshot from './DownloadScreenshot';
 import { DownloadScreenshotFormat } from './types';
-=======
-import React from 'react';
-import { Menu } from 'src/components/Menu';
-import DownloadAsImage from './DownloadAsImage';
-import DownloadAsPdf from './DownloadAsPdf';
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 export interface DownloadMenuItemProps {
   pdfMenuItemTitle: string;
   imageMenuItemTitle: string;
-<<<<<<< HEAD
   dashboardTitle: string;
   logEvent?: Function;
   dashboardId: string;
-=======
-  addDangerToast: Function;
-  dashboardTitle: string;
-  logEvent?: Function;
->>>>>>> 2d98af4662 (merge from upstream to master)
 }
 
 const DownloadMenuItems = (props: DownloadMenuItemProps) => {
   const {
     pdfMenuItemTitle,
     imageMenuItemTitle,
-<<<<<<< HEAD
     logEvent,
     dashboardId,
-=======
-    addDangerToast,
-    dashboardTitle,
-    logEvent,
->>>>>>> 2d98af4662 (merge from upstream to master)
     ...rest
   } = props;
 
   return (
     <Menu selectable={false}>
-<<<<<<< HEAD
       <DownloadScreenshot
         text={pdfMenuItemTitle}
         dashboardId={dashboardId}
@@ -71,20 +51,6 @@ const DownloadMenuItems = (props: DownloadMenuItemProps) => {
         dashboardId={dashboardId}
         logEvent={logEvent}
         format={DownloadScreenshotFormat.PNG}
-=======
-      <DownloadAsPdf
-        text={pdfMenuItemTitle}
-        addDangerToast={addDangerToast}
-        dashboardTitle={dashboardTitle}
-        logEvent={logEvent}
-        {...rest}
-      />
-      <DownloadAsImage
-        text={imageMenuItemTitle}
-        addDangerToast={addDangerToast}
-        dashboardTitle={dashboardTitle}
-        logEvent={logEvent}
->>>>>>> 2d98af4662 (merge from upstream to master)
         {...rest}
       />
     </Menu>

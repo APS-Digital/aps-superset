@@ -18,10 +18,7 @@
 from sqlalchemy.orm.session import Session
 
 from superset.daos.dataset import DatasetDAO
-<<<<<<< HEAD
 from superset.sql_parse import Table
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def test_validate_update_uniqueness(session: Session) -> None:
@@ -54,59 +51,29 @@ def test_validate_update_uniqueness(session: Session) -> None:
     db.session.add_all([database, dataset1, dataset2])
     db.session.flush()
 
-<<<<<<< HEAD
     assert (
         DatasetDAO.validate_update_uniqueness(
             database=database,
             table=Table(dataset1.table_name, dataset1.schema),
             dataset_id=dataset1.id,
-=======
-    # same table name, different schema
-    assert (
-        DatasetDAO.validate_update_uniqueness(
-            database_id=database.id,
-            schema=dataset1.schema,
-            dataset_id=dataset1.id,
-            name=dataset1.table_name,
->>>>>>> 2d98af4662 (merge from upstream to master)
         )
         is True
     )
 
-<<<<<<< HEAD
     assert (
         DatasetDAO.validate_update_uniqueness(
             database=database,
             table=Table(dataset1.table_name, dataset2.schema),
             dataset_id=dataset1.id,
-=======
-    # duplicate schema and table name
-    assert (
-        DatasetDAO.validate_update_uniqueness(
-            database_id=database.id,
-            schema=dataset2.schema,
-            dataset_id=dataset1.id,
-            name=dataset1.table_name,
->>>>>>> 2d98af4662 (merge from upstream to master)
         )
         is False
     )
 
-<<<<<<< HEAD
     assert (
         DatasetDAO.validate_update_uniqueness(
             database=database,
             table=Table(dataset1.table_name),
             dataset_id=dataset1.id,
-=======
-    # no schema
-    assert (
-        DatasetDAO.validate_update_uniqueness(
-            database_id=database.id,
-            schema=None,
-            dataset_id=dataset1.id,
-            name=dataset1.table_name,
->>>>>>> 2d98af4662 (merge from upstream to master)
         )
         is True
     )

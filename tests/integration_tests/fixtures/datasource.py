@@ -174,14 +174,8 @@ def get_datasource_post() -> dict[str, Any]:
 @pytest.fixture()
 @pytest.mark.usefixtures("app_conntext")
 def load_dataset_with_columns() -> Generator[SqlaTable, None, None]:
-<<<<<<< HEAD
     engine = create_engine(app.config["SQLALCHEMY_DATABASE_URI"], echo=True)
     meta = MetaData()
-=======
-    with app.app_context():
-        engine = create_engine(app.config["SQLALCHEMY_DATABASE_URI"], echo=True)
-        meta = MetaData()
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     students = Table(
         "students",
@@ -195,7 +189,6 @@ def load_dataset_with_columns() -> Generator[SqlaTable, None, None]:
 
     students.insert().values(name="George", ds="2021-01-01")
 
-<<<<<<< HEAD
     dataset = SqlaTable(
         database_id=db.session.query(Database).first().id, table_name="students"
     )
@@ -214,24 +207,3 @@ def load_dataset_with_columns() -> Generator[SqlaTable, None, None]:
     db.session.delete(dataset)
     db.session.delete(column)
     db.session.commit()
-=======
-        dataset = SqlaTable(
-            database_id=db.session.query(Database).first().id, table_name="students"
-        )
-        column = TableColumn(table_id=dataset.id, column_name="name")
-        dataset.columns = [column]
-        db.session.add(dataset)
-        db.session.commit()
-        yield dataset
-
-        # cleanup
-        students_table = meta.tables.get("students")
-        if students_table is not None:
-            base = declarative_base()
-            # needed for sqlite
-            db.session.commit()
-            base.metadata.drop_all(engine, [students_table], checkfirst=True)
-        db.session.delete(dataset)
-        db.session.delete(column)
-        db.session.commit()
->>>>>>> 2d98af4662 (merge from upstream to master)

@@ -16,14 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { useState, DragEvent } from 'react';
 
 import type { Meta, StoryFn } from '@storybook/react';
-=======
-import React, { useState } from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { action } from '@storybook/addon-actions';
 import {
   ColumnsType,

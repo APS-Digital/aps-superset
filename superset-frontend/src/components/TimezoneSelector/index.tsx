@@ -45,65 +45,6 @@ const offsetsToName = {
   '060': ['GMT Standard Time - London', 'British Summer Time'],
 };
 
-<<<<<<< HEAD
-=======
-const currentDate = moment();
-const JANUARY = moment([2021, 1]);
-const JULY = moment([2021, 7]);
-
-const getOffsetKey = (name: string) =>
-  JANUARY.tz(name).utcOffset().toString() +
-  JULY.tz(name).utcOffset().toString();
-
-const getTimezoneName = (name: string) => {
-  const offsets = getOffsetKey(name);
-  return (
-    (currentDate.tz(name).isDST()
-      ? offsetsToName[offsets]?.[1]
-      : offsetsToName[offsets]?.[0]) || name
-  );
-};
-
-const ALL_ZONES = moment.tz
-  .countries()
-  .map(country => moment.tz.zonesForCountry(country, true))
-  .flat();
-
-const TIMEZONES: moment.MomentZoneOffset[] = [];
-ALL_ZONES.forEach(zone => {
-  if (
-    !TIMEZONES.find(
-      option => getOffsetKey(option.name) === getOffsetKey(zone.name),
-    )
-  ) {
-    TIMEZONES.push(zone); // dedupe zones by offsets
-  }
-});
-
-const TIMEZONE_OPTIONS = TIMEZONES.map(zone => ({
-  label: `GMT ${moment
-    .tz(currentDate, zone.name)
-    .format('Z')} (${getTimezoneName(zone.name)})`,
-  value: zone.name,
-  offsets: getOffsetKey(zone.name),
-  timezoneName: zone.name,
-}));
-
-const TIMEZONE_OPTIONS_SORT_COMPARATOR = (
-  a: (typeof TIMEZONE_OPTIONS)[number],
-  b: (typeof TIMEZONE_OPTIONS)[number],
-) =>
-  moment.tz(currentDate, a.timezoneName).utcOffset() -
-  moment.tz(currentDate, b.timezoneName).utcOffset();
-
-// pre-sort timezone options by time offset
-TIMEZONE_OPTIONS.sort(TIMEZONE_OPTIONS_SORT_COMPARATOR);
-
-const matchTimezoneToOptions = (timezone: string) =>
-  TIMEZONE_OPTIONS.find(option => option.offsets === getOffsetKey(timezone))
-    ?.value || DEFAULT_TIMEZONE.value;
-
->>>>>>> 2d98af4662 (merge from upstream to master)
 export type TimezoneSelectorProps = {
   onTimezoneChange: (value: string) => void;
   timezone?: string | null;

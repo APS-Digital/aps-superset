@@ -87,11 +87,7 @@ InteractiveAlert.args = {
 InteractiveAlert.argTypes = {
   onClose: { action: 'onClose' },
   type: {
-<<<<<<< HEAD
     control: { type: 'select' },
     options: types,
-=======
-    control: { type: 'select', options: types },
->>>>>>> 2d98af4662 (merge from upstream to master)
   },
 };

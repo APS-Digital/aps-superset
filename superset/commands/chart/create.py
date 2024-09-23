@@ -46,19 +46,9 @@ class CreateChartCommand(CreateMixin, BaseCommand):
     @transaction(on_error=partial(on_error, reraise=ChartCreateFailedError))
     def run(self) -> Model:
         self.validate()
-<<<<<<< HEAD
         self._properties["last_saved_at"] = datetime.now()
         self._properties["last_saved_by"] = g.user
         return ChartDAO.create(attributes=self._properties)
-=======
-        try:
-            self._properties["last_saved_at"] = datetime.now()
-            self._properties["last_saved_by"] = g.user
-            return ChartDAO.create(attributes=self._properties)
-        except DAOCreateFailedError as ex:
-            logger.exception(ex.exception)
-            raise ChartCreateFailedError() from ex
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     def validate(self) -> None:
         exceptions = []

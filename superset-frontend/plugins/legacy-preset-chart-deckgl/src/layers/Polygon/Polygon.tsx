@@ -21,11 +21,7 @@
  */
 /* eslint no-underscore-dangle: ["error", { "allow": ["", "__timestamp"] }] */
 
-<<<<<<< HEAD
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
-=======
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import {
   HandlerFunction,
   JsonObject,

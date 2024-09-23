@@ -17,13 +17,6 @@
  * under the License.
  */
 import rison from 'rison';
-<<<<<<< HEAD
-=======
-import {
-  ClientErrorObject,
-  getClientErrorObject,
-} from 'src/utils/getClientErrorObject';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { createApi, BaseQueryFn } from '@reduxjs/toolkit/query/react';
 import {
   ClientErrorObject,
@@ -42,11 +35,7 @@ export const supersetClientQuery: BaseQueryFn<
     endpoint: string;
     parseMethod?: ParseMethod;
     transformResponse?: (response: SupersetClientResponse) => JsonValue;
-<<<<<<< HEAD
     urlParams?: Record<string, number | string | undefined | boolean | object>;
-=======
-    urlParams?: Record<string, number | string | undefined | boolean>;
->>>>>>> 2d98af4662 (merge from upstream to master)
   },
   JsonValue,
   ClientErrorObject
@@ -91,10 +80,7 @@ export const api = createApi({
     'QueryValidations',
     'TableMetadatas',
     'SqlLabInitialState',
-<<<<<<< HEAD
     'EditorQueries',
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   ],
   endpoints: () => ({}),
   baseQuery: supersetClientQuery,

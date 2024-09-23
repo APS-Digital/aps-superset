@@ -56,15 +56,8 @@ class DatasetExistsValidationError(ValidationError):
     Marshmallow validation error for dataset already exists
     """
 
-<<<<<<< HEAD
     def __init__(self, table: Table) -> None:
         super().__init__([get_dataset_exist_error_msg(table)], field_name="table")
-=======
-    def __init__(self, table_name: str) -> None:
-        super().__init__(
-            [get_dataset_exist_error_msg(table_name)], field_name="table_name"
-        )
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 class DatasetColumnNotFoundValidationError(ValidationError):

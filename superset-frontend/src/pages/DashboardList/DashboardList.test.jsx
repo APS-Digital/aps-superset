@@ -127,11 +127,6 @@ describe('DashboardList', () => {
     useSelectorMock.mockClear();
   });
 
-  beforeEach(() => {
-    // setup a DOM element as a render target
-    useSelectorMock.mockClear();
-  });
-
   const mockedProps = {};
   let wrapper;
 

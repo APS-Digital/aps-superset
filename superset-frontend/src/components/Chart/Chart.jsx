@@ -346,26 +346,9 @@ class Chart extends PureComponent {
           height={height}
           width={width}
         >
-<<<<<<< HEAD
           {isLoading
             ? this.renderSpinner(databaseName)
             : this.renderChartContainer()}
-=======
-          <div className="slice_container" data-test="slice-container">
-            {this.props.isInView ||
-            !isFeatureEnabled(FeatureFlag.DashboardVirtualization) ||
-            isCurrentUserBot() ? (
-              <ChartRenderer
-                {...this.props}
-                source={this.props.dashboardId ? 'dashboard' : 'explore'}
-                data-test={this.props.vizType}
-              />
-            ) : (
-              <Loading />
-            )}
-          </div>
-          {isLoading && <Loading />}
->>>>>>> 2d98af4662 (merge from upstream to master)
         </Styles>
       </ErrorBoundary>
     );

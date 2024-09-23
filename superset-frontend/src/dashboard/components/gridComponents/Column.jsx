@@ -98,12 +98,6 @@ const ColumnStyles = styled.div`
         &:first-child {
           inset-block-start: 0;
         }
-<<<<<<< HEAD
-=======
-        &:last-child {
-          inset-block-end: 0;
-        }
->>>>>>> 2d98af4662 (merge from upstream to master)
       }
       &:first-child:not(.droptarget-edge) {
         position: absolute;
@@ -246,7 +240,6 @@ class Column extends PureComponent {
                 {editMode && (
                   <Droppable
                     component={columnComponent}
-<<<<<<< HEAD
                     parentComponent={columnComponent}
                     {...(columnItems.length === 0
                       ? {
@@ -256,20 +249,6 @@ class Column extends PureComponent {
                           component: columnItems[0],
                         })}
                     depth={depth}
-=======
-                    parentComponent={parentComponent}
-                    {...(columnItems.length === 0
-                      ? {
-                          component: columnComponent,
-                          parentComponent,
-                          dropToChild: true,
-                        }
-                      : {
-                          component: columnItems,
-                          parentComponent: columnComponent,
-                        })}
-                    depth={depth + 1}
->>>>>>> 2d98af4662 (merge from upstream to master)
                     index={0}
                     orientation="column"
                     onDrop={handleComponentDrop}
@@ -288,11 +267,7 @@ class Column extends PureComponent {
                   <div css={emptyColumnContentStyles}>{t('Empty column')}</div>
                 ) : (
                   columnItems.map((componentId, itemIndex) => (
-<<<<<<< HEAD
                     <Fragment key={componentId}>
-=======
-                    <React.Fragment key={componentId}>
->>>>>>> 2d98af4662 (merge from upstream to master)
                       <DashboardComponent
                         id={componentId}
                         parentId={columnComponent.id}
@@ -310,11 +285,7 @@ class Column extends PureComponent {
                         <Droppable
                           component={columnItems}
                           parentComponent={columnComponent}
-<<<<<<< HEAD
                           depth={depth}
-=======
-                          depth={depth + 1}
->>>>>>> 2d98af4662 (merge from upstream to master)
                           index={itemIndex + 1}
                           orientation="column"
                           onDrop={handleComponentDrop}
@@ -332,11 +303,7 @@ class Column extends PureComponent {
                           }
                         </Droppable>
                       )}
-<<<<<<< HEAD
                     </Fragment>
-=======
-                    </React.Fragment>
->>>>>>> 2d98af4662 (merge from upstream to master)
                   ))
                 )}
               </ColumnStyles>

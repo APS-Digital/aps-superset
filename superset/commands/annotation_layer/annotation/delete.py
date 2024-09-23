@@ -24,10 +24,6 @@ from superset.commands.annotation_layer.annotation.exceptions import (
 )
 from superset.commands.base import BaseCommand
 from superset.daos.annotation_layer import AnnotationDAO
-<<<<<<< HEAD
-=======
-from superset.daos.exceptions import DAODeleteFailedError
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.models.annotations import Annotation
 from superset.utils.decorators import on_error, transaction
 

@@ -247,13 +247,9 @@ hostAliases: []
 
 # Superset node configuration
 supersetNode:
-<<<<<<< HEAD
   replicas:
     enabled: true
     replicaCount: 1
-=======
-  replicaCount: 1
->>>>>>> 2d98af4662 (merge from upstream to master)
   autoscaling:
     enabled: false
     minReplicas: 1
@@ -370,13 +366,9 @@ supersetNode:
 
 # Superset Celery worker configuration
 supersetWorker:
-<<<<<<< HEAD
   replicas:
     enabled: true
     replicaCount: 1
-=======
-  replicaCount: 1
->>>>>>> 2d98af4662 (merge from upstream to master)
   autoscaling:
     enabled: false
     minReplicas: 1
@@ -875,7 +867,7 @@ redis:
     ## docker registry secret names (list)
     # pullSecrets: nil
     ##
-    ## Configure persistance
+    ## Configure persistence
     persistence:
       ##
       ## Use a PVC to persist data.

@@ -47,10 +47,7 @@ class EstimateQueryCostSchema(Schema):
 
 class FormatQueryPayloadSchema(Schema):
     sql = fields.String(required=True)
-<<<<<<< HEAD
     engine = fields.String(required=False, allow_none=True)
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 class ExecutePayloadSchema(Schema):

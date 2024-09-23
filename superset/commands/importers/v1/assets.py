@@ -114,10 +114,6 @@ class ImportAssetsCommand(BaseCommand):
             if file_name.startswith("charts/"):
                 dataset_dict = dataset_info[config["dataset_uuid"]]
                 config.update(dataset_dict)
-<<<<<<< HEAD
-=======
-                # pylint: disable=line-too-long
->>>>>>> 2d98af4662 (merge from upstream to master)
                 dataset_uid = f"{dataset_dict['datasource_id']}__{dataset_dict['datasource_type']}"
                 config["params"].update({"datasource": dataset_uid})
                 if "query_context" in config:
@@ -150,17 +146,6 @@ class ImportAssetsCommand(BaseCommand):
                     )
                 )
                 db.session.execute(insert(dashboard_slices).values(dashboard_chart_ids))
-<<<<<<< HEAD
-=======
-
-                # Migrate any filter-box charts to native dashboard filters.
-                migrate_dashboard(dashboard)
-
-        # Remove all obsolete filter-box charts.
-        for chart in charts:
-            if chart.viz_type == "filter_box":
-                db.session.delete(chart)
->>>>>>> 2d98af4662 (merge from upstream to master)
 
                 # Migrate any filter-box charts to native dashboard filters.
                 migrate_dashboard(dashboard)
@@ -179,18 +164,7 @@ class ImportAssetsCommand(BaseCommand):
     )
     def run(self) -> None:
         self.validate()
-<<<<<<< HEAD
         self._import(self._configs)
-=======
-
-        # rollback to prevent partial imports
-        try:
-            self._import(self._configs)
-            db.session.commit()
-        except Exception as ex:
-            db.session.rollback()
-            raise ImportFailedError() from ex
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     def validate(self) -> None:
         exceptions: list[ValidationError] = []

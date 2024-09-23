@@ -23,15 +23,9 @@ from superset.commands.query.exceptions import (
     SavedQueryDeleteFailedError,
     SavedQueryNotFoundError,
 )
-<<<<<<< HEAD
 from superset.daos.query import SavedQueryDAO
 from superset.models.dashboard import Dashboard
 from superset.utils.decorators import on_error, transaction
-=======
-from superset.daos.exceptions import DAODeleteFailedError
-from superset.daos.query import SavedQueryDAO
-from superset.models.dashboard import Dashboard
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 logger = logging.getLogger(__name__)
 

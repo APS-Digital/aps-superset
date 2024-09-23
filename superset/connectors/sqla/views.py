@@ -289,11 +289,7 @@ class RowLevelSecurityView(BaseSupersetView):
 
 
 class TableModelView(  # pylint: disable=too-many-ancestors
-<<<<<<< HEAD
     DeprecateModelViewMixin, SupersetModelView, DeleteMixin, YamlExportMixin
-=======
-    SupersetModelView, DeleteMixin, YamlExportMixin
->>>>>>> 2d98af4662 (merge from upstream to master)
 ):
     datamodel = SQLAInterface(models.SqlaTable)
     class_permission_name = "Dataset"

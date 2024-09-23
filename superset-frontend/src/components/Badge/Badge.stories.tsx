@@ -99,7 +99,6 @@ InteractiveBadge.argTypes = {
     options: [undefined, ...Array(100).keys()],
     defaultValue: undefined,
   },
-<<<<<<< HEAD
   showZero: {
     control: 'boolean',
     defaultValue: false,
@@ -109,8 +108,6 @@ InteractiveBadge.argTypes = {
     description:
       'The threshold at which the number overflows with a `+` e.g if you set this to 10, and the value is 11, you get `11+`',
   },
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 };
 
 export const BadgeGallery = () => (
@@ -131,39 +128,11 @@ export const BadgeGallery = () => (
   </>
 );
 
-<<<<<<< HEAD
-=======
-export const BadgeTextGallery = () => (
-  <>
-    {COLORS.options.map(color => (
-      <Badge
-        text="Hello"
-        color={color}
-        key={color}
-        style={{ marginRight: '15px' }}
-      />
-    ))}
-  </>
-);
-
->>>>>>> 2d98af4662 (merge from upstream to master)
 BadgeGallery.parameters = {
   actions: {
     disable: true,
   },
   controls: {
     disable: true,
-<<<<<<< HEAD
-=======
-  },
-};
-
-BadgeTextGallery.parameters = {
-  actions: {
-    disable: true,
-  },
-  controls: {
-    disable: true,
->>>>>>> 2d98af4662 (merge from upstream to master)
   },
 };

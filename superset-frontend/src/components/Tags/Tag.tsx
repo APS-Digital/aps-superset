@@ -31,11 +31,8 @@ const StyledTag = styled(AntdTag)`
   `};
 `;
 
-<<<<<<< HEAD
 export const CustomCloseIcon = <CloseOutlined role="button" />;
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 const MAX_DISPLAY_CHAR = 20;
 
 const Tag = ({
@@ -63,21 +60,14 @@ const Tag = ({
             closable={editable}
             onClose={handleClose}
             color="blue"
-<<<<<<< HEAD
             closeIcon={editable ? CustomCloseIcon : undefined}
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
           >
             {tagDisplay}
           </StyledTag>
         </Tooltip>
       ) : (
         <Tooltip title={toolTipTitle} key={toolTipTitle}>
-<<<<<<< HEAD
           <StyledTag data-test="tag" key={id} onClick={onClick} role={whatRole}>
-=======
-          <StyledTag data-test="tag" role="link" key={id} onClick={onClick}>
->>>>>>> 2d98af4662 (merge from upstream to master)
             {id ? (
               <a
                 href={`/superset/all_entities/?id=${id}`}

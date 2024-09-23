@@ -556,7 +556,3 @@ def load_tabbed_dashboard(_: bool = False) -> None:
     dash.slices = slices
     dash.dashboard_title = "Tabbed Dashboard"
     dash.slug = slug
-<<<<<<< HEAD
-=======
-    db.session.commit()
->>>>>>> 2d98af4662 (merge from upstream to master)

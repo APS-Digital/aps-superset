@@ -76,11 +76,7 @@ export function useAnnotations(params: FetchValidationQueryParams) {
                       text: `The server failed to validate your query.\n${message}`,
                     },
                   ]
-<<<<<<< HEAD
                 : EMPTY,
-=======
-                : [],
->>>>>>> 2d98af4662 (merge from upstream to master)
         };
       },
     },

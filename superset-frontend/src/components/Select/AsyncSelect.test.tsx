@@ -16,10 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import {
   createEvent,
   fireEvent,
@@ -387,7 +383,6 @@ test('removes duplicated values', async () => {
     },
   });
   fireEvent(input, paste);
-<<<<<<< HEAD
   await waitFor(async () => {
     const values = await findAllSelectValues();
     expect(values.length).toBe(4);
@@ -396,14 +391,6 @@ test('removes duplicated values', async () => {
     expect(values[2]).toHaveTextContent('c');
     expect(values[3]).toHaveTextContent('d');
   });
-=======
-  const values = await findAllSelectValues();
-  expect(values.length).toBe(4);
-  expect(values[0]).toHaveTextContent('a');
-  expect(values[1]).toHaveTextContent('b');
-  expect(values[2]).toHaveTextContent('c');
-  expect(values[3]).toHaveTextContent('d');
->>>>>>> 2d98af4662 (merge from upstream to master)
 });
 
 test('renders a custom label', async () => {
@@ -893,11 +880,7 @@ test('fires onChange when pasting a selection', async () => {
     },
   });
   fireEvent(input, paste);
-<<<<<<< HEAD
   await waitFor(() => expect(onChange).toHaveBeenCalledTimes(1));
-=======
-  expect(onChange).toHaveBeenCalledTimes(1);
->>>>>>> 2d98af4662 (merge from upstream to master)
 });
 
 test('does not duplicate options when using numeric values', async () => {
@@ -944,7 +927,6 @@ test('pasting an existing option does not duplicate it in multiple mode', async 
     ],
     totalCount: 3,
   }));
-<<<<<<< HEAD
   render(
     <AsyncSelect
       {...defaultProps}
@@ -953,9 +935,6 @@ test('pasting an existing option does not duplicate it in multiple mode', async 
       allowNewOptions
     />,
   );
-=======
-  render(<AsyncSelect {...defaultProps} options={options} mode="multiple" />);
->>>>>>> 2d98af4662 (merge from upstream to master)
   await open();
   const input = getElementByClassName('.ant-select-selection-search-input');
   const paste = createEvent.paste(input, {
@@ -964,7 +943,6 @@ test('pasting an existing option does not duplicate it in multiple mode', async 
     },
   });
   fireEvent(input, paste);
-<<<<<<< HEAD
   await waitFor(async () =>
     // Only Peter should be added
     expect(await findAllSelectOptions()).toHaveLength(4),
@@ -1020,10 +998,6 @@ test('does not fire onChange if the same value is selected in single mode', asyn
   expect(onChange).toHaveBeenCalledTimes(1);
   userEvent.click(await findSelectOption(optionText));
   expect(onChange).toHaveBeenCalledTimes(1);
-=======
-  // Only Peter should be added
-  expect(await findAllSelectOptions()).toHaveLength(4);
->>>>>>> 2d98af4662 (merge from upstream to master)
 });
 
 /*

@@ -65,11 +65,7 @@ import { ResultsPaneOnDashboard } from 'src/explore/components/DataTablesPane';
 import Modal from 'src/components/Modal';
 import { DrillDetailMenuItems } from 'src/components/Chart/DrillDetail';
 import { LOG_ACTIONS_CHART_DOWNLOAD_AS_IMAGE } from 'src/logger/LogUtils';
-<<<<<<< HEAD
 import { MenuKeys, RootState } from 'src/dashboard/types';
-=======
-import { RootState } from 'src/dashboard/types';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { findPermission } from 'src/utils/findPermission';
 import { useCrossFiltersScopingModal } from '../nativeFilters/FilterBar/CrossFilters/ScopingModal/useCrossFiltersScopingModal';
 
@@ -565,14 +561,10 @@ const SliceHeaderControls = (props: SliceHeaderControlsPropsWithRouter) => {
   const canDatasourceSamples = useSelector((state: RootState) =>
     findPermission('can_samples', 'Datasource', state.user?.roles),
   );
-<<<<<<< HEAD
   const canDrill = useSelector((state: RootState) =>
     findPermission('can_drill', 'Dashboard', state.user?.roles),
   );
   const canDrillToDetail = (canExplore || canDrill) && canDatasourceSamples;
-=======
-  const canDrillToDetail = canExplore && canDatasourceSamples;
->>>>>>> 2d98af4662 (merge from upstream to master)
   const canViewQuery = useSelector((state: RootState) =>
     findPermission('can_view_query', 'Dashboard', state.user?.roles),
   );
@@ -731,15 +723,12 @@ const SliceHeaderControls = (props: SliceHeaderControlsPropsWithRouter) => {
     animationDuration: '0s',
   };
 
-<<<<<<< HEAD
   // controlled/uncontrolled behaviour for submenus
   const openKeysProps: Record<string, string[]> = {};
   if (openKeys) {
     openKeysProps.openKeys = openKeys;
   }
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   const menu = (
     <Menu
       onClick={handleMenuClick}
@@ -777,19 +766,10 @@ const SliceHeaderControls = (props: SliceHeaderControlsPropsWithRouter) => {
       )}
 
       {canExplore && (
-<<<<<<< HEAD
         <Menu.Item key={MenuKeys.ExploreChart}>
           <Tooltip title={getSliceHeaderTooltip(props.slice.slice_name)}>
             {t('Edit chart')}
           </Tooltip>
-=======
-        <Menu.Item key={MENU_KEYS.EXPLORE_CHART}>
-          <Link to={props.exploreUrl}>
-            <Tooltip title={getSliceHeaderTooltip(props.slice.slice_name)}>
-              {t('Edit chart')}
-            </Tooltip>
-          </Link>
->>>>>>> 2d98af4662 (merge from upstream to master)
         </Menu.Item>
       )}
 
@@ -799,15 +779,10 @@ const SliceHeaderControls = (props: SliceHeaderControlsPropsWithRouter) => {
         </Menu.Item>
       )}
 
-<<<<<<< HEAD
       {(canExplore || canEditCrossFilters) && <Menu.Divider />}
 
       {(canExplore || canViewQuery) && (
         <Menu.Item key={MenuKeys.ViewQuery}>
-=======
-      {(canExplore || canViewQuery) && (
-        <Menu.Item key={MENU_KEYS.VIEW_QUERY}>
->>>>>>> 2d98af4662 (merge from upstream to master)
           <ModalTrigger
             triggerNode={
               <span data-test="view-query-menu-item">{t('View query')}</span>
@@ -823,11 +798,7 @@ const SliceHeaderControls = (props: SliceHeaderControlsPropsWithRouter) => {
       )}
 
       {(canExplore || canViewTable) && (
-<<<<<<< HEAD
         <Menu.Item key={MenuKeys.ViewResults}>
-=======
-        <Menu.Item key={MENU_KEYS.VIEW_RESULTS}>
->>>>>>> 2d98af4662 (merge from upstream to master)
           <ViewResultsModalTrigger
             canExplore={props.supersetCanExplore}
             exploreUrl={props.exploreUrl}
@@ -855,13 +826,10 @@ const SliceHeaderControls = (props: SliceHeaderControlsPropsWithRouter) => {
         <DrillDetailMenuItems
           chartId={slice.slice_id}
           formData={props.formData}
-<<<<<<< HEAD
           key={MenuKeys.DrillToDetail}
           showModal={drillModalIsOpen}
           setShowModal={setDrillModalIsOpen}
           drillToDetailMenuRef={drillToDetailMenuRef}
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         />
       )}
 
@@ -893,15 +861,11 @@ const SliceHeaderControls = (props: SliceHeaderControlsPropsWithRouter) => {
       )}
 
       {props.supersetCanCSV && (
-<<<<<<< HEAD
         <Menu.SubMenu
           title={t('Download')}
           key={MenuKeys.Download}
           onTitleMouseEnter={() => setOpenKeys(undefined)}
         >
-=======
-        <Menu.SubMenu title={t('Download')}>
->>>>>>> 2d98af4662 (merge from upstream to master)
           <Menu.Item
             key={MenuKeys.ExportCsv}
             icon={<Icons.FileOutlined css={dropdownIconsStyles} />}

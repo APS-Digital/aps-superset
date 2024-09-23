@@ -36,11 +36,7 @@ const { getConfig, setConfig } = failOnConsoleError({
   ],
 });
 
-<<<<<<< HEAD
 // Set individual tests to allow certain console errors to NOT fail, e.g
-=======
-// Set infividual tests to allow certain console erros to NOT fail, e.g
->>>>>>> 2d98af4662 (merge from upstream to master)
 // cy.allowConsoleErrors(['foo', /^some bar-regex.*/]);
 // This will be reset between tests.
 Cypress.Commands.addAll({

@@ -52,7 +52,6 @@ export const getCrossFiltersConfiguration = (
     return undefined;
   }
 
-<<<<<<< HEAD
   const chartsByDataSource: Record<string, Set<number>> = Object.values(
     charts,
   ).reduce((acc: Record<string, Set<number>>, chart) => {
@@ -67,8 +66,6 @@ export const getCrossFiltersConfiguration = (
     return acc;
   }, {});
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   const globalChartConfiguration = metadata.global_chart_configuration?.scope
     ? {
         scope: metadata.global_chart_configuration.scope,

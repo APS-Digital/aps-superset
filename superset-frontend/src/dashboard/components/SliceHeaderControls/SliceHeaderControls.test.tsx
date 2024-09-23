@@ -19,7 +19,6 @@
 
 import { KeyboardEvent, ReactElement } from 'react';
 import userEvent from '@testing-library/user-event';
-<<<<<<< HEAD
 import { render, screen } from 'spec/helpers/testing-library';
 import { FeatureFlag } from '@superset-ui/core';
 import mockState from 'spec/fixtures/mockState';
@@ -28,13 +27,6 @@ import SliceHeaderControls, {
   SliceHeaderControlsProps,
   handleDropdownNavigation,
 } from '.';
-=======
-import React from 'react';
-import { render, screen } from 'spec/helpers/testing-library';
-import { FeatureFlag } from '@superset-ui/core';
-import mockState from 'spec/fixtures/mockState';
-import SliceHeaderControls, { SliceHeaderControlsProps } from '.';
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 jest.mock('src/components/Dropdown', () => {
   const original = jest.requireActual('src/components/Dropdown');
@@ -206,12 +198,7 @@ test('Should "export to Excel"', async () => {
 });
 
 test('Export full CSV is under featureflag', async () => {
-<<<<<<< HEAD
   (global as any).featureFlags = {
-=======
-  // @ts-ignore
-  global.featureFlags = {
->>>>>>> 2d98af4662 (merge from upstream to master)
     [FeatureFlag.AllowFullCsvExport]: false,
   };
   const props = createProps('table');
@@ -222,12 +209,7 @@ test('Export full CSV is under featureflag', async () => {
 });
 
 test('Should "export full CSV"', async () => {
-<<<<<<< HEAD
   (global as any).featureFlags = {
-=======
-  // @ts-ignore
-  global.featureFlags = {
->>>>>>> 2d98af4662 (merge from upstream to master)
     [FeatureFlag.AllowFullCsvExport]: true,
   };
   const props = createProps('table');
@@ -240,12 +222,7 @@ test('Should "export full CSV"', async () => {
 });
 
 test('Should not show export full CSV if report is not table', async () => {
-<<<<<<< HEAD
   (global as any).featureFlags = {
-=======
-  // @ts-ignore
-  global.featureFlags = {
->>>>>>> 2d98af4662 (merge from upstream to master)
     [FeatureFlag.AllowFullCsvExport]: true,
   };
   renderWrapper();
@@ -255,12 +232,7 @@ test('Should not show export full CSV if report is not table', async () => {
 });
 
 test('Export full Excel is under featureflag', async () => {
-<<<<<<< HEAD
   (global as any).featureFlags = {
-=======
-  // @ts-ignore
-  global.featureFlags = {
->>>>>>> 2d98af4662 (merge from upstream to master)
     [FeatureFlag.AllowFullCsvExport]: false,
   };
   const props = createProps('table');
@@ -271,12 +243,7 @@ test('Export full Excel is under featureflag', async () => {
 });
 
 test('Should "export full Excel"', async () => {
-<<<<<<< HEAD
   (global as any).featureFlags = {
-=======
-  // @ts-ignore
-  global.featureFlags = {
->>>>>>> 2d98af4662 (merge from upstream to master)
     [FeatureFlag.AllowFullCsvExport]: true,
   };
   const props = createProps('table');
@@ -289,12 +256,7 @@ test('Should "export full Excel"', async () => {
 });
 
 test('Should not show export full Excel if report is not table', async () => {
-<<<<<<< HEAD
   (global as any).featureFlags = {
-=======
-  // @ts-ignore
-  global.featureFlags = {
->>>>>>> 2d98af4662 (merge from upstream to master)
     [FeatureFlag.AllowFullCsvExport]: true,
   };
   renderWrapper();
@@ -332,12 +294,7 @@ test('Should "Enter fullscreen"', () => {
 });
 
 test('Drill to detail modal is under featureflag', () => {
-<<<<<<< HEAD
   (global as any).featureFlags = {
-=======
-  // @ts-ignore
-  global.featureFlags = {
->>>>>>> 2d98af4662 (merge from upstream to master)
     [FeatureFlag.DrillToDetail]: false,
   };
   const props = createProps();
@@ -345,14 +302,8 @@ test('Drill to detail modal is under featureflag', () => {
   expect(screen.queryByText('Drill to detail')).not.toBeInTheDocument();
 });
 
-<<<<<<< HEAD
 test('Should show "Drill to detail" with `can_explore` & `can_samples` perms', () => {
   (global as any).featureFlags = {
-=======
-test('Should show "Drill to detail"', () => {
-  // @ts-ignore
-  global.featureFlags = {
->>>>>>> 2d98af4662 (merge from upstream to master)
     [FeatureFlag.DrillToDetail]: true,
   };
   const props = {
@@ -366,7 +317,6 @@ test('Should show "Drill to detail"', () => {
   expect(screen.getByText('Drill to detail')).toBeInTheDocument();
 });
 
-<<<<<<< HEAD
 test('Should show "Drill to detail" with `can_drill` & `can_samples` perms', () => {
   (global as any).featureFlags = {
     [FeatureFlag.DrillToDetail]: true,
@@ -405,11 +355,6 @@ test('Should show "Drill to detail" with both `canexplore` + `can_drill` & `can_
 
 test('Should not show "Drill to detail" with neither of required perms', () => {
   (global as any).featureFlags = {
-=======
-test('Should not show "Drill to detail"', () => {
-  // @ts-ignore
-  global.featureFlags = {
->>>>>>> 2d98af4662 (merge from upstream to master)
     [FeatureFlag.DrillToDetail]: true,
   };
   const props = {
@@ -423,7 +368,6 @@ test('Should not show "Drill to detail"', () => {
   expect(screen.queryByText('Drill to detail')).not.toBeInTheDocument();
 });
 
-<<<<<<< HEAD
 test('Should not show "Drill to detail" only `can_dril` perm', () => {
   (global as any).featureFlags = {
     [FeatureFlag.DrillToDetail]: true,
@@ -439,8 +383,6 @@ test('Should not show "Drill to detail" only `can_dril` perm', () => {
   expect(screen.queryByText('Drill to detail')).not.toBeInTheDocument();
 });
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 test('Should show "View query"', () => {
   const props = {
     ...createProps(),
@@ -504,7 +446,6 @@ test('Should not show the "Edit chart" button', () => {
   });
   expect(screen.queryByText('Edit chart')).not.toBeInTheDocument();
 });
-<<<<<<< HEAD
 
 describe('handleDropdownNavigation', () => {
   const mockToggleDropdown = jest.fn();
@@ -670,5 +611,3 @@ describe('handleDropdownNavigation', () => {
     expect(childWithKey).toBeDefined();
   });
 });
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)

@@ -14,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-<<<<<<< HEAD
 
 # -----------------------------------------------------------------------
 # We don't support docker compose for production environments.
@@ -22,9 +21,7 @@
 # create you own docker environment file (docker/.env) with your own
 # unique random secure passwords and SECRET_KEY.
 # -----------------------------------------------------------------------
-=======
 x-superset-image: &superset-image apachesuperset.docker.scarf.sh/apache/superset:${TAG:-master-dev}
->>>>>>> 2d98af4662 (merge from upstream to master)
 x-superset-user: &superset-user root
 x-superset-depends-on: &superset-depends-on
   - db
@@ -66,11 +63,7 @@ services:
       - redis:/data
 
   db:
-    env_file:
-      - path: docker/.env # default
-        required: true
-      - path: docker/.env-local # optional override
-        required: false
+    env_file: docker/.env # default
     image: postgres:15
     container_name: superset_db
     restart: unless-stopped
@@ -81,11 +74,7 @@ services:
       - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
 
   superset:
-    env_file:
-      - path: docker/.env # default
-        required: true
-      - path: docker/.env-local # optional override
-        required: false
+    env_file: docker/.env # default
     build:
       <<: *common-build
     container_name: superset_app
@@ -139,11 +128,7 @@ services:
       <<: *common-build
     container_name: superset_init
     command: ["/app/docker/docker-init.sh"]
-    env_file:
-      - path: docker/.env # default
-        required: true
-      - path: docker/.env-local # optional override
-        required: false
+    env_file: docker/.env # default
     depends_on: *superset-depends-on
     user: *superset-user
     volumes: *superset-volumes
@@ -168,14 +153,8 @@ services:
       SCARF_ANALYTICS: "${SCARF_ANALYTICS:-}"
     container_name: superset_node
     command: ["/app/docker/docker-frontend.sh"]
-    env_file:
-      - path: docker/.env # default
-        required: true
-      - path: docker/.env-local # optional override
-        required: false
+    env_file: docker/.env # default
     depends_on: *superset-depends-on
-    environment:
-      SCARF_ANALYTICS: "${SCARF_ANALYTICS}"
     volumes: *superset-volumes
 
   superset-worker:
@@ -183,11 +162,7 @@ services:
       <<: *common-build
     container_name: superset_worker
     command: ["/app/docker/docker-bootstrap.sh", "worker"]
-    env_file:
-      - path: docker/.env # default
-        required: true
-      - path: docker/.env-local # optional override
-        required: false
+    env_file: docker/.env # default
     environment:
       CELERYD_CONCURRENCY: 2
     restart: unless-stopped
@@ -207,11 +182,7 @@ services:
       <<: *common-build
     container_name: superset_worker_beat
     command: ["/app/docker/docker-bootstrap.sh", "beat"]
-    env_file:
-      - path: docker/.env # default
-        required: true
-      - path: docker/.env-local # optional override
-        required: false
+    env_file: docker/.env # default
     restart: unless-stopped
     depends_on: *superset-depends-on
     user: *superset-user
@@ -224,11 +195,7 @@ services:
       <<: *common-build
     container_name: superset_tests_worker
     command: ["/app/docker/docker-bootstrap.sh", "worker"]
-    env_file:
-      - path: docker/.env # default
-        required: true
-      - path: docker/.env-local # optional override
-        required: false
+    env_file: docker/.env # default
     profiles:
       - optional
     environment:

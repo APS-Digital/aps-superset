@@ -16,12 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { useState, useEffect, FC } from 'react';
 
-=======
-import React, { useState, useEffect } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { t, styled, SupersetClient } from '@superset-ui/core';
 import { FormLabel } from 'src/components/Form';
 import Modal from 'src/components/Modal';
@@ -46,11 +42,7 @@ interface BulkTagModalProps {
   resourceName: string;
 }
 
-<<<<<<< HEAD
 const BulkTagModal: FC<BulkTagModalProps> = ({
-=======
-const BulkTagModal: React.FC<BulkTagModalProps> = ({
->>>>>>> 2d98af4662 (merge from upstream to master)
   show,
   selected = [],
   onHide,

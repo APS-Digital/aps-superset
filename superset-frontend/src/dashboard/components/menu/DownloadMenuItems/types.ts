@@ -16,12 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<<< HEAD:superset-frontend/src/dashboard/components/menu/DownloadMenuItems/types.ts
 
 export enum DownloadScreenshotFormat {
   PDF = 'pdf',
   PNG = 'png',
 }
-========
-declare module 'ace-builds/src-noconflict/worker-css';
->>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/src/types/ace-builds.ts

@@ -32,14 +32,10 @@ from superset.commands.database.exceptions import (
     DatabaseTestConnectionDriverError,
     DatabaseTestConnectionUnexpectedError,
 )
-<<<<<<< HEAD
 from superset.commands.database.ssh_tunnel.exceptions import (
     SSHTunnelDatabasePortError,
     SSHTunnelingNotEnabledError,
 )
-=======
-from superset.commands.database.ssh_tunnel.exceptions import SSHTunnelingNotEnabledError
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.daos.database import DatabaseDAO, SSHTunnelDAO
 from superset.databases.ssh_tunnel.models import SSHTunnel
 from superset.databases.utils import make_url_safe

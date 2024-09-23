@@ -23,11 +23,7 @@ from werkzeug.exceptions import NotFound
 from superset import db, event_logger, is_feature_enabled
 from superset.models import core as models
 from superset.superset_typing import FlaskResponse
-<<<<<<< HEAD
 from superset.utils import core as utils, json
-=======
-from superset.utils import core as utils
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.views.base import BaseSupersetView, deprecated, json_error_response
 
 
@@ -46,11 +42,7 @@ class KV(BaseSupersetView):
     @event_logger.log_this
     @has_access_api
     @expose("/store/", methods=("POST",))
-<<<<<<< HEAD
     @deprecated(eol_version="5.0.0")
-=======
-    @deprecated(eol_version="4.0.0")
->>>>>>> 2d98af4662 (merge from upstream to master)
     def store(self) -> FlaskResponse:
         try:
             value = request.form.get("data")
@@ -64,11 +56,7 @@ class KV(BaseSupersetView):
     @event_logger.log_this
     @has_access_api
     @expose("/<int:key_id>/", methods=("GET",))
-<<<<<<< HEAD
     @deprecated(eol_version="5.0.0")
-=======
-    @deprecated(eol_version="4.0.0")
->>>>>>> 2d98af4662 (merge from upstream to master)
     def get_value(self, key_id: int) -> FlaskResponse:
         try:
             kv = db.session.query(models.KeyValue).filter_by(id=key_id).scalar()

@@ -46,10 +46,7 @@ get_time_range_schema = {
         "type": "object",
         "properties": {
             "timeRange": {"type": "string"},
-<<<<<<< HEAD
             "shift": {"type": "string"},
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         },
     },
 }
@@ -112,23 +109,16 @@ class Api(BaseSupersetView):
 
             rv = []
             for time_range in time_ranges:
-<<<<<<< HEAD
                 since, until = get_since_until(
                     time_range=time_range["timeRange"],
                     time_shift=time_range.get("shift"),
                 )
-=======
-                since, until = get_since_until(time_range["timeRange"])
->>>>>>> 2d98af4662 (merge from upstream to master)
                 rv.append(
                     {
                         "since": since.isoformat() if since else "",
                         "until": until.isoformat() if until else "",
                         "timeRange": time_range["timeRange"],
-<<<<<<< HEAD
                         "shift": time_range.get("shift"),
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
                     }
                 )
             return self.json_response({"result": rv})

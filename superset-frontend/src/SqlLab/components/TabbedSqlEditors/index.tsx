@@ -16,11 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { PureComponent } from 'react';
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { pick } from 'lodash';
 import { EditableTabs } from 'src/components/Tabs';
 import { connect } from 'react-redux';
@@ -66,11 +62,7 @@ type TabbedSqlEditorsProps = ReturnType<typeof mergeProps>;
 
 const SQL_LAB_URL = '/sqllab';
 
-<<<<<<< HEAD
 class TabbedSqlEditors extends PureComponent<TabbedSqlEditorsProps> {
-=======
-class TabbedSqlEditors extends React.PureComponent<TabbedSqlEditorsProps> {
->>>>>>> 2d98af4662 (merge from upstream to master)
   constructor(props: TabbedSqlEditorsProps) {
     super(props);
     this.removeQueryEditor = this.removeQueryEditor.bind(this);
@@ -79,35 +71,6 @@ class TabbedSqlEditors extends React.PureComponent<TabbedSqlEditorsProps> {
   }
 
   componentDidMount() {
-<<<<<<< HEAD
-=======
-    // migrate query editor and associated tables state to server
-    if (isFeatureEnabled(FeatureFlag.SqllabBackendPersistence)) {
-      const localStorageTables = this.props.tables.filter(
-        table => table.inLocalStorage,
-      );
-      const localStorageQueries = Object.values(this.props.queries).filter(
-        query => query.inLocalStorage,
-      );
-      this.props.queryEditors
-        .filter(qe => qe.inLocalStorage)
-        .forEach(qe => {
-          // get all queries associated with the query editor
-          const queries = localStorageQueries.filter(
-            query => query.sqlEditorId === qe.id,
-          );
-          const tables = localStorageTables.filter(
-            table => table.queryEditorId === qe.id,
-          );
-          this.props.actions.migrateQueryEditorFromLocalStorage(
-            qe,
-            tables,
-            queries,
-          );
-        });
-    }
-
->>>>>>> 2d98af4662 (merge from upstream to master)
     // merge post form data with GET search params
     // Hack: this data should be coming from getInitialState
     // but for some reason this data isn't being passed properly through
@@ -240,7 +203,6 @@ class TabbedSqlEditors extends React.PureComponent<TabbedSqlEditorsProps> {
     this.props.actions.removeQueryEditor(qe);
   }
 
-<<<<<<< HEAD
   onTabClicked = () => {
     Logger.markTimeOrigin();
     const noQueryEditors = this.props.queryEditors?.length === 0;
@@ -249,8 +211,6 @@ class TabbedSqlEditors extends React.PureComponent<TabbedSqlEditorsProps> {
     }
   };
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   render() {
     const noQueryEditors = this.props.queryEditors?.length === 0;
     const editors = this.props.queryEditors?.map(qe => (
@@ -343,10 +303,6 @@ export function mapStateToProps({ sqlLab, common }: SqlLabRootState) {
     queryEditors: sqlLab.queryEditors ?? DEFAULT_PROPS.queryEditors,
     queries: sqlLab.queries,
     tabHistory: sqlLab.tabHistory,
-<<<<<<< HEAD
-=======
-    tables: sqlLab.tables,
->>>>>>> 2d98af4662 (merge from upstream to master)
     defaultDbId: common.conf.SQLLAB_DEFAULT_DBID,
     displayLimit: common.conf.DISPLAY_MAX_ROW,
     offline: sqlLab.offline ?? DEFAULT_PROPS.offline,

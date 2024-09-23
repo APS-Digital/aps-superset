@@ -16,11 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { useState, ChangeEvent } from 'react';
-=======
-import React, { useState, ChangeEvent } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 interface NumberInputProps {
   timeUnit: string;

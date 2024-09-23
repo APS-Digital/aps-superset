@@ -16,10 +16,6 @@
 # under the License.
 import os
 import sys
-<<<<<<< HEAD
-=======
-from unittest.mock import patch
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 import pytest
 
@@ -35,11 +31,7 @@ scripts_dir = os.path.abspath(
 )
 sys.path.append(scripts_dir)
 
-<<<<<<< HEAD
 import build_docker as docker_utils  # Replace with the actual function name  # noqa: E402
-=======
-import build_docker as docker_utils  # Replace with the actual function name
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 @pytest.fixture(autouse=True)

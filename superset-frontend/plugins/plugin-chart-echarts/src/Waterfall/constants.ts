@@ -16,15 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<<< HEAD:superset-frontend/plugins/plugin-chart-echarts/src/Waterfall/constants.ts
-========
-
-// Error messages used in many places across applications
-const COMMON_ERR_MESSAGES = {
-  SESSION_TIMED_OUT:
-    'Your session timed out, please refresh your page and try again.',
-};
->>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/src/utils/errorMessages.ts
 
 import { t } from '@superset-ui/core';
 

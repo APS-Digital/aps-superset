@@ -23,21 +23,13 @@ from flask_babel import lazy_gettext as _
 from superset import security_manager
 from superset.commands.base import BaseCommand
 from superset.commands.dashboard.exceptions import (
-<<<<<<< HEAD
     DashboardDeleteEmbeddedFailedError,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
     DashboardDeleteFailedError,
     DashboardDeleteFailedReportsExistError,
     DashboardForbiddenError,
     DashboardNotFoundError,
 )
-<<<<<<< HEAD
 from superset.daos.dashboard import DashboardDAO, EmbeddedDashboardDAO
-=======
-from superset.daos.dashboard import DashboardDAO
-from superset.daos.exceptions import DAODeleteFailedError
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.daos.report import ReportScheduleDAO
 from superset.exceptions import SupersetSecurityException
 from superset.models.dashboard import Dashboard

@@ -16,12 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { StoryFn, Meta } from '@storybook/react';
-=======
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { CurrencyCode, NumericCell, LocaleCode, Style } from './index';
 
 export default {

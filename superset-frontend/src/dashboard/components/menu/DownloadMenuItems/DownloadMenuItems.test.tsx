@@ -16,47 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
-=======
-<<<<<<<< HEAD:superset-frontend/plugins/plugin-chart-echarts/test/Waterfall/buildQuery.test.ts
-import { SqlaFormData } from '@superset-ui/core';
-import buildQuery from '../../src/Waterfall/buildQuery';
-
-describe('Waterfall buildQuery', () => {
-  const formData = {
-    datasource: '5__table',
-    granularity_sqla: 'ds',
-    metric: 'foo',
-    x_axis: 'bar',
-    groupby: ['baz'],
-    viz_type: 'waterfall',
-  };
-
-  it('should build query fields from form data', () => {
-    const queryContext = buildQuery(formData as unknown as SqlaFormData);
-    const [query] = queryContext.queries;
-    expect(query.metrics).toEqual(['foo']);
-    expect(query.columns?.[0]).toEqual(
-      expect.objectContaining({ sqlExpression: 'bar' }),
-    );
-    expect(query.columns?.[1]).toEqual('baz');
-  });
-========
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { render, screen } from 'spec/helpers/testing-library';
 import DownloadMenuItems from '.';
 
 const createProps = () => ({
-<<<<<<< HEAD
-=======
-  addDangerToast: jest.fn(),
->>>>>>> 2d98af4662 (merge from upstream to master)
   pdfMenuItemTitle: 'Export to PDF',
   imageMenuItemTitle: 'Download as Image',
   dashboardTitle: 'Test Dashboard',
   logEvent: jest.fn(),
-<<<<<<< HEAD
   dashboardId: '123',
 });
 
@@ -64,12 +31,6 @@ const renderComponent = () => {
   render(<DownloadMenuItems {...createProps()} />, {
     useRedux: true,
   });
-=======
-});
-
-const renderComponent = () => {
-  render(<DownloadMenuItems {...createProps()} />);
->>>>>>> 2d98af4662 (merge from upstream to master)
 };
 
 test('Should render menu items', () => {
@@ -80,8 +41,4 @@ test('Should render menu items', () => {
   expect(
     screen.getByRole('menuitem', { name: 'Download as Image' }),
   ).toBeInTheDocument();
-<<<<<<< HEAD
-=======
->>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/src/dashboard/components/menu/DownloadMenuItems/DownloadMenuItems.test.tsx
->>>>>>> 2d98af4662 (merge from upstream to master)
 });

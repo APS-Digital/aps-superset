@@ -59,11 +59,7 @@ export default function handleDrop(props, monitor, Component) {
     typeof dropToChild === 'function' ? dropToChild(draggingItem) : dropToChild;
 
   // simplest case, append as child
-<<<<<<< HEAD
   if (shouldAppendToChildren) {
-=======
-  if (dropToChild) {
->>>>>>> 2d98af4662 (merge from upstream to master)
     dropResult.destination = {
       id: component.id,
       type: component.type,

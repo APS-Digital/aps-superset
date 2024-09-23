@@ -196,11 +196,7 @@ class ExecuteSqlCommand(BaseCommand):
         """
         try:
             self._query_dao.create(query)
-<<<<<<< HEAD
         except SQLAlchemyError as ex:
-=======
-        except DAOCreateFailedError as ex:
->>>>>>> 2d98af4662 (merge from upstream to master)
             raise SqlLabException(
                 self._execution_context,
                 SupersetErrorType.GENERIC_DB_ENGINE_ERROR,

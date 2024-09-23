@@ -77,10 +77,6 @@ def load_energy(
             SqlMetric(metric_name="sum__value", expression=f"SUM({col})")
         )
 
-<<<<<<< HEAD
-=======
-    db.session.commit()
->>>>>>> 2d98af4662 (merge from upstream to master)
     tbl.fetch_metadata()
 
     slc = Slice(

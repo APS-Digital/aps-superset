@@ -20,7 +20,6 @@ from __future__ import annotations
 from typing import Any
 
 import pytest
-<<<<<<< HEAD
 from freezegun import freeze_time
 from pytest_mock import MockerFixture
 from sqlalchemy.dialects import mysql
@@ -399,13 +398,6 @@ def test_user_macros_without_user_info(mocker: MockerFixture):
     assert cache.current_user_id() == None  # noqa: E711
     assert cache.current_username() == None  # noqa: E711
     assert cache.current_user_email() == None  # noqa: E711
-=======
-from pytest_mock import MockFixture
-from sqlalchemy.dialects import mysql
-
-from superset.commands.dataset.exceptions import DatasetNotFoundError
-from superset.jinja_context import dataset_macro, WhereInMacro
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 
 def test_where_in() -> None:

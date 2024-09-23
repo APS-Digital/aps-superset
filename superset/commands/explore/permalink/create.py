@@ -20,7 +20,6 @@ from typing import Any, Optional
 
 from sqlalchemy.exc import SQLAlchemyError
 
-<<<<<<< HEAD
 from superset import db
 from superset.commands.explore.permalink.base import BaseExplorePermalinkCommand
 from superset.daos.key_value import KeyValueDAO
@@ -30,13 +29,6 @@ from superset.key_value.exceptions import (
     KeyValueCodecEncodeException,
     KeyValueCreateFailedError,
 )
-=======
-from superset.commands.explore.permalink.base import BaseExplorePermalinkCommand
-from superset.commands.key_value.create import CreateKeyValueCommand
-from superset.explore.permalink.exceptions import ExplorePermalinkCreateFailedError
-from superset.explore.utils import check_access as check_chart_access
-from superset.key_value.exceptions import KeyValueCodecEncodeException
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.key_value.utils import encode_permalink_key
 from superset.utils.core import DatasourceType
 from superset.utils.decorators import on_error, transaction

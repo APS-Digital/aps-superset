@@ -44,11 +44,7 @@ InteractiveSwitch.args = {
 InteractiveSwitch.argTypes = {
   size: {
     defaultValue: 'default',
-<<<<<<< HEAD
     control: { type: 'radio' },
     options: ['small', 'default'],
-=======
-    control: { type: 'radio', options: ['small', 'default'] },
->>>>>>> 2d98af4662 (merge from upstream to master)
   },
 };

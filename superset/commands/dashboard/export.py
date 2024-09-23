@@ -106,68 +106,10 @@ class ExportDashboardsCommand(ExportModelsCommand):
     dao = DashboardDAO
     not_found = DashboardNotFoundError
 
-<<<<<<< HEAD
     @staticmethod
     def _file_name(model: Dashboard) -> str:
         file_name = get_filename(model.dashboard_title, model.id)
         return f"dashboards/{file_name}.yaml"
-=======
-    @staticmethod
-    def _file_name(model: Dashboard) -> str:
-        file_name = get_filename(model.dashboard_title, model.id)
-        return f"dashboards/{file_name}.yaml"
-
-    @staticmethod
-    def _file_content(model: Dashboard) -> str:
-        payload = model.export_to_dict(
-            recursive=False,
-            include_parent_ref=False,
-            include_defaults=True,
-            export_uuids=True,
-        )
-        # TODO (betodealmeida): move this logic to export_to_dict once this
-        #  becomes the default export endpoint
-        for key, new_name in JSON_KEYS.items():
-            value: Optional[str] = payload.pop(key, None)
-            if value:
-                try:
-                    payload[new_name] = json.loads(value)
-                except (TypeError, json.decoder.JSONDecodeError):
-                    logger.info("Unable to decode `%s` field: %s", key, value)
-                    payload[new_name] = {}
-
-        # the mapping between dashboard -> charts is inferred from the position
-        # attribute, so if it's not present we need to add a default config
-        if not payload.get("position"):
-            payload["position"] = get_default_position(model.dashboard_title)
-
-        # if any charts or not referenced in position, we need to add them
-        # in a new row
-        referenced_charts = find_chart_uuids(payload["position"])
-        orphan_charts = {
-            chart for chart in model.slices if str(chart.uuid) not in referenced_charts
-        }
-
-        if orphan_charts:
-            payload["position"] = append_charts(payload["position"], orphan_charts)
-
-        payload["version"] = EXPORT_VERSION
-
-        file_content = yaml.safe_dump(payload, sort_keys=False)
-        return file_content
-
-    @staticmethod
-    def _export(
-        model: Dashboard, export_related: bool = True
-    ) -> Iterator[tuple[str, Callable[[], str]]]:
-        yield ExportDashboardsCommand._file_name(
-            model
-        ), lambda: ExportDashboardsCommand._file_content(model)
-
-        if export_related:
-            chart_ids = [chart.id for chart in model.slices]
-            yield from ExportChartsCommand(chart_ids).run()
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     @staticmethod
     def _file_content(model: Dashboard) -> str:
@@ -188,7 +130,6 @@ class ExportDashboardsCommand(ExportModelsCommand):
                     logger.info("Unable to decode `%s` field: %s", key, value)
                     payload[new_name] = {}
 
-<<<<<<< HEAD
         # the mapping between dashboard -> charts is inferred from the position
         # attribute, so if it's not present we need to add a default config
         if not payload.get("position"):
@@ -239,8 +180,6 @@ class ExportDashboardsCommand(ExportModelsCommand):
                     logger.info("Unable to decode `%s` field: %s", key, value)
                     payload[new_name] = {}
 
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         # Extract all native filter datasets and replace native
         # filter dataset references with uuid
         for native_filter in payload.get("metadata", {}).get(

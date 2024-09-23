@@ -16,18 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { FC, ReactNode, useContext, useEffect, useRef, useState } from 'react';
-=======
-import React, {
-  FC,
-  ReactNode,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { css, getExtensionsRegistry, styled, t } from '@superset-ui/core';
 import { useUiConfig } from 'src/components/UiConfigContext';
 import { Tooltip } from 'src/components/Tooltip';

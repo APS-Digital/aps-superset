@@ -42,10 +42,6 @@ import ControlPopover from '../ControlPopover/ControlPopover';
 import { DateFilterControlProps, FrameType } from './types';
 import {
   DateFilterTestKey,
-<<<<<<< HEAD
-=======
-  fetchTimeRange,
->>>>>>> 2d98af4662 (merge from upstream to master)
   FRAME_OPTIONS,
   guessFrame,
   useDefaultTimeFilter,

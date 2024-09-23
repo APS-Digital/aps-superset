@@ -28,11 +28,7 @@ from superset.constants import TimeGrain
 from superset.db_engine_specs.base import BaseEngineSpec
 from superset.db_engine_specs.exceptions import SupersetDBAPIConnectionError
 from superset.exceptions import SupersetException
-<<<<<<< HEAD
 from superset.utils import core as utils, json
-=======
-from superset.utils import core as utils
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 if TYPE_CHECKING:
     from superset.connectors.sqla.models import TableColumn

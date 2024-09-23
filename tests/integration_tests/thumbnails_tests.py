@@ -35,10 +35,7 @@ from superset.utils import json
 from superset.utils.screenshots import ChartScreenshot, DashboardScreenshot
 from superset.utils.urls import get_url_path
 from superset.utils.webdriver import WebDriverSelenium
-<<<<<<< HEAD
 from tests.integration_tests.base_tests import SupersetTestCase
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 from tests.integration_tests.conftest import with_feature_flags
 from tests.integration_tests.constants import ADMIN_USERNAME, ALPHA_USERNAME
 from tests.integration_tests.fixtures.birth_names_dashboard import (

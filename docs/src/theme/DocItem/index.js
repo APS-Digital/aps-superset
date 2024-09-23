@@ -16,22 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import styled from '@emotion/styled';
 import DocItem from '@theme-original/DocItem';
 
 const EditPageLink = styled('a')`
   position: fixed;
-<<<<<<< HEAD
   bottom: 40px;
   right: 10px;
-=======
-  bottom: 20px;
-  right: 20px;
->>>>>>> 2d98af4662 (merge from upstream to master)
   padding: 1rem;
   padding-left: 4rem;
   background-color: #444;
@@ -45,10 +36,7 @@ const EditPageLink = styled('a')`
   bpx-shadow: 0 0 0 0 rgba(0,0,0,0); /* Smooth transition for hover effect */
   scale: .9;
   transition: all 0.3s;
-<<<<<<< HEAD
   transform-origin: bottom right;
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 
   &:hover {
     background-color: #333;

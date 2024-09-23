@@ -43,10 +43,7 @@ Join our growing community!
 - [Clark.de](https://clark.de/)
 - [KarrotPay](https://www.daangnpay.com/)
 - [Taveo](https://www.taveo.com) [@codek]
-<<<<<<< HEAD
 - [Unit](https://www.unit.co/about-us) [@amitmiran137]
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 - [Wise](https://wise.com) [@koszti]
 - [Xendit](https://xendit.co/) [@LieAlbertTriAdrian]
 
@@ -58,13 +55,8 @@ Join our growing community!
 - [Bazaar Technologies](https://www.bazaartech.com) [@umair-abro]
 - [Dragonpass](https://www.dragonpass.com.cn/) [@zhxjdwh]
 - [Dropit Shopping](https://www.dropit.shop/) [@dropit-dev]
-<<<<<<< HEAD
 - [Fanatics](https://www.fanatics.com/) [@coderfender]
 - [Fordeal](https://www.fordeal.com) [@Renkai]
-=======
-- [Fanatics](https://www.fanatics.com) [@coderfender]
-- [Fordeal](http://www.fordeal.com) [@Renkai]
->>>>>>> 2d98af4662 (merge from upstream to master)
 - [GFG - Global Fashion Group](https://global-fashion-group.com) [@ksaagariconic]
 - [HuiShouBao](https://www.huishoubao.com/) [@Yukinoshita-Yukino]
 - [Now](https://www.now.vn/) [@davidkohcw]
@@ -88,11 +80,7 @@ Join our growing community!
 - [Caizin](https://caizin.com/) [@tejaskatariya]
 - [Careem](https://www.careem.com/) [@SamraHanifCareem]
 - [Cloudsmith](https://cloudsmith.io) [@alancarson]
-<<<<<<< HEAD
 - [CnOvit](https://www.cnovit.com/) [@xieshaohu]
-=======
-- [CnOvit](http://www.cnovit.com/) [@xieshaohu]
->>>>>>> 2d98af4662 (merge from upstream to master)
 - [Cyberhaven](https://www.cyberhaven.com/) [@toliver-ch]
 - [Deepomatic](https://deepomatic.com/) [@Zanoellia]
 - [Dial Once](https://www.dial-once.com/)
@@ -124,11 +112,7 @@ Join our growing community!
 - [Showmax](https://showmax.com) [@bobek]
 - [TechAudit](https://www.techaudit.info) [@ETselikov]
 - [Tenable](https://www.tenable.com) [@dflionis]
-<<<<<<< HEAD
 - [Tentacle](https://www.linkedin.com/company/tentacle-cmi/) [@jdclarke5]
-=======
-- [Tentacle](https://public.tentaclecmi.com) [@jdclarke5]
->>>>>>> 2d98af4662 (merge from upstream to master)
 - [timbr.ai](https://timbr.ai/) [@semantiDan]
 - [Tobii](https://www.tobii.com/) [@dwa]
 - [Tooploox](https://www.tooploox.com/) [@jakubczaplicki]
@@ -147,11 +131,7 @@ Join our growing community!
 - [Prensa Iberica](https://www.prensaiberica.es/) [@zamar-roura]
 - [TME QQMUSIC/WESING](https://www.tencentmusic.com/)[@shenyuanli,@marklaw]
 - [Xite](https://xite.com/) [@shashankkoppar]
-<<<<<<< HEAD
 - [Zaihang](https://www.zaih.com/)
-=======
-- [Zaihang](http://www.zaih.com/)
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 ### Education
 - [Aveti Learning](https://avetilearning.com/) [@TheShubhendra]

@@ -54,10 +54,7 @@ import setPeriodicRunner, {
   stopPeriodicRender,
 } from 'src/dashboard/util/setPeriodicRunner';
 import { PageHeaderWithActions } from 'src/components/PageHeaderWithActions';
-<<<<<<< HEAD
 import MetadataBar, { MetadataType } from 'src/components/MetadataBar';
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 import DashboardEmbedModal from '../EmbeddedModal';
 import OverwriteConfirm from '../OverwriteConfirm';
 

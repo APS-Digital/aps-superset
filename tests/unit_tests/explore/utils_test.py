@@ -28,11 +28,6 @@ from superset.commands.dataset.exceptions import (
 )
 from superset.commands.exceptions import (
     DatasourceNotFoundValidationError,
-<<<<<<< HEAD
-=======
-    DatasourceTypeInvalidError,
-    OwnersNotFoundValidationError,
->>>>>>> 2d98af4662 (merge from upstream to master)
     QueryNotFoundValidationError,
 )
 from superset.exceptions import SupersetSecurityException

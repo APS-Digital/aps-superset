@@ -112,7 +112,6 @@ interface ExtendedDropDownProps extends DropDownProps {
   ref?: RefObject<HTMLDivElement>;
 }
 
-<<<<<<< HEAD
 export interface NoAnimationDropdownProps extends ExtendedDropDownProps {
   children: ReactNode;
   onBlur?: (e: FocusEvent<HTMLDivElement>) => void;
@@ -132,8 +131,3 @@ export const NoAnimationDropdown = (props: NoAnimationDropdownProps) => {
     </AntdDropdown>
   );
 };
-=======
-export const NoAnimationDropdown = (
-  props: ExtendedDropDownProps & { children?: React.ReactNode },
-) => <AntdDropdown overlayStyle={props.overlayStyle} {...props} />;
->>>>>>> 2d98af4662 (merge from upstream to master)

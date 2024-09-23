@@ -32,17 +32,10 @@ const mockedProps = {
   latestQueryId: 'ryhMUZCGb',
 };
 test('is valid', () => {
-<<<<<<< HEAD
   expect(isValidElement(<QueryTable displayLimit={100} />)).toBe(true);
 });
 test('is valid with props', () => {
   expect(isValidElement(<QueryTable {...mockedProps} />)).toBe(true);
-=======
-  expect(React.isValidElement(<QueryTable displayLimit={100} />)).toBe(true);
-});
-test('is valid with props', () => {
-  expect(React.isValidElement(<QueryTable {...mockedProps} />)).toBe(true);
->>>>>>> 2d98af4662 (merge from upstream to master)
 });
 test('renders a proper table', () => {
   const mockStore = configureStore([thunk]);

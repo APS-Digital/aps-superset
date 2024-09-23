@@ -15,11 +15,7 @@
 # specific language governing permissions and limitations
 # under the License.
 import logging
-<<<<<<< HEAD
 from datetime import datetime, timezone
-=======
-from datetime import datetime
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 from celery import Celery
 from celery.exceptions import SoftTimeLimitExceeded
@@ -29,10 +25,7 @@ from superset.commands.exceptions import CommandException
 from superset.commands.report.exceptions import ReportScheduleUnexpectedError
 from superset.commands.report.execute import AsyncExecuteReportScheduleCommand
 from superset.commands.report.log_prune import AsyncPruneReportScheduleLogCommand
-<<<<<<< HEAD
 from superset.commands.sql_lab.query import QueryPruneCommand
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.daos.report import ReportScheduleDAO
 from superset.extensions import celery_app
 from superset.stats_logger import BaseStatsLogger
@@ -58,11 +51,7 @@ def scheduler() -> None:
         datetime.fromisoformat(scheduler.request.expires)
         - app.config["CELERY_BEAT_SCHEDULER_EXPIRES"]
         if scheduler.request.expires
-<<<<<<< HEAD
         else datetime.now(tz=timezone.utc)
-=======
-        else datetime.utcnow()
->>>>>>> 2d98af4662 (merge from upstream to master)
     )
     for active_schedule in active_schedules:
         for schedule in cron_schedule_window(

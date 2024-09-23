@@ -341,33 +341,9 @@ const PropertiesModal = ({
       updateMetadata: false,
     });
 
-<<<<<<< HEAD
     const moreOnSubmitProps: { roles?: Roles } = {};
     const morePutProps: { roles?: number[]; tags?: (number | undefined)[] } =
       {};
-=======
-    if (isFeatureEnabled(FeatureFlag.TaggingSystem)) {
-      // update tags
-      try {
-        fetchTags(
-          {
-            objectType: OBJECT_TYPES.DASHBOARD,
-            objectId: dashboardId,
-            includeTypes: false,
-          },
-          (currentTags: TagType[]) => updateTags(currentTags, tags),
-          error => {
-            handleErrorResponse(error);
-          },
-        );
-      } catch (error) {
-        handleErrorResponse(error);
-      }
-    }
-
-    const moreOnSubmitProps: { roles?: Roles } = {};
-    const morePutProps: { roles?: number[] } = {};
->>>>>>> 2d98af4662 (merge from upstream to master)
     if (isFeatureEnabled(FeatureFlag.DashboardRbac)) {
       moreOnSubmitProps.roles = roles;
       morePutProps.roles = (roles || []).map(r => r.id);

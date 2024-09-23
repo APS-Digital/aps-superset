@@ -1,4 +1,4 @@
-/*
+/**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -17,19 +17,5 @@
  * under the License.
  */
 
-<<<<<<<< HEAD:superset-frontend/packages/superset-ui-chart-controls/src/components/Dropdown.tsx
 export { Dropdown } from 'antd';
 export type { DropDownProps } from 'antd/lib/dropdown';
-========
-/**
- * Supported comparison time ranges
- */
-
-export enum ComparisonTimeRangeType {
-  Custom = 'c',
-  InheritedRange = 'r',
-  Month = 'm',
-  Week = 'w',
-  Year = 'y',
-}
->>>>>>>> 2d98af4662 (merge from upstream to master):superset-frontend/packages/superset-ui-core/src/time-comparison/types.ts

@@ -32,10 +32,6 @@ from superset.commands.report.exceptions import (
     ReportScheduleNameUniquenessValidationError,
 )
 from superset.daos.database import DatabaseDAO
-<<<<<<< HEAD
-=======
-from superset.daos.exceptions import DAOCreateFailedError
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.daos.report import ReportScheduleDAO
 from superset.reports.models import (
     ReportCreationMethod,
@@ -56,15 +52,7 @@ class CreateReportScheduleCommand(CreateMixin, BaseReportScheduleCommand):
     @transaction(on_error=partial(on_error, reraise=ReportScheduleCreateFailedError))
     def run(self) -> ReportSchedule:
         self.validate()
-<<<<<<< HEAD
         return ReportScheduleDAO.create(attributes=self._properties)
-=======
-        try:
-            return ReportScheduleDAO.create(attributes=self._properties)
-        except DAOCreateFailedError as ex:
-            logger.exception(ex.exception)
-            raise ReportScheduleCreateFailedError() from ex
->>>>>>> 2d98af4662 (merge from upstream to master)
 
     def validate(self) -> None:
         """

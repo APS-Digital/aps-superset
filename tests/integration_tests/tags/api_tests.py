@@ -16,22 +16,13 @@
 # under the License.
 # isort:skip_file
 """Unit tests for Superset"""
-<<<<<<< HEAD
-=======
-import json
-import prison
-from datetime import datetime
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 import prison
-<<<<<<< HEAD
 from datetime import datetime
 
 from flask import g  # noqa: F401
 import pytest
 import prison  # noqa: F811
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 from freezegun import freeze_time
 from sqlalchemy.sql import func
 from sqlalchemy import and_  # noqa: F401
@@ -43,7 +34,6 @@ from unittest.mock import patch
 from urllib import parse
 
 
-<<<<<<< HEAD
 import tests.integration_tests.test_app  # noqa: F401
 from superset import db, security_manager  # noqa: F401
 from superset.common.db_query_status import QueryStatus  # noqa: F401
@@ -52,14 +42,6 @@ from superset.utils.database import get_example_database, get_main_database  # n
 from superset.utils import json
 from superset.tags.models import ObjectType, Tag, TagType, TaggedObject
 from tests.integration_tests.constants import ADMIN_USERNAME, ALPHA_USERNAME
-=======
-import tests.integration_tests.test_app
-from superset import db, security_manager
-from superset.common.db_query_status import QueryStatus
-from superset.models.core import Database
-from superset.utils.database import get_example_database, get_main_database
-from superset.tags.models import ObjectType, Tag, TagType, TaggedObject
->>>>>>> 2d98af4662 (merge from upstream to master)
 from tests.integration_tests.fixtures.birth_names_dashboard import (
     load_birth_names_dashboard_with_slices,  # noqa: F401
     load_birth_names_data,  # noqa: F401
@@ -71,11 +53,7 @@ from tests.integration_tests.fixtures.world_bank_dashboard import (
 from tests.integration_tests.fixtures.tags import with_tagging_system_feature  # noqa: F401
 from tests.integration_tests.base_tests import SupersetTestCase
 from superset.daos.tag import TagDAO
-<<<<<<< HEAD
 from superset.tags.models import ObjectType  # noqa: F811
-=======
-from superset.tags.models import ObjectType
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 TAGS_FIXTURE_COUNT = 10
 
@@ -154,11 +132,7 @@ class TestTagApi(SupersetTestCase):
                 name="test get tag",
                 tag_type="custom",
             )
-<<<<<<< HEAD
             self.login(ADMIN_USERNAME)
-=======
-            self.login(username="admin")
->>>>>>> 2d98af4662 (merge from upstream to master)
             uri = f"api/v1/tag/{tag.id}"
             rv = self.client.get(uri)
         self.assertEqual(rv.status_code, 200)
@@ -223,11 +197,7 @@ class TestTagApi(SupersetTestCase):
                 name=tag["name"],
                 tag_type=tag["type"],
             )
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
-=======
-        self.login(username="admin")
->>>>>>> 2d98af4662 (merge from upstream to master)
 
         # Only user-created tags
         query = {
@@ -545,13 +515,8 @@ class TestTagApi(SupersetTestCase):
 
     @pytest.mark.usefixtures("load_world_bank_dashboard_with_slices")
     def test_post_tag(self):
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
         uri = "api/v1/tag/"  # noqa: F541
-=======
-        self.login(username="admin")
-        uri = f"api/v1/tag/"
->>>>>>> 2d98af4662 (merge from upstream to master)
         dashboard = (
             db.session.query(Dashboard)
             .filter(Dashboard.dashboard_title == "World Bank's Data")
@@ -563,11 +528,7 @@ class TestTagApi(SupersetTestCase):
         )
 
         self.assertEqual(rv.status_code, 201)
-<<<<<<< HEAD
         self.get_user(username="admin").get_id()  # noqa: F841
-=======
-        user_id = self.get_user(username="admin").get_id()
->>>>>>> 2d98af4662 (merge from upstream to master)
         tag = (
             db.session.query(Tag)
             .filter(Tag.name == "my_tag", Tag.type == TagType.custom)
@@ -577,13 +538,8 @@ class TestTagApi(SupersetTestCase):
 
     @pytest.mark.usefixtures("load_world_bank_dashboard_with_slices")
     def test_post_tag_no_name_400(self):
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
         uri = "api/v1/tag/"  # noqa: F541
-=======
-        self.login(username="admin")
-        uri = f"api/v1/tag/"
->>>>>>> 2d98af4662 (merge from upstream to master)
         dashboard = (
             db.session.query(Dashboard)
             .filter(Dashboard.dashboard_title == "World Bank's Data")
@@ -599,11 +555,7 @@ class TestTagApi(SupersetTestCase):
     @pytest.mark.usefixtures("load_world_bank_dashboard_with_slices")
     @pytest.mark.usefixtures("create_tags")
     def test_put_tag(self):
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
-=======
-        self.login(username="admin")
->>>>>>> 2d98af4662 (merge from upstream to master)
 
         tag_to_update = db.session.query(Tag).first()
         uri = f"api/v1/tag/{tag_to_update.id}"
@@ -623,11 +575,7 @@ class TestTagApi(SupersetTestCase):
     @pytest.mark.usefixtures("load_world_bank_dashboard_with_slices")
     @pytest.mark.usefixtures("create_tags")
     def test_failed_put_tag(self):
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
-=======
-        self.login(username="admin")
->>>>>>> 2d98af4662 (merge from upstream to master)
 
         tag_to_update = db.session.query(Tag).first()
         uri = f"api/v1/tag/{tag_to_update.id}"
@@ -637,11 +585,7 @@ class TestTagApi(SupersetTestCase):
 
     @pytest.mark.usefixtures("load_world_bank_dashboard_with_slices")
     def test_post_bulk_tag(self):
-<<<<<<< HEAD
         self.login(ADMIN_USERNAME)
-=======
-        self.login(username="admin")
->>>>>>> 2d98af4662 (merge from upstream to master)
         uri = "api/v1/tag/bulk_create"
         dashboard = (
             db.session.query(Dashboard)
@@ -707,11 +651,7 @@ class TestTagApi(SupersetTestCase):
     def test_post_bulk_tag_skipped_tags_perm(self):
         alpha = self.get_user("alpha")
         self.insert_dashboard("titletag", "slugtag", [alpha.id])
-<<<<<<< HEAD
         self.login(ALPHA_USERNAME)
-=======
-        self.login(username="alpha")
->>>>>>> 2d98af4662 (merge from upstream to master)
         uri = "api/v1/tag/bulk_create"
         dashboard = (
             db.session.query(Dashboard)

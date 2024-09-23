@@ -32,10 +32,6 @@ from superset.commands.annotation_layer.annotation.exceptions import (
 from superset.commands.annotation_layer.exceptions import AnnotationLayerNotFoundError
 from superset.commands.base import BaseCommand
 from superset.daos.annotation_layer import AnnotationDAO, AnnotationLayerDAO
-<<<<<<< HEAD
-=======
-from superset.daos.exceptions import DAOUpdateFailedError
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.models.annotations import Annotation
 from superset.utils.decorators import on_error, transaction
 

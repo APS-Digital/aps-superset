@@ -17,11 +17,8 @@
  * under the License.
  */
 import { normalizeTimestamp, QueryState, t } from '@superset-ui/core';
-<<<<<<< HEAD
 import { isEqual, omit } from 'lodash';
 import { shallowEqual } from 'react-redux';
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 import * as actions from '../actions/sqlLab';
 import { now } from '../../utils/dates';
 import {
@@ -483,26 +480,9 @@ export default function sqlLabReducer(state = {}, action) {
       );
     },
     [actions.MIGRATE_TAB_HISTORY]() {
-<<<<<<< HEAD
       const tabHistory = state.tabHistory.map(tabId =>
         tabId === action.oldId ? action.newId : tabId,
       );
-=======
-      try {
-        // remove migrated tab from localStorage tabHistory
-        const { sqlLab } = JSON.parse(localStorage.getItem('redux'));
-        sqlLab.tabHistory = sqlLab.tabHistory.filter(
-          tabId => tabId !== action.oldId,
-        );
-        localStorage.setItem('redux', JSON.stringify({ sqlLab }));
-      } catch (error) {
-        // continue regardless of error
-      }
-      const tabHistory = state.tabHistory.filter(
-        tabId => tabId !== action.oldId,
-      );
-      tabHistory.push(action.newId);
->>>>>>> 2d98af4662 (merge from upstream to master)
       return { ...state, tabHistory };
     },
     [actions.MIGRATE_QUERY]() {
@@ -783,12 +763,9 @@ export default function sqlLabReducer(state = {}, action) {
     [actions.SET_EDITOR_TAB_LAST_UPDATE]() {
       return { ...state, editorTabLastUpdatedAt: action.timestamp };
     },
-<<<<<<< HEAD
     [actions.SET_LAST_UPDATED_ACTIVE_TAB]() {
       return { ...state, lastUpdatedActiveTab: action.queryEditorId };
     },
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
   };
   if (action.type in actionHandlers) {
     return actionHandlers[action.type]();

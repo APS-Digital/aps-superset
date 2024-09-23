@@ -198,11 +198,7 @@ class TestCssTemplateApi(SupersetTestCase):
                 .filter(CssTemplate.template_name == "template_name1")
                 .one_or_none()
             )
-<<<<<<< HEAD
             self.login(ADMIN_USERNAME)
-=======
-            self.login(username="admin")
->>>>>>> 2d98af4662 (merge from upstream to master)
             uri = f"api/v1/css_template/{css_template.id}"
             rv = self.get_assert_metric(uri, "get")
         assert rv.status_code == 200

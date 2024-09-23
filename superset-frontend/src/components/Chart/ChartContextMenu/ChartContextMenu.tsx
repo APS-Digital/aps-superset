@@ -97,7 +97,6 @@ const ChartContextMenu = (
   const canDatasourceSamples = useSelector((state: RootState) =>
     findPermission('can_samples', 'Datasource', state.user?.roles),
   );
-<<<<<<< HEAD
   const canDownload = useSelector((state: RootState) =>
     findPermission('can_csv', 'Superset', state.user?.roles),
   );
@@ -106,10 +105,6 @@ const ChartContextMenu = (
   );
   const canDrillBy = (canExplore || canDrill) && canWriteExploreFormData;
   const canDrillToDetail = (canExplore || canDrill) && canDatasourceSamples;
-=======
-  const canDrillBy = canExplore && canWriteExploreFormData;
-  const canDrillToDetail = canExplore && canDatasourceSamples;
->>>>>>> 2d98af4662 (merge from upstream to master)
   const crossFiltersEnabled = useSelector<RootState, boolean>(
     ({ dashboardInfo }) => dashboardInfo.crossFiltersEnabled,
   );

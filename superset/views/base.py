@@ -16,21 +16,12 @@
 # under the License.
 from __future__ import annotations
 
-<<<<<<< HEAD
-=======
-import dataclasses
->>>>>>> 2d98af4662 (merge from upstream to master)
 import functools
 import logging
 import os
 import traceback
 from datetime import datetime
-<<<<<<< HEAD
 from typing import Any, Callable
-=======
-from importlib.resources import files
-from typing import Any, Callable, cast
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 import yaml
 from babel import Locale
@@ -65,6 +56,7 @@ from superset import (
     app as superset_app,
     appbuilder,
     conf,
+    db,
     get_feature_flags,
     is_feature_enabled,
     security_manager,
@@ -122,10 +114,7 @@ FRONTEND_CONF_KEYS = (
     "NATIVE_FILTER_DEFAULT_ROW_LIMIT",
     "PREVENT_UNSAFE_DEFAULT_URLS_ON_DATASET",
     "JWT_ACCESS_CSRF_COOKIE_NAME",
-<<<<<<< HEAD
     "SQLLAB_QUERY_RESULT_TIMEOUT",
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 )
 
 logger = logging.getLogger(__name__)
@@ -144,38 +133,6 @@ def get_error_msg() -> str:
     return error_msg
 
 
-<<<<<<< HEAD
-=======
-def json_error_response(
-    msg: str | None = None,
-    status: int = 500,
-    payload: dict[str, Any] | None = None,
-) -> FlaskResponse:
-    payload = payload or {"error": f"{msg}"}
-
-    return Response(
-        json.dumps(payload, default=utils.json_iso_dttm_ser, ignore_nan=True),
-        status=status,
-        mimetype="application/json",
-    )
-
-
-def json_errors_response(
-    errors: list[SupersetError],
-    status: int = 500,
-    payload: dict[str, Any] | None = None,
-) -> FlaskResponse:
-    payload = payload or {}
-
-    payload["errors"] = [dataclasses.asdict(error) for error in errors]
-    return Response(
-        json.dumps(payload, default=utils.json_iso_dttm_ser, ignore_nan=True),
-        status=status,
-        mimetype="application/json; charset=utf-8",
-    )
-
-
->>>>>>> 2d98af4662 (merge from upstream to master)
 def json_success(json_msg: str, status: int = 200) -> FlaskResponse:
     return Response(json_msg, status=status, mimetype="application/json")
 
@@ -195,11 +152,7 @@ def generate_download_headers(
 
 
 def deprecated(
-<<<<<<< HEAD
     eol_version: str = "5.0.0",
-=======
-    eol_version: str = "4.0.0",
->>>>>>> 2d98af4662 (merge from upstream to master)
     new_target: str | None = None,
 ) -> Callable[[Callable[..., FlaskResponse]], Callable[..., FlaskResponse]]:
     """
@@ -248,53 +201,6 @@ def api(f: Callable[..., FlaskResponse]) -> Callable[..., FlaskResponse]:
     return functools.update_wrapper(wraps, f)
 
 
-<<<<<<< HEAD
-=======
-def handle_api_exception(
-    f: Callable[..., FlaskResponse]
-) -> Callable[..., FlaskResponse]:
-    """
-    A decorator to catch superset exceptions. Use it after the @api decorator above
-    so superset exception handler is triggered before the handler for generic
-    exceptions.
-    """
-
-    def wraps(self: BaseSupersetView, *args: Any, **kwargs: Any) -> FlaskResponse:
-        try:
-            return f(self, *args, **kwargs)
-        except SupersetSecurityException as ex:
-            logger.warning("SupersetSecurityException", exc_info=True)
-            return json_errors_response(
-                errors=[ex.error], status=ex.status, payload=ex.payload
-            )
-        except SupersetErrorsException as ex:
-            logger.warning(ex, exc_info=True)
-            return json_errors_response(errors=ex.errors, status=ex.status)
-        except SupersetErrorException as ex:
-            logger.warning("SupersetErrorException", exc_info=True)
-            return json_errors_response(errors=[ex.error], status=ex.status)
-        except SupersetException as ex:
-            if ex.status >= 500:
-                logger.exception(ex)
-            return json_error_response(
-                utils.error_msg_from_exception(ex), status=ex.status
-            )
-        except HTTPException as ex:
-            logger.exception(ex)
-            return json_error_response(
-                utils.error_msg_from_exception(ex), status=cast(int, ex.code)
-            )
-        except (exc.IntegrityError, exc.DatabaseError, exc.DataError) as ex:
-            logger.exception(ex)
-            return json_error_response(utils.error_msg_from_exception(ex), status=422)
-        except Exception as ex:  # pylint: disable=broad-except
-            logger.exception(ex)
-            return json_error_response(utils.error_msg_from_exception(ex))
-
-    return functools.update_wrapper(wraps, f)
-
-
->>>>>>> 2d98af4662 (merge from upstream to master)
 class BaseSupersetView(BaseView):
     @staticmethod
     def json_response(obj: Any, status: int = 200) -> FlaskResponse:
@@ -393,11 +299,7 @@ def menu_data(user: User) -> dict[str, Any]:
 
 @cache_manager.cache.memoize(timeout=60)
 def cached_common_bootstrap_data(  # pylint: disable=unused-argument
-<<<<<<< HEAD
     user_id: int | None, locale: Locale | None
-=======
-    user_id: int | None, locale: str
->>>>>>> 2d98af4662 (merge from upstream to master)
 ) -> dict[str, Any]:
     """Common data always sent to the client
 
@@ -457,11 +359,7 @@ def get_common_bootstrap_data() -> dict[str, Any]:
     def serialize_bootstrap_data() -> str:
         return json.dumps(
             {"common": common_bootstrap_payload()},
-<<<<<<< HEAD
             default=json.pessimistic_json_iso_dttm_ser,
-=======
-            default=utils.pessimistic_json_iso_dttm_ser,
->>>>>>> 2d98af4662 (merge from upstream to master)
         )
 
     return {"bootstrap_data": serialize_bootstrap_data}

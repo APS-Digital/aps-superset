@@ -78,7 +78,6 @@ InteractivePopoverDropdown.argTypes = {
     table: { disable: true },
   },
 };
-<<<<<<< HEAD
 
 export default {
   title: 'PopoverDropdown',
@@ -88,5 +87,3 @@ export default {
     options: OPTIONS,
   },
 };
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)

@@ -17,20 +17,12 @@
  * under the License.
  */
 
-<<<<<<< HEAD
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { SuperChart, getChartTransformPropsRegistry } from '@superset-ui/core';
 import {
   EchartsPieChartPlugin,
   PieTransformProps,
 } from '@superset-ui/plugin-chart-echarts';
-<<<<<<< HEAD
 import { weekday, population, sales } from './data';
-=======
-import { weekday, population } from './data';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { withResizableChartDemo } from '../../../../shared/components/ResizableChartDemo';
 
 new EchartsPieChartPlugin().configure({ key: 'echarts-pie' }).register();
@@ -200,7 +192,6 @@ PopulationPie.argTypes = {
     },
   },
 };
-<<<<<<< HEAD
 
 export const SalesPie = (
   {
@@ -289,5 +280,3 @@ SalesPie.argTypes = {
     },
   },
 };
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)

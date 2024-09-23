@@ -20,21 +20,7 @@
 import Generator from 'yeoman-generator';
 import { kebabCase, camelCase, startCase, upperFirst } from 'lodash-es';
 
-<<<<<<< HEAD
 export default class extends Generator {
-=======
-const Generator = require('yeoman-generator');
-// eslint-disable-next-line lodash/import-scope
-const kebabCase = require('lodash/kebabCase');
-// eslint-disable-next-line lodash/import-scope
-const startCase = require('lodash/startCase');
-// eslint-disable-next-line lodash/import-scope
-const camelCase = require('lodash/camelCase');
-// eslint-disable-next-line lodash/import-scope
-const upperFirst = require('lodash/upperFirst');
-
-module.exports = class extends Generator {
->>>>>>> 2d98af4662 (merge from upstream to master)
   async prompting() {
     this.option('skipInstall');
 

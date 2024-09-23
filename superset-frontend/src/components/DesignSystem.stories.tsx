@@ -17,10 +17,6 @@
  * under the License.
  */
 import Markdown from 'markdown-to-jsx';
-<<<<<<< HEAD
-=======
-import React from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import AtomicDesign from './atomic-design.png';
 
 export default {

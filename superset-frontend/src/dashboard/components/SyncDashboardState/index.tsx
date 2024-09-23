@@ -16,12 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { FC, useEffect } from 'react';
 
-=======
-import React, { useEffect } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { pick } from 'lodash';
 import { shallowEqual, useSelector } from 'react-redux';
 import { DashboardContextForExplore } from 'src/types/DashboardContextForExplore';
@@ -63,23 +59,14 @@ const updateDashboardTabLocalStorage = (
   });
 };
 
-<<<<<<< HEAD
 const SyncDashboardState: FC<Props> = ({ dashboardPageId }) => {
-=======
-const SyncDashboardState: React.FC<Props> = ({ dashboardPageId }) => {
->>>>>>> 2d98af4662 (merge from upstream to master)
   const dashboardContextForExplore = useSelector<
     RootState,
     DashboardContextForExplore
   >(
     ({ dashboardInfo, dashboardState, nativeFilters, dataMask }) => ({
-<<<<<<< HEAD
       labelsColor: dashboardInfo.metadata?.label_colors || EMPTY_OBJECT,
       labelsColorMap:
-=======
-      labelColors: dashboardInfo.metadata?.label_colors || EMPTY_OBJECT,
-      sharedLabelColors:
->>>>>>> 2d98af4662 (merge from upstream to master)
         dashboardInfo.metadata?.shared_label_colors || EMPTY_OBJECT,
       colorScheme: dashboardState?.colorScheme,
       chartConfiguration:

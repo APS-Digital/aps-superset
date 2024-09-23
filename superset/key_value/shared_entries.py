@@ -29,24 +29,12 @@ CODEC = JsonKeyValueCodec()
 
 
 def get_shared_value(key: SharedKey) -> Optional[Any]:
-<<<<<<< HEAD
-=======
-    # pylint: disable=import-outside-toplevel
-    from superset.commands.key_value.get import GetKeyValueCommand
-
->>>>>>> 2d98af4662 (merge from upstream to master)
     uuid_key = uuid3(NAMESPACE, key)
     return KeyValueDAO.get_value(RESOURCE, uuid_key, CODEC)
 
 
 @transaction()
 def set_shared_value(key: SharedKey, value: Any) -> None:
-<<<<<<< HEAD
-=======
-    # pylint: disable=import-outside-toplevel
-    from superset.commands.key_value.create import CreateKeyValueCommand
-
->>>>>>> 2d98af4662 (merge from upstream to master)
     uuid_key = uuid3(NAMESPACE, key)
     KeyValueDAO.create_entry(RESOURCE, value, CODEC, uuid_key)
 

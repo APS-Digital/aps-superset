@@ -49,18 +49,14 @@ const sqlLabPersistStateConfig = {
             tables,
             queries,
             tabHistory,
-<<<<<<< HEAD
             lastUpdatedActiveTab,
             destroyedQueryEditors,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
           } = state.sqlLab;
           const unsavedQueryEditors = filterUnsavedQueryEditorList(
             queryEditors,
             unsavedQueryEditor,
             editorTabLastUpdatedAt,
           );
-<<<<<<< HEAD
           const hasUnsavedActiveTabState =
             tabHistory.slice(-1)[0] !== lastUpdatedActiveTab;
           const hasUnsavedDeletedQueryEditors =
@@ -70,9 +66,6 @@ const sqlLabPersistStateConfig = {
             hasUnsavedActiveTabState ||
             hasUnsavedDeletedQueryEditors
           ) {
-=======
-          if (unsavedQueryEditors.length > 0) {
->>>>>>> 2d98af4662 (merge from upstream to master)
             const hasFinishedMigrationFromLocalStorage =
               unsavedQueryEditors.every(
                 ({ inLocalStorage }) => !inLocalStorage,
@@ -87,13 +80,10 @@ const sqlLabPersistStateConfig = {
                   query => query.inLocalStorage && !query.isDataPreview,
                 ),
               }),
-<<<<<<< HEAD
               ...(hasUnsavedActiveTabState && {
                 tabHistory,
               }),
               destroyedQueryEditors,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
             };
           }
           return;

@@ -19,11 +19,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { memo } from 'react';
-=======
-import React, { memo } from 'react';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import { formatNumber, styled } from '@superset-ui/core';
 
 const StyledLegend = styled.div`
@@ -44,7 +40,6 @@ const StyledLegend = styled.div`
       margin: 0;
 
       & li a {
-<<<<<<< HEAD
         display: flex;
         color: ${theme.colors.grayscale.base};
         text-decoration: none;
@@ -52,13 +47,6 @@ const StyledLegend = styled.div`
 
         & span {
           margin-right: ${theme.gridUnit}px;
-=======
-        color: ${theme.colors.grayscale.base};
-        text-decoration: none;
-
-        & span {
-          margin-right: ${theme.gridUnit * 3}px;
->>>>>>> 2d98af4662 (merge from upstream to master)
         }
       }
     }
@@ -120,10 +108,7 @@ const Legend = ({
       <li key={k}>
         <a
           href="#"
-<<<<<<< HEAD
           role="button"
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
           onClick={() => toggleCategory(k)}
           onDoubleClick={() => showSingleCategory(k)}
         >

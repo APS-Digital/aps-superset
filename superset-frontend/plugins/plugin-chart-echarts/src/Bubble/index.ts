@@ -16,11 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-<<<<<<< HEAD
 import { ChartMetadata, ChartPlugin, t } from '@superset-ui/core';
-=======
-import { Behavior, ChartMetadata, ChartPlugin, t } from '@superset-ui/core';
->>>>>>> 2d98af4662 (merge from upstream to master)
 import thumbnail from './images/thumbnail.png';
 import transformProps from './transformProps';
 import buildQuery from './buildQuery';
@@ -29,10 +25,7 @@ import example1 from './images/example1.png';
 import example2 from './images/example2.png';
 import { EchartsBubbleChartProps, EchartsBubbleFormData } from './types';
 
-<<<<<<< HEAD
 // TODO: Implement cross filtering
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 export default class EchartsBubbleChartPlugin extends ChartPlugin<
   EchartsBubbleFormData,
   EchartsBubbleChartProps
@@ -43,10 +36,6 @@ export default class EchartsBubbleChartPlugin extends ChartPlugin<
       controlPanel,
       loadChart: () => import('./EchartsBubble'),
       metadata: new ChartMetadata({
-<<<<<<< HEAD
-=======
-        behaviors: [Behavior.InteractiveChart],
->>>>>>> 2d98af4662 (merge from upstream to master)
         category: t('Correlation'),
         credits: ['https://echarts.apache.org'],
         description: t(
@@ -56,19 +45,12 @@ export default class EchartsBubbleChartPlugin extends ChartPlugin<
         name: t('Bubble Chart'),
         tags: [
           t('Multi-Dimensions'),
-<<<<<<< HEAD
-=======
-          t('Aesthetic'),
->>>>>>> 2d98af4662 (merge from upstream to master)
           t('Comparison'),
           t('Scatter'),
           t('Time'),
           t('Trend'),
           t('ECharts'),
-<<<<<<< HEAD
           t('Featured'),
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
         ],
         thumbnail,
       }),

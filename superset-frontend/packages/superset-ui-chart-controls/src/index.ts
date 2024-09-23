@@ -29,12 +29,9 @@ export * from './components/InfoTooltipWithTrigger';
 export * from './components/ColumnOption';
 export * from './components/ColumnTypeLabel/ColumnTypeLabel';
 export * from './components/ControlSubSectionHeader';
-<<<<<<< HEAD
 export * from './components/Dropdown';
 export * from './components/Menu';
 export * from './components/MetricOption';
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 export * from './components/Tooltip';
 
 export * from './shared-controls';

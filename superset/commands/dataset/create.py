@@ -31,16 +31,10 @@ from superset.commands.dataset.exceptions import (
     TableNotFoundValidationError,
 )
 from superset.daos.dataset import DatasetDAO
-<<<<<<< HEAD
 from superset.exceptions import SupersetSecurityException
 from superset.extensions import security_manager
 from superset.sql_parse import Table
 from superset.utils.decorators import on_error, transaction
-=======
-from superset.daos.exceptions import DAOCreateFailedError
-from superset.exceptions import SupersetSecurityException
-from superset.extensions import db, security_manager
->>>>>>> 2d98af4662 (merge from upstream to master)
 
 logger = logging.getLogger(__name__)
 
@@ -52,23 +46,9 @@ class CreateDatasetCommand(CreateMixin, BaseCommand):
     @transaction(on_error=partial(on_error, reraise=DatasetCreateFailedError))
     def run(self) -> Model:
         self.validate()
-<<<<<<< HEAD
 
         dataset = DatasetDAO.create(attributes=self._properties)
         dataset.fetch_metadata()
-=======
-        try:
-            # Creates SqlaTable (Dataset)
-            dataset = DatasetDAO.create(attributes=self._properties, commit=False)
-
-            # Updates columns and metrics from the dataset
-            dataset.fetch_metadata(commit=False)
-            db.session.commit()
-        except (SQLAlchemyError, DAOCreateFailedError) as ex:
-            logger.warning(ex, exc_info=True)
-            db.session.rollback()
-            raise DatasetCreateFailedError() from ex
->>>>>>> 2d98af4662 (merge from upstream to master)
         return dataset
 
     def validate(self) -> None:
@@ -110,10 +90,7 @@ class CreateDatasetCommand(CreateMixin, BaseCommand):
                 security_manager.raise_for_access(
                     database=database,
                     sql=sql,
-<<<<<<< HEAD
                     catalog=catalog,
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
                     schema=schema,
                 )
             except SupersetSecurityException as ex:

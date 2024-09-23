@@ -31,10 +31,7 @@ from superset.async_events.async_query_manager import AsyncQueryManager
 from superset.async_events.async_query_manager_factory import AsyncQueryManagerFactory
 from superset.extensions.ssh import SSHManagerFactory
 from superset.extensions.stats_logger import BaseStatsLoggerManager
-<<<<<<< HEAD
 from superset.security.manager import SupersetSecurityManager
-=======
->>>>>>> 2d98af4662 (merge from upstream to master)
 from superset.utils.cache_manager import CacheManager
 from superset.utils.encrypt import EncryptedFieldFactory
 from superset.utils.feature_flag_manager import FeatureFlagManager
